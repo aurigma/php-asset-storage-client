@@ -23,7 +23,7 @@ $client = new GuzzleHttp\Client([
 $selector = new HeaderSelector();
 $config = new Configuration();
 $config->setAccessToken($accessToken);
-$config->setHost(TestConfig::ASSET_STORAGE_API_URL);
+$config->setHost('API_URL');
 
 $imagesApi = new ImagesApi($client, $config, $selector);
 $response2 = $imagesApi->imagesGet('Image_id', 1);
