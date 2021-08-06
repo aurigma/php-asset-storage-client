@@ -15,7 +15,7 @@ For other platforms, see the [Backend services](https://customerscanvas.com/dev/
 ## Installation
 
 ```
-composer require aurigma/asset-storage
+composer require aurigma/php-asset-storage-client
 ```
 
 ### Requirements
