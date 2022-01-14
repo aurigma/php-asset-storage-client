@@ -8,7 +8,6 @@ This module is a PHP API client for Asset Storage service which is a part of [**
 To be able to use this package, you need to meet the following requirements: 
 
 * You must have an account at Customer's Canvas.
-* You need to use it in Angular applications **only**. 
 
 For other platforms, see the [Backend services](https://customerscanvas.com/dev/getting-started/about-backend-services.html) article in Customer's Canvas documentation.  
 
