@@ -117,7 +117,7 @@ class BuildInfoApi
     /**
      * Operation buildInfoGetInfo
      *
-     * Gets assembly build info
+     * Returns an assembly build info.
      *
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -133,7 +133,7 @@ class BuildInfoApi
     /**
      * Operation buildInfoGetInfoWithHttpInfo
      *
-     * Gets assembly build info
+     * Returns an assembly build info.
      *
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -218,7 +218,7 @@ class BuildInfoApi
     /**
      * Operation buildInfoGetInfoAsync
      *
-     * Gets assembly build info
+     * Returns an assembly build info.
      *
      *
      * @throws \InvalidArgumentException
@@ -237,7 +237,7 @@ class BuildInfoApi
     /**
      * Operation buildInfoGetInfoAsyncWithHttpInfo
      *
-     * Gets assembly build info
+     * Returns an assembly build info.
      *
      *
      * @throws \InvalidArgumentException
@@ -370,7 +370,7 @@ class BuildInfoApi
     /**
      * Operation buildInfoHeadInfo
      *
-     * Gets assembly build info
+     * Retruns an assembly build info.
      *
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -385,7 +385,7 @@ class BuildInfoApi
     /**
      * Operation buildInfoHeadInfoWithHttpInfo
      *
-     * Gets assembly build info
+     * Retruns an assembly build info.
      *
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -436,7 +436,7 @@ class BuildInfoApi
     /**
      * Operation buildInfoHeadInfoAsync
      *
-     * Gets assembly build info
+     * Retruns an assembly build info.
      *
      *
      * @throws \InvalidArgumentException
@@ -455,7 +455,7 @@ class BuildInfoApi
     /**
      * Operation buildInfoHeadInfoAsyncWithHttpInfo
      *
-     * Gets assembly build info
+     * Retruns an assembly build info.
      *
      *
      * @throws \InvalidArgumentException

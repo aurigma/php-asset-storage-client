@@ -230,7 +230,7 @@ class DesignFontMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets postscript_name
      *
-     * @param string|null $postscript_name Font postscript name
+     * @param string|null $postscript_name Font postscript name.
      *
      * @return self
      */
@@ -254,7 +254,7 @@ class DesignFontMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets family
      *
-     * @param string|null $family Font family name
+     * @param string|null $family Font family name.
      *
      * @return self
      */
@@ -278,7 +278,7 @@ class DesignFontMetadata implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets style
      *
-     * @param string|null $style Font style
+     * @param string|null $style Font style.
      *
      * @return self
      */

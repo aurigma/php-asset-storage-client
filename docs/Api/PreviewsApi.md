@@ -4,8 +4,9 @@ All URIs are relative to http://localhost.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**previewsGet()**](PreviewsApi.md#previewsGet) | **GET** /api/storage/v1/previews/{id} | Gets preview entity by id
-[**previewsGetFile()**](PreviewsApi.md#previewsGetFile) | **GET** /api/storage/v1/previews/{id}/file | Gets preview entity file from file storage
+[**previewsGet()**](PreviewsApi.md#previewsGet) | **GET** /api/storage/v1/previews/{id} | Returns preview entity by ID.
+[**previewsGetFile()**](PreviewsApi.md#previewsGetFile) | **GET** /api/storage/v1/previews/{id}/file | Returns a preview entity file from file storage.
+[**previewsGetFileStorageInfo()**](PreviewsApi.md#previewsGetFileStorageInfo) | **GET** /api/storage/v1/previews/file-storage-info | Returns information about storage usage by preview files.
 
 
 ## `previewsGet()`
@@ -14,7 +15,7 @@ Method | HTTP request | Description
 previewsGet($id, $tenant_id): \Aurigma\AssetStorage\Model\PreviewDto
 ```
 
-Gets preview entity by id
+Returns preview entity by ID.
 
 ### Example
 
@@ -28,7 +29,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -38,7 +50,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\PreviewsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 'id_example'; // string | Entity unique identifier
+$id = 'id_example'; // string | Entity identifier.
 $tenant_id = 56; // int | Tenant identifier
 
 try {
@@ -53,7 +65,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string**| Entity unique identifier |
+ **id** | **string**| Entity identifier. |
  **tenant_id** | **int**| Tenant identifier | [optional]
 
 ### Return type
@@ -62,7 +74,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -79,7 +91,7 @@ Name | Type | Description  | Notes
 previewsGetFile($id, $attachment, $tenant_id): \SplFileObject
 ```
 
-Gets preview entity file from file storage
+Returns a preview entity file from file storage.
 
 ### Example
 
@@ -94,8 +106,8 @@ $apiInstance = new Aurigma\AssetStorage\Api\PreviewsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$id = 'id_example'; // string | Preview entity unique identifier
-$attachment = True; // bool | If set to 'true', file will be provided as an attachment with proper filename supplied (default value is 'false')
+$id = 'id_example'; // string | Preview entity identifier.
+$attachment = True; // bool | Indicates if file should be provided as an attachment with proper filename supplied (default value is 'false').
 $tenant_id = 56; // int | Tenant identifier
 
 try {
@@ -110,8 +122,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string**| Preview entity unique identifier |
- **attachment** | **bool**| If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) | [optional]
+ **id** | **string**| Preview entity identifier. |
+ **attachment** | **bool**| Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). | [optional]
  **tenant_id** | **int**| Tenant identifier | [optional]
 
 ### Return type
@@ -126,6 +138,80 @@ No authorization required
 
 - **Content-Type**: Not defined
 - **Accept**: `application/octet-stream`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `previewsGetFileStorageInfo()`
+
+```php
+previewsGetFileStorageInfo($tenant_id): \Aurigma\AssetStorage\Model\FileStorageInfoDto
+```
+
+Returns information about storage usage by preview files.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Aurigma\AssetStorage\Api\PreviewsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$tenant_id = 56; // int | Tenant identifier
+
+try {
+    $result = $apiInstance->previewsGetFileStorageInfo($tenant_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PreviewsApi->previewsGetFileStorageInfo: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tenant_id** | **int**| Tenant identifier | [optional]
+
+### Return type
+
+[**\Aurigma\AssetStorage\Model\FileStorageInfoDto**](../Model/FileStorageInfoDto.md)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

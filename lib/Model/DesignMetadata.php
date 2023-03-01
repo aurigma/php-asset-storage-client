@@ -35,7 +35,7 @@ use \Aurigma\AssetStorage\ObjectSerializer;
  * DesignMetadata Class Doc Comment
  *
  * @category Class
- * @description Design metadata
+ * @description Design metadata.
  * @package  Aurigma\AssetStorage
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -62,6 +62,7 @@ class DesignMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'fonts' => '\Aurigma\AssetStorage\Model\DesignFontMetadata[]',
         'surfaces' => '\Aurigma\AssetStorage\Model\DesignSurfaceMetadata[]',
+        'print_areas' => '\Aurigma\AssetStorage\Model\DesignPrintAreaMetadata[]',
         'has_data_schema' => 'bool',
         'data_schema_id' => 'string',
         'data_schema_name' => 'string'
@@ -77,6 +78,7 @@ class DesignMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'fonts' => null,
         'surfaces' => null,
+        'print_areas' => null,
         'has_data_schema' => null,
         'data_schema_id' => null,
         'data_schema_name' => null
@@ -111,6 +113,7 @@ class DesignMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'fonts' => 'fonts',
         'surfaces' => 'surfaces',
+        'print_areas' => 'printAreas',
         'has_data_schema' => 'hasDataSchema',
         'data_schema_id' => 'dataSchemaId',
         'data_schema_name' => 'dataSchemaName'
@@ -124,6 +127,7 @@ class DesignMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'fonts' => 'setFonts',
         'surfaces' => 'setSurfaces',
+        'print_areas' => 'setPrintAreas',
         'has_data_schema' => 'setHasDataSchema',
         'data_schema_id' => 'setDataSchemaId',
         'data_schema_name' => 'setDataSchemaName'
@@ -137,6 +141,7 @@ class DesignMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'fonts' => 'getFonts',
         'surfaces' => 'getSurfaces',
+        'print_areas' => 'getPrintAreas',
         'has_data_schema' => 'getHasDataSchema',
         'data_schema_id' => 'getDataSchemaId',
         'data_schema_name' => 'getDataSchemaName'
@@ -201,6 +206,7 @@ class DesignMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->container['fonts'] = $data['fonts'] ?? null;
         $this->container['surfaces'] = $data['surfaces'] ?? null;
+        $this->container['print_areas'] = $data['print_areas'] ?? null;
         $this->container['has_data_schema'] = $data['has_data_schema'] ?? null;
         $this->container['data_schema_id'] = $data['data_schema_id'] ?? null;
         $this->container['data_schema_name'] = $data['data_schema_name'] ?? null;
@@ -243,7 +249,7 @@ class DesignMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets fonts
      *
-     * @param \Aurigma\AssetStorage\Model\DesignFontMetadata[]|null $fonts Design font metadata list
+     * @param \Aurigma\AssetStorage\Model\DesignFontMetadata[]|null $fonts Design font metadata list.
      *
      * @return self
      */
@@ -267,13 +273,37 @@ class DesignMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets surfaces
      *
-     * @param \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[]|null $surfaces Design surface metadata list
+     * @param \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[]|null $surfaces Design surface metadata list.
      *
      * @return self
      */
     public function setSurfaces($surfaces)
     {
         $this->container['surfaces'] = $surfaces;
+
+        return $this;
+    }
+
+    /**
+     * Gets print_areas
+     *
+     * @return \Aurigma\AssetStorage\Model\DesignPrintAreaMetadata[]|null
+     */
+    public function getPrintAreas()
+    {
+        return $this->container['print_areas'];
+    }
+
+    /**
+     * Sets print_areas
+     *
+     * @param \Aurigma\AssetStorage\Model\DesignPrintAreaMetadata[]|null $print_areas Design print area metadata list.
+     *
+     * @return self
+     */
+    public function setPrintAreas($print_areas)
+    {
+        $this->container['print_areas'] = $print_areas;
 
         return $this;
     }
@@ -291,7 +321,7 @@ class DesignMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets has_data_schema
      *
-     * @param bool|null $has_data_schema Indicates whether design has data schema
+     * @param bool|null $has_data_schema Indicates whether design has data schema.
      *
      * @return self
      */
@@ -315,7 +345,7 @@ class DesignMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets data_schema_id
      *
-     * @param string|null $data_schema_id Design data schema id. Empty string for embedded schema
+     * @param string|null $data_schema_id Design data schema identifier. Empty string for embedded schema.
      *
      * @return self
      */
@@ -339,7 +369,7 @@ class DesignMetadata implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets data_schema_name
      *
-     * @param string|null $data_schema_name Design data schema name
+     * @param string|null $data_schema_name Design data schema name.
      *
      * @return self
      */

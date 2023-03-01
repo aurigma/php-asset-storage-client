@@ -117,9 +117,9 @@ class TenantsApi
     /**
      * Operation tenantsCreate
      *
-     * Creates new tenant
+     * Creates a new tenant.
      *
-     * @param  \Aurigma\AssetStorage\Model\CreateTenantDto $create_tenant_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateTenantDto $create_tenant_dto Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -134,9 +134,9 @@ class TenantsApi
     /**
      * Operation tenantsCreateWithHttpInfo
      *
-     * Creates new tenant
+     * Creates a new tenant.
      *
-     * @param  \Aurigma\AssetStorage\Model\CreateTenantDto $create_tenant_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateTenantDto $create_tenant_dto Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -240,9 +240,9 @@ class TenantsApi
     /**
      * Operation tenantsCreateAsync
      *
-     * Creates new tenant
+     * Creates a new tenant.
      *
-     * @param  \Aurigma\AssetStorage\Model\CreateTenantDto $create_tenant_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateTenantDto $create_tenant_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -260,9 +260,9 @@ class TenantsApi
     /**
      * Operation tenantsCreateAsyncWithHttpInfo
      *
-     * Creates new tenant
+     * Creates a new tenant.
      *
-     * @param  \Aurigma\AssetStorage\Model\CreateTenantDto $create_tenant_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateTenantDto $create_tenant_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -308,7 +308,7 @@ class TenantsApi
     /**
      * Create request for operation 'tenantsCreate'
      *
-     * @param  \Aurigma\AssetStorage\Model\CreateTenantDto $create_tenant_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateTenantDto $create_tenant_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -382,6 +382,23 @@ class TenantsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -412,9 +429,9 @@ class TenantsApi
     /**
      * Operation tenantsDelete
      *
-     * Deletes specified tenant
+     * Deletes the specified tenant.
      *
-     * @param  int $id Tenant unique identifier (required)
+     * @param  int $id Tenant identifier. (required)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -429,9 +446,9 @@ class TenantsApi
     /**
      * Operation tenantsDeleteWithHttpInfo
      *
-     * Deletes specified tenant
+     * Deletes the specified tenant.
      *
-     * @param  int $id Tenant unique identifier (required)
+     * @param  int $id Tenant identifier. (required)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -535,9 +552,9 @@ class TenantsApi
     /**
      * Operation tenantsDeleteAsync
      *
-     * Deletes specified tenant
+     * Deletes the specified tenant.
      *
-     * @param  int $id Tenant unique identifier (required)
+     * @param  int $id Tenant identifier. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -555,9 +572,9 @@ class TenantsApi
     /**
      * Operation tenantsDeleteAsyncWithHttpInfo
      *
-     * Deletes specified tenant
+     * Deletes the specified tenant.
      *
-     * @param  int $id Tenant unique identifier (required)
+     * @param  int $id Tenant identifier. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -603,7 +620,7 @@ class TenantsApi
     /**
      * Create request for operation 'tenantsDelete'
      *
-     * @param  int $id Tenant unique identifier (required)
+     * @param  int $id Tenant identifier. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -685,6 +702,23 @@ class TenantsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -715,9 +749,9 @@ class TenantsApi
     /**
      * Operation tenantsGet
      *
-     * Gets tenant by id
+     * Returns a tenant by ID.
      *
-     * @param  int $id Tenant unique identifier (required)
+     * @param  int $id Tenant identifier. (required)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -732,9 +766,9 @@ class TenantsApi
     /**
      * Operation tenantsGetWithHttpInfo
      *
-     * Gets tenant by id
+     * Returns a tenant by ID.
      *
-     * @param  int $id Tenant unique identifier (required)
+     * @param  int $id Tenant identifier. (required)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -838,9 +872,9 @@ class TenantsApi
     /**
      * Operation tenantsGetAsync
      *
-     * Gets tenant by id
+     * Returns a tenant by ID.
      *
-     * @param  int $id Tenant unique identifier (required)
+     * @param  int $id Tenant identifier. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -858,9 +892,9 @@ class TenantsApi
     /**
      * Operation tenantsGetAsyncWithHttpInfo
      *
-     * Gets tenant by id
+     * Returns a tenant by ID.
      *
-     * @param  int $id Tenant unique identifier (required)
+     * @param  int $id Tenant identifier. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -906,7 +940,7 @@ class TenantsApi
     /**
      * Create request for operation 'tenantsGet'
      *
-     * @param  int $id Tenant unique identifier (required)
+     * @param  int $id Tenant identifier. (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -988,6 +1022,23 @@ class TenantsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1018,13 +1069,13 @@ class TenantsApi
     /**
      * Operation tenantsGetAll
      *
-     * Gets all tenants
+     * Returns all tenants.
      *
      * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
      * @param  string $search Search string for partial match (optional)
-     * @param  string $custom_fields Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; (optional)
+     * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1039,13 +1090,13 @@ class TenantsApi
     /**
      * Operation tenantsGetAllWithHttpInfo
      *
-     * Gets all tenants
+     * Returns all tenants.
      *
      * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
      * @param  string $search Search string for partial match (optional)
-     * @param  string $custom_fields Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; (optional)
+     * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1129,13 +1180,13 @@ class TenantsApi
     /**
      * Operation tenantsGetAllAsync
      *
-     * Gets all tenants
+     * Returns all tenants.
      *
      * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
      * @param  string $search Search string for partial match (optional)
-     * @param  string $custom_fields Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; (optional)
+     * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1153,13 +1204,13 @@ class TenantsApi
     /**
      * Operation tenantsGetAllAsyncWithHttpInfo
      *
-     * Gets all tenants
+     * Returns all tenants.
      *
      * @param  int $skip Defines page start offset from beginning of sorted result list (optional)
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
      * @param  string $search Search string for partial match (optional)
-     * @param  string $custom_fields Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; (optional)
+     * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1209,7 +1260,7 @@ class TenantsApi
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
      * @param  string $search Search string for partial match (optional)
-     * @param  string $custom_fields Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; (optional)
+     * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1332,6 +1383,23 @@ class TenantsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1362,10 +1430,10 @@ class TenantsApi
     /**
      * Operation tenantsUpdate
      *
-     * Updates specified tenant
+     * Updates the specified tenant.
      *
-     * @param  int $id Tenant unique identifier (required)
-     * @param  \Aurigma\AssetStorage\Model\UpdateTenantDto $update_tenant_dto Update operation parameters (optional)
+     * @param  int $id Tenant identifier. (required)
+     * @param  \Aurigma\AssetStorage\Model\UpdateTenantDto $update_tenant_dto Operation parameters (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1380,10 +1448,10 @@ class TenantsApi
     /**
      * Operation tenantsUpdateWithHttpInfo
      *
-     * Updates specified tenant
+     * Updates the specified tenant.
      *
-     * @param  int $id Tenant unique identifier (required)
-     * @param  \Aurigma\AssetStorage\Model\UpdateTenantDto $update_tenant_dto Update operation parameters (optional)
+     * @param  int $id Tenant identifier. (required)
+     * @param  \Aurigma\AssetStorage\Model\UpdateTenantDto $update_tenant_dto Operation parameters (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1507,10 +1575,10 @@ class TenantsApi
     /**
      * Operation tenantsUpdateAsync
      *
-     * Updates specified tenant
+     * Updates the specified tenant.
      *
-     * @param  int $id Tenant unique identifier (required)
-     * @param  \Aurigma\AssetStorage\Model\UpdateTenantDto $update_tenant_dto Update operation parameters (optional)
+     * @param  int $id Tenant identifier. (required)
+     * @param  \Aurigma\AssetStorage\Model\UpdateTenantDto $update_tenant_dto Operation parameters (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1528,10 +1596,10 @@ class TenantsApi
     /**
      * Operation tenantsUpdateAsyncWithHttpInfo
      *
-     * Updates specified tenant
+     * Updates the specified tenant.
      *
-     * @param  int $id Tenant unique identifier (required)
-     * @param  \Aurigma\AssetStorage\Model\UpdateTenantDto $update_tenant_dto Update operation parameters (optional)
+     * @param  int $id Tenant identifier. (required)
+     * @param  \Aurigma\AssetStorage\Model\UpdateTenantDto $update_tenant_dto Operation parameters (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1577,8 +1645,8 @@ class TenantsApi
     /**
      * Create request for operation 'tenantsUpdate'
      *
-     * @param  int $id Tenant unique identifier (required)
-     * @param  \Aurigma\AssetStorage\Model\UpdateTenantDto $update_tenant_dto Update operation parameters (optional)
+     * @param  int $id Tenant identifier. (required)
+     * @param  \Aurigma\AssetStorage\Model\UpdateTenantDto $update_tenant_dto Operation parameters (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1665,6 +1733,23 @@ class TenantsApi
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3

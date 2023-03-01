@@ -35,7 +35,7 @@ use \Aurigma\AssetStorage\ObjectSerializer;
  * BatchUpdateParentFolderInput Class Doc Comment
  *
  * @category Class
- * @description Dto class, containing parameters for batch update parent folder operation
+ * @description Dto class, containing parameters for batch update parent folder operation.
  * @package  Aurigma\AssetStorage
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -60,9 +60,9 @@ class BatchUpdateParentFolderInput implements ModelInterface, ArrayAccess, \Json
       * @var string[]
       */
     protected static $openAPITypes = [
-        'path' => 'string',
         'entity_ids' => 'string[]',
         'folder_ids' => 'string[]',
+        'path' => 'string',
         'conflict_strategy' => '\Aurigma\AssetStorage\Model\ConflictResolvingStrategy'
     ];
 
@@ -74,9 +74,9 @@ class BatchUpdateParentFolderInput implements ModelInterface, ArrayAccess, \Json
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'path' => null,
         'entity_ids' => null,
         'folder_ids' => null,
+        'path' => null,
         'conflict_strategy' => null
     ];
 
@@ -107,9 +107,9 @@ class BatchUpdateParentFolderInput implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $attributeMap = [
-        'path' => 'path',
         'entity_ids' => 'entityIds',
         'folder_ids' => 'folderIds',
+        'path' => 'path',
         'conflict_strategy' => 'conflictStrategy'
     ];
 
@@ -119,9 +119,9 @@ class BatchUpdateParentFolderInput implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $setters = [
-        'path' => 'setPath',
         'entity_ids' => 'setEntityIds',
         'folder_ids' => 'setFolderIds',
+        'path' => 'setPath',
         'conflict_strategy' => 'setConflictStrategy'
     ];
 
@@ -131,9 +131,9 @@ class BatchUpdateParentFolderInput implements ModelInterface, ArrayAccess, \Json
      * @var string[]
      */
     protected static $getters = [
-        'path' => 'getPath',
         'entity_ids' => 'getEntityIds',
         'folder_ids' => 'getFolderIds',
+        'path' => 'getPath',
         'conflict_strategy' => 'getConflictStrategy'
     ];
 
@@ -194,9 +194,9 @@ class BatchUpdateParentFolderInput implements ModelInterface, ArrayAccess, \Json
      */
     public function __construct(array $data = null)
     {
-        $this->container['path'] = $data['path'] ?? null;
         $this->container['entity_ids'] = $data['entity_ids'] ?? null;
         $this->container['folder_ids'] = $data['folder_ids'] ?? null;
+        $this->container['path'] = $data['path'] ?? null;
         $this->container['conflict_strategy'] = $data['conflict_strategy'] ?? null;
     }
 
@@ -225,30 +225,6 @@ class BatchUpdateParentFolderInput implements ModelInterface, ArrayAccess, \Json
 
 
     /**
-     * Gets path
-     *
-     * @return string|null
-     */
-    public function getPath()
-    {
-        return $this->container['path'];
-    }
-
-    /**
-     * Sets path
-     *
-     * @param string|null $path New parent folder path
-     *
-     * @return self
-     */
-    public function setPath($path)
-    {
-        $this->container['path'] = $path;
-
-        return $this;
-    }
-
-    /**
      * Gets entity_ids
      *
      * @return string[]|null
@@ -261,7 +237,7 @@ class BatchUpdateParentFolderInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets entity_ids
      *
-     * @param string[]|null $entity_ids List of entities, which are operation subjects
+     * @param string[]|null $entity_ids List of entities, which are operation subjects.
      *
      * @return self
      */
@@ -285,13 +261,37 @@ class BatchUpdateParentFolderInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets folder_ids
      *
-     * @param string[]|null $folder_ids List of folders, which are operation subjects
+     * @param string[]|null $folder_ids List of folders, which are operation subjects.
      *
      * @return self
      */
     public function setFolderIds($folder_ids)
     {
         $this->container['folder_ids'] = $folder_ids;
+
+        return $this;
+    }
+
+    /**
+     * Gets path
+     *
+     * @return string|null
+     */
+    public function getPath()
+    {
+        return $this->container['path'];
+    }
+
+    /**
+     * Sets path
+     *
+     * @param string|null $path New parent folder path.
+     *
+     * @return self
+     */
+    public function setPath($path)
+    {
+        $this->container['path'] = $path;
 
         return $this;
     }

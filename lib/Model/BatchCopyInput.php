@@ -35,7 +35,7 @@ use \Aurigma\AssetStorage\ObjectSerializer;
  * BatchCopyInput Class Doc Comment
  *
  * @category Class
- * @description Dto class, containing parameters for batch copy operation
+ * @description Dto class, containing parameters for batch copy operation.
  * @package  Aurigma\AssetStorage
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -60,10 +60,10 @@ class BatchCopyInput implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'path' => 'string',
         'entity_ids' => 'string[]',
         'folder_ids' => 'string[]',
-        'conflict_strategy' => '\Aurigma\AssetStorage\Model\ConflictResolvingStrategy'
+        'conflict_strategy' => '\Aurigma\AssetStorage\Model\ConflictResolvingStrategy',
+        'path' => 'string'
     ];
 
     /**
@@ -74,10 +74,10 @@ class BatchCopyInput implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'path' => null,
         'entity_ids' => null,
         'folder_ids' => null,
-        'conflict_strategy' => null
+        'conflict_strategy' => null,
+        'path' => null
     ];
 
     /**
@@ -107,10 +107,10 @@ class BatchCopyInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'path' => 'path',
         'entity_ids' => 'entityIds',
         'folder_ids' => 'folderIds',
-        'conflict_strategy' => 'conflictStrategy'
+        'conflict_strategy' => 'conflictStrategy',
+        'path' => 'path'
     ];
 
     /**
@@ -119,10 +119,10 @@ class BatchCopyInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'path' => 'setPath',
         'entity_ids' => 'setEntityIds',
         'folder_ids' => 'setFolderIds',
-        'conflict_strategy' => 'setConflictStrategy'
+        'conflict_strategy' => 'setConflictStrategy',
+        'path' => 'setPath'
     ];
 
     /**
@@ -131,10 +131,10 @@ class BatchCopyInput implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'path' => 'getPath',
         'entity_ids' => 'getEntityIds',
         'folder_ids' => 'getFolderIds',
-        'conflict_strategy' => 'getConflictStrategy'
+        'conflict_strategy' => 'getConflictStrategy',
+        'path' => 'getPath'
     ];
 
     /**
@@ -194,10 +194,10 @@ class BatchCopyInput implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['path'] = $data['path'] ?? null;
         $this->container['entity_ids'] = $data['entity_ids'] ?? null;
         $this->container['folder_ids'] = $data['folder_ids'] ?? null;
         $this->container['conflict_strategy'] = $data['conflict_strategy'] ?? null;
+        $this->container['path'] = $data['path'] ?? null;
     }
 
     /**
@@ -225,30 +225,6 @@ class BatchCopyInput implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets path
-     *
-     * @return string|null
-     */
-    public function getPath()
-    {
-        return $this->container['path'];
-    }
-
-    /**
-     * Sets path
-     *
-     * @param string|null $path Folder path, describing folder to hold copies
-     *
-     * @return self
-     */
-    public function setPath($path)
-    {
-        $this->container['path'] = $path;
-
-        return $this;
-    }
-
-    /**
      * Gets entity_ids
      *
      * @return string[]|null
@@ -261,7 +237,7 @@ class BatchCopyInput implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets entity_ids
      *
-     * @param string[]|null $entity_ids List of entities, which are operation subjects
+     * @param string[]|null $entity_ids List of entities, which are operation subjects.
      *
      * @return self
      */
@@ -285,7 +261,7 @@ class BatchCopyInput implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets folder_ids
      *
-     * @param string[]|null $folder_ids List of folders, which are operation subjects
+     * @param string[]|null $folder_ids List of folders, which are operation subjects.
      *
      * @return self
      */
@@ -316,6 +292,30 @@ class BatchCopyInput implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setConflictStrategy($conflict_strategy)
     {
         $this->container['conflict_strategy'] = $conflict_strategy;
+
+        return $this;
+    }
+
+    /**
+     * Gets path
+     *
+     * @return string|null
+     */
+    public function getPath()
+    {
+        return $this->container['path'];
+    }
+
+    /**
+     * Sets path
+     *
+     * @param string|null $path Folder path, specifies folder which will hold copies.
+     *
+     * @return self
+     */
+    public function setPath($path)
+    {
+        $this->container['path'] = $path;
 
         return $this;
     }

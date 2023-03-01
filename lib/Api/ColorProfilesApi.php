@@ -117,10 +117,10 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesBatchCopy
      *
-     * Copies selected entities and folders to another folder specified by path
+     * Copies the selected entities and folders to another folder specified by path.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -134,10 +134,10 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesBatchCopyWithHttpInfo
      *
-     * Copies selected entities and folders to another folder specified by path
+     * Copies the selected entities and folders to another folder specified by path.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -203,10 +203,10 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesBatchCopyAsync
      *
-     * Copies selected entities and folders to another folder specified by path
+     * Copies the selected entities and folders to another folder specified by path.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -224,10 +224,10 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesBatchCopyAsyncWithHttpInfo
      *
-     * Copies selected entities and folders to another folder specified by path
+     * Copies the selected entities and folders to another folder specified by path.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -264,7 +264,7 @@ class ColorProfilesApi
      * Create request for operation 'colorProfilesBatchCopy'
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -349,6 +349,23 @@ class ColorProfilesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -379,10 +396,10 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesBatchDelete
      *
-     * Deletes selected entities and folders
+     * Deletes the selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -396,10 +413,10 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesBatchDeleteWithHttpInfo
      *
-     * Deletes selected entities and folders
+     * Deletes the selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -457,10 +474,10 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesBatchDeleteAsync
      *
-     * Deletes selected entities and folders
+     * Deletes the selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -478,10 +495,10 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesBatchDeleteAsyncWithHttpInfo
      *
-     * Deletes selected entities and folders
+     * Deletes the selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -518,7 +535,7 @@ class ColorProfilesApi
      * Create request for operation 'colorProfilesBatchDelete'
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -603,6 +620,294 @@ class ColorProfilesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation colorProfilesBatchUpdateCustomFields
+     *
+     * Updates the custom fields values for selected entities.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function colorProfilesBatchUpdateCustomFields($tenant_id = null, $batch_update_custom_fields_input = null)
+    {
+        $this->colorProfilesBatchUpdateCustomFieldsWithHttpInfo($tenant_id, $batch_update_custom_fields_input);
+    }
+
+    /**
+     * Operation colorProfilesBatchUpdateCustomFieldsWithHttpInfo
+     *
+     * Updates the custom fields values for selected entities.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function colorProfilesBatchUpdateCustomFieldsWithHttpInfo($tenant_id = null, $batch_update_custom_fields_input = null)
+    {
+        $request = $this->colorProfilesBatchUpdateCustomFieldsRequest($tenant_id, $batch_update_custom_fields_input);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation colorProfilesBatchUpdateCustomFieldsAsync
+     *
+     * Updates the custom fields values for selected entities.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function colorProfilesBatchUpdateCustomFieldsAsync($tenant_id = null, $batch_update_custom_fields_input = null)
+    {
+        return $this->colorProfilesBatchUpdateCustomFieldsAsyncWithHttpInfo($tenant_id, $batch_update_custom_fields_input)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation colorProfilesBatchUpdateCustomFieldsAsyncWithHttpInfo
+     *
+     * Updates the custom fields values for selected entities.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function colorProfilesBatchUpdateCustomFieldsAsyncWithHttpInfo($tenant_id = null, $batch_update_custom_fields_input = null)
+    {
+        $returnType = '';
+        $request = $this->colorProfilesBatchUpdateCustomFieldsRequest($tenant_id, $batch_update_custom_fields_input);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'colorProfilesBatchUpdateCustomFields'
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function colorProfilesBatchUpdateCustomFieldsRequest($tenant_id = null, $batch_update_custom_fields_input = null)
+    {
+
+        $resourcePath = '/api/storage/v1/colorProfiles/batchUpdateCustomFields';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+
+
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($batch_update_custom_fields_input)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($batch_update_custom_fields_input));
+            } else {
+                $httpBody = $batch_update_custom_fields_input;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -633,10 +938,10 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesBatchUpdateParentFolder
      *
-     * Updates parent folder for selected entities and folders
+     * Updates the parent folder for selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -650,10 +955,10 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesBatchUpdateParentFolderWithHttpInfo
      *
-     * Updates parent folder for selected entities and folders
+     * Updates the parent folder for selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -719,10 +1024,10 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesBatchUpdateParentFolderAsync
      *
-     * Updates parent folder for selected entities and folders
+     * Updates the parent folder for selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -740,10 +1045,10 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesBatchUpdateParentFolderAsyncWithHttpInfo
      *
-     * Updates parent folder for selected entities and folders
+     * Updates the parent folder for selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -780,7 +1085,7 @@ class ColorProfilesApi
      * Create request for operation 'colorProfilesBatchUpdateParentFolder'
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -865,6 +1170,23 @@ class ColorProfilesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -895,12 +1217,12 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesCopy
      *
-     * Copies specified entity
+     * Copies the specified entity.
      *
-     * @param  string $id Source entity identifier (required)
-     * @param  string $path Desired path (optional)
-     * @param  string $name Desired name (optional)
-     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy (optional)
+     * @param  string $id Source entity identifier. (required)
+     * @param  string $path Desired path. (optional)
+     * @param  string $name Desired name. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -916,12 +1238,12 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesCopyWithHttpInfo
      *
-     * Copies specified entity
+     * Copies the specified entity.
      *
-     * @param  string $id Source entity identifier (required)
-     * @param  string $path Desired path (optional)
-     * @param  string $name Desired name (optional)
-     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy (optional)
+     * @param  string $id Source entity identifier. (required)
+     * @param  string $path Desired path. (optional)
+     * @param  string $name Desired name. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -1046,12 +1368,12 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesCopyAsync
      *
-     * Copies specified entity
+     * Copies the specified entity.
      *
-     * @param  string $id Source entity identifier (required)
-     * @param  string $path Desired path (optional)
-     * @param  string $name Desired name (optional)
-     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy (optional)
+     * @param  string $id Source entity identifier. (required)
+     * @param  string $path Desired path. (optional)
+     * @param  string $name Desired name. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -1070,12 +1392,12 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesCopyAsyncWithHttpInfo
      *
-     * Copies specified entity
+     * Copies the specified entity.
      *
-     * @param  string $id Source entity identifier (required)
-     * @param  string $path Desired path (optional)
-     * @param  string $name Desired name (optional)
-     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy (optional)
+     * @param  string $id Source entity identifier. (required)
+     * @param  string $path Desired path. (optional)
+     * @param  string $name Desired name. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -1122,10 +1444,10 @@ class ColorProfilesApi
     /**
      * Create request for operation 'colorProfilesCopy'
      *
-     * @param  string $id Source entity identifier (required)
-     * @param  string $path Desired path (optional)
-     * @param  string $name Desired name (optional)
-     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy (optional)
+     * @param  string $id Source entity identifier. (required)
+     * @param  string $path Desired path. (optional)
+     * @param  string $name Desired name. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -1252,6 +1574,23 @@ class ColorProfilesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1282,7 +1621,7 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesCreate
      *
-     * Creates new entity
+     * Creates a new entity.
      *
      * @param  string $path Parent folder full path (required)
      * @param  string $name Entity name (required)
@@ -1309,7 +1648,7 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesCreateWithHttpInfo
      *
-     * Creates new entity
+     * Creates a new entity.
      *
      * @param  string $path Parent folder full path (required)
      * @param  string $name Entity name (required)
@@ -1425,7 +1764,7 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesCreateAsync
      *
-     * Creates new entity
+     * Creates a new entity.
      *
      * @param  string $path Parent folder full path (required)
      * @param  string $name Entity name (required)
@@ -1455,7 +1794,7 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesCreateAsyncWithHttpInfo
      *
-     * Creates new entity
+     * Creates a new entity.
      *
      * @param  string $path Parent folder full path (required)
      * @param  string $name Entity name (required)
@@ -1658,6 +1997,23 @@ class ColorProfilesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1688,10 +2044,10 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesCreateCollection
      *
-     * Creates new collection
+     * Creates a new collection.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1706,10 +2062,10 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesCreateCollectionWithHttpInfo
      *
-     * Creates new collection
+     * Creates a new collection.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1813,10 +2169,10 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesCreateCollectionAsync
      *
-     * Creates new collection
+     * Creates a new collection.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1834,10 +2190,10 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesCreateCollectionAsyncWithHttpInfo
      *
-     * Creates new collection
+     * Creates a new collection.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1884,7 +2240,7 @@ class ColorProfilesApi
      * Create request for operation 'colorProfilesCreateCollection'
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1969,6 +2325,23 @@ class ColorProfilesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1999,10 +2372,10 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesCreateFolder
      *
-     * Creates new folder
+     * Creates a new folder.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -2017,10 +2390,10 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesCreateFolderWithHttpInfo
      *
-     * Creates new folder
+     * Creates a new folder.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -2124,10 +2497,10 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesCreateFolderAsync
      *
-     * Creates new folder
+     * Creates a new folder.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2145,10 +2518,10 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesCreateFolderAsyncWithHttpInfo
      *
-     * Creates new folder
+     * Creates a new folder.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2195,7 +2568,7 @@ class ColorProfilesApi
      * Create request for operation 'colorProfilesCreateFolder'
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -2280,6 +2653,23 @@ class ColorProfilesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -2310,9 +2700,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesDelete
      *
-     * Deletes specified entity
+     * Deletes the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -2328,9 +2718,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesDeleteWithHttpInfo
      *
-     * Deletes specified entity
+     * Deletes the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -2435,9 +2825,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesDeleteAsync
      *
-     * Deletes specified entity
+     * Deletes the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -2456,9 +2846,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesDeleteAsyncWithHttpInfo
      *
-     * Deletes specified entity
+     * Deletes the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -2505,7 +2895,7 @@ class ColorProfilesApi
     /**
      * Create request for operation 'colorProfilesDelete'
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -2599,6 +2989,23 @@ class ColorProfilesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -2629,9 +3036,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesDeleteCollection
      *
-     * Deletes specified collection
+     * Deletes the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -2647,9 +3054,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesDeleteCollectionWithHttpInfo
      *
-     * Deletes specified collection
+     * Deletes the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -2754,9 +3161,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesDeleteCollectionAsync
      *
-     * Deletes specified collection
+     * Deletes the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -2775,9 +3182,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesDeleteCollectionAsyncWithHttpInfo
      *
-     * Deletes specified collection
+     * Deletes the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -2824,7 +3231,7 @@ class ColorProfilesApi
     /**
      * Create request for operation 'colorProfilesDeleteCollection'
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -2918,6 +3325,23 @@ class ColorProfilesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -2948,9 +3372,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesDeleteFolder
      *
-     * Deletes specified folder
+     * Deletes the specified folder.
      *
-     * @param  string $full_path Folder full path (optional)
+     * @param  string $full_path Folder full path. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -2966,9 +3390,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesDeleteFolderWithHttpInfo
      *
-     * Deletes specified folder
+     * Deletes the specified folder.
      *
-     * @param  string $full_path Folder full path (optional)
+     * @param  string $full_path Folder full path. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -3073,9 +3497,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesDeleteFolderAsync
      *
-     * Deletes specified folder
+     * Deletes the specified folder.
      *
-     * @param  string $full_path Folder full path (optional)
+     * @param  string $full_path Folder full path. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3094,9 +3518,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesDeleteFolderAsyncWithHttpInfo
      *
-     * Deletes specified folder
+     * Deletes the specified folder.
      *
-     * @param  string $full_path Folder full path (optional)
+     * @param  string $full_path Folder full path. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3143,7 +3567,7 @@ class ColorProfilesApi
     /**
      * Create request for operation 'colorProfilesDeleteFolder'
      *
-     * @param  string $full_path Folder full path (optional)
+     * @param  string $full_path Folder full path. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3234,6 +3658,23 @@ class ColorProfilesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -3264,9 +3705,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGet
      *
-     * Gets entity by id
+     * Returns an entity by ID.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -3282,9 +3723,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetWithHttpInfo
      *
-     * Gets entity by id
+     * Returns an entity by ID.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -3389,9 +3830,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetAsync
      *
-     * Gets entity by id
+     * Returns an entity by ID.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3410,9 +3851,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetAsyncWithHttpInfo
      *
-     * Gets entity by id
+     * Returns an entity by ID.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3459,7 +3900,7 @@ class ColorProfilesApi
     /**
      * Create request for operation 'colorProfilesGet'
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3553,6 +3994,23 @@ class ColorProfilesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -3583,7 +4041,7 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetAll
      *
-     * Gets all entities relevant to specified query parameters
+     * Return all entities relevant to specified query parameters.
      *
      * @param  string[] $descriptions Color profile descriptions filter (optional)
      * @param  string $path Folder path filter parameter (optional)
@@ -3592,7 +4050,7 @@ class ColorProfilesApi
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
      * @param  string $search Search string for partial match (optional)
-     * @param  string $custom_fields Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; (optional)
+     * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -3608,7 +4066,7 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetAllWithHttpInfo
      *
-     * Gets all entities relevant to specified query parameters
+     * Return all entities relevant to specified query parameters.
      *
      * @param  string[] $descriptions Color profile descriptions filter (optional)
      * @param  string $path Folder path filter parameter (optional)
@@ -3617,7 +4075,7 @@ class ColorProfilesApi
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
      * @param  string $search Search string for partial match (optional)
-     * @param  string $custom_fields Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; (optional)
+     * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -3702,7 +4160,7 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetAllAsync
      *
-     * Gets all entities relevant to specified query parameters
+     * Return all entities relevant to specified query parameters.
      *
      * @param  string[] $descriptions Color profile descriptions filter (optional)
      * @param  string $path Folder path filter parameter (optional)
@@ -3711,7 +4169,7 @@ class ColorProfilesApi
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
      * @param  string $search Search string for partial match (optional)
-     * @param  string $custom_fields Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; (optional)
+     * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3730,7 +4188,7 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetAllAsyncWithHttpInfo
      *
-     * Gets all entities relevant to specified query parameters
+     * Return all entities relevant to specified query parameters.
      *
      * @param  string[] $descriptions Color profile descriptions filter (optional)
      * @param  string $path Folder path filter parameter (optional)
@@ -3739,7 +4197,7 @@ class ColorProfilesApi
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
      * @param  string $search Search string for partial match (optional)
-     * @param  string $custom_fields Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; (optional)
+     * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3793,7 +4251,7 @@ class ColorProfilesApi
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
      * @param  string $search Search string for partial match (optional)
-     * @param  string $custom_fields Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; (optional)
+     * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3961,6 +4419,23 @@ class ColorProfilesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -3991,7 +4466,7 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetAllCollections
      *
-     * Gets all collections
+     * Returns all collections.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      *
@@ -4008,7 +4483,7 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetAllCollectionsWithHttpInfo
      *
-     * Gets all collections
+     * Returns all collections.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      *
@@ -4094,7 +4569,7 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetAllCollectionsAsync
      *
-     * Gets all collections
+     * Returns all collections.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      *
@@ -4114,7 +4589,7 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetAllCollectionsAsyncWithHttpInfo
      *
-     * Gets all collections
+     * Returns all collections.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      *
@@ -4241,6 +4716,23 @@ class ColorProfilesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -4271,7 +4763,7 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetAllFolders
      *
-     * Gets all folders
+     * Returns all folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      *
@@ -4288,7 +4780,7 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetAllFoldersWithHttpInfo
      *
-     * Gets all folders
+     * Returns all folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      *
@@ -4374,7 +4866,7 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetAllFoldersAsync
      *
-     * Gets all folders
+     * Returns all folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      *
@@ -4394,7 +4886,7 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetAllFoldersAsyncWithHttpInfo
      *
-     * Gets all folders
+     * Returns all folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      *
@@ -4521,6 +5013,23 @@ class ColorProfilesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -4551,9 +5060,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetCollection
      *
-     * Gets collection content by collection id
+     * Returns the collection content by collection ID.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -4569,9 +5078,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetCollectionWithHttpInfo
      *
-     * Gets collection content by collection id
+     * Returns the collection content by collection ID.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -4676,9 +5185,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetCollectionAsync
      *
-     * Gets collection content by collection id
+     * Returns the collection content by collection ID.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -4697,9 +5206,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetCollectionAsyncWithHttpInfo
      *
-     * Gets collection content by collection id
+     * Returns the collection content by collection ID.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -4746,7 +5255,7 @@ class ColorProfilesApi
     /**
      * Create request for operation 'colorProfilesGetCollection'
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -4840,6 +5349,23 @@ class ColorProfilesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -4870,10 +5396,10 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetFile
      *
-     * Gets entity file from file storage
+     * Returns an entity file from file storage.
      *
-     * @param  string $id Entity unique identifier (required)
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) (optional)
+     * @param  string $id Entity identifier. (required)
+     * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -4889,10 +5415,10 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetFileWithHttpInfo
      *
-     * Gets entity file from file storage
+     * Returns an entity file from file storage.
      *
-     * @param  string $id Entity unique identifier (required)
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) (optional)
+     * @param  string $id Entity identifier. (required)
+     * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -4997,10 +5523,10 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetFileAsync
      *
-     * Gets entity file from file storage
+     * Returns an entity file from file storage.
      *
-     * @param  string $id Entity unique identifier (required)
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) (optional)
+     * @param  string $id Entity identifier. (required)
+     * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -5019,10 +5545,10 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetFileAsyncWithHttpInfo
      *
-     * Gets entity file from file storage
+     * Returns an entity file from file storage.
      *
-     * @param  string $id Entity unique identifier (required)
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) (optional)
+     * @param  string $id Entity identifier. (required)
+     * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -5069,8 +5595,8 @@ class ColorProfilesApi
     /**
      * Create request for operation 'colorProfilesGetFile'
      *
-     * @param  string $id Entity unique identifier (required)
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) (optional)
+     * @param  string $id Entity identifier. (required)
+     * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -5175,6 +5701,320 @@ class ColorProfilesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation colorProfilesGetFileStorageInfo
+     *
+     * Returns information about the use of file storage.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Aurigma\AssetStorage\Model\FileStorageInfoDto
+     */
+    public function colorProfilesGetFileStorageInfo($tenant_id = null)
+    {
+        list($response) = $this->colorProfilesGetFileStorageInfoWithHttpInfo($tenant_id);
+        return $response;
+    }
+
+    /**
+     * Operation colorProfilesGetFileStorageInfoWithHttpInfo
+     *
+     * Returns information about the use of file storage.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Aurigma\AssetStorage\Model\FileStorageInfoDto, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function colorProfilesGetFileStorageInfoWithHttpInfo($tenant_id = null)
+    {
+        $request = $this->colorProfilesGetFileStorageInfoRequest($tenant_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Aurigma\AssetStorage\Model\FileStorageInfoDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\FileStorageInfoDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Aurigma\AssetStorage\Model\FileStorageInfoDto';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\FileStorageInfoDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation colorProfilesGetFileStorageInfoAsync
+     *
+     * Returns information about the use of file storage.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function colorProfilesGetFileStorageInfoAsync($tenant_id = null)
+    {
+        return $this->colorProfilesGetFileStorageInfoAsyncWithHttpInfo($tenant_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation colorProfilesGetFileStorageInfoAsyncWithHttpInfo
+     *
+     * Returns information about the use of file storage.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function colorProfilesGetFileStorageInfoAsyncWithHttpInfo($tenant_id = null)
+    {
+        $returnType = '\Aurigma\AssetStorage\Model\FileStorageInfoDto';
+        $request = $this->colorProfilesGetFileStorageInfoRequest($tenant_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'colorProfilesGetFileStorageInfo'
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function colorProfilesGetFileStorageInfoRequest($tenant_id = null)
+    {
+
+        $resourcePath = '/api/storage/v1/colorProfiles/file-storage-info';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+
+
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -5205,7 +6045,7 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetFolder
      *
-     * Gets folder content by folder path
+     * Returns the folder content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used (optional)
      * @param  int $tenant_id Tenant identifier (optional)
@@ -5223,7 +6063,7 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetFolderWithHttpInfo
      *
-     * Gets folder content by folder path
+     * Returns the folder content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used (optional)
      * @param  int $tenant_id Tenant identifier (optional)
@@ -5330,7 +6170,7 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetFolderAsync
      *
-     * Gets folder content by folder path
+     * Returns the folder content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used (optional)
      * @param  int $tenant_id Tenant identifier (optional)
@@ -5351,7 +6191,7 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetFolderAsyncWithHttpInfo
      *
-     * Gets folder content by folder path
+     * Returns the folder content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used (optional)
      * @param  int $tenant_id Tenant identifier (optional)
@@ -5491,6 +6331,23 @@ class ColorProfilesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -5521,9 +6378,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetFolderInfo
      *
-     * Gets folder by id
+     * Returns a folder by ID.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -5539,9 +6396,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetFolderInfoWithHttpInfo
      *
-     * Gets folder by id
+     * Returns a folder by ID.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -5646,9 +6503,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetFolderInfoAsync
      *
-     * Gets folder by id
+     * Returns a folder by ID.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -5667,9 +6524,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesGetFolderInfoAsyncWithHttpInfo
      *
-     * Gets folder by id
+     * Returns a folder by ID.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -5716,7 +6573,7 @@ class ColorProfilesApi
     /**
      * Create request for operation 'colorProfilesGetFolderInfo'
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -5810,6 +6667,23 @@ class ColorProfilesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -5840,9 +6714,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesUpdate
      *
-     * Updates specified entity
+     * Updates the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $metadata_description Color profile description (optional)
      * @param  string $metadata_model Color profile model (optional)
@@ -5868,9 +6742,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesUpdateWithHttpInfo
      *
-     * Updates specified entity
+     * Updates the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $metadata_description Color profile description (optional)
      * @param  string $metadata_model Color profile model (optional)
@@ -6005,9 +6879,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesUpdateAsync
      *
-     * Updates specified entity
+     * Updates the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $metadata_description Color profile description (optional)
      * @param  string $metadata_model Color profile model (optional)
@@ -6036,9 +6910,9 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesUpdateAsyncWithHttpInfo
      *
-     * Updates specified entity
+     * Updates the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $metadata_description Color profile description (optional)
      * @param  string $metadata_model Color profile model (optional)
@@ -6095,7 +6969,7 @@ class ColorProfilesApi
     /**
      * Create request for operation 'colorProfilesUpdate'
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $metadata_description Color profile description (optional)
      * @param  string $metadata_model Color profile model (optional)
@@ -6243,6 +7117,23 @@ class ColorProfilesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -6273,11 +7164,11 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesUpdateCollection
      *
-     * Updates specified collection
+     * Updates the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -6292,11 +7183,11 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesUpdateCollectionWithHttpInfo
      *
-     * Updates specified collection
+     * Updates the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -6420,11 +7311,11 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesUpdateCollectionAsync
      *
-     * Updates specified collection
+     * Updates the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -6442,11 +7333,11 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesUpdateCollectionAsyncWithHttpInfo
      *
-     * Updates specified collection
+     * Updates the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -6492,9 +7383,9 @@ class ColorProfilesApi
     /**
      * Create request for operation 'colorProfilesUpdateCollection'
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -6593,6 +7484,23 @@ class ColorProfilesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -6623,11 +7531,11 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesUpdateFolder
      *
-     * Updates specified folder
+     * Updates the specified folder.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -6642,11 +7550,11 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesUpdateFolderWithHttpInfo
      *
-     * Updates specified folder
+     * Updates the specified folder.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -6770,11 +7678,11 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesUpdateFolderAsync
      *
-     * Updates specified folder
+     * Updates the specified folder.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -6792,11 +7700,11 @@ class ColorProfilesApi
     /**
      * Operation colorProfilesUpdateFolderAsyncWithHttpInfo
      *
-     * Updates specified folder
+     * Updates the specified folder.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -6842,9 +7750,9 @@ class ColorProfilesApi
     /**
      * Create request for operation 'colorProfilesUpdateFolder'
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -6942,6 +7850,23 @@ class ColorProfilesApi
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3

@@ -117,15 +117,15 @@ class PrivateImagesApi
     /**
      * Operation privateImagesAddPreview
      *
-     * Creates preview entity for specified source entity
+     * Creates a preview entity for specified source entity.
      *
-     * @param  string $id Source entity unique identifier (required)
+     * @param  string $id Source entity identifier. (required)
      * @param  string $name Preview name (required)
      * @param  string $namespace Preview namespace (required)
      * @param  int $width Preview image width (required)
      * @param  int $height Preview image height (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Source entity private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $format Preview image format, e.g. Jpeg, Png, Bmp ... (optional)
      * @param  \SplFileObject $file Preview file content (optional)
      *
@@ -133,24 +133,24 @@ class PrivateImagesApi
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\ImageDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
-    public function privateImagesAddPreview($id, $name, $namespace, $width, $height, $tenant_id = null, $user_id = null, $format = null, $file = null)
+    public function privateImagesAddPreview($id, $name, $namespace, $width, $height, $tenant_id = null, $owner_id = null, $format = null, $file = null)
     {
-        list($response) = $this->privateImagesAddPreviewWithHttpInfo($id, $name, $namespace, $width, $height, $tenant_id, $user_id, $format, $file);
+        list($response) = $this->privateImagesAddPreviewWithHttpInfo($id, $name, $namespace, $width, $height, $tenant_id, $owner_id, $format, $file);
         return $response;
     }
 
     /**
      * Operation privateImagesAddPreviewWithHttpInfo
      *
-     * Creates preview entity for specified source entity
+     * Creates a preview entity for specified source entity.
      *
-     * @param  string $id Source entity unique identifier (required)
+     * @param  string $id Source entity identifier. (required)
      * @param  string $name Preview name (required)
      * @param  string $namespace Preview namespace (required)
      * @param  int $width Preview image width (required)
      * @param  int $height Preview image height (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Source entity private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $format Preview image format, e.g. Jpeg, Png, Bmp ... (optional)
      * @param  \SplFileObject $file Preview file content (optional)
      *
@@ -158,9 +158,9 @@ class PrivateImagesApi
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\ImageDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateImagesAddPreviewWithHttpInfo($id, $name, $namespace, $width, $height, $tenant_id = null, $user_id = null, $format = null, $file = null)
+    public function privateImagesAddPreviewWithHttpInfo($id, $name, $namespace, $width, $height, $tenant_id = null, $owner_id = null, $format = null, $file = null)
     {
-        $request = $this->privateImagesAddPreviewRequest($id, $name, $namespace, $width, $height, $tenant_id, $user_id, $format, $file);
+        $request = $this->privateImagesAddPreviewRequest($id, $name, $namespace, $width, $height, $tenant_id, $owner_id, $format, $file);
 
         try {
             $options = $this->createHttpClientOption();
@@ -256,24 +256,24 @@ class PrivateImagesApi
     /**
      * Operation privateImagesAddPreviewAsync
      *
-     * Creates preview entity for specified source entity
+     * Creates a preview entity for specified source entity.
      *
-     * @param  string $id Source entity unique identifier (required)
+     * @param  string $id Source entity identifier. (required)
      * @param  string $name Preview name (required)
      * @param  string $namespace Preview namespace (required)
      * @param  int $width Preview image width (required)
      * @param  int $height Preview image height (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Source entity private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $format Preview image format, e.g. Jpeg, Png, Bmp ... (optional)
      * @param  \SplFileObject $file Preview file content (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesAddPreviewAsync($id, $name, $namespace, $width, $height, $tenant_id = null, $user_id = null, $format = null, $file = null)
+    public function privateImagesAddPreviewAsync($id, $name, $namespace, $width, $height, $tenant_id = null, $owner_id = null, $format = null, $file = null)
     {
-        return $this->privateImagesAddPreviewAsyncWithHttpInfo($id, $name, $namespace, $width, $height, $tenant_id, $user_id, $format, $file)
+        return $this->privateImagesAddPreviewAsyncWithHttpInfo($id, $name, $namespace, $width, $height, $tenant_id, $owner_id, $format, $file)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -284,25 +284,25 @@ class PrivateImagesApi
     /**
      * Operation privateImagesAddPreviewAsyncWithHttpInfo
      *
-     * Creates preview entity for specified source entity
+     * Creates a preview entity for specified source entity.
      *
-     * @param  string $id Source entity unique identifier (required)
+     * @param  string $id Source entity identifier. (required)
      * @param  string $name Preview name (required)
      * @param  string $namespace Preview namespace (required)
      * @param  int $width Preview image width (required)
      * @param  int $height Preview image height (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Source entity private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $format Preview image format, e.g. Jpeg, Png, Bmp ... (optional)
      * @param  \SplFileObject $file Preview file content (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesAddPreviewAsyncWithHttpInfo($id, $name, $namespace, $width, $height, $tenant_id = null, $user_id = null, $format = null, $file = null)
+    public function privateImagesAddPreviewAsyncWithHttpInfo($id, $name, $namespace, $width, $height, $tenant_id = null, $owner_id = null, $format = null, $file = null)
     {
         $returnType = '\Aurigma\AssetStorage\Model\ImageDto';
-        $request = $this->privateImagesAddPreviewRequest($id, $name, $namespace, $width, $height, $tenant_id, $user_id, $format, $file);
+        $request = $this->privateImagesAddPreviewRequest($id, $name, $namespace, $width, $height, $tenant_id, $owner_id, $format, $file);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -340,20 +340,20 @@ class PrivateImagesApi
     /**
      * Create request for operation 'privateImagesAddPreview'
      *
-     * @param  string $id Source entity unique identifier (required)
+     * @param  string $id Source entity identifier. (required)
      * @param  string $name Preview name (required)
      * @param  string $namespace Preview namespace (required)
      * @param  int $width Preview image width (required)
      * @param  int $height Preview image height (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Source entity private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $format Preview image format, e.g. Jpeg, Png, Bmp ... (optional)
      * @param  \SplFileObject $file Preview file content (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateImagesAddPreviewRequest($id, $name, $namespace, $width, $height, $tenant_id = null, $user_id = null, $format = null, $file = null)
+    public function privateImagesAddPreviewRequest($id, $name, $namespace, $width, $height, $tenant_id = null, $owner_id = null, $format = null, $file = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -405,14 +405,14 @@ class PrivateImagesApi
             }
         }
         // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['userId'] = $user_id;
+                $queryParams['ownerId'] = $owner_id;
             }
         }
 
@@ -500,6 +500,23 @@ class PrivateImagesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -530,37 +547,37 @@ class PrivateImagesApi
     /**
      * Operation privateImagesBatchCopy
      *
-     * Copies selected entities and folders to another folder specified by path
+     * Copies the selected entities and folders to another folder specified by path.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function privateImagesBatchCopy($tenant_id = null, $user_id = null, $batch_copy_input = null)
+    public function privateImagesBatchCopy($tenant_id = null, $owner_id = null, $batch_copy_input = null)
     {
-        $this->privateImagesBatchCopyWithHttpInfo($tenant_id, $user_id, $batch_copy_input);
+        $this->privateImagesBatchCopyWithHttpInfo($tenant_id, $owner_id, $batch_copy_input);
     }
 
     /**
      * Operation privateImagesBatchCopyWithHttpInfo
      *
-     * Copies selected entities and folders to another folder specified by path
+     * Copies the selected entities and folders to another folder specified by path.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateImagesBatchCopyWithHttpInfo($tenant_id = null, $user_id = null, $batch_copy_input = null)
+    public function privateImagesBatchCopyWithHttpInfo($tenant_id = null, $owner_id = null, $batch_copy_input = null)
     {
-        $request = $this->privateImagesBatchCopyRequest($tenant_id, $user_id, $batch_copy_input);
+        $request = $this->privateImagesBatchCopyRequest($tenant_id, $owner_id, $batch_copy_input);
 
         try {
             $options = $this->createHttpClientOption();
@@ -618,18 +635,18 @@ class PrivateImagesApi
     /**
      * Operation privateImagesBatchCopyAsync
      *
-     * Copies selected entities and folders to another folder specified by path
+     * Copies the selected entities and folders to another folder specified by path.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesBatchCopyAsync($tenant_id = null, $user_id = null, $batch_copy_input = null)
+    public function privateImagesBatchCopyAsync($tenant_id = null, $owner_id = null, $batch_copy_input = null)
     {
-        return $this->privateImagesBatchCopyAsyncWithHttpInfo($tenant_id, $user_id, $batch_copy_input)
+        return $this->privateImagesBatchCopyAsyncWithHttpInfo($tenant_id, $owner_id, $batch_copy_input)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -640,19 +657,19 @@ class PrivateImagesApi
     /**
      * Operation privateImagesBatchCopyAsyncWithHttpInfo
      *
-     * Copies selected entities and folders to another folder specified by path
+     * Copies the selected entities and folders to another folder specified by path.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesBatchCopyAsyncWithHttpInfo($tenant_id = null, $user_id = null, $batch_copy_input = null)
+    public function privateImagesBatchCopyAsyncWithHttpInfo($tenant_id = null, $owner_id = null, $batch_copy_input = null)
     {
         $returnType = '';
-        $request = $this->privateImagesBatchCopyRequest($tenant_id, $user_id, $batch_copy_input);
+        $request = $this->privateImagesBatchCopyRequest($tenant_id, $owner_id, $batch_copy_input);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -681,13 +698,13 @@ class PrivateImagesApi
      * Create request for operation 'privateImagesBatchCopy'
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateImagesBatchCopyRequest($tenant_id = null, $user_id = null, $batch_copy_input = null)
+    public function privateImagesBatchCopyRequest($tenant_id = null, $owner_id = null, $batch_copy_input = null)
     {
 
         $resourcePath = '/api/storage/v1/private-images/batchCopy';
@@ -709,14 +726,14 @@ class PrivateImagesApi
             }
         }
         // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['userId'] = $user_id;
+                $queryParams['ownerId'] = $owner_id;
             }
         }
 
@@ -778,6 +795,23 @@ class PrivateImagesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -808,37 +842,37 @@ class PrivateImagesApi
     /**
      * Operation privateImagesBatchDelete
      *
-     * Deletes selected entities and folders
+     * Deletes the selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function privateImagesBatchDelete($tenant_id = null, $user_id = null, $batch_delete_input = null)
+    public function privateImagesBatchDelete($tenant_id = null, $owner_id = null, $batch_delete_input = null)
     {
-        $this->privateImagesBatchDeleteWithHttpInfo($tenant_id, $user_id, $batch_delete_input);
+        $this->privateImagesBatchDeleteWithHttpInfo($tenant_id, $owner_id, $batch_delete_input);
     }
 
     /**
      * Operation privateImagesBatchDeleteWithHttpInfo
      *
-     * Deletes selected entities and folders
+     * Deletes the selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateImagesBatchDeleteWithHttpInfo($tenant_id = null, $user_id = null, $batch_delete_input = null)
+    public function privateImagesBatchDeleteWithHttpInfo($tenant_id = null, $owner_id = null, $batch_delete_input = null)
     {
-        $request = $this->privateImagesBatchDeleteRequest($tenant_id, $user_id, $batch_delete_input);
+        $request = $this->privateImagesBatchDeleteRequest($tenant_id, $owner_id, $batch_delete_input);
 
         try {
             $options = $this->createHttpClientOption();
@@ -888,18 +922,18 @@ class PrivateImagesApi
     /**
      * Operation privateImagesBatchDeleteAsync
      *
-     * Deletes selected entities and folders
+     * Deletes the selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesBatchDeleteAsync($tenant_id = null, $user_id = null, $batch_delete_input = null)
+    public function privateImagesBatchDeleteAsync($tenant_id = null, $owner_id = null, $batch_delete_input = null)
     {
-        return $this->privateImagesBatchDeleteAsyncWithHttpInfo($tenant_id, $user_id, $batch_delete_input)
+        return $this->privateImagesBatchDeleteAsyncWithHttpInfo($tenant_id, $owner_id, $batch_delete_input)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -910,19 +944,19 @@ class PrivateImagesApi
     /**
      * Operation privateImagesBatchDeleteAsyncWithHttpInfo
      *
-     * Deletes selected entities and folders
+     * Deletes the selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesBatchDeleteAsyncWithHttpInfo($tenant_id = null, $user_id = null, $batch_delete_input = null)
+    public function privateImagesBatchDeleteAsyncWithHttpInfo($tenant_id = null, $owner_id = null, $batch_delete_input = null)
     {
         $returnType = '';
-        $request = $this->privateImagesBatchDeleteRequest($tenant_id, $user_id, $batch_delete_input);
+        $request = $this->privateImagesBatchDeleteRequest($tenant_id, $owner_id, $batch_delete_input);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -951,13 +985,13 @@ class PrivateImagesApi
      * Create request for operation 'privateImagesBatchDelete'
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateImagesBatchDeleteRequest($tenant_id = null, $user_id = null, $batch_delete_input = null)
+    public function privateImagesBatchDeleteRequest($tenant_id = null, $owner_id = null, $batch_delete_input = null)
     {
 
         $resourcePath = '/api/storage/v1/private-images/batchDelete';
@@ -979,14 +1013,14 @@ class PrivateImagesApi
             }
         }
         // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['userId'] = $user_id;
+                $queryParams['ownerId'] = $owner_id;
             }
         }
 
@@ -1048,6 +1082,310 @@ class PrivateImagesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation privateImagesBatchUpdateCustomFields
+     *
+     * Updates the custom fields values for selected entities.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function privateImagesBatchUpdateCustomFields($tenant_id = null, $owner_id = null, $batch_update_custom_fields_input = null)
+    {
+        $this->privateImagesBatchUpdateCustomFieldsWithHttpInfo($tenant_id, $owner_id, $batch_update_custom_fields_input);
+    }
+
+    /**
+     * Operation privateImagesBatchUpdateCustomFieldsWithHttpInfo
+     *
+     * Updates the custom fields values for selected entities.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function privateImagesBatchUpdateCustomFieldsWithHttpInfo($tenant_id = null, $owner_id = null, $batch_update_custom_fields_input = null)
+    {
+        $request = $this->privateImagesBatchUpdateCustomFieldsRequest($tenant_id, $owner_id, $batch_update_custom_fields_input);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation privateImagesBatchUpdateCustomFieldsAsync
+     *
+     * Updates the custom fields values for selected entities.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function privateImagesBatchUpdateCustomFieldsAsync($tenant_id = null, $owner_id = null, $batch_update_custom_fields_input = null)
+    {
+        return $this->privateImagesBatchUpdateCustomFieldsAsyncWithHttpInfo($tenant_id, $owner_id, $batch_update_custom_fields_input)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation privateImagesBatchUpdateCustomFieldsAsyncWithHttpInfo
+     *
+     * Updates the custom fields values for selected entities.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function privateImagesBatchUpdateCustomFieldsAsyncWithHttpInfo($tenant_id = null, $owner_id = null, $batch_update_custom_fields_input = null)
+    {
+        $returnType = '';
+        $request = $this->privateImagesBatchUpdateCustomFieldsRequest($tenant_id, $owner_id, $batch_update_custom_fields_input);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'privateImagesBatchUpdateCustomFields'
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function privateImagesBatchUpdateCustomFieldsRequest($tenant_id = null, $owner_id = null, $batch_update_custom_fields_input = null)
+    {
+
+        $resourcePath = '/api/storage/v1/private-images/batchUpdateCustomFields';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+        // query params
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['ownerId'] = $owner_id;
+            }
+        }
+
+
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($batch_update_custom_fields_input)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($batch_update_custom_fields_input));
+            } else {
+                $httpBody = $batch_update_custom_fields_input;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1078,39 +1416,39 @@ class PrivateImagesApi
     /**
      * Operation privateImagesBatchUpdateOwner
      *
-     * Updates owner for selected entities and folders
+     * Updates the owner for selected entities and folders.
      *
-     * @param  string $old_user_id Source private storage owner identifier (optional)
+     * @param  string $old_owner_id Source private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id New private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchUpdateOwnerInput $batch_update_owner_input Operation parameters (optional)
+     * @param  string $owner_id New private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateOwnerInput $batch_update_owner_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function privateImagesBatchUpdateOwner($old_user_id = null, $tenant_id = null, $user_id = null, $batch_update_owner_input = null)
+    public function privateImagesBatchUpdateOwner($old_owner_id = null, $tenant_id = null, $owner_id = null, $batch_update_owner_input = null)
     {
-        $this->privateImagesBatchUpdateOwnerWithHttpInfo($old_user_id, $tenant_id, $user_id, $batch_update_owner_input);
+        $this->privateImagesBatchUpdateOwnerWithHttpInfo($old_owner_id, $tenant_id, $owner_id, $batch_update_owner_input);
     }
 
     /**
      * Operation privateImagesBatchUpdateOwnerWithHttpInfo
      *
-     * Updates owner for selected entities and folders
+     * Updates the owner for selected entities and folders.
      *
-     * @param  string $old_user_id Source private storage owner identifier (optional)
+     * @param  string $old_owner_id Source private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id New private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchUpdateOwnerInput $batch_update_owner_input Operation parameters (optional)
+     * @param  string $owner_id New private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateOwnerInput $batch_update_owner_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateImagesBatchUpdateOwnerWithHttpInfo($old_user_id = null, $tenant_id = null, $user_id = null, $batch_update_owner_input = null)
+    public function privateImagesBatchUpdateOwnerWithHttpInfo($old_owner_id = null, $tenant_id = null, $owner_id = null, $batch_update_owner_input = null)
     {
-        $request = $this->privateImagesBatchUpdateOwnerRequest($old_user_id, $tenant_id, $user_id, $batch_update_owner_input);
+        $request = $this->privateImagesBatchUpdateOwnerRequest($old_owner_id, $tenant_id, $owner_id, $batch_update_owner_input);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1168,19 +1506,19 @@ class PrivateImagesApi
     /**
      * Operation privateImagesBatchUpdateOwnerAsync
      *
-     * Updates owner for selected entities and folders
+     * Updates the owner for selected entities and folders.
      *
-     * @param  string $old_user_id Source private storage owner identifier (optional)
+     * @param  string $old_owner_id Source private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id New private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchUpdateOwnerInput $batch_update_owner_input Operation parameters (optional)
+     * @param  string $owner_id New private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateOwnerInput $batch_update_owner_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesBatchUpdateOwnerAsync($old_user_id = null, $tenant_id = null, $user_id = null, $batch_update_owner_input = null)
+    public function privateImagesBatchUpdateOwnerAsync($old_owner_id = null, $tenant_id = null, $owner_id = null, $batch_update_owner_input = null)
     {
-        return $this->privateImagesBatchUpdateOwnerAsyncWithHttpInfo($old_user_id, $tenant_id, $user_id, $batch_update_owner_input)
+        return $this->privateImagesBatchUpdateOwnerAsyncWithHttpInfo($old_owner_id, $tenant_id, $owner_id, $batch_update_owner_input)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1191,20 +1529,20 @@ class PrivateImagesApi
     /**
      * Operation privateImagesBatchUpdateOwnerAsyncWithHttpInfo
      *
-     * Updates owner for selected entities and folders
+     * Updates the owner for selected entities and folders.
      *
-     * @param  string $old_user_id Source private storage owner identifier (optional)
+     * @param  string $old_owner_id Source private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id New private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchUpdateOwnerInput $batch_update_owner_input Operation parameters (optional)
+     * @param  string $owner_id New private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateOwnerInput $batch_update_owner_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesBatchUpdateOwnerAsyncWithHttpInfo($old_user_id = null, $tenant_id = null, $user_id = null, $batch_update_owner_input = null)
+    public function privateImagesBatchUpdateOwnerAsyncWithHttpInfo($old_owner_id = null, $tenant_id = null, $owner_id = null, $batch_update_owner_input = null)
     {
         $returnType = '';
-        $request = $this->privateImagesBatchUpdateOwnerRequest($old_user_id, $tenant_id, $user_id, $batch_update_owner_input);
+        $request = $this->privateImagesBatchUpdateOwnerRequest($old_owner_id, $tenant_id, $owner_id, $batch_update_owner_input);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1232,15 +1570,15 @@ class PrivateImagesApi
     /**
      * Create request for operation 'privateImagesBatchUpdateOwner'
      *
-     * @param  string $old_user_id Source private storage owner identifier (optional)
+     * @param  string $old_owner_id Source private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id New private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchUpdateOwnerInput $batch_update_owner_input Operation parameters (optional)
+     * @param  string $owner_id New private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateOwnerInput $batch_update_owner_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateImagesBatchUpdateOwnerRequest($old_user_id = null, $tenant_id = null, $user_id = null, $batch_update_owner_input = null)
+    public function privateImagesBatchUpdateOwnerRequest($old_owner_id = null, $tenant_id = null, $owner_id = null, $batch_update_owner_input = null)
     {
 
         $resourcePath = '/api/storage/v1/private-images/batchUpdateOwner';
@@ -1251,14 +1589,14 @@ class PrivateImagesApi
         $multipart = false;
 
         // query params
-        if ($old_user_id !== null) {
-            if('form' === 'form' && is_array($old_user_id)) {
-                foreach($old_user_id as $key => $value) {
+        if ($old_owner_id !== null) {
+            if('form' === 'form' && is_array($old_owner_id)) {
+                foreach($old_owner_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['oldUserId'] = $old_user_id;
+                $queryParams['oldOwnerId'] = $old_owner_id;
             }
         }
         // query params
@@ -1273,14 +1611,14 @@ class PrivateImagesApi
             }
         }
         // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['userId'] = $user_id;
+                $queryParams['ownerId'] = $owner_id;
             }
         }
 
@@ -1342,6 +1680,23 @@ class PrivateImagesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1372,37 +1727,37 @@ class PrivateImagesApi
     /**
      * Operation privateImagesBatchUpdateParentFolder
      *
-     * Updates parent folder for selected entities and folders
+     * Updates the parent folder for selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function privateImagesBatchUpdateParentFolder($tenant_id = null, $user_id = null, $batch_update_parent_folder_input = null)
+    public function privateImagesBatchUpdateParentFolder($tenant_id = null, $owner_id = null, $batch_update_parent_folder_input = null)
     {
-        $this->privateImagesBatchUpdateParentFolderWithHttpInfo($tenant_id, $user_id, $batch_update_parent_folder_input);
+        $this->privateImagesBatchUpdateParentFolderWithHttpInfo($tenant_id, $owner_id, $batch_update_parent_folder_input);
     }
 
     /**
      * Operation privateImagesBatchUpdateParentFolderWithHttpInfo
      *
-     * Updates parent folder for selected entities and folders
+     * Updates the parent folder for selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateImagesBatchUpdateParentFolderWithHttpInfo($tenant_id = null, $user_id = null, $batch_update_parent_folder_input = null)
+    public function privateImagesBatchUpdateParentFolderWithHttpInfo($tenant_id = null, $owner_id = null, $batch_update_parent_folder_input = null)
     {
-        $request = $this->privateImagesBatchUpdateParentFolderRequest($tenant_id, $user_id, $batch_update_parent_folder_input);
+        $request = $this->privateImagesBatchUpdateParentFolderRequest($tenant_id, $owner_id, $batch_update_parent_folder_input);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1460,18 +1815,18 @@ class PrivateImagesApi
     /**
      * Operation privateImagesBatchUpdateParentFolderAsync
      *
-     * Updates parent folder for selected entities and folders
+     * Updates the parent folder for selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesBatchUpdateParentFolderAsync($tenant_id = null, $user_id = null, $batch_update_parent_folder_input = null)
+    public function privateImagesBatchUpdateParentFolderAsync($tenant_id = null, $owner_id = null, $batch_update_parent_folder_input = null)
     {
-        return $this->privateImagesBatchUpdateParentFolderAsyncWithHttpInfo($tenant_id, $user_id, $batch_update_parent_folder_input)
+        return $this->privateImagesBatchUpdateParentFolderAsyncWithHttpInfo($tenant_id, $owner_id, $batch_update_parent_folder_input)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1482,19 +1837,19 @@ class PrivateImagesApi
     /**
      * Operation privateImagesBatchUpdateParentFolderAsyncWithHttpInfo
      *
-     * Updates parent folder for selected entities and folders
+     * Updates the parent folder for selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesBatchUpdateParentFolderAsyncWithHttpInfo($tenant_id = null, $user_id = null, $batch_update_parent_folder_input = null)
+    public function privateImagesBatchUpdateParentFolderAsyncWithHttpInfo($tenant_id = null, $owner_id = null, $batch_update_parent_folder_input = null)
     {
         $returnType = '';
-        $request = $this->privateImagesBatchUpdateParentFolderRequest($tenant_id, $user_id, $batch_update_parent_folder_input);
+        $request = $this->privateImagesBatchUpdateParentFolderRequest($tenant_id, $owner_id, $batch_update_parent_folder_input);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1523,13 +1878,13 @@ class PrivateImagesApi
      * Create request for operation 'privateImagesBatchUpdateParentFolder'
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateImagesBatchUpdateParentFolderRequest($tenant_id = null, $user_id = null, $batch_update_parent_folder_input = null)
+    public function privateImagesBatchUpdateParentFolderRequest($tenant_id = null, $owner_id = null, $batch_update_parent_folder_input = null)
     {
 
         $resourcePath = '/api/storage/v1/private-images/batchUpdateParentFolder';
@@ -1551,14 +1906,14 @@ class PrivateImagesApi
             }
         }
         // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['userId'] = $user_id;
+                $queryParams['ownerId'] = $owner_id;
             }
         }
 
@@ -1620,6 +1975,23 @@ class PrivateImagesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1650,44 +2022,44 @@ class PrivateImagesApi
     /**
      * Operation privateImagesCopy
      *
-     * Copies specified entity
+     * Copies the specified entity.
      *
-     * @param  string $id Source entity identifier (required)
-     * @param  string $path Desired path (optional)
-     * @param  string $name Desired name (optional)
-     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy (optional)
+     * @param  string $id Source entity identifier. (required)
+     * @param  string $path Desired path. (optional)
+     * @param  string $name Desired name. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\ImageDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
-    public function privateImagesCopy($id, $path = null, $name = null, $strategy = null, $tenant_id = null, $user_id = null)
+    public function privateImagesCopy($id, $path = null, $name = null, $strategy = null, $tenant_id = null, $owner_id = null)
     {
-        list($response) = $this->privateImagesCopyWithHttpInfo($id, $path, $name, $strategy, $tenant_id, $user_id);
+        list($response) = $this->privateImagesCopyWithHttpInfo($id, $path, $name, $strategy, $tenant_id, $owner_id);
         return $response;
     }
 
     /**
      * Operation privateImagesCopyWithHttpInfo
      *
-     * Copies specified entity
+     * Copies the specified entity.
      *
-     * @param  string $id Source entity identifier (required)
-     * @param  string $path Desired path (optional)
-     * @param  string $name Desired name (optional)
-     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy (optional)
+     * @param  string $id Source entity identifier. (required)
+     * @param  string $path Desired path. (optional)
+     * @param  string $name Desired name. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\ImageDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateImagesCopyWithHttpInfo($id, $path = null, $name = null, $strategy = null, $tenant_id = null, $user_id = null)
+    public function privateImagesCopyWithHttpInfo($id, $path = null, $name = null, $strategy = null, $tenant_id = null, $owner_id = null)
     {
-        $request = $this->privateImagesCopyRequest($id, $path, $name, $strategy, $tenant_id, $user_id);
+        $request = $this->privateImagesCopyRequest($id, $path, $name, $strategy, $tenant_id, $owner_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1783,21 +2155,21 @@ class PrivateImagesApi
     /**
      * Operation privateImagesCopyAsync
      *
-     * Copies specified entity
+     * Copies the specified entity.
      *
-     * @param  string $id Source entity identifier (required)
-     * @param  string $path Desired path (optional)
-     * @param  string $name Desired name (optional)
-     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy (optional)
+     * @param  string $id Source entity identifier. (required)
+     * @param  string $path Desired path. (optional)
+     * @param  string $name Desired name. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesCopyAsync($id, $path = null, $name = null, $strategy = null, $tenant_id = null, $user_id = null)
+    public function privateImagesCopyAsync($id, $path = null, $name = null, $strategy = null, $tenant_id = null, $owner_id = null)
     {
-        return $this->privateImagesCopyAsyncWithHttpInfo($id, $path, $name, $strategy, $tenant_id, $user_id)
+        return $this->privateImagesCopyAsyncWithHttpInfo($id, $path, $name, $strategy, $tenant_id, $owner_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1808,22 +2180,22 @@ class PrivateImagesApi
     /**
      * Operation privateImagesCopyAsyncWithHttpInfo
      *
-     * Copies specified entity
+     * Copies the specified entity.
      *
-     * @param  string $id Source entity identifier (required)
-     * @param  string $path Desired path (optional)
-     * @param  string $name Desired name (optional)
-     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy (optional)
+     * @param  string $id Source entity identifier. (required)
+     * @param  string $path Desired path. (optional)
+     * @param  string $name Desired name. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesCopyAsyncWithHttpInfo($id, $path = null, $name = null, $strategy = null, $tenant_id = null, $user_id = null)
+    public function privateImagesCopyAsyncWithHttpInfo($id, $path = null, $name = null, $strategy = null, $tenant_id = null, $owner_id = null)
     {
         $returnType = '\Aurigma\AssetStorage\Model\ImageDto';
-        $request = $this->privateImagesCopyRequest($id, $path, $name, $strategy, $tenant_id, $user_id);
+        $request = $this->privateImagesCopyRequest($id, $path, $name, $strategy, $tenant_id, $owner_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1861,17 +2233,17 @@ class PrivateImagesApi
     /**
      * Create request for operation 'privateImagesCopy'
      *
-     * @param  string $id Source entity identifier (required)
-     * @param  string $path Desired path (optional)
-     * @param  string $name Desired name (optional)
-     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy (optional)
+     * @param  string $id Source entity identifier. (required)
+     * @param  string $path Desired path. (optional)
+     * @param  string $name Desired name. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateImagesCopyRequest($id, $path = null, $name = null, $strategy = null, $tenant_id = null, $user_id = null)
+    public function privateImagesCopyRequest($id, $path = null, $name = null, $strategy = null, $tenant_id = null, $owner_id = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -1932,14 +2304,14 @@ class PrivateImagesApi
             }
         }
         // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['userId'] = $user_id;
+                $queryParams['ownerId'] = $owner_id;
             }
         }
 
@@ -2003,6 +2375,23 @@ class PrivateImagesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -2033,12 +2422,12 @@ class PrivateImagesApi
     /**
      * Operation privateImagesCreate
      *
-     * Creates new entity
+     * Creates a new entity.
      *
      * @param  string $path Parent folder full path (required)
      * @param  string $name Entity name (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  bool $metadata_is_vector Indicates whether image is vector (optional)
      * @param  int $metadata_width Image width (optional)
      * @param  int $metadata_height Image height (optional)
@@ -2053,21 +2442,21 @@ class PrivateImagesApi
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\ImageDto|\Aurigma\AssetStorage\Model\NameConflictDto
      */
-    public function privateImagesCreate($path, $name, $tenant_id = null, $user_id = null, $metadata_is_vector = null, $metadata_width = null, $metadata_height = null, $metadata_format = null, $metadata_dpi_x = null, $metadata_dpi_y = null, $metadata_pages = null, $file = null, $custom_fields = null)
+    public function privateImagesCreate($path, $name, $tenant_id = null, $owner_id = null, $metadata_is_vector = null, $metadata_width = null, $metadata_height = null, $metadata_format = null, $metadata_dpi_x = null, $metadata_dpi_y = null, $metadata_pages = null, $file = null, $custom_fields = null)
     {
-        list($response) = $this->privateImagesCreateWithHttpInfo($path, $name, $tenant_id, $user_id, $metadata_is_vector, $metadata_width, $metadata_height, $metadata_format, $metadata_dpi_x, $metadata_dpi_y, $metadata_pages, $file, $custom_fields);
+        list($response) = $this->privateImagesCreateWithHttpInfo($path, $name, $tenant_id, $owner_id, $metadata_is_vector, $metadata_width, $metadata_height, $metadata_format, $metadata_dpi_x, $metadata_dpi_y, $metadata_pages, $file, $custom_fields);
         return $response;
     }
 
     /**
      * Operation privateImagesCreateWithHttpInfo
      *
-     * Creates new entity
+     * Creates a new entity.
      *
      * @param  string $path Parent folder full path (required)
      * @param  string $name Entity name (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  bool $metadata_is_vector Indicates whether image is vector (optional)
      * @param  int $metadata_width Image width (optional)
      * @param  int $metadata_height Image height (optional)
@@ -2082,9 +2471,9 @@ class PrivateImagesApi
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\ImageDto|\Aurigma\AssetStorage\Model\NameConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateImagesCreateWithHttpInfo($path, $name, $tenant_id = null, $user_id = null, $metadata_is_vector = null, $metadata_width = null, $metadata_height = null, $metadata_format = null, $metadata_dpi_x = null, $metadata_dpi_y = null, $metadata_pages = null, $file = null, $custom_fields = null)
+    public function privateImagesCreateWithHttpInfo($path, $name, $tenant_id = null, $owner_id = null, $metadata_is_vector = null, $metadata_width = null, $metadata_height = null, $metadata_format = null, $metadata_dpi_x = null, $metadata_dpi_y = null, $metadata_pages = null, $file = null, $custom_fields = null)
     {
-        $request = $this->privateImagesCreateRequest($path, $name, $tenant_id, $user_id, $metadata_is_vector, $metadata_width, $metadata_height, $metadata_format, $metadata_dpi_x, $metadata_dpi_y, $metadata_pages, $file, $custom_fields);
+        $request = $this->privateImagesCreateRequest($path, $name, $tenant_id, $owner_id, $metadata_is_vector, $metadata_width, $metadata_height, $metadata_format, $metadata_dpi_x, $metadata_dpi_y, $metadata_pages, $file, $custom_fields);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2180,12 +2569,12 @@ class PrivateImagesApi
     /**
      * Operation privateImagesCreateAsync
      *
-     * Creates new entity
+     * Creates a new entity.
      *
      * @param  string $path Parent folder full path (required)
      * @param  string $name Entity name (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  bool $metadata_is_vector Indicates whether image is vector (optional)
      * @param  int $metadata_width Image width (optional)
      * @param  int $metadata_height Image height (optional)
@@ -2199,9 +2588,9 @@ class PrivateImagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesCreateAsync($path, $name, $tenant_id = null, $user_id = null, $metadata_is_vector = null, $metadata_width = null, $metadata_height = null, $metadata_format = null, $metadata_dpi_x = null, $metadata_dpi_y = null, $metadata_pages = null, $file = null, $custom_fields = null)
+    public function privateImagesCreateAsync($path, $name, $tenant_id = null, $owner_id = null, $metadata_is_vector = null, $metadata_width = null, $metadata_height = null, $metadata_format = null, $metadata_dpi_x = null, $metadata_dpi_y = null, $metadata_pages = null, $file = null, $custom_fields = null)
     {
-        return $this->privateImagesCreateAsyncWithHttpInfo($path, $name, $tenant_id, $user_id, $metadata_is_vector, $metadata_width, $metadata_height, $metadata_format, $metadata_dpi_x, $metadata_dpi_y, $metadata_pages, $file, $custom_fields)
+        return $this->privateImagesCreateAsyncWithHttpInfo($path, $name, $tenant_id, $owner_id, $metadata_is_vector, $metadata_width, $metadata_height, $metadata_format, $metadata_dpi_x, $metadata_dpi_y, $metadata_pages, $file, $custom_fields)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2212,12 +2601,12 @@ class PrivateImagesApi
     /**
      * Operation privateImagesCreateAsyncWithHttpInfo
      *
-     * Creates new entity
+     * Creates a new entity.
      *
      * @param  string $path Parent folder full path (required)
      * @param  string $name Entity name (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  bool $metadata_is_vector Indicates whether image is vector (optional)
      * @param  int $metadata_width Image width (optional)
      * @param  int $metadata_height Image height (optional)
@@ -2231,10 +2620,10 @@ class PrivateImagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesCreateAsyncWithHttpInfo($path, $name, $tenant_id = null, $user_id = null, $metadata_is_vector = null, $metadata_width = null, $metadata_height = null, $metadata_format = null, $metadata_dpi_x = null, $metadata_dpi_y = null, $metadata_pages = null, $file = null, $custom_fields = null)
+    public function privateImagesCreateAsyncWithHttpInfo($path, $name, $tenant_id = null, $owner_id = null, $metadata_is_vector = null, $metadata_width = null, $metadata_height = null, $metadata_format = null, $metadata_dpi_x = null, $metadata_dpi_y = null, $metadata_pages = null, $file = null, $custom_fields = null)
     {
         $returnType = '\Aurigma\AssetStorage\Model\ImageDto';
-        $request = $this->privateImagesCreateRequest($path, $name, $tenant_id, $user_id, $metadata_is_vector, $metadata_width, $metadata_height, $metadata_format, $metadata_dpi_x, $metadata_dpi_y, $metadata_pages, $file, $custom_fields);
+        $request = $this->privateImagesCreateRequest($path, $name, $tenant_id, $owner_id, $metadata_is_vector, $metadata_width, $metadata_height, $metadata_format, $metadata_dpi_x, $metadata_dpi_y, $metadata_pages, $file, $custom_fields);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2275,7 +2664,7 @@ class PrivateImagesApi
      * @param  string $path Parent folder full path (required)
      * @param  string $name Entity name (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  bool $metadata_is_vector Indicates whether image is vector (optional)
      * @param  int $metadata_width Image width (optional)
      * @param  int $metadata_height Image height (optional)
@@ -2289,7 +2678,7 @@ class PrivateImagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateImagesCreateRequest($path, $name, $tenant_id = null, $user_id = null, $metadata_is_vector = null, $metadata_width = null, $metadata_height = null, $metadata_format = null, $metadata_dpi_x = null, $metadata_dpi_y = null, $metadata_pages = null, $file = null, $custom_fields = null)
+    public function privateImagesCreateRequest($path, $name, $tenant_id = null, $owner_id = null, $metadata_is_vector = null, $metadata_width = null, $metadata_height = null, $metadata_format = null, $metadata_dpi_x = null, $metadata_dpi_y = null, $metadata_pages = null, $file = null, $custom_fields = null)
     {
         // verify the required parameter 'path' is set
         if ($path === null || (is_array($path) && count($path) === 0)) {
@@ -2327,14 +2716,14 @@ class PrivateImagesApi
             }
         }
         // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['userId'] = $user_id;
+                $queryParams['ownerId'] = $owner_id;
             }
         }
 
@@ -2434,6 +2823,23 @@ class PrivateImagesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -2464,38 +2870,38 @@ class PrivateImagesApi
     /**
      * Operation privateImagesCreateCollection
      *
-     * Creates new collection
+     * Creates a new collection.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Create operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\CollectionDto|\Aurigma\AssetStorage\Model\NameConflictDto
      */
-    public function privateImagesCreateCollection($tenant_id = null, $user_id = null, $create_collection_dto = null)
+    public function privateImagesCreateCollection($tenant_id = null, $owner_id = null, $create_collection_dto = null)
     {
-        list($response) = $this->privateImagesCreateCollectionWithHttpInfo($tenant_id, $user_id, $create_collection_dto);
+        list($response) = $this->privateImagesCreateCollectionWithHttpInfo($tenant_id, $owner_id, $create_collection_dto);
         return $response;
     }
 
     /**
      * Operation privateImagesCreateCollectionWithHttpInfo
      *
-     * Creates new collection
+     * Creates a new collection.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Create operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\CollectionDto|\Aurigma\AssetStorage\Model\NameConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateImagesCreateCollectionWithHttpInfo($tenant_id = null, $user_id = null, $create_collection_dto = null)
+    public function privateImagesCreateCollectionWithHttpInfo($tenant_id = null, $owner_id = null, $create_collection_dto = null)
     {
-        $request = $this->privateImagesCreateCollectionRequest($tenant_id, $user_id, $create_collection_dto);
+        $request = $this->privateImagesCreateCollectionRequest($tenant_id, $owner_id, $create_collection_dto);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2591,18 +2997,18 @@ class PrivateImagesApi
     /**
      * Operation privateImagesCreateCollectionAsync
      *
-     * Creates new collection
+     * Creates a new collection.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Create operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesCreateCollectionAsync($tenant_id = null, $user_id = null, $create_collection_dto = null)
+    public function privateImagesCreateCollectionAsync($tenant_id = null, $owner_id = null, $create_collection_dto = null)
     {
-        return $this->privateImagesCreateCollectionAsyncWithHttpInfo($tenant_id, $user_id, $create_collection_dto)
+        return $this->privateImagesCreateCollectionAsyncWithHttpInfo($tenant_id, $owner_id, $create_collection_dto)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2613,19 +3019,19 @@ class PrivateImagesApi
     /**
      * Operation privateImagesCreateCollectionAsyncWithHttpInfo
      *
-     * Creates new collection
+     * Creates a new collection.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Create operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesCreateCollectionAsyncWithHttpInfo($tenant_id = null, $user_id = null, $create_collection_dto = null)
+    public function privateImagesCreateCollectionAsyncWithHttpInfo($tenant_id = null, $owner_id = null, $create_collection_dto = null)
     {
         $returnType = '\Aurigma\AssetStorage\Model\CollectionDto';
-        $request = $this->privateImagesCreateCollectionRequest($tenant_id, $user_id, $create_collection_dto);
+        $request = $this->privateImagesCreateCollectionRequest($tenant_id, $owner_id, $create_collection_dto);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2664,13 +3070,13 @@ class PrivateImagesApi
      * Create request for operation 'privateImagesCreateCollection'
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Create operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateImagesCreateCollectionRequest($tenant_id = null, $user_id = null, $create_collection_dto = null)
+    public function privateImagesCreateCollectionRequest($tenant_id = null, $owner_id = null, $create_collection_dto = null)
     {
 
         $resourcePath = '/api/storage/v1/private-images/collections';
@@ -2692,14 +3098,14 @@ class PrivateImagesApi
             }
         }
         // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['userId'] = $user_id;
+                $queryParams['ownerId'] = $owner_id;
             }
         }
 
@@ -2761,6 +3167,23 @@ class PrivateImagesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -2791,38 +3214,38 @@ class PrivateImagesApi
     /**
      * Operation privateImagesCreateFolder
      *
-     * Creates new folder
+     * Creates a new folder.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\NameConflictDto
      */
-    public function privateImagesCreateFolder($tenant_id = null, $user_id = null, $create_folder_dto = null)
+    public function privateImagesCreateFolder($tenant_id = null, $owner_id = null, $create_folder_dto = null)
     {
-        list($response) = $this->privateImagesCreateFolderWithHttpInfo($tenant_id, $user_id, $create_folder_dto);
+        list($response) = $this->privateImagesCreateFolderWithHttpInfo($tenant_id, $owner_id, $create_folder_dto);
         return $response;
     }
 
     /**
      * Operation privateImagesCreateFolderWithHttpInfo
      *
-     * Creates new folder
+     * Creates a new folder.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\NameConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateImagesCreateFolderWithHttpInfo($tenant_id = null, $user_id = null, $create_folder_dto = null)
+    public function privateImagesCreateFolderWithHttpInfo($tenant_id = null, $owner_id = null, $create_folder_dto = null)
     {
-        $request = $this->privateImagesCreateFolderRequest($tenant_id, $user_id, $create_folder_dto);
+        $request = $this->privateImagesCreateFolderRequest($tenant_id, $owner_id, $create_folder_dto);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2918,18 +3341,18 @@ class PrivateImagesApi
     /**
      * Operation privateImagesCreateFolderAsync
      *
-     * Creates new folder
+     * Creates a new folder.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesCreateFolderAsync($tenant_id = null, $user_id = null, $create_folder_dto = null)
+    public function privateImagesCreateFolderAsync($tenant_id = null, $owner_id = null, $create_folder_dto = null)
     {
-        return $this->privateImagesCreateFolderAsyncWithHttpInfo($tenant_id, $user_id, $create_folder_dto)
+        return $this->privateImagesCreateFolderAsyncWithHttpInfo($tenant_id, $owner_id, $create_folder_dto)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2940,19 +3363,19 @@ class PrivateImagesApi
     /**
      * Operation privateImagesCreateFolderAsyncWithHttpInfo
      *
-     * Creates new folder
+     * Creates a new folder.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesCreateFolderAsyncWithHttpInfo($tenant_id = null, $user_id = null, $create_folder_dto = null)
+    public function privateImagesCreateFolderAsyncWithHttpInfo($tenant_id = null, $owner_id = null, $create_folder_dto = null)
     {
         $returnType = '\Aurigma\AssetStorage\Model\FolderDto';
-        $request = $this->privateImagesCreateFolderRequest($tenant_id, $user_id, $create_folder_dto);
+        $request = $this->privateImagesCreateFolderRequest($tenant_id, $owner_id, $create_folder_dto);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2991,13 +3414,13 @@ class PrivateImagesApi
      * Create request for operation 'privateImagesCreateFolder'
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateImagesCreateFolderRequest($tenant_id = null, $user_id = null, $create_folder_dto = null)
+    public function privateImagesCreateFolderRequest($tenant_id = null, $owner_id = null, $create_folder_dto = null)
     {
 
         $resourcePath = '/api/storage/v1/private-images/folders';
@@ -3019,14 +3442,14 @@ class PrivateImagesApi
             }
         }
         // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['userId'] = $user_id;
+                $queryParams['ownerId'] = $owner_id;
             }
         }
 
@@ -3088,6 +3511,23 @@ class PrivateImagesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -3118,38 +3558,38 @@ class PrivateImagesApi
     /**
      * Operation privateImagesDelete
      *
-     * Deletes specified entity
+     * Deletes the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\ImageDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
-    public function privateImagesDelete($id, $tenant_id = null, $user_id = null)
+    public function privateImagesDelete($id, $tenant_id = null, $owner_id = null)
     {
-        list($response) = $this->privateImagesDeleteWithHttpInfo($id, $tenant_id, $user_id);
+        list($response) = $this->privateImagesDeleteWithHttpInfo($id, $tenant_id, $owner_id);
         return $response;
     }
 
     /**
      * Operation privateImagesDeleteWithHttpInfo
      *
-     * Deletes specified entity
+     * Deletes the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\ImageDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateImagesDeleteWithHttpInfo($id, $tenant_id = null, $user_id = null)
+    public function privateImagesDeleteWithHttpInfo($id, $tenant_id = null, $owner_id = null)
     {
-        $request = $this->privateImagesDeleteRequest($id, $tenant_id, $user_id);
+        $request = $this->privateImagesDeleteRequest($id, $tenant_id, $owner_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3245,18 +3685,18 @@ class PrivateImagesApi
     /**
      * Operation privateImagesDeleteAsync
      *
-     * Deletes specified entity
+     * Deletes the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesDeleteAsync($id, $tenant_id = null, $user_id = null)
+    public function privateImagesDeleteAsync($id, $tenant_id = null, $owner_id = null)
     {
-        return $this->privateImagesDeleteAsyncWithHttpInfo($id, $tenant_id, $user_id)
+        return $this->privateImagesDeleteAsyncWithHttpInfo($id, $tenant_id, $owner_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3267,19 +3707,19 @@ class PrivateImagesApi
     /**
      * Operation privateImagesDeleteAsyncWithHttpInfo
      *
-     * Deletes specified entity
+     * Deletes the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesDeleteAsyncWithHttpInfo($id, $tenant_id = null, $user_id = null)
+    public function privateImagesDeleteAsyncWithHttpInfo($id, $tenant_id = null, $owner_id = null)
     {
         $returnType = '\Aurigma\AssetStorage\Model\ImageDto';
-        $request = $this->privateImagesDeleteRequest($id, $tenant_id, $user_id);
+        $request = $this->privateImagesDeleteRequest($id, $tenant_id, $owner_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3317,14 +3757,14 @@ class PrivateImagesApi
     /**
      * Create request for operation 'privateImagesDelete'
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateImagesDeleteRequest($id, $tenant_id = null, $user_id = null)
+    public function privateImagesDeleteRequest($id, $tenant_id = null, $owner_id = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -3352,14 +3792,14 @@ class PrivateImagesApi
             }
         }
         // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['userId'] = $user_id;
+                $queryParams['ownerId'] = $owner_id;
             }
         }
 
@@ -3423,6 +3863,23 @@ class PrivateImagesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -3453,38 +3910,38 @@ class PrivateImagesApi
     /**
      * Operation privateImagesDeleteCollection
      *
-     * Deletes specified collection
+     * Deletes the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\CollectionDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
-    public function privateImagesDeleteCollection($id, $tenant_id = null, $user_id = null)
+    public function privateImagesDeleteCollection($id, $tenant_id = null, $owner_id = null)
     {
-        list($response) = $this->privateImagesDeleteCollectionWithHttpInfo($id, $tenant_id, $user_id);
+        list($response) = $this->privateImagesDeleteCollectionWithHttpInfo($id, $tenant_id, $owner_id);
         return $response;
     }
 
     /**
      * Operation privateImagesDeleteCollectionWithHttpInfo
      *
-     * Deletes specified collection
+     * Deletes the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\CollectionDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateImagesDeleteCollectionWithHttpInfo($id, $tenant_id = null, $user_id = null)
+    public function privateImagesDeleteCollectionWithHttpInfo($id, $tenant_id = null, $owner_id = null)
     {
-        $request = $this->privateImagesDeleteCollectionRequest($id, $tenant_id, $user_id);
+        $request = $this->privateImagesDeleteCollectionRequest($id, $tenant_id, $owner_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3580,18 +4037,18 @@ class PrivateImagesApi
     /**
      * Operation privateImagesDeleteCollectionAsync
      *
-     * Deletes specified collection
+     * Deletes the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesDeleteCollectionAsync($id, $tenant_id = null, $user_id = null)
+    public function privateImagesDeleteCollectionAsync($id, $tenant_id = null, $owner_id = null)
     {
-        return $this->privateImagesDeleteCollectionAsyncWithHttpInfo($id, $tenant_id, $user_id)
+        return $this->privateImagesDeleteCollectionAsyncWithHttpInfo($id, $tenant_id, $owner_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3602,19 +4059,19 @@ class PrivateImagesApi
     /**
      * Operation privateImagesDeleteCollectionAsyncWithHttpInfo
      *
-     * Deletes specified collection
+     * Deletes the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesDeleteCollectionAsyncWithHttpInfo($id, $tenant_id = null, $user_id = null)
+    public function privateImagesDeleteCollectionAsyncWithHttpInfo($id, $tenant_id = null, $owner_id = null)
     {
         $returnType = '\Aurigma\AssetStorage\Model\CollectionDto';
-        $request = $this->privateImagesDeleteCollectionRequest($id, $tenant_id, $user_id);
+        $request = $this->privateImagesDeleteCollectionRequest($id, $tenant_id, $owner_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3652,14 +4109,14 @@ class PrivateImagesApi
     /**
      * Create request for operation 'privateImagesDeleteCollection'
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateImagesDeleteCollectionRequest($id, $tenant_id = null, $user_id = null)
+    public function privateImagesDeleteCollectionRequest($id, $tenant_id = null, $owner_id = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -3687,14 +4144,14 @@ class PrivateImagesApi
             }
         }
         // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['userId'] = $user_id;
+                $queryParams['ownerId'] = $owner_id;
             }
         }
 
@@ -3758,6 +4215,23 @@ class PrivateImagesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -3788,38 +4262,38 @@ class PrivateImagesApi
     /**
      * Operation privateImagesDeleteFolder
      *
-     * Deletes specified folder
+     * Deletes the specified folder.
      *
-     * @param  string $full_path Folder full path (optional)
+     * @param  string $full_path Folder full path. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
-    public function privateImagesDeleteFolder($full_path = null, $tenant_id = null, $user_id = null)
+    public function privateImagesDeleteFolder($full_path = null, $tenant_id = null, $owner_id = null)
     {
-        list($response) = $this->privateImagesDeleteFolderWithHttpInfo($full_path, $tenant_id, $user_id);
+        list($response) = $this->privateImagesDeleteFolderWithHttpInfo($full_path, $tenant_id, $owner_id);
         return $response;
     }
 
     /**
      * Operation privateImagesDeleteFolderWithHttpInfo
      *
-     * Deletes specified folder
+     * Deletes the specified folder.
      *
-     * @param  string $full_path Folder full path (optional)
+     * @param  string $full_path Folder full path. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateImagesDeleteFolderWithHttpInfo($full_path = null, $tenant_id = null, $user_id = null)
+    public function privateImagesDeleteFolderWithHttpInfo($full_path = null, $tenant_id = null, $owner_id = null)
     {
-        $request = $this->privateImagesDeleteFolderRequest($full_path, $tenant_id, $user_id);
+        $request = $this->privateImagesDeleteFolderRequest($full_path, $tenant_id, $owner_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3915,18 +4389,18 @@ class PrivateImagesApi
     /**
      * Operation privateImagesDeleteFolderAsync
      *
-     * Deletes specified folder
+     * Deletes the specified folder.
      *
-     * @param  string $full_path Folder full path (optional)
+     * @param  string $full_path Folder full path. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesDeleteFolderAsync($full_path = null, $tenant_id = null, $user_id = null)
+    public function privateImagesDeleteFolderAsync($full_path = null, $tenant_id = null, $owner_id = null)
     {
-        return $this->privateImagesDeleteFolderAsyncWithHttpInfo($full_path, $tenant_id, $user_id)
+        return $this->privateImagesDeleteFolderAsyncWithHttpInfo($full_path, $tenant_id, $owner_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3937,19 +4411,19 @@ class PrivateImagesApi
     /**
      * Operation privateImagesDeleteFolderAsyncWithHttpInfo
      *
-     * Deletes specified folder
+     * Deletes the specified folder.
      *
-     * @param  string $full_path Folder full path (optional)
+     * @param  string $full_path Folder full path. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesDeleteFolderAsyncWithHttpInfo($full_path = null, $tenant_id = null, $user_id = null)
+    public function privateImagesDeleteFolderAsyncWithHttpInfo($full_path = null, $tenant_id = null, $owner_id = null)
     {
         $returnType = '\Aurigma\AssetStorage\Model\FolderDto';
-        $request = $this->privateImagesDeleteFolderRequest($full_path, $tenant_id, $user_id);
+        $request = $this->privateImagesDeleteFolderRequest($full_path, $tenant_id, $owner_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3987,14 +4461,14 @@ class PrivateImagesApi
     /**
      * Create request for operation 'privateImagesDeleteFolder'
      *
-     * @param  string $full_path Folder full path (optional)
+     * @param  string $full_path Folder full path. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateImagesDeleteFolderRequest($full_path = null, $tenant_id = null, $user_id = null)
+    public function privateImagesDeleteFolderRequest($full_path = null, $tenant_id = null, $owner_id = null)
     {
 
         $resourcePath = '/api/storage/v1/private-images/folders';
@@ -4027,14 +4501,14 @@ class PrivateImagesApi
             }
         }
         // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['userId'] = $user_id;
+                $queryParams['ownerId'] = $owner_id;
             }
         }
 
@@ -4090,6 +4564,23 @@ class PrivateImagesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -4120,38 +4611,38 @@ class PrivateImagesApi
     /**
      * Operation privateImagesGet
      *
-     * Gets entity by id
+     * Returns an entity by ID.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\ImageDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
-    public function privateImagesGet($id, $tenant_id = null, $user_id = null)
+    public function privateImagesGet($id, $tenant_id = null, $owner_id = null)
     {
-        list($response) = $this->privateImagesGetWithHttpInfo($id, $tenant_id, $user_id);
+        list($response) = $this->privateImagesGetWithHttpInfo($id, $tenant_id, $owner_id);
         return $response;
     }
 
     /**
      * Operation privateImagesGetWithHttpInfo
      *
-     * Gets entity by id
+     * Returns an entity by ID.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\ImageDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateImagesGetWithHttpInfo($id, $tenant_id = null, $user_id = null)
+    public function privateImagesGetWithHttpInfo($id, $tenant_id = null, $owner_id = null)
     {
-        $request = $this->privateImagesGetRequest($id, $tenant_id, $user_id);
+        $request = $this->privateImagesGetRequest($id, $tenant_id, $owner_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4247,18 +4738,18 @@ class PrivateImagesApi
     /**
      * Operation privateImagesGetAsync
      *
-     * Gets entity by id
+     * Returns an entity by ID.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesGetAsync($id, $tenant_id = null, $user_id = null)
+    public function privateImagesGetAsync($id, $tenant_id = null, $owner_id = null)
     {
-        return $this->privateImagesGetAsyncWithHttpInfo($id, $tenant_id, $user_id)
+        return $this->privateImagesGetAsyncWithHttpInfo($id, $tenant_id, $owner_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4269,19 +4760,19 @@ class PrivateImagesApi
     /**
      * Operation privateImagesGetAsyncWithHttpInfo
      *
-     * Gets entity by id
+     * Returns an entity by ID.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesGetAsyncWithHttpInfo($id, $tenant_id = null, $user_id = null)
+    public function privateImagesGetAsyncWithHttpInfo($id, $tenant_id = null, $owner_id = null)
     {
         $returnType = '\Aurigma\AssetStorage\Model\ImageDto';
-        $request = $this->privateImagesGetRequest($id, $tenant_id, $user_id);
+        $request = $this->privateImagesGetRequest($id, $tenant_id, $owner_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4319,14 +4810,14 @@ class PrivateImagesApi
     /**
      * Create request for operation 'privateImagesGet'
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateImagesGetRequest($id, $tenant_id = null, $user_id = null)
+    public function privateImagesGetRequest($id, $tenant_id = null, $owner_id = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -4354,14 +4845,14 @@ class PrivateImagesApi
             }
         }
         // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['userId'] = $user_id;
+                $queryParams['ownerId'] = $owner_id;
             }
         }
 
@@ -4425,6 +4916,23 @@ class PrivateImagesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -4455,7 +4963,7 @@ class PrivateImagesApi
     /**
      * Operation privateImagesGetAll
      *
-     * Gets all entities relevant to specified query parameters
+     * Returns all entities relevant to specified query parameters.
      *
      * @param  string $path Folder path filter parameter (optional)
      * @param  bool $include_subfolders If set to &#39;true&#39;, query result will contain list of all entities in desired folder and subfolders (optional)
@@ -4463,24 +4971,24 @@ class PrivateImagesApi
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
      * @param  string $search Search string for partial match (optional)
-     * @param  string $custom_fields Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; (optional)
+     * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\PagedOfImageDto
      */
-    public function privateImagesGetAll($path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $user_id = null)
+    public function privateImagesGetAll($path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $owner_id = null)
     {
-        list($response) = $this->privateImagesGetAllWithHttpInfo($path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $user_id);
+        list($response) = $this->privateImagesGetAllWithHttpInfo($path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id);
         return $response;
     }
 
     /**
      * Operation privateImagesGetAllWithHttpInfo
      *
-     * Gets all entities relevant to specified query parameters
+     * Returns all entities relevant to specified query parameters.
      *
      * @param  string $path Folder path filter parameter (optional)
      * @param  bool $include_subfolders If set to &#39;true&#39;, query result will contain list of all entities in desired folder and subfolders (optional)
@@ -4488,17 +4996,17 @@ class PrivateImagesApi
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
      * @param  string $search Search string for partial match (optional)
-     * @param  string $custom_fields Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; (optional)
+     * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\PagedOfImageDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateImagesGetAllWithHttpInfo($path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $user_id = null)
+    public function privateImagesGetAllWithHttpInfo($path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $owner_id = null)
     {
-        $request = $this->privateImagesGetAllRequest($path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $user_id);
+        $request = $this->privateImagesGetAllRequest($path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4574,7 +5082,7 @@ class PrivateImagesApi
     /**
      * Operation privateImagesGetAllAsync
      *
-     * Gets all entities relevant to specified query parameters
+     * Returns all entities relevant to specified query parameters.
      *
      * @param  string $path Folder path filter parameter (optional)
      * @param  bool $include_subfolders If set to &#39;true&#39;, query result will contain list of all entities in desired folder and subfolders (optional)
@@ -4582,16 +5090,16 @@ class PrivateImagesApi
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
      * @param  string $search Search string for partial match (optional)
-     * @param  string $custom_fields Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; (optional)
+     * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesGetAllAsync($path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $user_id = null)
+    public function privateImagesGetAllAsync($path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $owner_id = null)
     {
-        return $this->privateImagesGetAllAsyncWithHttpInfo($path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $user_id)
+        return $this->privateImagesGetAllAsyncWithHttpInfo($path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4602,7 +5110,7 @@ class PrivateImagesApi
     /**
      * Operation privateImagesGetAllAsyncWithHttpInfo
      *
-     * Gets all entities relevant to specified query parameters
+     * Returns all entities relevant to specified query parameters.
      *
      * @param  string $path Folder path filter parameter (optional)
      * @param  bool $include_subfolders If set to &#39;true&#39;, query result will contain list of all entities in desired folder and subfolders (optional)
@@ -4610,17 +5118,17 @@ class PrivateImagesApi
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
      * @param  string $search Search string for partial match (optional)
-     * @param  string $custom_fields Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; (optional)
+     * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesGetAllAsyncWithHttpInfo($path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $user_id = null)
+    public function privateImagesGetAllAsyncWithHttpInfo($path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $owner_id = null)
     {
         $returnType = '\Aurigma\AssetStorage\Model\PagedOfImageDto';
-        $request = $this->privateImagesGetAllRequest($path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $user_id);
+        $request = $this->privateImagesGetAllRequest($path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4664,14 +5172,14 @@ class PrivateImagesApi
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
      * @param  string $search Search string for partial match (optional)
-     * @param  string $custom_fields Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; (optional)
+     * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateImagesGetAllRequest($path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $user_id = null)
+    public function privateImagesGetAllRequest($path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $owner_id = null)
     {
 
         $resourcePath = '/api/storage/v1/private-images';
@@ -4770,14 +5278,14 @@ class PrivateImagesApi
             }
         }
         // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['userId'] = $user_id;
+                $queryParams['ownerId'] = $owner_id;
             }
         }
 
@@ -4833,6 +5341,23 @@ class PrivateImagesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -4863,36 +5388,36 @@ class PrivateImagesApi
     /**
      * Operation privateImagesGetAllCollections
      *
-     * Gets all collections
+     * Returns all collections.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\CollectionDto[]
      */
-    public function privateImagesGetAllCollections($tenant_id = null, $user_id = null)
+    public function privateImagesGetAllCollections($tenant_id = null, $owner_id = null)
     {
-        list($response) = $this->privateImagesGetAllCollectionsWithHttpInfo($tenant_id, $user_id);
+        list($response) = $this->privateImagesGetAllCollectionsWithHttpInfo($tenant_id, $owner_id);
         return $response;
     }
 
     /**
      * Operation privateImagesGetAllCollectionsWithHttpInfo
      *
-     * Gets all collections
+     * Returns all collections.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\CollectionDto[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateImagesGetAllCollectionsWithHttpInfo($tenant_id = null, $user_id = null)
+    public function privateImagesGetAllCollectionsWithHttpInfo($tenant_id = null, $owner_id = null)
     {
-        $request = $this->privateImagesGetAllCollectionsRequest($tenant_id, $user_id);
+        $request = $this->privateImagesGetAllCollectionsRequest($tenant_id, $owner_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4968,17 +5493,17 @@ class PrivateImagesApi
     /**
      * Operation privateImagesGetAllCollectionsAsync
      *
-     * Gets all collections
+     * Returns all collections.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesGetAllCollectionsAsync($tenant_id = null, $user_id = null)
+    public function privateImagesGetAllCollectionsAsync($tenant_id = null, $owner_id = null)
     {
-        return $this->privateImagesGetAllCollectionsAsyncWithHttpInfo($tenant_id, $user_id)
+        return $this->privateImagesGetAllCollectionsAsyncWithHttpInfo($tenant_id, $owner_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4989,18 +5514,18 @@ class PrivateImagesApi
     /**
      * Operation privateImagesGetAllCollectionsAsyncWithHttpInfo
      *
-     * Gets all collections
+     * Returns all collections.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesGetAllCollectionsAsyncWithHttpInfo($tenant_id = null, $user_id = null)
+    public function privateImagesGetAllCollectionsAsyncWithHttpInfo($tenant_id = null, $owner_id = null)
     {
         $returnType = '\Aurigma\AssetStorage\Model\CollectionDto[]';
-        $request = $this->privateImagesGetAllCollectionsRequest($tenant_id, $user_id);
+        $request = $this->privateImagesGetAllCollectionsRequest($tenant_id, $owner_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5039,12 +5564,12 @@ class PrivateImagesApi
      * Create request for operation 'privateImagesGetAllCollections'
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateImagesGetAllCollectionsRequest($tenant_id = null, $user_id = null)
+    public function privateImagesGetAllCollectionsRequest($tenant_id = null, $owner_id = null)
     {
 
         $resourcePath = '/api/storage/v1/private-images/collections';
@@ -5066,14 +5591,14 @@ class PrivateImagesApi
             }
         }
         // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['userId'] = $user_id;
+                $queryParams['ownerId'] = $owner_id;
             }
         }
 
@@ -5129,6 +5654,23 @@ class PrivateImagesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -5159,36 +5701,36 @@ class PrivateImagesApi
     /**
      * Operation privateImagesGetAllFolders
      *
-     * Gets all folders
+     * Returns all folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\FolderDto[]
      */
-    public function privateImagesGetAllFolders($tenant_id = null, $user_id = null)
+    public function privateImagesGetAllFolders($tenant_id = null, $owner_id = null)
     {
-        list($response) = $this->privateImagesGetAllFoldersWithHttpInfo($tenant_id, $user_id);
+        list($response) = $this->privateImagesGetAllFoldersWithHttpInfo($tenant_id, $owner_id);
         return $response;
     }
 
     /**
      * Operation privateImagesGetAllFoldersWithHttpInfo
      *
-     * Gets all folders
+     * Returns all folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\FolderDto[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateImagesGetAllFoldersWithHttpInfo($tenant_id = null, $user_id = null)
+    public function privateImagesGetAllFoldersWithHttpInfo($tenant_id = null, $owner_id = null)
     {
-        $request = $this->privateImagesGetAllFoldersRequest($tenant_id, $user_id);
+        $request = $this->privateImagesGetAllFoldersRequest($tenant_id, $owner_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5264,17 +5806,17 @@ class PrivateImagesApi
     /**
      * Operation privateImagesGetAllFoldersAsync
      *
-     * Gets all folders
+     * Returns all folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesGetAllFoldersAsync($tenant_id = null, $user_id = null)
+    public function privateImagesGetAllFoldersAsync($tenant_id = null, $owner_id = null)
     {
-        return $this->privateImagesGetAllFoldersAsyncWithHttpInfo($tenant_id, $user_id)
+        return $this->privateImagesGetAllFoldersAsyncWithHttpInfo($tenant_id, $owner_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5285,18 +5827,18 @@ class PrivateImagesApi
     /**
      * Operation privateImagesGetAllFoldersAsyncWithHttpInfo
      *
-     * Gets all folders
+     * Returns all folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesGetAllFoldersAsyncWithHttpInfo($tenant_id = null, $user_id = null)
+    public function privateImagesGetAllFoldersAsyncWithHttpInfo($tenant_id = null, $owner_id = null)
     {
         $returnType = '\Aurigma\AssetStorage\Model\FolderDto[]';
-        $request = $this->privateImagesGetAllFoldersRequest($tenant_id, $user_id);
+        $request = $this->privateImagesGetAllFoldersRequest($tenant_id, $owner_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5335,12 +5877,12 @@ class PrivateImagesApi
      * Create request for operation 'privateImagesGetAllFolders'
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateImagesGetAllFoldersRequest($tenant_id = null, $user_id = null)
+    public function privateImagesGetAllFoldersRequest($tenant_id = null, $owner_id = null)
     {
 
         $resourcePath = '/api/storage/v1/private-images/folders/all';
@@ -5362,14 +5904,14 @@ class PrivateImagesApi
             }
         }
         // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['userId'] = $user_id;
+                $queryParams['ownerId'] = $owner_id;
             }
         }
 
@@ -5425,6 +5967,23 @@ class PrivateImagesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -5455,38 +6014,38 @@ class PrivateImagesApi
     /**
      * Operation privateImagesGetCollection
      *
-     * Gets collection content by collection id
+     * Returns the collection content by collection ID.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\CollectionContentOfImageDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
-    public function privateImagesGetCollection($id, $tenant_id = null, $user_id = null)
+    public function privateImagesGetCollection($id, $tenant_id = null, $owner_id = null)
     {
-        list($response) = $this->privateImagesGetCollectionWithHttpInfo($id, $tenant_id, $user_id);
+        list($response) = $this->privateImagesGetCollectionWithHttpInfo($id, $tenant_id, $owner_id);
         return $response;
     }
 
     /**
      * Operation privateImagesGetCollectionWithHttpInfo
      *
-     * Gets collection content by collection id
+     * Returns the collection content by collection ID.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\CollectionContentOfImageDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateImagesGetCollectionWithHttpInfo($id, $tenant_id = null, $user_id = null)
+    public function privateImagesGetCollectionWithHttpInfo($id, $tenant_id = null, $owner_id = null)
     {
-        $request = $this->privateImagesGetCollectionRequest($id, $tenant_id, $user_id);
+        $request = $this->privateImagesGetCollectionRequest($id, $tenant_id, $owner_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5582,18 +6141,18 @@ class PrivateImagesApi
     /**
      * Operation privateImagesGetCollectionAsync
      *
-     * Gets collection content by collection id
+     * Returns the collection content by collection ID.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesGetCollectionAsync($id, $tenant_id = null, $user_id = null)
+    public function privateImagesGetCollectionAsync($id, $tenant_id = null, $owner_id = null)
     {
-        return $this->privateImagesGetCollectionAsyncWithHttpInfo($id, $tenant_id, $user_id)
+        return $this->privateImagesGetCollectionAsyncWithHttpInfo($id, $tenant_id, $owner_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5604,19 +6163,19 @@ class PrivateImagesApi
     /**
      * Operation privateImagesGetCollectionAsyncWithHttpInfo
      *
-     * Gets collection content by collection id
+     * Returns the collection content by collection ID.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesGetCollectionAsyncWithHttpInfo($id, $tenant_id = null, $user_id = null)
+    public function privateImagesGetCollectionAsyncWithHttpInfo($id, $tenant_id = null, $owner_id = null)
     {
         $returnType = '\Aurigma\AssetStorage\Model\CollectionContentOfImageDto';
-        $request = $this->privateImagesGetCollectionRequest($id, $tenant_id, $user_id);
+        $request = $this->privateImagesGetCollectionRequest($id, $tenant_id, $owner_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5654,14 +6213,14 @@ class PrivateImagesApi
     /**
      * Create request for operation 'privateImagesGetCollection'
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateImagesGetCollectionRequest($id, $tenant_id = null, $user_id = null)
+    public function privateImagesGetCollectionRequest($id, $tenant_id = null, $owner_id = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -5689,14 +6248,14 @@ class PrivateImagesApi
             }
         }
         // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['userId'] = $user_id;
+                $queryParams['ownerId'] = $owner_id;
             }
         }
 
@@ -5760,6 +6319,23 @@ class PrivateImagesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -5790,40 +6366,40 @@ class PrivateImagesApi
     /**
      * Operation privateImagesGetFile
      *
-     * Gets entity file from file storage
+     * Returns an entity file from file storage.
      *
-     * @param  string $id Entity unique identifier (required)
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) (optional)
+     * @param  string $id Entity identifier. (required)
+     * @param  bool $attachment Indicates if a file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \SplFileObject|\Aurigma\AssetStorage\Model\ProblemDetails
      */
-    public function privateImagesGetFile($id, $attachment = null, $tenant_id = null, $user_id = null)
+    public function privateImagesGetFile($id, $attachment = null, $tenant_id = null, $owner_id = null)
     {
-        list($response) = $this->privateImagesGetFileWithHttpInfo($id, $attachment, $tenant_id, $user_id);
+        list($response) = $this->privateImagesGetFileWithHttpInfo($id, $attachment, $tenant_id, $owner_id);
         return $response;
     }
 
     /**
      * Operation privateImagesGetFileWithHttpInfo
      *
-     * Gets entity file from file storage
+     * Returns an entity file from file storage.
      *
-     * @param  string $id Entity unique identifier (required)
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) (optional)
+     * @param  string $id Entity identifier. (required)
+     * @param  bool $attachment Indicates if a file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \SplFileObject|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateImagesGetFileWithHttpInfo($id, $attachment = null, $tenant_id = null, $user_id = null)
+    public function privateImagesGetFileWithHttpInfo($id, $attachment = null, $tenant_id = null, $owner_id = null)
     {
-        $request = $this->privateImagesGetFileRequest($id, $attachment, $tenant_id, $user_id);
+        $request = $this->privateImagesGetFileRequest($id, $attachment, $tenant_id, $owner_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5919,19 +6495,19 @@ class PrivateImagesApi
     /**
      * Operation privateImagesGetFileAsync
      *
-     * Gets entity file from file storage
+     * Returns an entity file from file storage.
      *
-     * @param  string $id Entity unique identifier (required)
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) (optional)
+     * @param  string $id Entity identifier. (required)
+     * @param  bool $attachment Indicates if a file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesGetFileAsync($id, $attachment = null, $tenant_id = null, $user_id = null)
+    public function privateImagesGetFileAsync($id, $attachment = null, $tenant_id = null, $owner_id = null)
     {
-        return $this->privateImagesGetFileAsyncWithHttpInfo($id, $attachment, $tenant_id, $user_id)
+        return $this->privateImagesGetFileAsyncWithHttpInfo($id, $attachment, $tenant_id, $owner_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5942,20 +6518,20 @@ class PrivateImagesApi
     /**
      * Operation privateImagesGetFileAsyncWithHttpInfo
      *
-     * Gets entity file from file storage
+     * Returns an entity file from file storage.
      *
-     * @param  string $id Entity unique identifier (required)
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) (optional)
+     * @param  string $id Entity identifier. (required)
+     * @param  bool $attachment Indicates if a file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesGetFileAsyncWithHttpInfo($id, $attachment = null, $tenant_id = null, $user_id = null)
+    public function privateImagesGetFileAsyncWithHttpInfo($id, $attachment = null, $tenant_id = null, $owner_id = null)
     {
         $returnType = '\SplFileObject';
-        $request = $this->privateImagesGetFileRequest($id, $attachment, $tenant_id, $user_id);
+        $request = $this->privateImagesGetFileRequest($id, $attachment, $tenant_id, $owner_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5993,15 +6569,15 @@ class PrivateImagesApi
     /**
      * Create request for operation 'privateImagesGetFile'
      *
-     * @param  string $id Entity unique identifier (required)
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) (optional)
+     * @param  string $id Entity identifier. (required)
+     * @param  bool $attachment Indicates if a file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateImagesGetFileRequest($id, $attachment = null, $tenant_id = null, $user_id = null)
+    public function privateImagesGetFileRequest($id, $attachment = null, $tenant_id = null, $owner_id = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -6040,14 +6616,14 @@ class PrivateImagesApi
             }
         }
         // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['userId'] = $user_id;
+                $queryParams['ownerId'] = $owner_id;
             }
         }
 
@@ -6111,6 +6687,336 @@ class PrivateImagesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation privateImagesGetFileStorageInfo
+     *
+     * Returns information about storage usage by private image files.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Aurigma\AssetStorage\Model\FileStorageInfoDto
+     */
+    public function privateImagesGetFileStorageInfo($tenant_id = null, $owner_id = null)
+    {
+        list($response) = $this->privateImagesGetFileStorageInfoWithHttpInfo($tenant_id, $owner_id);
+        return $response;
+    }
+
+    /**
+     * Operation privateImagesGetFileStorageInfoWithHttpInfo
+     *
+     * Returns information about storage usage by private image files.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Aurigma\AssetStorage\Model\FileStorageInfoDto, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function privateImagesGetFileStorageInfoWithHttpInfo($tenant_id = null, $owner_id = null)
+    {
+        $request = $this->privateImagesGetFileStorageInfoRequest($tenant_id, $owner_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Aurigma\AssetStorage\Model\FileStorageInfoDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\FileStorageInfoDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Aurigma\AssetStorage\Model\FileStorageInfoDto';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\FileStorageInfoDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation privateImagesGetFileStorageInfoAsync
+     *
+     * Returns information about storage usage by private image files.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function privateImagesGetFileStorageInfoAsync($tenant_id = null, $owner_id = null)
+    {
+        return $this->privateImagesGetFileStorageInfoAsyncWithHttpInfo($tenant_id, $owner_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation privateImagesGetFileStorageInfoAsyncWithHttpInfo
+     *
+     * Returns information about storage usage by private image files.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function privateImagesGetFileStorageInfoAsyncWithHttpInfo($tenant_id = null, $owner_id = null)
+    {
+        $returnType = '\Aurigma\AssetStorage\Model\FileStorageInfoDto';
+        $request = $this->privateImagesGetFileStorageInfoRequest($tenant_id, $owner_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'privateImagesGetFileStorageInfo'
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function privateImagesGetFileStorageInfoRequest($tenant_id = null, $owner_id = null)
+    {
+
+        $resourcePath = '/api/storage/v1/private-images/file-storage-info';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+        // query params
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['ownerId'] = $owner_id;
+            }
+        }
+
+
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -6141,38 +7047,38 @@ class PrivateImagesApi
     /**
      * Operation privateImagesGetFolder
      *
-     * Gets folder content by folder path
+     * Returns the folder content by folder path.
      *
-     * @param  string $full_path Full folder path, if not set then root folder path is used (optional)
+     * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\FolderContentOfImageDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
-    public function privateImagesGetFolder($full_path = null, $tenant_id = null, $user_id = null)
+    public function privateImagesGetFolder($full_path = null, $tenant_id = null, $owner_id = null)
     {
-        list($response) = $this->privateImagesGetFolderWithHttpInfo($full_path, $tenant_id, $user_id);
+        list($response) = $this->privateImagesGetFolderWithHttpInfo($full_path, $tenant_id, $owner_id);
         return $response;
     }
 
     /**
      * Operation privateImagesGetFolderWithHttpInfo
      *
-     * Gets folder content by folder path
+     * Returns the folder content by folder path.
      *
-     * @param  string $full_path Full folder path, if not set then root folder path is used (optional)
+     * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\FolderContentOfImageDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateImagesGetFolderWithHttpInfo($full_path = null, $tenant_id = null, $user_id = null)
+    public function privateImagesGetFolderWithHttpInfo($full_path = null, $tenant_id = null, $owner_id = null)
     {
-        $request = $this->privateImagesGetFolderRequest($full_path, $tenant_id, $user_id);
+        $request = $this->privateImagesGetFolderRequest($full_path, $tenant_id, $owner_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -6268,18 +7174,18 @@ class PrivateImagesApi
     /**
      * Operation privateImagesGetFolderAsync
      *
-     * Gets folder content by folder path
+     * Returns the folder content by folder path.
      *
-     * @param  string $full_path Full folder path, if not set then root folder path is used (optional)
+     * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesGetFolderAsync($full_path = null, $tenant_id = null, $user_id = null)
+    public function privateImagesGetFolderAsync($full_path = null, $tenant_id = null, $owner_id = null)
     {
-        return $this->privateImagesGetFolderAsyncWithHttpInfo($full_path, $tenant_id, $user_id)
+        return $this->privateImagesGetFolderAsyncWithHttpInfo($full_path, $tenant_id, $owner_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -6290,19 +7196,19 @@ class PrivateImagesApi
     /**
      * Operation privateImagesGetFolderAsyncWithHttpInfo
      *
-     * Gets folder content by folder path
+     * Returns the folder content by folder path.
      *
-     * @param  string $full_path Full folder path, if not set then root folder path is used (optional)
+     * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesGetFolderAsyncWithHttpInfo($full_path = null, $tenant_id = null, $user_id = null)
+    public function privateImagesGetFolderAsyncWithHttpInfo($full_path = null, $tenant_id = null, $owner_id = null)
     {
         $returnType = '\Aurigma\AssetStorage\Model\FolderContentOfImageDto';
-        $request = $this->privateImagesGetFolderRequest($full_path, $tenant_id, $user_id);
+        $request = $this->privateImagesGetFolderRequest($full_path, $tenant_id, $owner_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -6340,14 +7246,14 @@ class PrivateImagesApi
     /**
      * Create request for operation 'privateImagesGetFolder'
      *
-     * @param  string $full_path Full folder path, if not set then root folder path is used (optional)
+     * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateImagesGetFolderRequest($full_path = null, $tenant_id = null, $user_id = null)
+    public function privateImagesGetFolderRequest($full_path = null, $tenant_id = null, $owner_id = null)
     {
 
         $resourcePath = '/api/storage/v1/private-images/folders';
@@ -6380,14 +7286,14 @@ class PrivateImagesApi
             }
         }
         // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['userId'] = $user_id;
+                $queryParams['ownerId'] = $owner_id;
             }
         }
 
@@ -6443,6 +7349,23 @@ class PrivateImagesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -6473,38 +7396,38 @@ class PrivateImagesApi
     /**
      * Operation privateImagesGetFolderInfo
      *
-     * Gets folder by id
+     * Returns folder by ID.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
-    public function privateImagesGetFolderInfo($id, $tenant_id = null, $user_id = null)
+    public function privateImagesGetFolderInfo($id, $tenant_id = null, $owner_id = null)
     {
-        list($response) = $this->privateImagesGetFolderInfoWithHttpInfo($id, $tenant_id, $user_id);
+        list($response) = $this->privateImagesGetFolderInfoWithHttpInfo($id, $tenant_id, $owner_id);
         return $response;
     }
 
     /**
      * Operation privateImagesGetFolderInfoWithHttpInfo
      *
-     * Gets folder by id
+     * Returns folder by ID.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateImagesGetFolderInfoWithHttpInfo($id, $tenant_id = null, $user_id = null)
+    public function privateImagesGetFolderInfoWithHttpInfo($id, $tenant_id = null, $owner_id = null)
     {
-        $request = $this->privateImagesGetFolderInfoRequest($id, $tenant_id, $user_id);
+        $request = $this->privateImagesGetFolderInfoRequest($id, $tenant_id, $owner_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -6600,18 +7523,18 @@ class PrivateImagesApi
     /**
      * Operation privateImagesGetFolderInfoAsync
      *
-     * Gets folder by id
+     * Returns folder by ID.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesGetFolderInfoAsync($id, $tenant_id = null, $user_id = null)
+    public function privateImagesGetFolderInfoAsync($id, $tenant_id = null, $owner_id = null)
     {
-        return $this->privateImagesGetFolderInfoAsyncWithHttpInfo($id, $tenant_id, $user_id)
+        return $this->privateImagesGetFolderInfoAsyncWithHttpInfo($id, $tenant_id, $owner_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -6622,19 +7545,19 @@ class PrivateImagesApi
     /**
      * Operation privateImagesGetFolderInfoAsyncWithHttpInfo
      *
-     * Gets folder by id
+     * Returns folder by ID.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesGetFolderInfoAsyncWithHttpInfo($id, $tenant_id = null, $user_id = null)
+    public function privateImagesGetFolderInfoAsyncWithHttpInfo($id, $tenant_id = null, $owner_id = null)
     {
         $returnType = '\Aurigma\AssetStorage\Model\FolderDto';
-        $request = $this->privateImagesGetFolderInfoRequest($id, $tenant_id, $user_id);
+        $request = $this->privateImagesGetFolderInfoRequest($id, $tenant_id, $owner_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -6672,14 +7595,14 @@ class PrivateImagesApi
     /**
      * Create request for operation 'privateImagesGetFolderInfo'
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateImagesGetFolderInfoRequest($id, $tenant_id = null, $user_id = null)
+    public function privateImagesGetFolderInfoRequest($id, $tenant_id = null, $owner_id = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -6707,14 +7630,14 @@ class PrivateImagesApi
             }
         }
         // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['userId'] = $user_id;
+                $queryParams['ownerId'] = $owner_id;
             }
         }
 
@@ -6778,6 +7701,23 @@ class PrivateImagesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -6806,13 +7746,676 @@ class PrivateImagesApi
     }
 
     /**
+     * Operation privateImagesGetRetentionPolicy
+     *
+     * Returns an entity retention policy by entity identifier.
+     *
+     * @param  string $id Entity identifier. (required)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Aurigma\AssetStorage\Model\RetentionPolicy|\Aurigma\AssetStorage\Model\ProblemDetails
+     */
+    public function privateImagesGetRetentionPolicy($id, $tenant_id = null, $owner_id = null)
+    {
+        list($response) = $this->privateImagesGetRetentionPolicyWithHttpInfo($id, $tenant_id, $owner_id);
+        return $response;
+    }
+
+    /**
+     * Operation privateImagesGetRetentionPolicyWithHttpInfo
+     *
+     * Returns an entity retention policy by entity identifier.
+     *
+     * @param  string $id Entity identifier. (required)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Aurigma\AssetStorage\Model\RetentionPolicy|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function privateImagesGetRetentionPolicyWithHttpInfo($id, $tenant_id = null, $owner_id = null)
+    {
+        $request = $this->privateImagesGetRetentionPolicyRequest($id, $tenant_id, $owner_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Aurigma\AssetStorage\Model\RetentionPolicy' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\RetentionPolicy', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Aurigma\AssetStorage\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Aurigma\AssetStorage\Model\RetentionPolicy';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\RetentionPolicy',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation privateImagesGetRetentionPolicyAsync
+     *
+     * Returns an entity retention policy by entity identifier.
+     *
+     * @param  string $id Entity identifier. (required)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function privateImagesGetRetentionPolicyAsync($id, $tenant_id = null, $owner_id = null)
+    {
+        return $this->privateImagesGetRetentionPolicyAsyncWithHttpInfo($id, $tenant_id, $owner_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation privateImagesGetRetentionPolicyAsyncWithHttpInfo
+     *
+     * Returns an entity retention policy by entity identifier.
+     *
+     * @param  string $id Entity identifier. (required)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function privateImagesGetRetentionPolicyAsyncWithHttpInfo($id, $tenant_id = null, $owner_id = null)
+    {
+        $returnType = '\Aurigma\AssetStorage\Model\RetentionPolicy';
+        $request = $this->privateImagesGetRetentionPolicyRequest($id, $tenant_id, $owner_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'privateImagesGetRetentionPolicy'
+     *
+     * @param  string $id Entity identifier. (required)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function privateImagesGetRetentionPolicyRequest($id, $tenant_id = null, $owner_id = null)
+    {
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling privateImagesGetRetentionPolicy'
+            );
+        }
+
+        $resourcePath = '/api/storage/v1/private-images/{id}/retention-policy';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+        // query params
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['ownerId'] = $owner_id;
+            }
+        }
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation privateImagesSetRetentionPolicy
+     *
+     * Updates an entity retention policy by entity identifier.
+     *
+     * @param  string $id Entity identifier. (required)
+     * @param  \Aurigma\AssetStorage\Model\RetentionPolicy $policy New entity retention policy. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function privateImagesSetRetentionPolicy($id, $policy = null, $tenant_id = null, $owner_id = null)
+    {
+        $this->privateImagesSetRetentionPolicyWithHttpInfo($id, $policy, $tenant_id, $owner_id);
+    }
+
+    /**
+     * Operation privateImagesSetRetentionPolicyWithHttpInfo
+     *
+     * Updates an entity retention policy by entity identifier.
+     *
+     * @param  string $id Entity identifier. (required)
+     * @param  \Aurigma\AssetStorage\Model\RetentionPolicy $policy New entity retention policy. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function privateImagesSetRetentionPolicyWithHttpInfo($id, $policy = null, $tenant_id = null, $owner_id = null)
+    {
+        $request = $this->privateImagesSetRetentionPolicyRequest($id, $policy, $tenant_id, $owner_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation privateImagesSetRetentionPolicyAsync
+     *
+     * Updates an entity retention policy by entity identifier.
+     *
+     * @param  string $id Entity identifier. (required)
+     * @param  \Aurigma\AssetStorage\Model\RetentionPolicy $policy New entity retention policy. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function privateImagesSetRetentionPolicyAsync($id, $policy = null, $tenant_id = null, $owner_id = null)
+    {
+        return $this->privateImagesSetRetentionPolicyAsyncWithHttpInfo($id, $policy, $tenant_id, $owner_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation privateImagesSetRetentionPolicyAsyncWithHttpInfo
+     *
+     * Updates an entity retention policy by entity identifier.
+     *
+     * @param  string $id Entity identifier. (required)
+     * @param  \Aurigma\AssetStorage\Model\RetentionPolicy $policy New entity retention policy. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function privateImagesSetRetentionPolicyAsyncWithHttpInfo($id, $policy = null, $tenant_id = null, $owner_id = null)
+    {
+        $returnType = '';
+        $request = $this->privateImagesSetRetentionPolicyRequest($id, $policy, $tenant_id, $owner_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'privateImagesSetRetentionPolicy'
+     *
+     * @param  string $id Entity identifier. (required)
+     * @param  \Aurigma\AssetStorage\Model\RetentionPolicy $policy New entity retention policy. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function privateImagesSetRetentionPolicyRequest($id, $policy = null, $tenant_id = null, $owner_id = null)
+    {
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling privateImagesSetRetentionPolicy'
+            );
+        }
+
+        $resourcePath = '/api/storage/v1/private-images/{id}/retention-policy';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($policy !== null) {
+            if('form' === 'form' && is_array($policy)) {
+                foreach($policy as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['policy'] = $policy;
+            }
+        }
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+        // query params
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['ownerId'] = $owner_id;
+            }
+        }
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation privateImagesUpdate
      *
-     * Updates specified entity
+     * Updates the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  bool $metadata_is_vector Indicates whether image is vector (optional)
      * @param  int $metadata_width Image width (optional)
      * @param  int $metadata_height Image height (optional)
@@ -6829,20 +8432,20 @@ class PrivateImagesApi
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\ImageDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto
      */
-    public function privateImagesUpdate($id, $tenant_id = null, $user_id = null, $metadata_is_vector = null, $metadata_width = null, $metadata_height = null, $metadata_format = null, $metadata_dpi_x = null, $metadata_dpi_y = null, $metadata_pages = null, $file = null, $path = null, $name = null, $custom_fields = null)
+    public function privateImagesUpdate($id, $tenant_id = null, $owner_id = null, $metadata_is_vector = null, $metadata_width = null, $metadata_height = null, $metadata_format = null, $metadata_dpi_x = null, $metadata_dpi_y = null, $metadata_pages = null, $file = null, $path = null, $name = null, $custom_fields = null)
     {
-        list($response) = $this->privateImagesUpdateWithHttpInfo($id, $tenant_id, $user_id, $metadata_is_vector, $metadata_width, $metadata_height, $metadata_format, $metadata_dpi_x, $metadata_dpi_y, $metadata_pages, $file, $path, $name, $custom_fields);
+        list($response) = $this->privateImagesUpdateWithHttpInfo($id, $tenant_id, $owner_id, $metadata_is_vector, $metadata_width, $metadata_height, $metadata_format, $metadata_dpi_x, $metadata_dpi_y, $metadata_pages, $file, $path, $name, $custom_fields);
         return $response;
     }
 
     /**
      * Operation privateImagesUpdateWithHttpInfo
      *
-     * Updates specified entity
+     * Updates the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  bool $metadata_is_vector Indicates whether image is vector (optional)
      * @param  int $metadata_width Image width (optional)
      * @param  int $metadata_height Image height (optional)
@@ -6859,9 +8462,9 @@ class PrivateImagesApi
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\ImageDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateImagesUpdateWithHttpInfo($id, $tenant_id = null, $user_id = null, $metadata_is_vector = null, $metadata_width = null, $metadata_height = null, $metadata_format = null, $metadata_dpi_x = null, $metadata_dpi_y = null, $metadata_pages = null, $file = null, $path = null, $name = null, $custom_fields = null)
+    public function privateImagesUpdateWithHttpInfo($id, $tenant_id = null, $owner_id = null, $metadata_is_vector = null, $metadata_width = null, $metadata_height = null, $metadata_format = null, $metadata_dpi_x = null, $metadata_dpi_y = null, $metadata_pages = null, $file = null, $path = null, $name = null, $custom_fields = null)
     {
-        $request = $this->privateImagesUpdateRequest($id, $tenant_id, $user_id, $metadata_is_vector, $metadata_width, $metadata_height, $metadata_format, $metadata_dpi_x, $metadata_dpi_y, $metadata_pages, $file, $path, $name, $custom_fields);
+        $request = $this->privateImagesUpdateRequest($id, $tenant_id, $owner_id, $metadata_is_vector, $metadata_width, $metadata_height, $metadata_format, $metadata_dpi_x, $metadata_dpi_y, $metadata_pages, $file, $path, $name, $custom_fields);
 
         try {
             $options = $this->createHttpClientOption();
@@ -6977,11 +8580,11 @@ class PrivateImagesApi
     /**
      * Operation privateImagesUpdateAsync
      *
-     * Updates specified entity
+     * Updates the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  bool $metadata_is_vector Indicates whether image is vector (optional)
      * @param  int $metadata_width Image width (optional)
      * @param  int $metadata_height Image height (optional)
@@ -6997,9 +8600,9 @@ class PrivateImagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesUpdateAsync($id, $tenant_id = null, $user_id = null, $metadata_is_vector = null, $metadata_width = null, $metadata_height = null, $metadata_format = null, $metadata_dpi_x = null, $metadata_dpi_y = null, $metadata_pages = null, $file = null, $path = null, $name = null, $custom_fields = null)
+    public function privateImagesUpdateAsync($id, $tenant_id = null, $owner_id = null, $metadata_is_vector = null, $metadata_width = null, $metadata_height = null, $metadata_format = null, $metadata_dpi_x = null, $metadata_dpi_y = null, $metadata_pages = null, $file = null, $path = null, $name = null, $custom_fields = null)
     {
-        return $this->privateImagesUpdateAsyncWithHttpInfo($id, $tenant_id, $user_id, $metadata_is_vector, $metadata_width, $metadata_height, $metadata_format, $metadata_dpi_x, $metadata_dpi_y, $metadata_pages, $file, $path, $name, $custom_fields)
+        return $this->privateImagesUpdateAsyncWithHttpInfo($id, $tenant_id, $owner_id, $metadata_is_vector, $metadata_width, $metadata_height, $metadata_format, $metadata_dpi_x, $metadata_dpi_y, $metadata_pages, $file, $path, $name, $custom_fields)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -7010,11 +8613,11 @@ class PrivateImagesApi
     /**
      * Operation privateImagesUpdateAsyncWithHttpInfo
      *
-     * Updates specified entity
+     * Updates the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  bool $metadata_is_vector Indicates whether image is vector (optional)
      * @param  int $metadata_width Image width (optional)
      * @param  int $metadata_height Image height (optional)
@@ -7030,10 +8633,10 @@ class PrivateImagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesUpdateAsyncWithHttpInfo($id, $tenant_id = null, $user_id = null, $metadata_is_vector = null, $metadata_width = null, $metadata_height = null, $metadata_format = null, $metadata_dpi_x = null, $metadata_dpi_y = null, $metadata_pages = null, $file = null, $path = null, $name = null, $custom_fields = null)
+    public function privateImagesUpdateAsyncWithHttpInfo($id, $tenant_id = null, $owner_id = null, $metadata_is_vector = null, $metadata_width = null, $metadata_height = null, $metadata_format = null, $metadata_dpi_x = null, $metadata_dpi_y = null, $metadata_pages = null, $file = null, $path = null, $name = null, $custom_fields = null)
     {
         $returnType = '\Aurigma\AssetStorage\Model\ImageDto';
-        $request = $this->privateImagesUpdateRequest($id, $tenant_id, $user_id, $metadata_is_vector, $metadata_width, $metadata_height, $metadata_format, $metadata_dpi_x, $metadata_dpi_y, $metadata_pages, $file, $path, $name, $custom_fields);
+        $request = $this->privateImagesUpdateRequest($id, $tenant_id, $owner_id, $metadata_is_vector, $metadata_width, $metadata_height, $metadata_format, $metadata_dpi_x, $metadata_dpi_y, $metadata_pages, $file, $path, $name, $custom_fields);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -7071,9 +8674,9 @@ class PrivateImagesApi
     /**
      * Create request for operation 'privateImagesUpdate'
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  bool $metadata_is_vector Indicates whether image is vector (optional)
      * @param  int $metadata_width Image width (optional)
      * @param  int $metadata_height Image height (optional)
@@ -7089,7 +8692,7 @@ class PrivateImagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateImagesUpdateRequest($id, $tenant_id = null, $user_id = null, $metadata_is_vector = null, $metadata_width = null, $metadata_height = null, $metadata_format = null, $metadata_dpi_x = null, $metadata_dpi_y = null, $metadata_pages = null, $file = null, $path = null, $name = null, $custom_fields = null)
+    public function privateImagesUpdateRequest($id, $tenant_id = null, $owner_id = null, $metadata_is_vector = null, $metadata_width = null, $metadata_height = null, $metadata_format = null, $metadata_dpi_x = null, $metadata_dpi_y = null, $metadata_pages = null, $file = null, $path = null, $name = null, $custom_fields = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -7121,14 +8724,14 @@ class PrivateImagesApi
             }
         }
         // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['userId'] = $user_id;
+                $queryParams['ownerId'] = $owner_id;
             }
         }
 
@@ -7236,6 +8839,23 @@ class PrivateImagesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -7266,40 +8886,40 @@ class PrivateImagesApi
     /**
      * Operation privateImagesUpdateCollection
      *
-     * Updates specified collection
+     * Updates the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\CollectionDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto
      */
-    public function privateImagesUpdateCollection($id, $tenant_id = null, $user_id = null, $update_collection_dto = null)
+    public function privateImagesUpdateCollection($id, $tenant_id = null, $owner_id = null, $update_collection_dto = null)
     {
-        list($response) = $this->privateImagesUpdateCollectionWithHttpInfo($id, $tenant_id, $user_id, $update_collection_dto);
+        list($response) = $this->privateImagesUpdateCollectionWithHttpInfo($id, $tenant_id, $owner_id, $update_collection_dto);
         return $response;
     }
 
     /**
      * Operation privateImagesUpdateCollectionWithHttpInfo
      *
-     * Updates specified collection
+     * Updates the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\CollectionDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateImagesUpdateCollectionWithHttpInfo($id, $tenant_id = null, $user_id = null, $update_collection_dto = null)
+    public function privateImagesUpdateCollectionWithHttpInfo($id, $tenant_id = null, $owner_id = null, $update_collection_dto = null)
     {
-        $request = $this->privateImagesUpdateCollectionRequest($id, $tenant_id, $user_id, $update_collection_dto);
+        $request = $this->privateImagesUpdateCollectionRequest($id, $tenant_id, $owner_id, $update_collection_dto);
 
         try {
             $options = $this->createHttpClientOption();
@@ -7415,19 +9035,19 @@ class PrivateImagesApi
     /**
      * Operation privateImagesUpdateCollectionAsync
      *
-     * Updates specified collection
+     * Updates the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesUpdateCollectionAsync($id, $tenant_id = null, $user_id = null, $update_collection_dto = null)
+    public function privateImagesUpdateCollectionAsync($id, $tenant_id = null, $owner_id = null, $update_collection_dto = null)
     {
-        return $this->privateImagesUpdateCollectionAsyncWithHttpInfo($id, $tenant_id, $user_id, $update_collection_dto)
+        return $this->privateImagesUpdateCollectionAsyncWithHttpInfo($id, $tenant_id, $owner_id, $update_collection_dto)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -7438,20 +9058,20 @@ class PrivateImagesApi
     /**
      * Operation privateImagesUpdateCollectionAsyncWithHttpInfo
      *
-     * Updates specified collection
+     * Updates the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesUpdateCollectionAsyncWithHttpInfo($id, $tenant_id = null, $user_id = null, $update_collection_dto = null)
+    public function privateImagesUpdateCollectionAsyncWithHttpInfo($id, $tenant_id = null, $owner_id = null, $update_collection_dto = null)
     {
         $returnType = '\Aurigma\AssetStorage\Model\CollectionDto';
-        $request = $this->privateImagesUpdateCollectionRequest($id, $tenant_id, $user_id, $update_collection_dto);
+        $request = $this->privateImagesUpdateCollectionRequest($id, $tenant_id, $owner_id, $update_collection_dto);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -7489,15 +9109,15 @@ class PrivateImagesApi
     /**
      * Create request for operation 'privateImagesUpdateCollection'
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateImagesUpdateCollectionRequest($id, $tenant_id = null, $user_id = null, $update_collection_dto = null)
+    public function privateImagesUpdateCollectionRequest($id, $tenant_id = null, $owner_id = null, $update_collection_dto = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -7525,14 +9145,14 @@ class PrivateImagesApi
             }
         }
         // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['userId'] = $user_id;
+                $queryParams['ownerId'] = $owner_id;
             }
         }
 
@@ -7602,6 +9222,23 @@ class PrivateImagesApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -7632,40 +9269,40 @@ class PrivateImagesApi
     /**
      * Operation privateImagesUpdateFolder
      *
-     * Updates specified folder
+     * Updates the specified folder.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Update operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto
      */
-    public function privateImagesUpdateFolder($id, $tenant_id = null, $user_id = null, $update_folder_dto = null)
+    public function privateImagesUpdateFolder($id, $tenant_id = null, $owner_id = null, $update_folder_dto = null)
     {
-        list($response) = $this->privateImagesUpdateFolderWithHttpInfo($id, $tenant_id, $user_id, $update_folder_dto);
+        list($response) = $this->privateImagesUpdateFolderWithHttpInfo($id, $tenant_id, $owner_id, $update_folder_dto);
         return $response;
     }
 
     /**
      * Operation privateImagesUpdateFolderWithHttpInfo
      *
-     * Updates specified folder
+     * Updates the specified folder.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Update operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateImagesUpdateFolderWithHttpInfo($id, $tenant_id = null, $user_id = null, $update_folder_dto = null)
+    public function privateImagesUpdateFolderWithHttpInfo($id, $tenant_id = null, $owner_id = null, $update_folder_dto = null)
     {
-        $request = $this->privateImagesUpdateFolderRequest($id, $tenant_id, $user_id, $update_folder_dto);
+        $request = $this->privateImagesUpdateFolderRequest($id, $tenant_id, $owner_id, $update_folder_dto);
 
         try {
             $options = $this->createHttpClientOption();
@@ -7781,19 +9418,19 @@ class PrivateImagesApi
     /**
      * Operation privateImagesUpdateFolderAsync
      *
-     * Updates specified folder
+     * Updates the specified folder.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Update operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesUpdateFolderAsync($id, $tenant_id = null, $user_id = null, $update_folder_dto = null)
+    public function privateImagesUpdateFolderAsync($id, $tenant_id = null, $owner_id = null, $update_folder_dto = null)
     {
-        return $this->privateImagesUpdateFolderAsyncWithHttpInfo($id, $tenant_id, $user_id, $update_folder_dto)
+        return $this->privateImagesUpdateFolderAsyncWithHttpInfo($id, $tenant_id, $owner_id, $update_folder_dto)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -7804,20 +9441,20 @@ class PrivateImagesApi
     /**
      * Operation privateImagesUpdateFolderAsyncWithHttpInfo
      *
-     * Updates specified folder
+     * Updates the specified folder.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Update operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesUpdateFolderAsyncWithHttpInfo($id, $tenant_id = null, $user_id = null, $update_folder_dto = null)
+    public function privateImagesUpdateFolderAsyncWithHttpInfo($id, $tenant_id = null, $owner_id = null, $update_folder_dto = null)
     {
         $returnType = '\Aurigma\AssetStorage\Model\FolderDto';
-        $request = $this->privateImagesUpdateFolderRequest($id, $tenant_id, $user_id, $update_folder_dto);
+        $request = $this->privateImagesUpdateFolderRequest($id, $tenant_id, $owner_id, $update_folder_dto);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -7855,15 +9492,15 @@ class PrivateImagesApi
     /**
      * Create request for operation 'privateImagesUpdateFolder'
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  string $user_id Private storage owner identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Update operation parameters (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateImagesUpdateFolderRequest($id, $tenant_id = null, $user_id = null, $update_folder_dto = null)
+    public function privateImagesUpdateFolderRequest($id, $tenant_id = null, $owner_id = null, $update_folder_dto = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -7891,14 +9528,14 @@ class PrivateImagesApi
             }
         }
         // query params
-        if ($user_id !== null) {
-            if('form' === 'form' && is_array($user_id)) {
-                foreach($user_id as $key => $value) {
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             }
             else {
-                $queryParams['userId'] = $user_id;
+                $queryParams['ownerId'] = $owner_id;
             }
         }
 
@@ -7967,6 +9604,23 @@ class PrivateImagesApi
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3

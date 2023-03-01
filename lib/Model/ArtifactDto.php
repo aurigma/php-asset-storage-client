@@ -35,7 +35,7 @@ use \Aurigma\AssetStorage\ObjectSerializer;
  * ArtifactDto Class Doc Comment
  *
  * @category Class
- * @description Artifact dto class
+ * @description Artifact dto class.
  * @package  Aurigma\AssetStorage
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -66,10 +66,13 @@ class ArtifactDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'alias' => 'string',
         'type' => '\Aurigma\AssetStorage\Model\ArtifactType',
         'format' => 'string',
+        'anonymous_access' => 'bool',
+        'url' => 'string',
         'tenant_id' => 'int',
         'id' => 'string',
         'owner_id' => 'string',
         'name' => 'string',
+        'custom_fields' => 'array<string,mixed>',
         'last_modified' => '\DateTime'
     ];
 
@@ -87,10 +90,13 @@ class ArtifactDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'alias' => null,
         'type' => null,
         'format' => null,
+        'anonymous_access' => null,
+        'url' => null,
         'tenant_id' => 'int32',
         'id' => null,
         'owner_id' => null,
         'name' => null,
+        'custom_fields' => null,
         'last_modified' => 'date-time'
     ];
 
@@ -127,10 +133,13 @@ class ArtifactDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'alias' => 'alias',
         'type' => 'type',
         'format' => 'format',
+        'anonymous_access' => 'anonymousAccess',
+        'url' => 'url',
         'tenant_id' => 'tenantId',
         'id' => 'id',
         'owner_id' => 'ownerId',
         'name' => 'name',
+        'custom_fields' => 'customFields',
         'last_modified' => 'lastModified'
     ];
 
@@ -146,10 +155,13 @@ class ArtifactDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'alias' => 'setAlias',
         'type' => 'setType',
         'format' => 'setFormat',
+        'anonymous_access' => 'setAnonymousAccess',
+        'url' => 'setUrl',
         'tenant_id' => 'setTenantId',
         'id' => 'setId',
         'owner_id' => 'setOwnerId',
         'name' => 'setName',
+        'custom_fields' => 'setCustomFields',
         'last_modified' => 'setLastModified'
     ];
 
@@ -165,10 +177,13 @@ class ArtifactDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'alias' => 'getAlias',
         'type' => 'getType',
         'format' => 'getFormat',
+        'anonymous_access' => 'getAnonymousAccess',
+        'url' => 'getUrl',
         'tenant_id' => 'getTenantId',
         'id' => 'getId',
         'owner_id' => 'getOwnerId',
         'name' => 'getName',
+        'custom_fields' => 'getCustomFields',
         'last_modified' => 'getLastModified'
     ];
 
@@ -235,10 +250,13 @@ class ArtifactDto implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['alias'] = $data['alias'] ?? null;
         $this->container['type'] = $data['type'] ?? null;
         $this->container['format'] = $data['format'] ?? null;
+        $this->container['anonymous_access'] = $data['anonymous_access'] ?? null;
+        $this->container['url'] = $data['url'] ?? null;
         $this->container['tenant_id'] = $data['tenant_id'] ?? null;
         $this->container['id'] = $data['id'] ?? null;
         $this->container['owner_id'] = $data['owner_id'] ?? null;
         $this->container['name'] = $data['name'] ?? null;
+        $this->container['custom_fields'] = $data['custom_fields'] ?? null;
         $this->container['last_modified'] = $data['last_modified'] ?? null;
     }
 
@@ -279,7 +297,7 @@ class ArtifactDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets size
      *
-     * @param int|null $size Entity file size
+     * @param int|null $size Artifact file size.
      *
      * @return self
      */
@@ -303,7 +321,7 @@ class ArtifactDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets description
      *
-     * @param string|null $description Artifact description
+     * @param string|null $description Artifact description.
      *
      * @return self
      */
@@ -327,7 +345,7 @@ class ArtifactDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets group
      *
-     * @param string|null $group Artifact group
+     * @param string|null $group Artifact group.
      *
      * @return self
      */
@@ -351,7 +369,7 @@ class ArtifactDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets alias
      *
-     * @param string|null $alias Artifact alias (special name within group)
+     * @param string|null $alias Artifact alias (special name within group).
      *
      * @return self
      */
@@ -399,13 +417,61 @@ class ArtifactDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets format
      *
-     * @param string|null $format Artifact file format
+     * @param string|null $format Artifact file format.
      *
      * @return self
      */
     public function setFormat($format)
     {
         $this->container['format'] = $format;
+
+        return $this;
+    }
+
+    /**
+     * Gets anonymous_access
+     *
+     * @return bool|null
+     */
+    public function getAnonymousAccess()
+    {
+        return $this->container['anonymous_access'];
+    }
+
+    /**
+     * Sets anonymous_access
+     *
+     * @param bool|null $anonymous_access Artifact 'anonymous access' tag. It indicates whether artifact can be accessed anonymously.
+     *
+     * @return self
+     */
+    public function setAnonymousAccess($anonymous_access)
+    {
+        $this->container['anonymous_access'] = $anonymous_access;
+
+        return $this;
+    }
+
+    /**
+     * Gets url
+     *
+     * @return string|null
+     */
+    public function getUrl()
+    {
+        return $this->container['url'];
+    }
+
+    /**
+     * Sets url
+     *
+     * @param string|null $url Artifact URL.
+     *
+     * @return self
+     */
+    public function setUrl($url)
+    {
+        $this->container['url'] = $url;
 
         return $this;
     }
@@ -502,6 +568,30 @@ class ArtifactDto implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setName($name)
     {
         $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets custom_fields
+     *
+     * @return array<string,mixed>|null
+     */
+    public function getCustomFields()
+    {
+        return $this->container['custom_fields'];
+    }
+
+    /**
+     * Sets custom_fields
+     *
+     * @param array<string,mixed>|null $custom_fields Entity custom attributes
+     *
+     * @return self
+     */
+    public function setCustomFields($custom_fields)
+    {
+        $this->container['custom_fields'] = $custom_fields;
 
         return $this;
     }

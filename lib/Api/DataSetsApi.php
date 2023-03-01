@@ -117,10 +117,10 @@ class DataSetsApi
     /**
      * Operation dataSetsBatchCopy
      *
-     * Copies selected entities and folders to another folder specified by path
+     * Copies the selected entities and folders to another folder specified by path.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -134,10 +134,10 @@ class DataSetsApi
     /**
      * Operation dataSetsBatchCopyWithHttpInfo
      *
-     * Copies selected entities and folders to another folder specified by path
+     * Copies the selected entities and folders to another folder specified by path.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -203,10 +203,10 @@ class DataSetsApi
     /**
      * Operation dataSetsBatchCopyAsync
      *
-     * Copies selected entities and folders to another folder specified by path
+     * Copies the selected entities and folders to another folder specified by path.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -224,10 +224,10 @@ class DataSetsApi
     /**
      * Operation dataSetsBatchCopyAsyncWithHttpInfo
      *
-     * Copies selected entities and folders to another folder specified by path
+     * Copies the selected entities and folders to another folder specified by path.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -264,7 +264,7 @@ class DataSetsApi
      * Create request for operation 'dataSetsBatchCopy'
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -349,6 +349,23 @@ class DataSetsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -379,10 +396,10 @@ class DataSetsApi
     /**
      * Operation dataSetsBatchDelete
      *
-     * Deletes selected entities and folders
+     * Deletes the selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -396,10 +413,10 @@ class DataSetsApi
     /**
      * Operation dataSetsBatchDeleteWithHttpInfo
      *
-     * Deletes selected entities and folders
+     * Deletes the selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -457,10 +474,10 @@ class DataSetsApi
     /**
      * Operation dataSetsBatchDeleteAsync
      *
-     * Deletes selected entities and folders
+     * Deletes the selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -478,10 +495,10 @@ class DataSetsApi
     /**
      * Operation dataSetsBatchDeleteAsyncWithHttpInfo
      *
-     * Deletes selected entities and folders
+     * Deletes the selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -518,7 +535,7 @@ class DataSetsApi
      * Create request for operation 'dataSetsBatchDelete'
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -603,6 +620,294 @@ class DataSetsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation dataSetsBatchUpdateCustomFields
+     *
+     * Updates the custom fields values for selected entities.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function dataSetsBatchUpdateCustomFields($tenant_id = null, $batch_update_custom_fields_input = null)
+    {
+        $this->dataSetsBatchUpdateCustomFieldsWithHttpInfo($tenant_id, $batch_update_custom_fields_input);
+    }
+
+    /**
+     * Operation dataSetsBatchUpdateCustomFieldsWithHttpInfo
+     *
+     * Updates the custom fields values for selected entities.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function dataSetsBatchUpdateCustomFieldsWithHttpInfo($tenant_id = null, $batch_update_custom_fields_input = null)
+    {
+        $request = $this->dataSetsBatchUpdateCustomFieldsRequest($tenant_id, $batch_update_custom_fields_input);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation dataSetsBatchUpdateCustomFieldsAsync
+     *
+     * Updates the custom fields values for selected entities.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function dataSetsBatchUpdateCustomFieldsAsync($tenant_id = null, $batch_update_custom_fields_input = null)
+    {
+        return $this->dataSetsBatchUpdateCustomFieldsAsyncWithHttpInfo($tenant_id, $batch_update_custom_fields_input)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation dataSetsBatchUpdateCustomFieldsAsyncWithHttpInfo
+     *
+     * Updates the custom fields values for selected entities.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function dataSetsBatchUpdateCustomFieldsAsyncWithHttpInfo($tenant_id = null, $batch_update_custom_fields_input = null)
+    {
+        $returnType = '';
+        $request = $this->dataSetsBatchUpdateCustomFieldsRequest($tenant_id, $batch_update_custom_fields_input);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'dataSetsBatchUpdateCustomFields'
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function dataSetsBatchUpdateCustomFieldsRequest($tenant_id = null, $batch_update_custom_fields_input = null)
+    {
+
+        $resourcePath = '/api/storage/v1/dataSets/batchUpdateCustomFields';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+
+
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($batch_update_custom_fields_input)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($batch_update_custom_fields_input));
+            } else {
+                $httpBody = $batch_update_custom_fields_input;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -633,10 +938,10 @@ class DataSetsApi
     /**
      * Operation dataSetsBatchUpdateParentFolder
      *
-     * Updates parent folder for selected entities and folders
+     * Updates the parent folder for selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -650,10 +955,10 @@ class DataSetsApi
     /**
      * Operation dataSetsBatchUpdateParentFolderWithHttpInfo
      *
-     * Updates parent folder for selected entities and folders
+     * Updates the parent folder for selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -719,10 +1024,10 @@ class DataSetsApi
     /**
      * Operation dataSetsBatchUpdateParentFolderAsync
      *
-     * Updates parent folder for selected entities and folders
+     * Updates the parent folder for selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -740,10 +1045,10 @@ class DataSetsApi
     /**
      * Operation dataSetsBatchUpdateParentFolderAsyncWithHttpInfo
      *
-     * Updates parent folder for selected entities and folders
+     * Updates the parent folder for selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -780,7 +1085,7 @@ class DataSetsApi
      * Create request for operation 'dataSetsBatchUpdateParentFolder'
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -865,6 +1170,23 @@ class DataSetsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -895,12 +1217,12 @@ class DataSetsApi
     /**
      * Operation dataSetsCopy
      *
-     * Copies specified entity
+     * Copies the specified entity.
      *
-     * @param  string $id Source entity identifier (required)
-     * @param  string $path Desired path (optional)
-     * @param  string $name Desired name (optional)
-     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy (optional)
+     * @param  string $id Source entity identifier. (required)
+     * @param  string $path Desired path. (optional)
+     * @param  string $name Desired name. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -916,12 +1238,12 @@ class DataSetsApi
     /**
      * Operation dataSetsCopyWithHttpInfo
      *
-     * Copies specified entity
+     * Copies the specified entity.
      *
-     * @param  string $id Source entity identifier (required)
-     * @param  string $path Desired path (optional)
-     * @param  string $name Desired name (optional)
-     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy (optional)
+     * @param  string $id Source entity identifier. (required)
+     * @param  string $path Desired path. (optional)
+     * @param  string $name Desired name. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -1046,12 +1368,12 @@ class DataSetsApi
     /**
      * Operation dataSetsCopyAsync
      *
-     * Copies specified entity
+     * Copies the specified entity.
      *
-     * @param  string $id Source entity identifier (required)
-     * @param  string $path Desired path (optional)
-     * @param  string $name Desired name (optional)
-     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy (optional)
+     * @param  string $id Source entity identifier. (required)
+     * @param  string $path Desired path. (optional)
+     * @param  string $name Desired name. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -1070,12 +1392,12 @@ class DataSetsApi
     /**
      * Operation dataSetsCopyAsyncWithHttpInfo
      *
-     * Copies specified entity
+     * Copies the specified entity.
      *
-     * @param  string $id Source entity identifier (required)
-     * @param  string $path Desired path (optional)
-     * @param  string $name Desired name (optional)
-     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy (optional)
+     * @param  string $id Source entity identifier. (required)
+     * @param  string $path Desired path. (optional)
+     * @param  string $name Desired name. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -1122,10 +1444,10 @@ class DataSetsApi
     /**
      * Create request for operation 'dataSetsCopy'
      *
-     * @param  string $id Source entity identifier (required)
-     * @param  string $path Desired path (optional)
-     * @param  string $name Desired name (optional)
-     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy (optional)
+     * @param  string $id Source entity identifier. (required)
+     * @param  string $path Desired path. (optional)
+     * @param  string $name Desired name. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -1252,6 +1574,23 @@ class DataSetsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1282,7 +1621,7 @@ class DataSetsApi
     /**
      * Operation dataSetsCreate
      *
-     * Creates new entity
+     * Creates a new entity.
      *
      * @param  string $path Parent folder full path (required)
      * @param  string $name Entity name (required)
@@ -1307,7 +1646,7 @@ class DataSetsApi
     /**
      * Operation dataSetsCreateWithHttpInfo
      *
-     * Creates new entity
+     * Creates a new entity.
      *
      * @param  string $path Parent folder full path (required)
      * @param  string $name Entity name (required)
@@ -1421,7 +1760,7 @@ class DataSetsApi
     /**
      * Operation dataSetsCreateAsync
      *
-     * Creates new entity
+     * Creates a new entity.
      *
      * @param  string $path Parent folder full path (required)
      * @param  string $name Entity name (required)
@@ -1449,7 +1788,7 @@ class DataSetsApi
     /**
      * Operation dataSetsCreateAsyncWithHttpInfo
      *
-     * Creates new entity
+     * Creates a new entity.
      *
      * @param  string $path Parent folder full path (required)
      * @param  string $name Entity name (required)
@@ -1640,6 +1979,23 @@ class DataSetsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1670,10 +2026,10 @@ class DataSetsApi
     /**
      * Operation dataSetsCreateCollection
      *
-     * Creates new collection
+     * Creates a new collection.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1688,10 +2044,10 @@ class DataSetsApi
     /**
      * Operation dataSetsCreateCollectionWithHttpInfo
      *
-     * Creates new collection
+     * Creates a new collection.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1795,10 +2151,10 @@ class DataSetsApi
     /**
      * Operation dataSetsCreateCollectionAsync
      *
-     * Creates new collection
+     * Creates a new collection.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1816,10 +2172,10 @@ class DataSetsApi
     /**
      * Operation dataSetsCreateCollectionAsyncWithHttpInfo
      *
-     * Creates new collection
+     * Creates a new collection.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1866,7 +2222,7 @@ class DataSetsApi
      * Create request for operation 'dataSetsCreateCollection'
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1951,6 +2307,23 @@ class DataSetsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1981,10 +2354,10 @@ class DataSetsApi
     /**
      * Operation dataSetsCreateFolder
      *
-     * Creates new folder
+     * Creates a new folder.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1999,10 +2372,10 @@ class DataSetsApi
     /**
      * Operation dataSetsCreateFolderWithHttpInfo
      *
-     * Creates new folder
+     * Creates a new folder.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -2106,10 +2479,10 @@ class DataSetsApi
     /**
      * Operation dataSetsCreateFolderAsync
      *
-     * Creates new folder
+     * Creates a new folder.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2127,10 +2500,10 @@ class DataSetsApi
     /**
      * Operation dataSetsCreateFolderAsyncWithHttpInfo
      *
-     * Creates new folder
+     * Creates a new folder.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2177,7 +2550,7 @@ class DataSetsApi
      * Create request for operation 'dataSetsCreateFolder'
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -2262,6 +2635,23 @@ class DataSetsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -2292,9 +2682,9 @@ class DataSetsApi
     /**
      * Operation dataSetsDelete
      *
-     * Deletes specified entity
+     * Deletes the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -2310,9 +2700,9 @@ class DataSetsApi
     /**
      * Operation dataSetsDeleteWithHttpInfo
      *
-     * Deletes specified entity
+     * Deletes the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -2417,9 +2807,9 @@ class DataSetsApi
     /**
      * Operation dataSetsDeleteAsync
      *
-     * Deletes specified entity
+     * Deletes the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -2438,9 +2828,9 @@ class DataSetsApi
     /**
      * Operation dataSetsDeleteAsyncWithHttpInfo
      *
-     * Deletes specified entity
+     * Deletes the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -2487,7 +2877,7 @@ class DataSetsApi
     /**
      * Create request for operation 'dataSetsDelete'
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -2581,6 +2971,23 @@ class DataSetsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -2611,9 +3018,9 @@ class DataSetsApi
     /**
      * Operation dataSetsDeleteCollection
      *
-     * Deletes specified collection
+     * Deletes the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -2629,9 +3036,9 @@ class DataSetsApi
     /**
      * Operation dataSetsDeleteCollectionWithHttpInfo
      *
-     * Deletes specified collection
+     * Deletes the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -2736,9 +3143,9 @@ class DataSetsApi
     /**
      * Operation dataSetsDeleteCollectionAsync
      *
-     * Deletes specified collection
+     * Deletes the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -2757,9 +3164,9 @@ class DataSetsApi
     /**
      * Operation dataSetsDeleteCollectionAsyncWithHttpInfo
      *
-     * Deletes specified collection
+     * Deletes the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -2806,7 +3213,7 @@ class DataSetsApi
     /**
      * Create request for operation 'dataSetsDeleteCollection'
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -2900,6 +3307,23 @@ class DataSetsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -2930,9 +3354,9 @@ class DataSetsApi
     /**
      * Operation dataSetsDeleteFolder
      *
-     * Deletes specified folder
+     * Deletes the specified folder.
      *
-     * @param  string $full_path Folder full path (optional)
+     * @param  string $full_path Folder full path. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -2948,9 +3372,9 @@ class DataSetsApi
     /**
      * Operation dataSetsDeleteFolderWithHttpInfo
      *
-     * Deletes specified folder
+     * Deletes the specified folder.
      *
-     * @param  string $full_path Folder full path (optional)
+     * @param  string $full_path Folder full path. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -3055,9 +3479,9 @@ class DataSetsApi
     /**
      * Operation dataSetsDeleteFolderAsync
      *
-     * Deletes specified folder
+     * Deletes the specified folder.
      *
-     * @param  string $full_path Folder full path (optional)
+     * @param  string $full_path Folder full path. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3076,9 +3500,9 @@ class DataSetsApi
     /**
      * Operation dataSetsDeleteFolderAsyncWithHttpInfo
      *
-     * Deletes specified folder
+     * Deletes the specified folder.
      *
-     * @param  string $full_path Folder full path (optional)
+     * @param  string $full_path Folder full path. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3125,7 +3549,7 @@ class DataSetsApi
     /**
      * Create request for operation 'dataSetsDeleteFolder'
      *
-     * @param  string $full_path Folder full path (optional)
+     * @param  string $full_path Folder full path. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3216,6 +3640,23 @@ class DataSetsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -3246,9 +3687,9 @@ class DataSetsApi
     /**
      * Operation dataSetsGet
      *
-     * Gets entity by id
+     * Returns an entity by ID.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -3264,9 +3705,9 @@ class DataSetsApi
     /**
      * Operation dataSetsGetWithHttpInfo
      *
-     * Gets entity by id
+     * Returns an entity by ID.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -3371,9 +3812,9 @@ class DataSetsApi
     /**
      * Operation dataSetsGetAsync
      *
-     * Gets entity by id
+     * Returns an entity by ID.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3392,9 +3833,9 @@ class DataSetsApi
     /**
      * Operation dataSetsGetAsyncWithHttpInfo
      *
-     * Gets entity by id
+     * Returns an entity by ID.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3441,7 +3882,7 @@ class DataSetsApi
     /**
      * Create request for operation 'dataSetsGet'
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3535,6 +3976,23 @@ class DataSetsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -3565,7 +4023,7 @@ class DataSetsApi
     /**
      * Operation dataSetsGetAll
      *
-     * Gets all entities relevant to specified query parameters
+     * Return all entities relevant to specified query parameters.
      *
      * @param  string $data_schema_id Associated data schema identifier filter (optional)
      * @param  string $path Folder path filter parameter (optional)
@@ -3574,7 +4032,7 @@ class DataSetsApi
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
      * @param  string $search Search string for partial match (optional)
-     * @param  string $custom_fields Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; (optional)
+     * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -3590,7 +4048,7 @@ class DataSetsApi
     /**
      * Operation dataSetsGetAllWithHttpInfo
      *
-     * Gets all entities relevant to specified query parameters
+     * Return all entities relevant to specified query parameters.
      *
      * @param  string $data_schema_id Associated data schema identifier filter (optional)
      * @param  string $path Folder path filter parameter (optional)
@@ -3599,7 +4057,7 @@ class DataSetsApi
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
      * @param  string $search Search string for partial match (optional)
-     * @param  string $custom_fields Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; (optional)
+     * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -3684,7 +4142,7 @@ class DataSetsApi
     /**
      * Operation dataSetsGetAllAsync
      *
-     * Gets all entities relevant to specified query parameters
+     * Return all entities relevant to specified query parameters.
      *
      * @param  string $data_schema_id Associated data schema identifier filter (optional)
      * @param  string $path Folder path filter parameter (optional)
@@ -3693,7 +4151,7 @@ class DataSetsApi
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
      * @param  string $search Search string for partial match (optional)
-     * @param  string $custom_fields Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; (optional)
+     * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3712,7 +4170,7 @@ class DataSetsApi
     /**
      * Operation dataSetsGetAllAsyncWithHttpInfo
      *
-     * Gets all entities relevant to specified query parameters
+     * Return all entities relevant to specified query parameters.
      *
      * @param  string $data_schema_id Associated data schema identifier filter (optional)
      * @param  string $path Folder path filter parameter (optional)
@@ -3721,7 +4179,7 @@ class DataSetsApi
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
      * @param  string $search Search string for partial match (optional)
-     * @param  string $custom_fields Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; (optional)
+     * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3775,7 +4233,7 @@ class DataSetsApi
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
      * @param  string $search Search string for partial match (optional)
-     * @param  string $custom_fields Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; (optional)
+     * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3943,6 +4401,23 @@ class DataSetsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -3973,7 +4448,7 @@ class DataSetsApi
     /**
      * Operation dataSetsGetAllCollections
      *
-     * Gets all collections
+     * Returns all collections.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      *
@@ -3990,7 +4465,7 @@ class DataSetsApi
     /**
      * Operation dataSetsGetAllCollectionsWithHttpInfo
      *
-     * Gets all collections
+     * Returns all collections.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      *
@@ -4076,7 +4551,7 @@ class DataSetsApi
     /**
      * Operation dataSetsGetAllCollectionsAsync
      *
-     * Gets all collections
+     * Returns all collections.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      *
@@ -4096,7 +4571,7 @@ class DataSetsApi
     /**
      * Operation dataSetsGetAllCollectionsAsyncWithHttpInfo
      *
-     * Gets all collections
+     * Returns all collections.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      *
@@ -4223,6 +4698,23 @@ class DataSetsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -4253,7 +4745,7 @@ class DataSetsApi
     /**
      * Operation dataSetsGetAllFolders
      *
-     * Gets all folders
+     * Returns all folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      *
@@ -4270,7 +4762,7 @@ class DataSetsApi
     /**
      * Operation dataSetsGetAllFoldersWithHttpInfo
      *
-     * Gets all folders
+     * Returns all folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      *
@@ -4356,7 +4848,7 @@ class DataSetsApi
     /**
      * Operation dataSetsGetAllFoldersAsync
      *
-     * Gets all folders
+     * Returns all folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      *
@@ -4376,7 +4868,7 @@ class DataSetsApi
     /**
      * Operation dataSetsGetAllFoldersAsyncWithHttpInfo
      *
-     * Gets all folders
+     * Returns all folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      *
@@ -4503,6 +4995,23 @@ class DataSetsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -4533,9 +5042,9 @@ class DataSetsApi
     /**
      * Operation dataSetsGetCollection
      *
-     * Gets collection content by collection id
+     * Returns the collection content by collection ID.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -4551,9 +5060,9 @@ class DataSetsApi
     /**
      * Operation dataSetsGetCollectionWithHttpInfo
      *
-     * Gets collection content by collection id
+     * Returns the collection content by collection ID.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -4658,9 +5167,9 @@ class DataSetsApi
     /**
      * Operation dataSetsGetCollectionAsync
      *
-     * Gets collection content by collection id
+     * Returns the collection content by collection ID.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -4679,9 +5188,9 @@ class DataSetsApi
     /**
      * Operation dataSetsGetCollectionAsyncWithHttpInfo
      *
-     * Gets collection content by collection id
+     * Returns the collection content by collection ID.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -4728,7 +5237,7 @@ class DataSetsApi
     /**
      * Create request for operation 'dataSetsGetCollection'
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -4822,6 +5331,23 @@ class DataSetsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -4852,10 +5378,10 @@ class DataSetsApi
     /**
      * Operation dataSetsGetFile
      *
-     * Gets entity file from file storage
+     * Returns an entity file from file storage.
      *
-     * @param  string $id Entity unique identifier (required)
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) (optional)
+     * @param  string $id Entity identifier. (required)
+     * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -4871,10 +5397,10 @@ class DataSetsApi
     /**
      * Operation dataSetsGetFileWithHttpInfo
      *
-     * Gets entity file from file storage
+     * Returns an entity file from file storage.
      *
-     * @param  string $id Entity unique identifier (required)
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) (optional)
+     * @param  string $id Entity identifier. (required)
+     * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -4979,10 +5505,10 @@ class DataSetsApi
     /**
      * Operation dataSetsGetFileAsync
      *
-     * Gets entity file from file storage
+     * Returns an entity file from file storage.
      *
-     * @param  string $id Entity unique identifier (required)
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) (optional)
+     * @param  string $id Entity identifier. (required)
+     * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -5001,10 +5527,10 @@ class DataSetsApi
     /**
      * Operation dataSetsGetFileAsyncWithHttpInfo
      *
-     * Gets entity file from file storage
+     * Returns an entity file from file storage.
      *
-     * @param  string $id Entity unique identifier (required)
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) (optional)
+     * @param  string $id Entity identifier. (required)
+     * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -5051,8 +5577,8 @@ class DataSetsApi
     /**
      * Create request for operation 'dataSetsGetFile'
      *
-     * @param  string $id Entity unique identifier (required)
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) (optional)
+     * @param  string $id Entity identifier. (required)
+     * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -5157,6 +5683,320 @@ class DataSetsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation dataSetsGetFileStorageInfo
+     *
+     * Returns information about the use of file storage.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Aurigma\AssetStorage\Model\FileStorageInfoDto
+     */
+    public function dataSetsGetFileStorageInfo($tenant_id = null)
+    {
+        list($response) = $this->dataSetsGetFileStorageInfoWithHttpInfo($tenant_id);
+        return $response;
+    }
+
+    /**
+     * Operation dataSetsGetFileStorageInfoWithHttpInfo
+     *
+     * Returns information about the use of file storage.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Aurigma\AssetStorage\Model\FileStorageInfoDto, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function dataSetsGetFileStorageInfoWithHttpInfo($tenant_id = null)
+    {
+        $request = $this->dataSetsGetFileStorageInfoRequest($tenant_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Aurigma\AssetStorage\Model\FileStorageInfoDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\FileStorageInfoDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Aurigma\AssetStorage\Model\FileStorageInfoDto';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\FileStorageInfoDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation dataSetsGetFileStorageInfoAsync
+     *
+     * Returns information about the use of file storage.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function dataSetsGetFileStorageInfoAsync($tenant_id = null)
+    {
+        return $this->dataSetsGetFileStorageInfoAsyncWithHttpInfo($tenant_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation dataSetsGetFileStorageInfoAsyncWithHttpInfo
+     *
+     * Returns information about the use of file storage.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function dataSetsGetFileStorageInfoAsyncWithHttpInfo($tenant_id = null)
+    {
+        $returnType = '\Aurigma\AssetStorage\Model\FileStorageInfoDto';
+        $request = $this->dataSetsGetFileStorageInfoRequest($tenant_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'dataSetsGetFileStorageInfo'
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function dataSetsGetFileStorageInfoRequest($tenant_id = null)
+    {
+
+        $resourcePath = '/api/storage/v1/dataSets/file-storage-info';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+
+
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -5187,7 +6027,7 @@ class DataSetsApi
     /**
      * Operation dataSetsGetFolder
      *
-     * Gets folder content by folder path
+     * Returns the folder content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used (optional)
      * @param  int $tenant_id Tenant identifier (optional)
@@ -5205,7 +6045,7 @@ class DataSetsApi
     /**
      * Operation dataSetsGetFolderWithHttpInfo
      *
-     * Gets folder content by folder path
+     * Returns the folder content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used (optional)
      * @param  int $tenant_id Tenant identifier (optional)
@@ -5312,7 +6152,7 @@ class DataSetsApi
     /**
      * Operation dataSetsGetFolderAsync
      *
-     * Gets folder content by folder path
+     * Returns the folder content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used (optional)
      * @param  int $tenant_id Tenant identifier (optional)
@@ -5333,7 +6173,7 @@ class DataSetsApi
     /**
      * Operation dataSetsGetFolderAsyncWithHttpInfo
      *
-     * Gets folder content by folder path
+     * Returns the folder content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used (optional)
      * @param  int $tenant_id Tenant identifier (optional)
@@ -5473,6 +6313,23 @@ class DataSetsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -5503,9 +6360,9 @@ class DataSetsApi
     /**
      * Operation dataSetsGetFolderInfo
      *
-     * Gets folder by id
+     * Returns a folder by ID.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -5521,9 +6378,9 @@ class DataSetsApi
     /**
      * Operation dataSetsGetFolderInfoWithHttpInfo
      *
-     * Gets folder by id
+     * Returns a folder by ID.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -5628,9 +6485,9 @@ class DataSetsApi
     /**
      * Operation dataSetsGetFolderInfoAsync
      *
-     * Gets folder by id
+     * Returns a folder by ID.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -5649,9 +6506,9 @@ class DataSetsApi
     /**
      * Operation dataSetsGetFolderInfoAsyncWithHttpInfo
      *
-     * Gets folder by id
+     * Returns a folder by ID.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -5698,7 +6555,7 @@ class DataSetsApi
     /**
      * Create request for operation 'dataSetsGetFolderInfo'
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -5792,6 +6649,23 @@ class DataSetsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -5822,9 +6696,9 @@ class DataSetsApi
     /**
      * Operation dataSetsUpdate
      *
-     * Updates specified entity
+     * Updates the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $metadata_data_schema_id DataSet data schema id. Empty string for embedded schema (optional)
      * @param  string $metadata_data_schema_name DataSet data schema name (optional)
@@ -5848,9 +6722,9 @@ class DataSetsApi
     /**
      * Operation dataSetsUpdateWithHttpInfo
      *
-     * Updates specified entity
+     * Updates the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $metadata_data_schema_id DataSet data schema id. Empty string for embedded schema (optional)
      * @param  string $metadata_data_schema_name DataSet data schema name (optional)
@@ -5983,9 +6857,9 @@ class DataSetsApi
     /**
      * Operation dataSetsUpdateAsync
      *
-     * Updates specified entity
+     * Updates the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $metadata_data_schema_id DataSet data schema id. Empty string for embedded schema (optional)
      * @param  string $metadata_data_schema_name DataSet data schema name (optional)
@@ -6012,9 +6886,9 @@ class DataSetsApi
     /**
      * Operation dataSetsUpdateAsyncWithHttpInfo
      *
-     * Updates specified entity
+     * Updates the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $metadata_data_schema_id DataSet data schema id. Empty string for embedded schema (optional)
      * @param  string $metadata_data_schema_name DataSet data schema name (optional)
@@ -6069,7 +6943,7 @@ class DataSetsApi
     /**
      * Create request for operation 'dataSetsUpdate'
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $metadata_data_schema_id DataSet data schema id. Empty string for embedded schema (optional)
      * @param  string $metadata_data_schema_name DataSet data schema name (optional)
@@ -6207,6 +7081,23 @@ class DataSetsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -6237,11 +7128,11 @@ class DataSetsApi
     /**
      * Operation dataSetsUpdateCollection
      *
-     * Updates specified collection
+     * Updates the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -6256,11 +7147,11 @@ class DataSetsApi
     /**
      * Operation dataSetsUpdateCollectionWithHttpInfo
      *
-     * Updates specified collection
+     * Updates the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -6384,11 +7275,11 @@ class DataSetsApi
     /**
      * Operation dataSetsUpdateCollectionAsync
      *
-     * Updates specified collection
+     * Updates the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -6406,11 +7297,11 @@ class DataSetsApi
     /**
      * Operation dataSetsUpdateCollectionAsyncWithHttpInfo
      *
-     * Updates specified collection
+     * Updates the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -6456,9 +7347,9 @@ class DataSetsApi
     /**
      * Create request for operation 'dataSetsUpdateCollection'
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -6557,6 +7448,23 @@ class DataSetsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -6587,11 +7495,11 @@ class DataSetsApi
     /**
      * Operation dataSetsUpdateFolder
      *
-     * Updates specified folder
+     * Updates the specified folder.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -6606,11 +7514,11 @@ class DataSetsApi
     /**
      * Operation dataSetsUpdateFolderWithHttpInfo
      *
-     * Updates specified folder
+     * Updates the specified folder.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -6734,11 +7642,11 @@ class DataSetsApi
     /**
      * Operation dataSetsUpdateFolderAsync
      *
-     * Updates specified folder
+     * Updates the specified folder.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -6756,11 +7664,11 @@ class DataSetsApi
     /**
      * Operation dataSetsUpdateFolderAsyncWithHttpInfo
      *
-     * Updates specified folder
+     * Updates the specified folder.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -6806,9 +7714,9 @@ class DataSetsApi
     /**
      * Create request for operation 'dataSetsUpdateFolder'
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -6906,6 +7814,23 @@ class DataSetsApi
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3

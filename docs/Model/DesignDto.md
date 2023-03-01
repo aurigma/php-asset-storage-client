@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **metadata** | [**\Aurigma\AssetStorage\Model\DesignMetadata**](DesignMetadata.md) |  | [optional]
 **has_problems** | **bool** | Design &#39;hasProblems&#39; tag  indicates whether design has any problems preventing normal processing, e.g. missing font etc. | [optional]
-**private** | **bool** | Design &#39;private&#39; tag  indicates whether design is private | [optional]
+**private** | **bool** | Design &#39;private&#39; tag  indicates whether design is private. | [optional]
 **previews** | [**array<string,\Aurigma\AssetStorage\Model\PreviewMetadata>**](PreviewMetadata.md) | Preview dictionary  Key: \&quot;previewMetadata.namespace-previewMetadata.name\&quot;  Value: \&quot;previewMetadata\&quot; | [optional]
 **size** | **int** | Entity file size | [optional]
 **folder_id** | **string** | Parent folder id | [optional]

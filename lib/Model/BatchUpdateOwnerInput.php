@@ -35,7 +35,7 @@ use \Aurigma\AssetStorage\ObjectSerializer;
  * BatchUpdateOwnerInput Class Doc Comment
  *
  * @category Class
- * @description Dto class, containing parameters for batch update owner operation
+ * @description Dto class, containing parameters for batch update owner operation.
  * @package  Aurigma\AssetStorage
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -60,10 +60,10 @@ class BatchUpdateOwnerInput implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
-        'update_all' => 'bool',
         'entity_ids' => 'string[]',
         'folder_ids' => 'string[]',
-        'conflict_strategy' => '\Aurigma\AssetStorage\Model\ConflictResolvingStrategy'
+        'conflict_strategy' => '\Aurigma\AssetStorage\Model\ConflictResolvingStrategy',
+        'update_all' => 'bool'
     ];
 
     /**
@@ -74,10 +74,10 @@ class BatchUpdateOwnerInput implements ModelInterface, ArrayAccess, \JsonSeriali
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'update_all' => null,
         'entity_ids' => null,
         'folder_ids' => null,
-        'conflict_strategy' => null
+        'conflict_strategy' => null,
+        'update_all' => null
     ];
 
     /**
@@ -107,10 +107,10 @@ class BatchUpdateOwnerInput implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $attributeMap = [
-        'update_all' => 'updateAll',
         'entity_ids' => 'entityIds',
         'folder_ids' => 'folderIds',
-        'conflict_strategy' => 'conflictStrategy'
+        'conflict_strategy' => 'conflictStrategy',
+        'update_all' => 'updateAll'
     ];
 
     /**
@@ -119,10 +119,10 @@ class BatchUpdateOwnerInput implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $setters = [
-        'update_all' => 'setUpdateAll',
         'entity_ids' => 'setEntityIds',
         'folder_ids' => 'setFolderIds',
-        'conflict_strategy' => 'setConflictStrategy'
+        'conflict_strategy' => 'setConflictStrategy',
+        'update_all' => 'setUpdateAll'
     ];
 
     /**
@@ -131,10 +131,10 @@ class BatchUpdateOwnerInput implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $getters = [
-        'update_all' => 'getUpdateAll',
         'entity_ids' => 'getEntityIds',
         'folder_ids' => 'getFolderIds',
-        'conflict_strategy' => 'getConflictStrategy'
+        'conflict_strategy' => 'getConflictStrategy',
+        'update_all' => 'getUpdateAll'
     ];
 
     /**
@@ -194,10 +194,10 @@ class BatchUpdateOwnerInput implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(array $data = null)
     {
-        $this->container['update_all'] = $data['update_all'] ?? null;
         $this->container['entity_ids'] = $data['entity_ids'] ?? null;
         $this->container['folder_ids'] = $data['folder_ids'] ?? null;
         $this->container['conflict_strategy'] = $data['conflict_strategy'] ?? null;
+        $this->container['update_all'] = $data['update_all'] ?? null;
     }
 
     /**
@@ -223,30 +223,6 @@ class BatchUpdateOwnerInput implements ModelInterface, ArrayAccess, \JsonSeriali
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets update_all
-     *
-     * @return bool|null
-     */
-    public function getUpdateAll()
-    {
-        return $this->container['update_all'];
-    }
-
-    /**
-     * Sets update_all
-     *
-     * @param bool|null $update_all If set to 'true' all folders and entities, which belong to specified ownerId should be updated with new ownerId
-     *
-     * @return self
-     */
-    public function setUpdateAll($update_all)
-    {
-        $this->container['update_all'] = $update_all;
-
-        return $this;
-    }
 
     /**
      * Gets entity_ids
@@ -285,7 +261,7 @@ class BatchUpdateOwnerInput implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets folder_ids
      *
-     * @param string[]|null $folder_ids List of folders, which are operation subjects
+     * @param string[]|null $folder_ids List of folders, which are operation subjects.
      *
      * @return self
      */
@@ -316,6 +292,30 @@ class BatchUpdateOwnerInput implements ModelInterface, ArrayAccess, \JsonSeriali
     public function setConflictStrategy($conflict_strategy)
     {
         $this->container['conflict_strategy'] = $conflict_strategy;
+
+        return $this;
+    }
+
+    /**
+     * Gets update_all
+     *
+     * @return bool|null
+     */
+    public function getUpdateAll()
+    {
+        return $this->container['update_all'];
+    }
+
+    /**
+     * Sets update_all
+     *
+     * @param bool|null $update_all If set to 'true', all folders and entities, which belong to specified ownerId, should be updated with new ownerId.
+     *
+     * @return self
+     */
+    public function setUpdateAll($update_all)
+    {
+        $this->container['update_all'] = $update_all;
 
         return $this;
     }

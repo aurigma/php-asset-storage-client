@@ -33,7 +33,7 @@ use \Aurigma\AssetStorage\ObjectSerializer;
  * ConflictResolvingStrategy Class Doc Comment
  *
  * @category Class
- * @description Conflict resolving strategy
+ * @description Conflict resolving strategy.
  * @package  Aurigma\AssetStorage
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

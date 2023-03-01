@@ -333,7 +333,7 @@ class DesignDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets private
      *
-     * @param bool|null $private Design 'private' tag  indicates whether design is private
+     * @param bool|null $private Design 'private' tag  indicates whether design is private.
      *
      * @return self
      */

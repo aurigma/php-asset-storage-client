@@ -4,11 +4,11 @@ All URIs are relative to http://localhost.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**tenantsCreate()**](TenantsApi.md#tenantsCreate) | **POST** /api/storage/v1/tenants | Creates new tenant
-[**tenantsDelete()**](TenantsApi.md#tenantsDelete) | **DELETE** /api/storage/v1/tenants/{id} | Deletes specified tenant
-[**tenantsGet()**](TenantsApi.md#tenantsGet) | **GET** /api/storage/v1/tenants/{id} | Gets tenant by id
-[**tenantsGetAll()**](TenantsApi.md#tenantsGetAll) | **GET** /api/storage/v1/tenants | Gets all tenants
-[**tenantsUpdate()**](TenantsApi.md#tenantsUpdate) | **PUT** /api/storage/v1/tenants/{id} | Updates specified tenant
+[**tenantsCreate()**](TenantsApi.md#tenantsCreate) | **POST** /api/storage/v1/tenants | Creates a new tenant.
+[**tenantsDelete()**](TenantsApi.md#tenantsDelete) | **DELETE** /api/storage/v1/tenants/{id} | Deletes the specified tenant.
+[**tenantsGet()**](TenantsApi.md#tenantsGet) | **GET** /api/storage/v1/tenants/{id} | Returns a tenant by ID.
+[**tenantsGetAll()**](TenantsApi.md#tenantsGetAll) | **GET** /api/storage/v1/tenants | Returns all tenants.
+[**tenantsUpdate()**](TenantsApi.md#tenantsUpdate) | **PUT** /api/storage/v1/tenants/{id} | Updates the specified tenant.
 
 
 ## `tenantsCreate()`
@@ -17,7 +17,7 @@ Method | HTTP request | Description
 tenantsCreate($create_tenant_dto): \Aurigma\AssetStorage\Model\TenantDto
 ```
 
-Creates new tenant
+Creates a new tenant.
 
 ### Example
 
@@ -31,7 +31,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -41,7 +52,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\TenantsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$create_tenant_dto = new \Aurigma\AssetStorage\Model\CreateTenantDto(); // \Aurigma\AssetStorage\Model\CreateTenantDto | Create operation parameters
+$create_tenant_dto = new \Aurigma\AssetStorage\Model\CreateTenantDto(); // \Aurigma\AssetStorage\Model\CreateTenantDto | Operation parameters.
 
 try {
     $result = $apiInstance->tenantsCreate($create_tenant_dto);
@@ -55,7 +66,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_tenant_dto** | [**\Aurigma\AssetStorage\Model\CreateTenantDto**](../Model/CreateTenantDto.md)| Create operation parameters | [optional]
+ **create_tenant_dto** | [**\Aurigma\AssetStorage\Model\CreateTenantDto**](../Model/CreateTenantDto.md)| Operation parameters. | [optional]
 
 ### Return type
 
@@ -63,7 +74,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -80,7 +91,7 @@ Name | Type | Description  | Notes
 tenantsDelete($id): \Aurigma\AssetStorage\Model\TenantDto
 ```
 
-Deletes specified tenant
+Deletes the specified tenant.
 
 ### Example
 
@@ -94,7 +105,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -104,7 +126,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\TenantsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 56; // int | Tenant unique identifier
+$id = 56; // int | Tenant identifier.
 
 try {
     $result = $apiInstance->tenantsDelete($id);
@@ -118,7 +140,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Tenant unique identifier |
+ **id** | **int**| Tenant identifier. |
 
 ### Return type
 
@@ -126,7 +148,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -143,7 +165,7 @@ Name | Type | Description  | Notes
 tenantsGet($id): \Aurigma\AssetStorage\Model\TenantDto
 ```
 
-Gets tenant by id
+Returns a tenant by ID.
 
 ### Example
 
@@ -157,7 +179,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -167,7 +200,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\TenantsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 56; // int | Tenant unique identifier
+$id = 56; // int | Tenant identifier.
 
 try {
     $result = $apiInstance->tenantsGet($id);
@@ -181,7 +214,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Tenant unique identifier |
+ **id** | **int**| Tenant identifier. |
 
 ### Return type
 
@@ -189,7 +222,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -206,7 +239,7 @@ Name | Type | Description  | Notes
 tenantsGetAll($skip, $take, $sorting, $search, $custom_fields): \Aurigma\AssetStorage\Model\PagedOfTenantDto
 ```
 
-Gets all tenants
+Returns all tenants.
 
 ### Example
 
@@ -220,7 +253,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -234,7 +278,7 @@ $skip = 56; // int | Defines page start offset from beginning of sorted result l
 $take = 56; // int | Defines page length (how much consequent items of sorted result list should be taken)
 $sorting = 'sorting_example'; // string | Defines sorting order of result list e.g.: \"Title ASC, LastModified DESC\"
 $search = 'search_example'; // string | Search string for partial match
-$custom_fields = 'custom_fields_example'; // string | Custom attributes dictionary filter  <example>{\"public\":\"true\",\"name\":\"my item\"}</example>
+$custom_fields = 'custom_fields_example'; // string | Custom attributes dictionary filter. For example: `{\"public\":\"true\",\"name\":\"my item\"}`
 
 try {
     $result = $apiInstance->tenantsGetAll($skip, $take, $sorting, $search, $custom_fields);
@@ -252,7 +296,7 @@ Name | Type | Description  | Notes
  **take** | **int**| Defines page length (how much consequent items of sorted result list should be taken) | [optional]
  **sorting** | **string**| Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; | [optional]
  **search** | **string**| Search string for partial match | [optional]
- **custom_fields** | **string**| Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; | [optional]
+ **custom_fields** | **string**| Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; | [optional]
 
 ### Return type
 
@@ -260,7 +304,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -277,7 +321,7 @@ Name | Type | Description  | Notes
 tenantsUpdate($id, $update_tenant_dto): \Aurigma\AssetStorage\Model\TenantDto
 ```
 
-Updates specified tenant
+Updates the specified tenant.
 
 ### Example
 
@@ -291,7 +335,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -301,8 +356,8 @@ $apiInstance = new Aurigma\AssetStorage\Api\TenantsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 56; // int | Tenant unique identifier
-$update_tenant_dto = new \Aurigma\AssetStorage\Model\UpdateTenantDto(); // \Aurigma\AssetStorage\Model\UpdateTenantDto | Update operation parameters
+$id = 56; // int | Tenant identifier.
+$update_tenant_dto = new \Aurigma\AssetStorage\Model\UpdateTenantDto(); // \Aurigma\AssetStorage\Model\UpdateTenantDto | Operation parameters
 
 try {
     $result = $apiInstance->tenantsUpdate($id, $update_tenant_dto);
@@ -316,8 +371,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Tenant unique identifier |
- **update_tenant_dto** | [**\Aurigma\AssetStorage\Model\UpdateTenantDto**](../Model/UpdateTenantDto.md)| Update operation parameters | [optional]
+ **id** | **int**| Tenant identifier. |
+ **update_tenant_dto** | [**\Aurigma\AssetStorage\Model\UpdateTenantDto**](../Model/UpdateTenantDto.md)| Operation parameters | [optional]
 
 ### Return type
 
@@ -325,7 +380,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 

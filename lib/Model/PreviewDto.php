@@ -35,7 +35,7 @@ use \Aurigma\AssetStorage\ObjectSerializer;
  * PreviewDto Class Doc Comment
  *
  * @category Class
- * @description Preview dto class
+ * @description Preview dto class.
  * @package  Aurigma\AssetStorage
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -60,13 +60,14 @@ class PreviewDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'size' => 'int',
         'namespace' => 'string',
         'source_id' => 'string',
         'width' => 'int',
         'height' => 'int',
         'format' => 'string',
         'mime_type' => 'string',
-        'size' => 'int',
+        'url' => 'string',
         'tenant_id' => 'int',
         'id' => 'string',
         'name' => 'string',
@@ -81,13 +82,14 @@ class PreviewDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'size' => 'int64',
         'namespace' => null,
         'source_id' => null,
         'width' => 'int32',
         'height' => 'int32',
         'format' => null,
         'mime_type' => null,
-        'size' => 'int64',
+        'url' => null,
         'tenant_id' => 'int32',
         'id' => null,
         'name' => null,
@@ -121,13 +123,14 @@ class PreviewDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'size' => 'size',
         'namespace' => 'namespace',
         'source_id' => 'sourceId',
         'width' => 'width',
         'height' => 'height',
         'format' => 'format',
         'mime_type' => 'mimeType',
-        'size' => 'size',
+        'url' => 'url',
         'tenant_id' => 'tenantId',
         'id' => 'id',
         'name' => 'name',
@@ -140,13 +143,14 @@ class PreviewDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'size' => 'setSize',
         'namespace' => 'setNamespace',
         'source_id' => 'setSourceId',
         'width' => 'setWidth',
         'height' => 'setHeight',
         'format' => 'setFormat',
         'mime_type' => 'setMimeType',
-        'size' => 'setSize',
+        'url' => 'setUrl',
         'tenant_id' => 'setTenantId',
         'id' => 'setId',
         'name' => 'setName',
@@ -159,13 +163,14 @@ class PreviewDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'size' => 'getSize',
         'namespace' => 'getNamespace',
         'source_id' => 'getSourceId',
         'width' => 'getWidth',
         'height' => 'getHeight',
         'format' => 'getFormat',
         'mime_type' => 'getMimeType',
-        'size' => 'getSize',
+        'url' => 'getUrl',
         'tenant_id' => 'getTenantId',
         'id' => 'getId',
         'name' => 'getName',
@@ -229,13 +234,14 @@ class PreviewDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->container['size'] = $data['size'] ?? null;
         $this->container['namespace'] = $data['namespace'] ?? null;
         $this->container['source_id'] = $data['source_id'] ?? null;
         $this->container['width'] = $data['width'] ?? null;
         $this->container['height'] = $data['height'] ?? null;
         $this->container['format'] = $data['format'] ?? null;
         $this->container['mime_type'] = $data['mime_type'] ?? null;
-        $this->container['size'] = $data['size'] ?? null;
+        $this->container['url'] = $data['url'] ?? null;
         $this->container['tenant_id'] = $data['tenant_id'] ?? null;
         $this->container['id'] = $data['id'] ?? null;
         $this->container['name'] = $data['name'] ?? null;
@@ -267,6 +273,30 @@ class PreviewDto implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
+     * Gets size
+     *
+     * @return int|null
+     */
+    public function getSize()
+    {
+        return $this->container['size'];
+    }
+
+    /**
+     * Sets size
+     *
+     * @param int|null $size Preview image file size.
+     *
+     * @return self
+     */
+    public function setSize($size)
+    {
+        $this->container['size'] = $size;
+
+        return $this;
+    }
+
+    /**
      * Gets namespace
      *
      * @return string|null
@@ -279,7 +309,7 @@ class PreviewDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets namespace
      *
-     * @param string|null $namespace Preview entity namespace
+     * @param string|null $namespace Preview image namespace.
      *
      * @return self
      */
@@ -303,7 +333,7 @@ class PreviewDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets source_id
      *
-     * @param string|null $source_id Preview source entity identifier
+     * @param string|null $source_id Preview source entity identifier.
      *
      * @return self
      */
@@ -327,7 +357,7 @@ class PreviewDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets width
      *
-     * @param int|null $width Preview image width
+     * @param int|null $width Preview image width.
      *
      * @return self
      */
@@ -351,7 +381,7 @@ class PreviewDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets height
      *
-     * @param int|null $height Preview image height
+     * @param int|null $height Preview image height.
      *
      * @return self
      */
@@ -375,7 +405,7 @@ class PreviewDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets format
      *
-     * @param string|null $format Preview image format, e.g. Jpeg, Png, Bmp...
+     * @param string|null $format Preview image file format, e.g. Jpeg, Png, Bmp...
      *
      * @return self
      */
@@ -399,7 +429,7 @@ class PreviewDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets mime_type
      *
-     * @param string|null $mime_type Preview image file associated media format type
+     * @param string|null $mime_type Preview image media format type.
      *
      * @return self
      */
@@ -411,25 +441,25 @@ class PreviewDto implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets size
+     * Gets url
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getSize()
+    public function getUrl()
     {
-        return $this->container['size'];
+        return $this->container['url'];
     }
 
     /**
-     * Sets size
+     * Sets url
      *
-     * @param int|null $size Preview image file size
+     * @param string|null $url Preview URL.
      *
      * @return self
      */
-    public function setSize($size)
+    public function setUrl($url)
     {
-        $this->container['size'] = $size;
+        $this->container['url'] = $url;
 
         return $this;
     }

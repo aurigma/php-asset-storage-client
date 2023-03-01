@@ -4,28 +4,30 @@ All URIs are relative to http://localhost.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**designsAddPreview()**](DesignsApi.md#designsAddPreview) | **PUT** /api/storage/v1/designs/{id}/preview | Creates preview entity for specified source entity
-[**designsBatchCopy()**](DesignsApi.md#designsBatchCopy) | **POST** /api/storage/v1/designs/batchCopy | Copies selected entities and folders to another folder specified by path
-[**designsBatchDelete()**](DesignsApi.md#designsBatchDelete) | **POST** /api/storage/v1/designs/batchDelete | Deletes selected entities and folders
-[**designsBatchUpdateParentFolder()**](DesignsApi.md#designsBatchUpdateParentFolder) | **POST** /api/storage/v1/designs/batchUpdateParentFolder | Updates parent folder for selected entities and folders
-[**designsCopy()**](DesignsApi.md#designsCopy) | **POST** /api/storage/v1/designs/{id} | Copies specified entity
-[**designsCreate()**](DesignsApi.md#designsCreate) | **POST** /api/storage/v1/designs | Creates new entity
-[**designsCreateCollection()**](DesignsApi.md#designsCreateCollection) | **POST** /api/storage/v1/designs/collections | Creates new collection
-[**designsCreateFolder()**](DesignsApi.md#designsCreateFolder) | **POST** /api/storage/v1/designs/folders | Creates new folder
-[**designsDelete()**](DesignsApi.md#designsDelete) | **DELETE** /api/storage/v1/designs/{id} | Deletes specified entity
-[**designsDeleteCollection()**](DesignsApi.md#designsDeleteCollection) | **DELETE** /api/storage/v1/designs/collections/{id} | Deletes specified collection
-[**designsDeleteFolder()**](DesignsApi.md#designsDeleteFolder) | **DELETE** /api/storage/v1/designs/folders | Deletes specified folder
-[**designsGet()**](DesignsApi.md#designsGet) | **GET** /api/storage/v1/designs/{id} | Gets entity by id
-[**designsGetAll()**](DesignsApi.md#designsGetAll) | **GET** /api/storage/v1/designs | Gets all entities relevant to specified query parameters
-[**designsGetAllCollections()**](DesignsApi.md#designsGetAllCollections) | **GET** /api/storage/v1/designs/collections | Gets all collections
-[**designsGetAllFolders()**](DesignsApi.md#designsGetAllFolders) | **GET** /api/storage/v1/designs/folders/all | Gets all folders
-[**designsGetCollection()**](DesignsApi.md#designsGetCollection) | **GET** /api/storage/v1/designs/collections/{id} | Gets collection content by collection id
-[**designsGetFile()**](DesignsApi.md#designsGetFile) | **GET** /api/storage/v1/designs/{id}/file | Gets entity file from file storage
-[**designsGetFolder()**](DesignsApi.md#designsGetFolder) | **GET** /api/storage/v1/designs/folders | Gets folder content by folder path
-[**designsGetFolderInfo()**](DesignsApi.md#designsGetFolderInfo) | **GET** /api/storage/v1/designs/folders/{id} | Gets folder by id
-[**designsUpdate()**](DesignsApi.md#designsUpdate) | **PUT** /api/storage/v1/designs/{id} | Updates specified entity
-[**designsUpdateCollection()**](DesignsApi.md#designsUpdateCollection) | **PUT** /api/storage/v1/designs/collections/{id} | Updates specified collection
-[**designsUpdateFolder()**](DesignsApi.md#designsUpdateFolder) | **PUT** /api/storage/v1/designs/folders/{id} | Updates specified folder
+[**designsAddPreview()**](DesignsApi.md#designsAddPreview) | **PUT** /api/storage/v1/designs/{id}/preview | Creates a preview entity for specified source entity.
+[**designsBatchCopy()**](DesignsApi.md#designsBatchCopy) | **POST** /api/storage/v1/designs/batchCopy | Copies the selected entities and folders to another folder specified by path.
+[**designsBatchDelete()**](DesignsApi.md#designsBatchDelete) | **POST** /api/storage/v1/designs/batchDelete | Deletes the selected entities and folders.
+[**designsBatchUpdateCustomFields()**](DesignsApi.md#designsBatchUpdateCustomFields) | **POST** /api/storage/v1/designs/batchUpdateCustomFields | Updates the custom fields values for selected entities.
+[**designsBatchUpdateParentFolder()**](DesignsApi.md#designsBatchUpdateParentFolder) | **POST** /api/storage/v1/designs/batchUpdateParentFolder | Updates the parent folder for selected entities and folders.
+[**designsCopy()**](DesignsApi.md#designsCopy) | **POST** /api/storage/v1/designs/{id} | Copies the specified entity.
+[**designsCreate()**](DesignsApi.md#designsCreate) | **POST** /api/storage/v1/designs | Creates a new entity.
+[**designsCreateCollection()**](DesignsApi.md#designsCreateCollection) | **POST** /api/storage/v1/designs/collections | Creates a new collection.
+[**designsCreateFolder()**](DesignsApi.md#designsCreateFolder) | **POST** /api/storage/v1/designs/folders | Creates a new folder.
+[**designsDelete()**](DesignsApi.md#designsDelete) | **DELETE** /api/storage/v1/designs/{id} | Deletes the specified entity.
+[**designsDeleteCollection()**](DesignsApi.md#designsDeleteCollection) | **DELETE** /api/storage/v1/designs/collections/{id} | Deletes the specified collection.
+[**designsDeleteFolder()**](DesignsApi.md#designsDeleteFolder) | **DELETE** /api/storage/v1/designs/folders | Deletes the specified folder.
+[**designsGet()**](DesignsApi.md#designsGet) | **GET** /api/storage/v1/designs/{id} | Returns an entity by ID.
+[**designsGetAll()**](DesignsApi.md#designsGetAll) | **GET** /api/storage/v1/designs | Return all entities relevant to specified query parameters.
+[**designsGetAllCollections()**](DesignsApi.md#designsGetAllCollections) | **GET** /api/storage/v1/designs/collections | Returns all collections.
+[**designsGetAllFolders()**](DesignsApi.md#designsGetAllFolders) | **GET** /api/storage/v1/designs/folders/all | Returns all folders.
+[**designsGetCollection()**](DesignsApi.md#designsGetCollection) | **GET** /api/storage/v1/designs/collections/{id} | Returns the collection content by collection ID.
+[**designsGetFile()**](DesignsApi.md#designsGetFile) | **GET** /api/storage/v1/designs/{id}/file | Returns an entity file from file storage.
+[**designsGetFileStorageInfo()**](DesignsApi.md#designsGetFileStorageInfo) | **GET** /api/storage/v1/designs/file-storage-info | Returns information about the use of file storage.
+[**designsGetFolder()**](DesignsApi.md#designsGetFolder) | **GET** /api/storage/v1/designs/folders | Returns the folder content by folder path.
+[**designsGetFolderInfo()**](DesignsApi.md#designsGetFolderInfo) | **GET** /api/storage/v1/designs/folders/{id} | Returns a folder by ID.
+[**designsUpdate()**](DesignsApi.md#designsUpdate) | **PUT** /api/storage/v1/designs/{id} | Updates the specified entity.
+[**designsUpdateCollection()**](DesignsApi.md#designsUpdateCollection) | **PUT** /api/storage/v1/designs/collections/{id} | Updates the specified collection.
+[**designsUpdateFolder()**](DesignsApi.md#designsUpdateFolder) | **PUT** /api/storage/v1/designs/folders/{id} | Updates the specified folder.
 
 
 ## `designsAddPreview()`
@@ -34,9 +36,9 @@ Method | HTTP request | Description
 designsAddPreview($id, $name, $namespace, $width, $height, $tenant_id, $format, $file): \Aurigma\AssetStorage\Model\DesignDto
 ```
 
-Creates preview entity for specified source entity
+Creates a preview entity for specified source entity.
 
-If preview entity with specified namespace and name already exists it will be overwritten
+If a preview entity with specified namespace and name already exists it will be overwritten.
 
 ### Example
 
@@ -50,7 +52,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -60,7 +73,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\DesignsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 'id_example'; // string | Source entity unique identifier
+$id = 'id_example'; // string | Source entity identifier.
 $name = 'name_example'; // string | Preview name
 $namespace = 'namespace_example'; // string | Preview namespace
 $width = 56; // int | Preview image width
@@ -81,7 +94,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string**| Source entity unique identifier |
+ **id** | **string**| Source entity identifier. |
  **name** | **string**| Preview name |
  **namespace** | **string**| Preview namespace |
  **width** | **int**| Preview image width |
@@ -96,7 +109,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -113,7 +126,7 @@ Name | Type | Description  | Notes
 designsBatchCopy($tenant_id, $batch_copy_input)
 ```
 
-Copies selected entities and folders to another folder specified by path
+Copies the selected entities and folders to another folder specified by path.
 
 ### Example
 
@@ -127,7 +140,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -138,7 +162,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\DesignsApi(
     $config
 );
 $tenant_id = 56; // int | Tenant identifier
-$batch_copy_input = new \Aurigma\AssetStorage\Model\BatchCopyInput(); // \Aurigma\AssetStorage\Model\BatchCopyInput | Operation parameters
+$batch_copy_input = new \Aurigma\AssetStorage\Model\BatchCopyInput(); // \Aurigma\AssetStorage\Model\BatchCopyInput | Operation parameters.
 
 try {
     $apiInstance->designsBatchCopy($tenant_id, $batch_copy_input);
@@ -152,7 +176,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tenant_id** | **int**| Tenant identifier | [optional]
- **batch_copy_input** | [**\Aurigma\AssetStorage\Model\BatchCopyInput**](../Model/BatchCopyInput.md)| Operation parameters | [optional]
+ **batch_copy_input** | [**\Aurigma\AssetStorage\Model\BatchCopyInput**](../Model/BatchCopyInput.md)| Operation parameters. | [optional]
 
 ### Return type
 
@@ -160,7 +184,7 @@ void (empty response body)
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -177,7 +201,7 @@ void (empty response body)
 designsBatchDelete($tenant_id, $batch_delete_input)
 ```
 
-Deletes selected entities and folders
+Deletes the selected entities and folders.
 
 ### Example
 
@@ -191,7 +215,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -202,7 +237,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\DesignsApi(
     $config
 );
 $tenant_id = 56; // int | Tenant identifier
-$batch_delete_input = new \Aurigma\AssetStorage\Model\BatchDeleteInput(); // \Aurigma\AssetStorage\Model\BatchDeleteInput | Operation parameters
+$batch_delete_input = new \Aurigma\AssetStorage\Model\BatchDeleteInput(); // \Aurigma\AssetStorage\Model\BatchDeleteInput | Operation parameters.
 
 try {
     $apiInstance->designsBatchDelete($tenant_id, $batch_delete_input);
@@ -216,7 +251,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tenant_id** | **int**| Tenant identifier | [optional]
- **batch_delete_input** | [**\Aurigma\AssetStorage\Model\BatchDeleteInput**](../Model/BatchDeleteInput.md)| Operation parameters | [optional]
+ **batch_delete_input** | [**\Aurigma\AssetStorage\Model\BatchDeleteInput**](../Model/BatchDeleteInput.md)| Operation parameters. | [optional]
 
 ### Return type
 
@@ -224,7 +259,82 @@ void (empty response body)
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `designsBatchUpdateCustomFields()`
+
+```php
+designsBatchUpdateCustomFields($tenant_id, $batch_update_custom_fields_input)
+```
+
+Updates the custom fields values for selected entities.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Aurigma\AssetStorage\Api\DesignsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$tenant_id = 56; // int | Tenant identifier
+$batch_update_custom_fields_input = new \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput(); // \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput | Operation parameters.
+
+try {
+    $apiInstance->designsBatchUpdateCustomFields($tenant_id, $batch_update_custom_fields_input);
+} catch (Exception $e) {
+    echo 'Exception when calling DesignsApi->designsBatchUpdateCustomFields: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tenant_id** | **int**| Tenant identifier | [optional]
+ **batch_update_custom_fields_input** | [**\Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput**](../Model/BatchUpdateCustomFieldsInput.md)| Operation parameters. | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -241,7 +351,7 @@ void (empty response body)
 designsBatchUpdateParentFolder($tenant_id, $batch_update_parent_folder_input)
 ```
 
-Updates parent folder for selected entities and folders
+Updates the parent folder for selected entities and folders.
 
 ### Example
 
@@ -255,7 +365,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -266,7 +387,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\DesignsApi(
     $config
 );
 $tenant_id = 56; // int | Tenant identifier
-$batch_update_parent_folder_input = new \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput(); // \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput | Operation parameters
+$batch_update_parent_folder_input = new \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput(); // \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput | Operation parameters.
 
 try {
     $apiInstance->designsBatchUpdateParentFolder($tenant_id, $batch_update_parent_folder_input);
@@ -280,7 +401,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tenant_id** | **int**| Tenant identifier | [optional]
- **batch_update_parent_folder_input** | [**\Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput**](../Model/BatchUpdateParentFolderInput.md)| Operation parameters | [optional]
+ **batch_update_parent_folder_input** | [**\Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput**](../Model/BatchUpdateParentFolderInput.md)| Operation parameters. | [optional]
 
 ### Return type
 
@@ -288,7 +409,7 @@ void (empty response body)
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -305,7 +426,7 @@ void (empty response body)
 designsCopy($id, $path, $name, $strategy, $tenant_id): \Aurigma\AssetStorage\Model\DesignDto
 ```
 
-Copies specified entity
+Copies the specified entity.
 
 ### Example
 
@@ -319,7 +440,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -329,10 +461,10 @@ $apiInstance = new Aurigma\AssetStorage\Api\DesignsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 'id_example'; // string | Source entity identifier
-$path = 'path_example'; // string | Desired path
-$name = 'name_example'; // string | Desired name
-$strategy = new \Aurigma\AssetStorage\Model\\Aurigma\AssetStorage\Model\ConflictResolvingStrategy(); // \Aurigma\AssetStorage\Model\ConflictResolvingStrategy | Conflict resolving strategy
+$id = 'id_example'; // string | Source entity identifier.
+$path = 'path_example'; // string | Desired path.
+$name = 'name_example'; // string | Desired name.
+$strategy = new \Aurigma\AssetStorage\Model\\Aurigma\AssetStorage\Model\ConflictResolvingStrategy(); // \Aurigma\AssetStorage\Model\ConflictResolvingStrategy | Conflict resolving strategy.
 $tenant_id = 56; // int | Tenant identifier
 
 try {
@@ -347,10 +479,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string**| Source entity identifier |
- **path** | **string**| Desired path | [optional]
- **name** | **string**| Desired name | [optional]
- **strategy** | [**\Aurigma\AssetStorage\Model\ConflictResolvingStrategy**](../Model/.md)| Conflict resolving strategy | [optional]
+ **id** | **string**| Source entity identifier. |
+ **path** | **string**| Desired path. | [optional]
+ **name** | **string**| Desired name. | [optional]
+ **strategy** | [**\Aurigma\AssetStorage\Model\ConflictResolvingStrategy**](../Model/.md)| Conflict resolving strategy. | [optional]
  **tenant_id** | **int**| Tenant identifier | [optional]
 
 ### Return type
@@ -359,7 +491,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -373,10 +505,10 @@ Name | Type | Description  | Notes
 ## `designsCreate()`
 
 ```php
-designsCreate($path, $name, $tenant_id, $id, $metadata_fonts, $metadata_surfaces, $metadata_has_data_schema, $metadata_data_schema_id, $metadata_data_schema_name, $has_problems, $file, $custom_fields): \Aurigma\AssetStorage\Model\DesignDto
+designsCreate($path, $name, $tenant_id, $id, $metadata_fonts, $metadata_surfaces, $metadata_print_areas, $metadata_has_data_schema, $metadata_data_schema_id, $metadata_data_schema_name, $has_problems, $file, $custom_fields): \Aurigma\AssetStorage\Model\DesignDto
 ```
 
-Creates new entity
+Creates a new entity.
 
 ### Example
 
@@ -390,7 +522,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -404,17 +547,18 @@ $path = 'path_example'; // string | Parent folder full path
 $name = 'name_example'; // string | Entity name
 $tenant_id = 56; // int | Tenant identifier
 $id = 'id_example'; // string | Desired unique design identifier for new design
-$metadata_fonts = new \Aurigma\AssetStorage\Model\DesignFontMetadata(); // \Aurigma\AssetStorage\Model\DesignFontMetadata[] | Design font metadata list
-$metadata_surfaces = new \Aurigma\AssetStorage\Model\DesignSurfaceMetadata(); // \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[] | Design surface metadata list
-$metadata_has_data_schema = True; // bool | Indicates whether design has data schema
-$metadata_data_schema_id = 'metadata_data_schema_id_example'; // string | Design data schema id. Empty string for embedded schema
-$metadata_data_schema_name = 'metadata_data_schema_name_example'; // string | Design data schema name
+$metadata_fonts = new \Aurigma\AssetStorage\Model\DesignFontMetadata(); // \Aurigma\AssetStorage\Model\DesignFontMetadata[] | Design font metadata list.
+$metadata_surfaces = new \Aurigma\AssetStorage\Model\DesignSurfaceMetadata(); // \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[] | Design surface metadata list.
+$metadata_print_areas = new \Aurigma\AssetStorage\Model\DesignPrintAreaMetadata(); // \Aurigma\AssetStorage\Model\DesignPrintAreaMetadata[] | Design print area metadata list.
+$metadata_has_data_schema = True; // bool | Indicates whether design has data schema.
+$metadata_data_schema_id = 'metadata_data_schema_id_example'; // string | Design data schema identifier. Empty string for embedded schema.
+$metadata_data_schema_name = 'metadata_data_schema_name_example'; // string | Design data schema name.
 $has_problems = True; // bool | Indicates whether design has any problems preventing normal processing, e.g. missing font etc.
 $file = "/path/to/file.txt"; // \SplFileObject | Entity file content
 $custom_fields = NULL; // mixed
 
 try {
-    $result = $apiInstance->designsCreate($path, $name, $tenant_id, $id, $metadata_fonts, $metadata_surfaces, $metadata_has_data_schema, $metadata_data_schema_id, $metadata_data_schema_name, $has_problems, $file, $custom_fields);
+    $result = $apiInstance->designsCreate($path, $name, $tenant_id, $id, $metadata_fonts, $metadata_surfaces, $metadata_print_areas, $metadata_has_data_schema, $metadata_data_schema_id, $metadata_data_schema_name, $has_problems, $file, $custom_fields);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DesignsApi->designsCreate: ', $e->getMessage(), PHP_EOL;
@@ -429,11 +573,12 @@ Name | Type | Description  | Notes
  **name** | **string**| Entity name |
  **tenant_id** | **int**| Tenant identifier | [optional]
  **id** | **string**| Desired unique design identifier for new design | [optional]
- **metadata_fonts** | [**\Aurigma\AssetStorage\Model\DesignFontMetadata[]**](../Model/\Aurigma\AssetStorage\Model\DesignFontMetadata.md)| Design font metadata list | [optional]
- **metadata_surfaces** | [**\Aurigma\AssetStorage\Model\DesignSurfaceMetadata[]**](../Model/\Aurigma\AssetStorage\Model\DesignSurfaceMetadata.md)| Design surface metadata list | [optional]
- **metadata_has_data_schema** | **bool**| Indicates whether design has data schema | [optional]
- **metadata_data_schema_id** | **string**| Design data schema id. Empty string for embedded schema | [optional]
- **metadata_data_schema_name** | **string**| Design data schema name | [optional]
+ **metadata_fonts** | [**\Aurigma\AssetStorage\Model\DesignFontMetadata[]**](../Model/\Aurigma\AssetStorage\Model\DesignFontMetadata.md)| Design font metadata list. | [optional]
+ **metadata_surfaces** | [**\Aurigma\AssetStorage\Model\DesignSurfaceMetadata[]**](../Model/\Aurigma\AssetStorage\Model\DesignSurfaceMetadata.md)| Design surface metadata list. | [optional]
+ **metadata_print_areas** | [**\Aurigma\AssetStorage\Model\DesignPrintAreaMetadata[]**](../Model/\Aurigma\AssetStorage\Model\DesignPrintAreaMetadata.md)| Design print area metadata list. | [optional]
+ **metadata_has_data_schema** | **bool**| Indicates whether design has data schema. | [optional]
+ **metadata_data_schema_id** | **string**| Design data schema identifier. Empty string for embedded schema. | [optional]
+ **metadata_data_schema_name** | **string**| Design data schema name. | [optional]
  **has_problems** | **bool**| Indicates whether design has any problems preventing normal processing, e.g. missing font etc. | [optional]
  **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| Entity file content | [optional]
  **custom_fields** | [**mixed**](../Model/mixed.md)|  | [optional]
@@ -444,7 +589,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -461,7 +606,7 @@ Name | Type | Description  | Notes
 designsCreateCollection($tenant_id, $create_collection_dto): \Aurigma\AssetStorage\Model\CollectionDto
 ```
 
-Creates new collection
+Creates a new collection.
 
 ### Example
 
@@ -475,7 +620,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -486,7 +642,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\DesignsApi(
     $config
 );
 $tenant_id = 56; // int | Tenant identifier
-$create_collection_dto = new \Aurigma\AssetStorage\Model\CreateCollectionDto(); // \Aurigma\AssetStorage\Model\CreateCollectionDto | Create operation parameters
+$create_collection_dto = new \Aurigma\AssetStorage\Model\CreateCollectionDto(); // \Aurigma\AssetStorage\Model\CreateCollectionDto | Operation parameters.
 
 try {
     $result = $apiInstance->designsCreateCollection($tenant_id, $create_collection_dto);
@@ -501,7 +657,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tenant_id** | **int**| Tenant identifier | [optional]
- **create_collection_dto** | [**\Aurigma\AssetStorage\Model\CreateCollectionDto**](../Model/CreateCollectionDto.md)| Create operation parameters | [optional]
+ **create_collection_dto** | [**\Aurigma\AssetStorage\Model\CreateCollectionDto**](../Model/CreateCollectionDto.md)| Operation parameters. | [optional]
 
 ### Return type
 
@@ -509,7 +665,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -526,7 +682,7 @@ Name | Type | Description  | Notes
 designsCreateFolder($tenant_id, $create_folder_dto): \Aurigma\AssetStorage\Model\FolderDto
 ```
 
-Creates new folder
+Creates a new folder.
 
 ### Example
 
@@ -540,7 +696,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -551,7 +718,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\DesignsApi(
     $config
 );
 $tenant_id = 56; // int | Tenant identifier
-$create_folder_dto = new \Aurigma\AssetStorage\Model\CreateFolderDto(); // \Aurigma\AssetStorage\Model\CreateFolderDto | Create operation parameters
+$create_folder_dto = new \Aurigma\AssetStorage\Model\CreateFolderDto(); // \Aurigma\AssetStorage\Model\CreateFolderDto | Create operation parameters.
 
 try {
     $result = $apiInstance->designsCreateFolder($tenant_id, $create_folder_dto);
@@ -566,7 +733,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tenant_id** | **int**| Tenant identifier | [optional]
- **create_folder_dto** | [**\Aurigma\AssetStorage\Model\CreateFolderDto**](../Model/CreateFolderDto.md)| Create operation parameters | [optional]
+ **create_folder_dto** | [**\Aurigma\AssetStorage\Model\CreateFolderDto**](../Model/CreateFolderDto.md)| Create operation parameters. | [optional]
 
 ### Return type
 
@@ -574,7 +741,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -591,7 +758,7 @@ Name | Type | Description  | Notes
 designsDelete($id, $tenant_id): \Aurigma\AssetStorage\Model\DesignDto
 ```
 
-Deletes specified entity
+Deletes the specified entity.
 
 ### Example
 
@@ -605,7 +772,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -615,7 +793,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\DesignsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 'id_example'; // string | Entity unique identifier
+$id = 'id_example'; // string | Entity identifier.
 $tenant_id = 56; // int | Tenant identifier
 
 try {
@@ -630,7 +808,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string**| Entity unique identifier |
+ **id** | **string**| Entity identifier. |
  **tenant_id** | **int**| Tenant identifier | [optional]
 
 ### Return type
@@ -639,7 +817,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -656,7 +834,7 @@ Name | Type | Description  | Notes
 designsDeleteCollection($id, $tenant_id): \Aurigma\AssetStorage\Model\CollectionDto
 ```
 
-Deletes specified collection
+Deletes the specified collection.
 
 ### Example
 
@@ -670,7 +848,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -680,7 +869,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\DesignsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 'id_example'; // string | Collection unique identifier
+$id = 'id_example'; // string | Collection identifier.
 $tenant_id = 56; // int | Tenant identifier
 
 try {
@@ -695,7 +884,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string**| Collection unique identifier |
+ **id** | **string**| Collection identifier. |
  **tenant_id** | **int**| Tenant identifier | [optional]
 
 ### Return type
@@ -704,7 +893,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -721,7 +910,7 @@ Name | Type | Description  | Notes
 designsDeleteFolder($full_path, $tenant_id): \Aurigma\AssetStorage\Model\FolderDto
 ```
 
-Deletes specified folder
+Deletes the specified folder.
 
 ### Example
 
@@ -735,7 +924,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -745,7 +945,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\DesignsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$full_path = 'full_path_example'; // string | Folder full path
+$full_path = 'full_path_example'; // string | Folder full path.
 $tenant_id = 56; // int | Tenant identifier
 
 try {
@@ -760,7 +960,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **full_path** | **string**| Folder full path | [optional]
+ **full_path** | **string**| Folder full path. | [optional]
  **tenant_id** | **int**| Tenant identifier | [optional]
 
 ### Return type
@@ -769,7 +969,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -786,7 +986,7 @@ Name | Type | Description  | Notes
 designsGet($id, $tenant_id): \Aurigma\AssetStorage\Model\DesignDto
 ```
 
-Gets entity by id
+Returns an entity by ID.
 
 ### Example
 
@@ -800,7 +1000,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -810,7 +1021,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\DesignsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 'id_example'; // string | Entity unique identifier
+$id = 'id_example'; // string | Entity identifier.
 $tenant_id = 56; // int | Tenant identifier
 
 try {
@@ -825,7 +1036,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string**| Entity unique identifier |
+ **id** | **string**| Entity identifier. |
  **tenant_id** | **int**| Tenant identifier | [optional]
 
 ### Return type
@@ -834,7 +1045,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -851,7 +1062,7 @@ Name | Type | Description  | Notes
 designsGetAll($data_schema_id, $font_post_script_name, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id): \Aurigma\AssetStorage\Model\PagedOfDesignDto
 ```
 
-Gets all entities relevant to specified query parameters
+Return all entities relevant to specified query parameters.
 
 ### Example
 
@@ -865,7 +1076,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -883,7 +1105,7 @@ $skip = 56; // int | Defines page start offset from beginning of sorted result l
 $take = 56; // int | Defines page length (how much consequent items of sorted result list should be taken)
 $sorting = 'sorting_example'; // string | Defines sorting order of result list e.g.: \"Title ASC, LastModified DESC\"
 $search = 'search_example'; // string | Search string for partial match
-$custom_fields = 'custom_fields_example'; // string | Custom attributes dictionary filter  <example>{\"public\":\"true\",\"name\":\"my item\"}</example>
+$custom_fields = 'custom_fields_example'; // string | Custom attributes dictionary filter. For example: `{\"public\":\"true\",\"name\":\"my item\"}`
 $tenant_id = 56; // int | Tenant identifier
 
 try {
@@ -906,7 +1128,7 @@ Name | Type | Description  | Notes
  **take** | **int**| Defines page length (how much consequent items of sorted result list should be taken) | [optional]
  **sorting** | **string**| Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; | [optional]
  **search** | **string**| Search string for partial match | [optional]
- **custom_fields** | **string**| Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; | [optional]
+ **custom_fields** | **string**| Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; | [optional]
  **tenant_id** | **int**| Tenant identifier | [optional]
 
 ### Return type
@@ -915,7 +1137,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -932,7 +1154,7 @@ Name | Type | Description  | Notes
 designsGetAllCollections($tenant_id): \Aurigma\AssetStorage\Model\CollectionDto[]
 ```
 
-Gets all collections
+Returns all collections.
 
 ### Example
 
@@ -946,7 +1168,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -978,7 +1211,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -995,7 +1228,7 @@ Name | Type | Description  | Notes
 designsGetAllFolders($tenant_id): \Aurigma\AssetStorage\Model\FolderDto[]
 ```
 
-Gets all folders
+Returns all folders.
 
 ### Example
 
@@ -1009,7 +1242,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -1041,7 +1285,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -1058,7 +1302,7 @@ Name | Type | Description  | Notes
 designsGetCollection($id, $tenant_id): \Aurigma\AssetStorage\Model\CollectionContentOfDesignDto
 ```
 
-Gets collection content by collection id
+Returns the collection content by collection ID.
 
 ### Example
 
@@ -1072,7 +1316,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -1082,7 +1337,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\DesignsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 'id_example'; // string | Collection unique identifier
+$id = 'id_example'; // string | Collection identifier.
 $tenant_id = 56; // int | Tenant identifier
 
 try {
@@ -1097,7 +1352,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string**| Collection unique identifier |
+ **id** | **string**| Collection identifier. |
  **tenant_id** | **int**| Tenant identifier | [optional]
 
 ### Return type
@@ -1106,7 +1361,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -1123,7 +1378,7 @@ Name | Type | Description  | Notes
 designsGetFile($id, $attachment, $tenant_id): \SplFileObject
 ```
 
-Gets entity file from file storage
+Returns an entity file from file storage.
 
 ### Example
 
@@ -1137,7 +1392,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -1147,8 +1413,8 @@ $apiInstance = new Aurigma\AssetStorage\Api\DesignsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 'id_example'; // string | Entity unique identifier
-$attachment = True; // bool | If set to 'true', file will be provided as an attachment with proper filename supplied (default value is 'false')
+$id = 'id_example'; // string | Entity identifier.
+$attachment = True; // bool | Indicates if file should be provided as an attachment with proper filename supplied (default value is 'false').
 $tenant_id = 56; // int | Tenant identifier
 
 try {
@@ -1163,8 +1429,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string**| Entity unique identifier |
- **attachment** | **bool**| If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) | [optional]
+ **id** | **string**| Entity identifier. |
+ **attachment** | **bool**| Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). | [optional]
  **tenant_id** | **int**| Tenant identifier | [optional]
 
 ### Return type
@@ -1173,7 +1439,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -1184,13 +1450,13 @@ Name | Type | Description  | Notes
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `designsGetFolder()`
+## `designsGetFileStorageInfo()`
 
 ```php
-designsGetFolder($full_path, $tenant_id): \Aurigma\AssetStorage\Model\FolderContentOfDesignDto
+designsGetFileStorageInfo($tenant_id): \Aurigma\AssetStorage\Model\FileStorageInfoDto
 ```
 
-Gets folder content by folder path
+Returns information about the use of file storage.
 
 ### Example
 
@@ -1204,7 +1470,92 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Aurigma\AssetStorage\Api\DesignsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$tenant_id = 56; // int | Tenant identifier
+
+try {
+    $result = $apiInstance->designsGetFileStorageInfo($tenant_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DesignsApi->designsGetFileStorageInfo: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tenant_id** | **int**| Tenant identifier | [optional]
+
+### Return type
+
+[**\Aurigma\AssetStorage\Model\FileStorageInfoDto**](../Model/FileStorageInfoDto.md)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `designsGetFolder()`
+
+```php
+designsGetFolder($full_path, $tenant_id): \Aurigma\AssetStorage\Model\FolderContentOfDesignDto
+```
+
+Returns the folder content by folder path.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -1238,7 +1589,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -1255,7 +1606,7 @@ Name | Type | Description  | Notes
 designsGetFolderInfo($id, $tenant_id): \Aurigma\AssetStorage\Model\FolderDto
 ```
 
-Gets folder by id
+Returns a folder by ID.
 
 ### Example
 
@@ -1269,7 +1620,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -1279,7 +1641,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\DesignsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 'id_example'; // string | Folder unique identifier
+$id = 'id_example'; // string | Folder identifier
 $tenant_id = 56; // int | Tenant identifier
 
 try {
@@ -1294,7 +1656,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string**| Folder unique identifier |
+ **id** | **string**| Folder identifier |
  **tenant_id** | **int**| Tenant identifier | [optional]
 
 ### Return type
@@ -1303,7 +1665,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -1317,10 +1679,10 @@ Name | Type | Description  | Notes
 ## `designsUpdate()`
 
 ```php
-designsUpdate($id, $tenant_id, $metadata_fonts, $metadata_surfaces, $metadata_has_data_schema, $metadata_data_schema_id, $metadata_data_schema_name, $has_problems, $file, $path, $name, $custom_fields): \Aurigma\AssetStorage\Model\DesignDto
+designsUpdate($id, $tenant_id, $metadata_fonts, $metadata_surfaces, $metadata_print_areas, $metadata_has_data_schema, $metadata_data_schema_id, $metadata_data_schema_name, $has_problems, $file, $path, $name, $custom_fields): \Aurigma\AssetStorage\Model\DesignDto
 ```
 
-Updates specified entity
+Updates the specified entity.
 
 ### Example
 
@@ -1334,7 +1696,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -1344,13 +1717,14 @@ $apiInstance = new Aurigma\AssetStorage\Api\DesignsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 'id_example'; // string | Entity unique identifier
+$id = 'id_example'; // string | Entity identifier.
 $tenant_id = 56; // int | Tenant identifier
-$metadata_fonts = new \Aurigma\AssetStorage\Model\DesignFontMetadata(); // \Aurigma\AssetStorage\Model\DesignFontMetadata[] | Design font metadata list
-$metadata_surfaces = new \Aurigma\AssetStorage\Model\DesignSurfaceMetadata(); // \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[] | Design surface metadata list
-$metadata_has_data_schema = True; // bool | Indicates whether design has data schema
-$metadata_data_schema_id = 'metadata_data_schema_id_example'; // string | Design data schema id. Empty string for embedded schema
-$metadata_data_schema_name = 'metadata_data_schema_name_example'; // string | Design data schema name
+$metadata_fonts = new \Aurigma\AssetStorage\Model\DesignFontMetadata(); // \Aurigma\AssetStorage\Model\DesignFontMetadata[] | Design font metadata list.
+$metadata_surfaces = new \Aurigma\AssetStorage\Model\DesignSurfaceMetadata(); // \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[] | Design surface metadata list.
+$metadata_print_areas = new \Aurigma\AssetStorage\Model\DesignPrintAreaMetadata(); // \Aurigma\AssetStorage\Model\DesignPrintAreaMetadata[] | Design print area metadata list.
+$metadata_has_data_schema = True; // bool | Indicates whether design has data schema.
+$metadata_data_schema_id = 'metadata_data_schema_id_example'; // string | Design data schema identifier. Empty string for embedded schema.
+$metadata_data_schema_name = 'metadata_data_schema_name_example'; // string | Design data schema name.
 $has_problems = True; // bool | Indicates whether design has any problems preventing normal processing, e.g. missing font etc.
 $file = "/path/to/file.txt"; // \SplFileObject | Entity file content
 $path = 'path_example'; // string | Parent folder full path
@@ -1358,7 +1732,7 @@ $name = 'name_example'; // string | Entity name
 $custom_fields = NULL; // mixed
 
 try {
-    $result = $apiInstance->designsUpdate($id, $tenant_id, $metadata_fonts, $metadata_surfaces, $metadata_has_data_schema, $metadata_data_schema_id, $metadata_data_schema_name, $has_problems, $file, $path, $name, $custom_fields);
+    $result = $apiInstance->designsUpdate($id, $tenant_id, $metadata_fonts, $metadata_surfaces, $metadata_print_areas, $metadata_has_data_schema, $metadata_data_schema_id, $metadata_data_schema_name, $has_problems, $file, $path, $name, $custom_fields);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DesignsApi->designsUpdate: ', $e->getMessage(), PHP_EOL;
@@ -1369,13 +1743,14 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string**| Entity unique identifier |
+ **id** | **string**| Entity identifier. |
  **tenant_id** | **int**| Tenant identifier | [optional]
- **metadata_fonts** | [**\Aurigma\AssetStorage\Model\DesignFontMetadata[]**](../Model/\Aurigma\AssetStorage\Model\DesignFontMetadata.md)| Design font metadata list | [optional]
- **metadata_surfaces** | [**\Aurigma\AssetStorage\Model\DesignSurfaceMetadata[]**](../Model/\Aurigma\AssetStorage\Model\DesignSurfaceMetadata.md)| Design surface metadata list | [optional]
- **metadata_has_data_schema** | **bool**| Indicates whether design has data schema | [optional]
- **metadata_data_schema_id** | **string**| Design data schema id. Empty string for embedded schema | [optional]
- **metadata_data_schema_name** | **string**| Design data schema name | [optional]
+ **metadata_fonts** | [**\Aurigma\AssetStorage\Model\DesignFontMetadata[]**](../Model/\Aurigma\AssetStorage\Model\DesignFontMetadata.md)| Design font metadata list. | [optional]
+ **metadata_surfaces** | [**\Aurigma\AssetStorage\Model\DesignSurfaceMetadata[]**](../Model/\Aurigma\AssetStorage\Model\DesignSurfaceMetadata.md)| Design surface metadata list. | [optional]
+ **metadata_print_areas** | [**\Aurigma\AssetStorage\Model\DesignPrintAreaMetadata[]**](../Model/\Aurigma\AssetStorage\Model\DesignPrintAreaMetadata.md)| Design print area metadata list. | [optional]
+ **metadata_has_data_schema** | **bool**| Indicates whether design has data schema. | [optional]
+ **metadata_data_schema_id** | **string**| Design data schema identifier. Empty string for embedded schema. | [optional]
+ **metadata_data_schema_name** | **string**| Design data schema name. | [optional]
  **has_problems** | **bool**| Indicates whether design has any problems preventing normal processing, e.g. missing font etc. | [optional]
  **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| Entity file content | [optional]
  **path** | **string**| Parent folder full path | [optional]
@@ -1388,7 +1763,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -1405,7 +1780,7 @@ Name | Type | Description  | Notes
 designsUpdateCollection($id, $tenant_id, $update_collection_dto): \Aurigma\AssetStorage\Model\CollectionDto
 ```
 
-Updates specified collection
+Updates the specified collection.
 
 ### Example
 
@@ -1419,7 +1794,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -1429,9 +1815,9 @@ $apiInstance = new Aurigma\AssetStorage\Api\DesignsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 'id_example'; // string | Collection unique identifier
+$id = 'id_example'; // string | Collection identifier.
 $tenant_id = 56; // int | Tenant identifier
-$update_collection_dto = new \Aurigma\AssetStorage\Model\UpdateCollectionDto(); // \Aurigma\AssetStorage\Model\UpdateCollectionDto | Update operation parameters
+$update_collection_dto = new \Aurigma\AssetStorage\Model\UpdateCollectionDto(); // \Aurigma\AssetStorage\Model\UpdateCollectionDto | Update operation parameters.
 
 try {
     $result = $apiInstance->designsUpdateCollection($id, $tenant_id, $update_collection_dto);
@@ -1445,9 +1831,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string**| Collection unique identifier |
+ **id** | **string**| Collection identifier. |
  **tenant_id** | **int**| Tenant identifier | [optional]
- **update_collection_dto** | [**\Aurigma\AssetStorage\Model\UpdateCollectionDto**](../Model/UpdateCollectionDto.md)| Update operation parameters | [optional]
+ **update_collection_dto** | [**\Aurigma\AssetStorage\Model\UpdateCollectionDto**](../Model/UpdateCollectionDto.md)| Update operation parameters. | [optional]
 
 ### Return type
 
@@ -1455,7 +1841,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 
@@ -1472,7 +1858,7 @@ Name | Type | Description  | Notes
 designsUpdateFolder($id, $tenant_id, $update_folder_dto): \Aurigma\AssetStorage\Model\FolderDto
 ```
 
-Updates specified folder
+Updates the specified folder.
 
 ### Example
 
@@ -1486,7 +1872,18 @@ $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
@@ -1496,9 +1893,9 @@ $apiInstance = new Aurigma\AssetStorage\Api\DesignsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 'id_example'; // string | Folder unique identifier
+$id = 'id_example'; // string | Folder identifier.
 $tenant_id = 56; // int | Tenant identifier
-$update_folder_dto = new \Aurigma\AssetStorage\Model\UpdateFolderDto(); // \Aurigma\AssetStorage\Model\UpdateFolderDto | Update operation parameters
+$update_folder_dto = new \Aurigma\AssetStorage\Model\UpdateFolderDto(); // \Aurigma\AssetStorage\Model\UpdateFolderDto | Operation parameters.
 
 try {
     $result = $apiInstance->designsUpdateFolder($id, $tenant_id, $update_folder_dto);
@@ -1512,9 +1909,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string**| Folder unique identifier |
+ **id** | **string**| Folder identifier. |
  **tenant_id** | **int**| Tenant identifier | [optional]
- **update_folder_dto** | [**\Aurigma\AssetStorage\Model\UpdateFolderDto**](../Model/UpdateFolderDto.md)| Update operation parameters | [optional]
+ **update_folder_dto** | [**\Aurigma\AssetStorage\Model\UpdateFolderDto**](../Model/UpdateFolderDto.md)| Operation parameters. | [optional]
 
 ### Return type
 
@@ -1522,7 +1919,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../../README.md#apiKey), [oauth2](../../README.md#oauth2)
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
 
 ### HTTP request headers
 

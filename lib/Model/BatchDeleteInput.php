@@ -35,7 +35,7 @@ use \Aurigma\AssetStorage\ObjectSerializer;
  * BatchDeleteInput Class Doc Comment
  *
  * @category Class
- * @description Dto class, containing parameters for batch delete operation
+ * @description Dto class, containing parameters for batch delete operation.
  * @package  Aurigma\AssetStorage
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -225,7 +225,7 @@ class BatchDeleteInput implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets entity_ids
      *
-     * @param string[]|null $entity_ids List of entities, which are operation subjects
+     * @param string[]|null $entity_ids List of entities, which are operation subjects.
      *
      * @return self
      */
@@ -249,7 +249,7 @@ class BatchDeleteInput implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets folder_ids
      *
-     * @param string[]|null $folder_ids List of folders, which are operation subjects
+     * @param string[]|null $folder_ids List of folders, which are operation subjects.
      *
      * @return self
      */

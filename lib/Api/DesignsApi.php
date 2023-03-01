@@ -117,9 +117,9 @@ class DesignsApi
     /**
      * Operation designsAddPreview
      *
-     * Creates preview entity for specified source entity
+     * Creates a preview entity for specified source entity.
      *
-     * @param  string $id Source entity unique identifier (required)
+     * @param  string $id Source entity identifier. (required)
      * @param  string $name Preview name (required)
      * @param  string $namespace Preview namespace (required)
      * @param  int $width Preview image width (required)
@@ -141,9 +141,9 @@ class DesignsApi
     /**
      * Operation designsAddPreviewWithHttpInfo
      *
-     * Creates preview entity for specified source entity
+     * Creates a preview entity for specified source entity.
      *
-     * @param  string $id Source entity unique identifier (required)
+     * @param  string $id Source entity identifier. (required)
      * @param  string $name Preview name (required)
      * @param  string $namespace Preview namespace (required)
      * @param  int $width Preview image width (required)
@@ -254,9 +254,9 @@ class DesignsApi
     /**
      * Operation designsAddPreviewAsync
      *
-     * Creates preview entity for specified source entity
+     * Creates a preview entity for specified source entity.
      *
-     * @param  string $id Source entity unique identifier (required)
+     * @param  string $id Source entity identifier. (required)
      * @param  string $name Preview name (required)
      * @param  string $namespace Preview namespace (required)
      * @param  int $width Preview image width (required)
@@ -281,9 +281,9 @@ class DesignsApi
     /**
      * Operation designsAddPreviewAsyncWithHttpInfo
      *
-     * Creates preview entity for specified source entity
+     * Creates a preview entity for specified source entity.
      *
-     * @param  string $id Source entity unique identifier (required)
+     * @param  string $id Source entity identifier. (required)
      * @param  string $name Preview name (required)
      * @param  string $namespace Preview namespace (required)
      * @param  int $width Preview image width (required)
@@ -336,7 +336,7 @@ class DesignsApi
     /**
      * Create request for operation 'designsAddPreview'
      *
-     * @param  string $id Source entity unique identifier (required)
+     * @param  string $id Source entity identifier. (required)
      * @param  string $name Preview name (required)
      * @param  string $namespace Preview namespace (required)
      * @param  int $width Preview image width (required)
@@ -484,6 +484,23 @@ class DesignsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -514,10 +531,10 @@ class DesignsApi
     /**
      * Operation designsBatchCopy
      *
-     * Copies selected entities and folders to another folder specified by path
+     * Copies the selected entities and folders to another folder specified by path.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -531,10 +548,10 @@ class DesignsApi
     /**
      * Operation designsBatchCopyWithHttpInfo
      *
-     * Copies selected entities and folders to another folder specified by path
+     * Copies the selected entities and folders to another folder specified by path.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -600,10 +617,10 @@ class DesignsApi
     /**
      * Operation designsBatchCopyAsync
      *
-     * Copies selected entities and folders to another folder specified by path
+     * Copies the selected entities and folders to another folder specified by path.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -621,10 +638,10 @@ class DesignsApi
     /**
      * Operation designsBatchCopyAsyncWithHttpInfo
      *
-     * Copies selected entities and folders to another folder specified by path
+     * Copies the selected entities and folders to another folder specified by path.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -661,7 +678,7 @@ class DesignsApi
      * Create request for operation 'designsBatchCopy'
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -746,6 +763,23 @@ class DesignsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -776,10 +810,10 @@ class DesignsApi
     /**
      * Operation designsBatchDelete
      *
-     * Deletes selected entities and folders
+     * Deletes the selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -793,10 +827,10 @@ class DesignsApi
     /**
      * Operation designsBatchDeleteWithHttpInfo
      *
-     * Deletes selected entities and folders
+     * Deletes the selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -854,10 +888,10 @@ class DesignsApi
     /**
      * Operation designsBatchDeleteAsync
      *
-     * Deletes selected entities and folders
+     * Deletes the selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -875,10 +909,10 @@ class DesignsApi
     /**
      * Operation designsBatchDeleteAsyncWithHttpInfo
      *
-     * Deletes selected entities and folders
+     * Deletes the selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -915,7 +949,7 @@ class DesignsApi
      * Create request for operation 'designsBatchDelete'
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1000,6 +1034,294 @@ class DesignsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation designsBatchUpdateCustomFields
+     *
+     * Updates the custom fields values for selected entities.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function designsBatchUpdateCustomFields($tenant_id = null, $batch_update_custom_fields_input = null)
+    {
+        $this->designsBatchUpdateCustomFieldsWithHttpInfo($tenant_id, $batch_update_custom_fields_input);
+    }
+
+    /**
+     * Operation designsBatchUpdateCustomFieldsWithHttpInfo
+     *
+     * Updates the custom fields values for selected entities.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designsBatchUpdateCustomFieldsWithHttpInfo($tenant_id = null, $batch_update_custom_fields_input = null)
+    {
+        $request = $this->designsBatchUpdateCustomFieldsRequest($tenant_id, $batch_update_custom_fields_input);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designsBatchUpdateCustomFieldsAsync
+     *
+     * Updates the custom fields values for selected entities.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designsBatchUpdateCustomFieldsAsync($tenant_id = null, $batch_update_custom_fields_input = null)
+    {
+        return $this->designsBatchUpdateCustomFieldsAsyncWithHttpInfo($tenant_id, $batch_update_custom_fields_input)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designsBatchUpdateCustomFieldsAsyncWithHttpInfo
+     *
+     * Updates the custom fields values for selected entities.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designsBatchUpdateCustomFieldsAsyncWithHttpInfo($tenant_id = null, $batch_update_custom_fields_input = null)
+    {
+        $returnType = '';
+        $request = $this->designsBatchUpdateCustomFieldsRequest($tenant_id, $batch_update_custom_fields_input);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designsBatchUpdateCustomFields'
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designsBatchUpdateCustomFieldsRequest($tenant_id = null, $batch_update_custom_fields_input = null)
+    {
+
+        $resourcePath = '/api/storage/v1/designs/batchUpdateCustomFields';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+
+
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($batch_update_custom_fields_input)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($batch_update_custom_fields_input));
+            } else {
+                $httpBody = $batch_update_custom_fields_input;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1030,10 +1352,10 @@ class DesignsApi
     /**
      * Operation designsBatchUpdateParentFolder
      *
-     * Updates parent folder for selected entities and folders
+     * Updates the parent folder for selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1047,10 +1369,10 @@ class DesignsApi
     /**
      * Operation designsBatchUpdateParentFolderWithHttpInfo
      *
-     * Updates parent folder for selected entities and folders
+     * Updates the parent folder for selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1116,10 +1438,10 @@ class DesignsApi
     /**
      * Operation designsBatchUpdateParentFolderAsync
      *
-     * Updates parent folder for selected entities and folders
+     * Updates the parent folder for selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1137,10 +1459,10 @@ class DesignsApi
     /**
      * Operation designsBatchUpdateParentFolderAsyncWithHttpInfo
      *
-     * Updates parent folder for selected entities and folders
+     * Updates the parent folder for selected entities and folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1177,7 +1499,7 @@ class DesignsApi
      * Create request for operation 'designsBatchUpdateParentFolder'
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1262,6 +1584,23 @@ class DesignsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1292,12 +1631,12 @@ class DesignsApi
     /**
      * Operation designsCopy
      *
-     * Copies specified entity
+     * Copies the specified entity.
      *
-     * @param  string $id Source entity identifier (required)
-     * @param  string $path Desired path (optional)
-     * @param  string $name Desired name (optional)
-     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy (optional)
+     * @param  string $id Source entity identifier. (required)
+     * @param  string $path Desired path. (optional)
+     * @param  string $name Desired name. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -1313,12 +1652,12 @@ class DesignsApi
     /**
      * Operation designsCopyWithHttpInfo
      *
-     * Copies specified entity
+     * Copies the specified entity.
      *
-     * @param  string $id Source entity identifier (required)
-     * @param  string $path Desired path (optional)
-     * @param  string $name Desired name (optional)
-     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy (optional)
+     * @param  string $id Source entity identifier. (required)
+     * @param  string $path Desired path. (optional)
+     * @param  string $name Desired name. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -1443,12 +1782,12 @@ class DesignsApi
     /**
      * Operation designsCopyAsync
      *
-     * Copies specified entity
+     * Copies the specified entity.
      *
-     * @param  string $id Source entity identifier (required)
-     * @param  string $path Desired path (optional)
-     * @param  string $name Desired name (optional)
-     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy (optional)
+     * @param  string $id Source entity identifier. (required)
+     * @param  string $path Desired path. (optional)
+     * @param  string $name Desired name. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -1467,12 +1806,12 @@ class DesignsApi
     /**
      * Operation designsCopyAsyncWithHttpInfo
      *
-     * Copies specified entity
+     * Copies the specified entity.
      *
-     * @param  string $id Source entity identifier (required)
-     * @param  string $path Desired path (optional)
-     * @param  string $name Desired name (optional)
-     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy (optional)
+     * @param  string $id Source entity identifier. (required)
+     * @param  string $path Desired path. (optional)
+     * @param  string $name Desired name. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -1519,10 +1858,10 @@ class DesignsApi
     /**
      * Create request for operation 'designsCopy'
      *
-     * @param  string $id Source entity identifier (required)
-     * @param  string $path Desired path (optional)
-     * @param  string $name Desired name (optional)
-     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy (optional)
+     * @param  string $id Source entity identifier. (required)
+     * @param  string $path Desired path. (optional)
+     * @param  string $name Desired name. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -1649,6 +1988,23 @@ class DesignsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -1679,17 +2035,18 @@ class DesignsApi
     /**
      * Operation designsCreate
      *
-     * Creates new entity
+     * Creates a new entity.
      *
      * @param  string $path Parent folder full path (required)
      * @param  string $name Entity name (required)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $id Desired unique design identifier for new design (optional)
-     * @param  \Aurigma\AssetStorage\Model\DesignFontMetadata[] $metadata_fonts Design font metadata list (optional)
-     * @param  \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[] $metadata_surfaces Design surface metadata list (optional)
-     * @param  bool $metadata_has_data_schema Indicates whether design has data schema (optional)
-     * @param  string $metadata_data_schema_id Design data schema id. Empty string for embedded schema (optional)
-     * @param  string $metadata_data_schema_name Design data schema name (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignFontMetadata[] $metadata_fonts Design font metadata list. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[] $metadata_surfaces Design surface metadata list. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignPrintAreaMetadata[] $metadata_print_areas Design print area metadata list. (optional)
+     * @param  bool $metadata_has_data_schema Indicates whether design has data schema. (optional)
+     * @param  string $metadata_data_schema_id Design data schema identifier. Empty string for embedded schema. (optional)
+     * @param  string $metadata_data_schema_name Design data schema name. (optional)
      * @param  bool $has_problems Indicates whether design has any problems preventing normal processing, e.g. missing font etc. (optional)
      * @param  \SplFileObject $file Entity file content (optional)
      * @param  mixed $custom_fields custom_fields (optional)
@@ -1698,26 +2055,27 @@ class DesignsApi
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\DesignDto|\Aurigma\AssetStorage\Model\NameConflictDto
      */
-    public function designsCreate($path, $name, $tenant_id = null, $id = null, $metadata_fonts = null, $metadata_surfaces = null, $metadata_has_data_schema = null, $metadata_data_schema_id = null, $metadata_data_schema_name = null, $has_problems = null, $file = null, $custom_fields = null)
+    public function designsCreate($path, $name, $tenant_id = null, $id = null, $metadata_fonts = null, $metadata_surfaces = null, $metadata_print_areas = null, $metadata_has_data_schema = null, $metadata_data_schema_id = null, $metadata_data_schema_name = null, $has_problems = null, $file = null, $custom_fields = null)
     {
-        list($response) = $this->designsCreateWithHttpInfo($path, $name, $tenant_id, $id, $metadata_fonts, $metadata_surfaces, $metadata_has_data_schema, $metadata_data_schema_id, $metadata_data_schema_name, $has_problems, $file, $custom_fields);
+        list($response) = $this->designsCreateWithHttpInfo($path, $name, $tenant_id, $id, $metadata_fonts, $metadata_surfaces, $metadata_print_areas, $metadata_has_data_schema, $metadata_data_schema_id, $metadata_data_schema_name, $has_problems, $file, $custom_fields);
         return $response;
     }
 
     /**
      * Operation designsCreateWithHttpInfo
      *
-     * Creates new entity
+     * Creates a new entity.
      *
      * @param  string $path Parent folder full path (required)
      * @param  string $name Entity name (required)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $id Desired unique design identifier for new design (optional)
-     * @param  \Aurigma\AssetStorage\Model\DesignFontMetadata[] $metadata_fonts Design font metadata list (optional)
-     * @param  \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[] $metadata_surfaces Design surface metadata list (optional)
-     * @param  bool $metadata_has_data_schema Indicates whether design has data schema (optional)
-     * @param  string $metadata_data_schema_id Design data schema id. Empty string for embedded schema (optional)
-     * @param  string $metadata_data_schema_name Design data schema name (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignFontMetadata[] $metadata_fonts Design font metadata list. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[] $metadata_surfaces Design surface metadata list. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignPrintAreaMetadata[] $metadata_print_areas Design print area metadata list. (optional)
+     * @param  bool $metadata_has_data_schema Indicates whether design has data schema. (optional)
+     * @param  string $metadata_data_schema_id Design data schema identifier. Empty string for embedded schema. (optional)
+     * @param  string $metadata_data_schema_name Design data schema name. (optional)
      * @param  bool $has_problems Indicates whether design has any problems preventing normal processing, e.g. missing font etc. (optional)
      * @param  \SplFileObject $file Entity file content (optional)
      * @param  mixed $custom_fields (optional)
@@ -1726,9 +2084,9 @@ class DesignsApi
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\DesignDto|\Aurigma\AssetStorage\Model\NameConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function designsCreateWithHttpInfo($path, $name, $tenant_id = null, $id = null, $metadata_fonts = null, $metadata_surfaces = null, $metadata_has_data_schema = null, $metadata_data_schema_id = null, $metadata_data_schema_name = null, $has_problems = null, $file = null, $custom_fields = null)
+    public function designsCreateWithHttpInfo($path, $name, $tenant_id = null, $id = null, $metadata_fonts = null, $metadata_surfaces = null, $metadata_print_areas = null, $metadata_has_data_schema = null, $metadata_data_schema_id = null, $metadata_data_schema_name = null, $has_problems = null, $file = null, $custom_fields = null)
     {
-        $request = $this->designsCreateRequest($path, $name, $tenant_id, $id, $metadata_fonts, $metadata_surfaces, $metadata_has_data_schema, $metadata_data_schema_id, $metadata_data_schema_name, $has_problems, $file, $custom_fields);
+        $request = $this->designsCreateRequest($path, $name, $tenant_id, $id, $metadata_fonts, $metadata_surfaces, $metadata_print_areas, $metadata_has_data_schema, $metadata_data_schema_id, $metadata_data_schema_name, $has_problems, $file, $custom_fields);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1824,17 +2182,18 @@ class DesignsApi
     /**
      * Operation designsCreateAsync
      *
-     * Creates new entity
+     * Creates a new entity.
      *
      * @param  string $path Parent folder full path (required)
      * @param  string $name Entity name (required)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $id Desired unique design identifier for new design (optional)
-     * @param  \Aurigma\AssetStorage\Model\DesignFontMetadata[] $metadata_fonts Design font metadata list (optional)
-     * @param  \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[] $metadata_surfaces Design surface metadata list (optional)
-     * @param  bool $metadata_has_data_schema Indicates whether design has data schema (optional)
-     * @param  string $metadata_data_schema_id Design data schema id. Empty string for embedded schema (optional)
-     * @param  string $metadata_data_schema_name Design data schema name (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignFontMetadata[] $metadata_fonts Design font metadata list. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[] $metadata_surfaces Design surface metadata list. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignPrintAreaMetadata[] $metadata_print_areas Design print area metadata list. (optional)
+     * @param  bool $metadata_has_data_schema Indicates whether design has data schema. (optional)
+     * @param  string $metadata_data_schema_id Design data schema identifier. Empty string for embedded schema. (optional)
+     * @param  string $metadata_data_schema_name Design data schema name. (optional)
      * @param  bool $has_problems Indicates whether design has any problems preventing normal processing, e.g. missing font etc. (optional)
      * @param  \SplFileObject $file Entity file content (optional)
      * @param  mixed $custom_fields (optional)
@@ -1842,9 +2201,9 @@ class DesignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designsCreateAsync($path, $name, $tenant_id = null, $id = null, $metadata_fonts = null, $metadata_surfaces = null, $metadata_has_data_schema = null, $metadata_data_schema_id = null, $metadata_data_schema_name = null, $has_problems = null, $file = null, $custom_fields = null)
+    public function designsCreateAsync($path, $name, $tenant_id = null, $id = null, $metadata_fonts = null, $metadata_surfaces = null, $metadata_print_areas = null, $metadata_has_data_schema = null, $metadata_data_schema_id = null, $metadata_data_schema_name = null, $has_problems = null, $file = null, $custom_fields = null)
     {
-        return $this->designsCreateAsyncWithHttpInfo($path, $name, $tenant_id, $id, $metadata_fonts, $metadata_surfaces, $metadata_has_data_schema, $metadata_data_schema_id, $metadata_data_schema_name, $has_problems, $file, $custom_fields)
+        return $this->designsCreateAsyncWithHttpInfo($path, $name, $tenant_id, $id, $metadata_fonts, $metadata_surfaces, $metadata_print_areas, $metadata_has_data_schema, $metadata_data_schema_id, $metadata_data_schema_name, $has_problems, $file, $custom_fields)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1855,17 +2214,18 @@ class DesignsApi
     /**
      * Operation designsCreateAsyncWithHttpInfo
      *
-     * Creates new entity
+     * Creates a new entity.
      *
      * @param  string $path Parent folder full path (required)
      * @param  string $name Entity name (required)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $id Desired unique design identifier for new design (optional)
-     * @param  \Aurigma\AssetStorage\Model\DesignFontMetadata[] $metadata_fonts Design font metadata list (optional)
-     * @param  \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[] $metadata_surfaces Design surface metadata list (optional)
-     * @param  bool $metadata_has_data_schema Indicates whether design has data schema (optional)
-     * @param  string $metadata_data_schema_id Design data schema id. Empty string for embedded schema (optional)
-     * @param  string $metadata_data_schema_name Design data schema name (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignFontMetadata[] $metadata_fonts Design font metadata list. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[] $metadata_surfaces Design surface metadata list. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignPrintAreaMetadata[] $metadata_print_areas Design print area metadata list. (optional)
+     * @param  bool $metadata_has_data_schema Indicates whether design has data schema. (optional)
+     * @param  string $metadata_data_schema_id Design data schema identifier. Empty string for embedded schema. (optional)
+     * @param  string $metadata_data_schema_name Design data schema name. (optional)
      * @param  bool $has_problems Indicates whether design has any problems preventing normal processing, e.g. missing font etc. (optional)
      * @param  \SplFileObject $file Entity file content (optional)
      * @param  mixed $custom_fields (optional)
@@ -1873,10 +2233,10 @@ class DesignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designsCreateAsyncWithHttpInfo($path, $name, $tenant_id = null, $id = null, $metadata_fonts = null, $metadata_surfaces = null, $metadata_has_data_schema = null, $metadata_data_schema_id = null, $metadata_data_schema_name = null, $has_problems = null, $file = null, $custom_fields = null)
+    public function designsCreateAsyncWithHttpInfo($path, $name, $tenant_id = null, $id = null, $metadata_fonts = null, $metadata_surfaces = null, $metadata_print_areas = null, $metadata_has_data_schema = null, $metadata_data_schema_id = null, $metadata_data_schema_name = null, $has_problems = null, $file = null, $custom_fields = null)
     {
         $returnType = '\Aurigma\AssetStorage\Model\DesignDto';
-        $request = $this->designsCreateRequest($path, $name, $tenant_id, $id, $metadata_fonts, $metadata_surfaces, $metadata_has_data_schema, $metadata_data_schema_id, $metadata_data_schema_name, $has_problems, $file, $custom_fields);
+        $request = $this->designsCreateRequest($path, $name, $tenant_id, $id, $metadata_fonts, $metadata_surfaces, $metadata_print_areas, $metadata_has_data_schema, $metadata_data_schema_id, $metadata_data_schema_name, $has_problems, $file, $custom_fields);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1918,11 +2278,12 @@ class DesignsApi
      * @param  string $name Entity name (required)
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $id Desired unique design identifier for new design (optional)
-     * @param  \Aurigma\AssetStorage\Model\DesignFontMetadata[] $metadata_fonts Design font metadata list (optional)
-     * @param  \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[] $metadata_surfaces Design surface metadata list (optional)
-     * @param  bool $metadata_has_data_schema Indicates whether design has data schema (optional)
-     * @param  string $metadata_data_schema_id Design data schema id. Empty string for embedded schema (optional)
-     * @param  string $metadata_data_schema_name Design data schema name (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignFontMetadata[] $metadata_fonts Design font metadata list. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[] $metadata_surfaces Design surface metadata list. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignPrintAreaMetadata[] $metadata_print_areas Design print area metadata list. (optional)
+     * @param  bool $metadata_has_data_schema Indicates whether design has data schema. (optional)
+     * @param  string $metadata_data_schema_id Design data schema identifier. Empty string for embedded schema. (optional)
+     * @param  string $metadata_data_schema_name Design data schema name. (optional)
      * @param  bool $has_problems Indicates whether design has any problems preventing normal processing, e.g. missing font etc. (optional)
      * @param  \SplFileObject $file Entity file content (optional)
      * @param  mixed $custom_fields (optional)
@@ -1930,7 +2291,7 @@ class DesignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function designsCreateRequest($path, $name, $tenant_id = null, $id = null, $metadata_fonts = null, $metadata_surfaces = null, $metadata_has_data_schema = null, $metadata_data_schema_id = null, $metadata_data_schema_name = null, $has_problems = null, $file = null, $custom_fields = null)
+    public function designsCreateRequest($path, $name, $tenant_id = null, $id = null, $metadata_fonts = null, $metadata_surfaces = null, $metadata_print_areas = null, $metadata_has_data_schema = null, $metadata_data_schema_id = null, $metadata_data_schema_name = null, $has_problems = null, $file = null, $custom_fields = null)
     {
         // verify the required parameter 'path' is set
         if ($path === null || (is_array($path) && count($path) === 0)) {
@@ -1981,6 +2342,10 @@ class DesignsApi
         // form params
         if ($metadata_surfaces !== null) {
             $formParams['metadata.surfaces'] = ObjectSerializer::toFormValue($metadata_surfaces);
+        }
+        // form params
+        if ($metadata_print_areas !== null) {
+            $formParams['metadata.printAreas'] = ObjectSerializer::toFormValue($metadata_print_areas);
         }
         // form params
         if ($metadata_has_data_schema !== null) {
@@ -2064,6 +2429,23 @@ class DesignsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -2094,10 +2476,10 @@ class DesignsApi
     /**
      * Operation designsCreateCollection
      *
-     * Creates new collection
+     * Creates a new collection.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -2112,10 +2494,10 @@ class DesignsApi
     /**
      * Operation designsCreateCollectionWithHttpInfo
      *
-     * Creates new collection
+     * Creates a new collection.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -2219,10 +2601,10 @@ class DesignsApi
     /**
      * Operation designsCreateCollectionAsync
      *
-     * Creates new collection
+     * Creates a new collection.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2240,10 +2622,10 @@ class DesignsApi
     /**
      * Operation designsCreateCollectionAsyncWithHttpInfo
      *
-     * Creates new collection
+     * Creates a new collection.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2290,7 +2672,7 @@ class DesignsApi
      * Create request for operation 'designsCreateCollection'
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateCollectionDto $create_collection_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -2375,6 +2757,23 @@ class DesignsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -2405,10 +2804,10 @@ class DesignsApi
     /**
      * Operation designsCreateFolder
      *
-     * Creates new folder
+     * Creates a new folder.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -2423,10 +2822,10 @@ class DesignsApi
     /**
      * Operation designsCreateFolderWithHttpInfo
      *
-     * Creates new folder
+     * Creates a new folder.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -2530,10 +2929,10 @@ class DesignsApi
     /**
      * Operation designsCreateFolderAsync
      *
-     * Creates new folder
+     * Creates a new folder.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2551,10 +2950,10 @@ class DesignsApi
     /**
      * Operation designsCreateFolderAsyncWithHttpInfo
      *
-     * Creates new folder
+     * Creates a new folder.
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -2601,7 +3000,7 @@ class DesignsApi
      * Create request for operation 'designsCreateFolder'
      *
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -2686,6 +3085,23 @@ class DesignsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -2716,9 +3132,9 @@ class DesignsApi
     /**
      * Operation designsDelete
      *
-     * Deletes specified entity
+     * Deletes the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -2734,9 +3150,9 @@ class DesignsApi
     /**
      * Operation designsDeleteWithHttpInfo
      *
-     * Deletes specified entity
+     * Deletes the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -2841,9 +3257,9 @@ class DesignsApi
     /**
      * Operation designsDeleteAsync
      *
-     * Deletes specified entity
+     * Deletes the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -2862,9 +3278,9 @@ class DesignsApi
     /**
      * Operation designsDeleteAsyncWithHttpInfo
      *
-     * Deletes specified entity
+     * Deletes the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -2911,7 +3327,7 @@ class DesignsApi
     /**
      * Create request for operation 'designsDelete'
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3005,6 +3421,23 @@ class DesignsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -3035,9 +3468,9 @@ class DesignsApi
     /**
      * Operation designsDeleteCollection
      *
-     * Deletes specified collection
+     * Deletes the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -3053,9 +3486,9 @@ class DesignsApi
     /**
      * Operation designsDeleteCollectionWithHttpInfo
      *
-     * Deletes specified collection
+     * Deletes the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -3160,9 +3593,9 @@ class DesignsApi
     /**
      * Operation designsDeleteCollectionAsync
      *
-     * Deletes specified collection
+     * Deletes the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3181,9 +3614,9 @@ class DesignsApi
     /**
      * Operation designsDeleteCollectionAsyncWithHttpInfo
      *
-     * Deletes specified collection
+     * Deletes the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3230,7 +3663,7 @@ class DesignsApi
     /**
      * Create request for operation 'designsDeleteCollection'
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3324,6 +3757,23 @@ class DesignsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -3354,9 +3804,9 @@ class DesignsApi
     /**
      * Operation designsDeleteFolder
      *
-     * Deletes specified folder
+     * Deletes the specified folder.
      *
-     * @param  string $full_path Folder full path (optional)
+     * @param  string $full_path Folder full path. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -3372,9 +3822,9 @@ class DesignsApi
     /**
      * Operation designsDeleteFolderWithHttpInfo
      *
-     * Deletes specified folder
+     * Deletes the specified folder.
      *
-     * @param  string $full_path Folder full path (optional)
+     * @param  string $full_path Folder full path. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -3479,9 +3929,9 @@ class DesignsApi
     /**
      * Operation designsDeleteFolderAsync
      *
-     * Deletes specified folder
+     * Deletes the specified folder.
      *
-     * @param  string $full_path Folder full path (optional)
+     * @param  string $full_path Folder full path. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3500,9 +3950,9 @@ class DesignsApi
     /**
      * Operation designsDeleteFolderAsyncWithHttpInfo
      *
-     * Deletes specified folder
+     * Deletes the specified folder.
      *
-     * @param  string $full_path Folder full path (optional)
+     * @param  string $full_path Folder full path. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3549,7 +3999,7 @@ class DesignsApi
     /**
      * Create request for operation 'designsDeleteFolder'
      *
-     * @param  string $full_path Folder full path (optional)
+     * @param  string $full_path Folder full path. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3640,6 +4090,23 @@ class DesignsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -3670,9 +4137,9 @@ class DesignsApi
     /**
      * Operation designsGet
      *
-     * Gets entity by id
+     * Returns an entity by ID.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -3688,9 +4155,9 @@ class DesignsApi
     /**
      * Operation designsGetWithHttpInfo
      *
-     * Gets entity by id
+     * Returns an entity by ID.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -3795,9 +4262,9 @@ class DesignsApi
     /**
      * Operation designsGetAsync
      *
-     * Gets entity by id
+     * Returns an entity by ID.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3816,9 +4283,9 @@ class DesignsApi
     /**
      * Operation designsGetAsyncWithHttpInfo
      *
-     * Gets entity by id
+     * Returns an entity by ID.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3865,7 +4332,7 @@ class DesignsApi
     /**
      * Create request for operation 'designsGet'
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -3959,6 +4426,23 @@ class DesignsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -3989,7 +4473,7 @@ class DesignsApi
     /**
      * Operation designsGetAll
      *
-     * Gets all entities relevant to specified query parameters
+     * Return all entities relevant to specified query parameters.
      *
      * @param  string $data_schema_id Associated data schema identifier filter (optional)
      * @param  string $font_post_script_name Design font postscript name filter (optional)
@@ -3999,7 +4483,7 @@ class DesignsApi
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
      * @param  string $search Search string for partial match (optional)
-     * @param  string $custom_fields Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; (optional)
+     * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -4015,7 +4499,7 @@ class DesignsApi
     /**
      * Operation designsGetAllWithHttpInfo
      *
-     * Gets all entities relevant to specified query parameters
+     * Return all entities relevant to specified query parameters.
      *
      * @param  string $data_schema_id Associated data schema identifier filter (optional)
      * @param  string $font_post_script_name Design font postscript name filter (optional)
@@ -4025,7 +4509,7 @@ class DesignsApi
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
      * @param  string $search Search string for partial match (optional)
-     * @param  string $custom_fields Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; (optional)
+     * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -4110,7 +4594,7 @@ class DesignsApi
     /**
      * Operation designsGetAllAsync
      *
-     * Gets all entities relevant to specified query parameters
+     * Return all entities relevant to specified query parameters.
      *
      * @param  string $data_schema_id Associated data schema identifier filter (optional)
      * @param  string $font_post_script_name Design font postscript name filter (optional)
@@ -4120,7 +4604,7 @@ class DesignsApi
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
      * @param  string $search Search string for partial match (optional)
-     * @param  string $custom_fields Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; (optional)
+     * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -4139,7 +4623,7 @@ class DesignsApi
     /**
      * Operation designsGetAllAsyncWithHttpInfo
      *
-     * Gets all entities relevant to specified query parameters
+     * Return all entities relevant to specified query parameters.
      *
      * @param  string $data_schema_id Associated data schema identifier filter (optional)
      * @param  string $font_post_script_name Design font postscript name filter (optional)
@@ -4149,7 +4633,7 @@ class DesignsApi
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
      * @param  string $search Search string for partial match (optional)
-     * @param  string $custom_fields Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; (optional)
+     * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -4204,7 +4688,7 @@ class DesignsApi
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken) (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; (optional)
      * @param  string $search Search string for partial match (optional)
-     * @param  string $custom_fields Custom attributes dictionary filter  &lt;example&gt;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&lt;/example&gt; (optional)
+     * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -4383,6 +4867,23 @@ class DesignsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -4413,7 +4914,7 @@ class DesignsApi
     /**
      * Operation designsGetAllCollections
      *
-     * Gets all collections
+     * Returns all collections.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      *
@@ -4430,7 +4931,7 @@ class DesignsApi
     /**
      * Operation designsGetAllCollectionsWithHttpInfo
      *
-     * Gets all collections
+     * Returns all collections.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      *
@@ -4516,7 +5017,7 @@ class DesignsApi
     /**
      * Operation designsGetAllCollectionsAsync
      *
-     * Gets all collections
+     * Returns all collections.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      *
@@ -4536,7 +5037,7 @@ class DesignsApi
     /**
      * Operation designsGetAllCollectionsAsyncWithHttpInfo
      *
-     * Gets all collections
+     * Returns all collections.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      *
@@ -4663,6 +5164,23 @@ class DesignsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -4693,7 +5211,7 @@ class DesignsApi
     /**
      * Operation designsGetAllFolders
      *
-     * Gets all folders
+     * Returns all folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      *
@@ -4710,7 +5228,7 @@ class DesignsApi
     /**
      * Operation designsGetAllFoldersWithHttpInfo
      *
-     * Gets all folders
+     * Returns all folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      *
@@ -4796,7 +5314,7 @@ class DesignsApi
     /**
      * Operation designsGetAllFoldersAsync
      *
-     * Gets all folders
+     * Returns all folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      *
@@ -4816,7 +5334,7 @@ class DesignsApi
     /**
      * Operation designsGetAllFoldersAsyncWithHttpInfo
      *
-     * Gets all folders
+     * Returns all folders.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      *
@@ -4943,6 +5461,23 @@ class DesignsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -4973,9 +5508,9 @@ class DesignsApi
     /**
      * Operation designsGetCollection
      *
-     * Gets collection content by collection id
+     * Returns the collection content by collection ID.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -4991,9 +5526,9 @@ class DesignsApi
     /**
      * Operation designsGetCollectionWithHttpInfo
      *
-     * Gets collection content by collection id
+     * Returns the collection content by collection ID.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -5098,9 +5633,9 @@ class DesignsApi
     /**
      * Operation designsGetCollectionAsync
      *
-     * Gets collection content by collection id
+     * Returns the collection content by collection ID.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -5119,9 +5654,9 @@ class DesignsApi
     /**
      * Operation designsGetCollectionAsyncWithHttpInfo
      *
-     * Gets collection content by collection id
+     * Returns the collection content by collection ID.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -5168,7 +5703,7 @@ class DesignsApi
     /**
      * Create request for operation 'designsGetCollection'
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -5262,6 +5797,23 @@ class DesignsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -5292,10 +5844,10 @@ class DesignsApi
     /**
      * Operation designsGetFile
      *
-     * Gets entity file from file storage
+     * Returns an entity file from file storage.
      *
-     * @param  string $id Entity unique identifier (required)
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) (optional)
+     * @param  string $id Entity identifier. (required)
+     * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -5311,10 +5863,10 @@ class DesignsApi
     /**
      * Operation designsGetFileWithHttpInfo
      *
-     * Gets entity file from file storage
+     * Returns an entity file from file storage.
      *
-     * @param  string $id Entity unique identifier (required)
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) (optional)
+     * @param  string $id Entity identifier. (required)
+     * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -5419,10 +5971,10 @@ class DesignsApi
     /**
      * Operation designsGetFileAsync
      *
-     * Gets entity file from file storage
+     * Returns an entity file from file storage.
      *
-     * @param  string $id Entity unique identifier (required)
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) (optional)
+     * @param  string $id Entity identifier. (required)
+     * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -5441,10 +5993,10 @@ class DesignsApi
     /**
      * Operation designsGetFileAsyncWithHttpInfo
      *
-     * Gets entity file from file storage
+     * Returns an entity file from file storage.
      *
-     * @param  string $id Entity unique identifier (required)
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) (optional)
+     * @param  string $id Entity identifier. (required)
+     * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -5491,8 +6043,8 @@ class DesignsApi
     /**
      * Create request for operation 'designsGetFile'
      *
-     * @param  string $id Entity unique identifier (required)
-     * @param  bool $attachment If set to &#39;true&#39;, file will be provided as an attachment with proper filename supplied (default value is &#39;false&#39;) (optional)
+     * @param  string $id Entity identifier. (required)
+     * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -5597,6 +6149,320 @@ class DesignsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation designsGetFileStorageInfo
+     *
+     * Returns information about the use of file storage.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Aurigma\AssetStorage\Model\FileStorageInfoDto
+     */
+    public function designsGetFileStorageInfo($tenant_id = null)
+    {
+        list($response) = $this->designsGetFileStorageInfoWithHttpInfo($tenant_id);
+        return $response;
+    }
+
+    /**
+     * Operation designsGetFileStorageInfoWithHttpInfo
+     *
+     * Returns information about the use of file storage.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Aurigma\AssetStorage\Model\FileStorageInfoDto, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function designsGetFileStorageInfoWithHttpInfo($tenant_id = null)
+    {
+        $request = $this->designsGetFileStorageInfoRequest($tenant_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Aurigma\AssetStorage\Model\FileStorageInfoDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\FileStorageInfoDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Aurigma\AssetStorage\Model\FileStorageInfoDto';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\FileStorageInfoDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation designsGetFileStorageInfoAsync
+     *
+     * Returns information about the use of file storage.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designsGetFileStorageInfoAsync($tenant_id = null)
+    {
+        return $this->designsGetFileStorageInfoAsyncWithHttpInfo($tenant_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation designsGetFileStorageInfoAsyncWithHttpInfo
+     *
+     * Returns information about the use of file storage.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function designsGetFileStorageInfoAsyncWithHttpInfo($tenant_id = null)
+    {
+        $returnType = '\Aurigma\AssetStorage\Model\FileStorageInfoDto';
+        $request = $this->designsGetFileStorageInfoRequest($tenant_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'designsGetFileStorageInfo'
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function designsGetFileStorageInfoRequest($tenant_id = null)
+    {
+
+        $resourcePath = '/api/storage/v1/designs/file-storage-info';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+
+
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -5627,7 +6493,7 @@ class DesignsApi
     /**
      * Operation designsGetFolder
      *
-     * Gets folder content by folder path
+     * Returns the folder content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used (optional)
      * @param  int $tenant_id Tenant identifier (optional)
@@ -5645,7 +6511,7 @@ class DesignsApi
     /**
      * Operation designsGetFolderWithHttpInfo
      *
-     * Gets folder content by folder path
+     * Returns the folder content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used (optional)
      * @param  int $tenant_id Tenant identifier (optional)
@@ -5752,7 +6618,7 @@ class DesignsApi
     /**
      * Operation designsGetFolderAsync
      *
-     * Gets folder content by folder path
+     * Returns the folder content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used (optional)
      * @param  int $tenant_id Tenant identifier (optional)
@@ -5773,7 +6639,7 @@ class DesignsApi
     /**
      * Operation designsGetFolderAsyncWithHttpInfo
      *
-     * Gets folder content by folder path
+     * Returns the folder content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used (optional)
      * @param  int $tenant_id Tenant identifier (optional)
@@ -5913,6 +6779,23 @@ class DesignsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -5943,9 +6826,9 @@ class DesignsApi
     /**
      * Operation designsGetFolderInfo
      *
-     * Gets folder by id
+     * Returns a folder by ID.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -5961,9 +6844,9 @@ class DesignsApi
     /**
      * Operation designsGetFolderInfoWithHttpInfo
      *
-     * Gets folder by id
+     * Returns a folder by ID.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
@@ -6068,9 +6951,9 @@ class DesignsApi
     /**
      * Operation designsGetFolderInfoAsync
      *
-     * Gets folder by id
+     * Returns a folder by ID.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -6089,9 +6972,9 @@ class DesignsApi
     /**
      * Operation designsGetFolderInfoAsyncWithHttpInfo
      *
-     * Gets folder by id
+     * Returns a folder by ID.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -6138,7 +7021,7 @@ class DesignsApi
     /**
      * Create request for operation 'designsGetFolderInfo'
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier (required)
      * @param  int $tenant_id Tenant identifier (optional)
      *
      * @throws \InvalidArgumentException
@@ -6232,6 +7115,23 @@ class DesignsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -6262,15 +7162,16 @@ class DesignsApi
     /**
      * Operation designsUpdate
      *
-     * Updates specified entity
+     * Updates the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\DesignFontMetadata[] $metadata_fonts Design font metadata list (optional)
-     * @param  \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[] $metadata_surfaces Design surface metadata list (optional)
-     * @param  bool $metadata_has_data_schema Indicates whether design has data schema (optional)
-     * @param  string $metadata_data_schema_id Design data schema id. Empty string for embedded schema (optional)
-     * @param  string $metadata_data_schema_name Design data schema name (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignFontMetadata[] $metadata_fonts Design font metadata list. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[] $metadata_surfaces Design surface metadata list. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignPrintAreaMetadata[] $metadata_print_areas Design print area metadata list. (optional)
+     * @param  bool $metadata_has_data_schema Indicates whether design has data schema. (optional)
+     * @param  string $metadata_data_schema_id Design data schema identifier. Empty string for embedded schema. (optional)
+     * @param  string $metadata_data_schema_name Design data schema name. (optional)
      * @param  bool $has_problems Indicates whether design has any problems preventing normal processing, e.g. missing font etc. (optional)
      * @param  \SplFileObject $file Entity file content (optional)
      * @param  string $path Parent folder full path (optional)
@@ -6281,24 +7182,25 @@ class DesignsApi
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\DesignDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto
      */
-    public function designsUpdate($id, $tenant_id = null, $metadata_fonts = null, $metadata_surfaces = null, $metadata_has_data_schema = null, $metadata_data_schema_id = null, $metadata_data_schema_name = null, $has_problems = null, $file = null, $path = null, $name = null, $custom_fields = null)
+    public function designsUpdate($id, $tenant_id = null, $metadata_fonts = null, $metadata_surfaces = null, $metadata_print_areas = null, $metadata_has_data_schema = null, $metadata_data_schema_id = null, $metadata_data_schema_name = null, $has_problems = null, $file = null, $path = null, $name = null, $custom_fields = null)
     {
-        list($response) = $this->designsUpdateWithHttpInfo($id, $tenant_id, $metadata_fonts, $metadata_surfaces, $metadata_has_data_schema, $metadata_data_schema_id, $metadata_data_schema_name, $has_problems, $file, $path, $name, $custom_fields);
+        list($response) = $this->designsUpdateWithHttpInfo($id, $tenant_id, $metadata_fonts, $metadata_surfaces, $metadata_print_areas, $metadata_has_data_schema, $metadata_data_schema_id, $metadata_data_schema_name, $has_problems, $file, $path, $name, $custom_fields);
         return $response;
     }
 
     /**
      * Operation designsUpdateWithHttpInfo
      *
-     * Updates specified entity
+     * Updates the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\DesignFontMetadata[] $metadata_fonts Design font metadata list (optional)
-     * @param  \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[] $metadata_surfaces Design surface metadata list (optional)
-     * @param  bool $metadata_has_data_schema Indicates whether design has data schema (optional)
-     * @param  string $metadata_data_schema_id Design data schema id. Empty string for embedded schema (optional)
-     * @param  string $metadata_data_schema_name Design data schema name (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignFontMetadata[] $metadata_fonts Design font metadata list. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[] $metadata_surfaces Design surface metadata list. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignPrintAreaMetadata[] $metadata_print_areas Design print area metadata list. (optional)
+     * @param  bool $metadata_has_data_schema Indicates whether design has data schema. (optional)
+     * @param  string $metadata_data_schema_id Design data schema identifier. Empty string for embedded schema. (optional)
+     * @param  string $metadata_data_schema_name Design data schema name. (optional)
      * @param  bool $has_problems Indicates whether design has any problems preventing normal processing, e.g. missing font etc. (optional)
      * @param  \SplFileObject $file Entity file content (optional)
      * @param  string $path Parent folder full path (optional)
@@ -6309,9 +7211,9 @@ class DesignsApi
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\DesignDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function designsUpdateWithHttpInfo($id, $tenant_id = null, $metadata_fonts = null, $metadata_surfaces = null, $metadata_has_data_schema = null, $metadata_data_schema_id = null, $metadata_data_schema_name = null, $has_problems = null, $file = null, $path = null, $name = null, $custom_fields = null)
+    public function designsUpdateWithHttpInfo($id, $tenant_id = null, $metadata_fonts = null, $metadata_surfaces = null, $metadata_print_areas = null, $metadata_has_data_schema = null, $metadata_data_schema_id = null, $metadata_data_schema_name = null, $has_problems = null, $file = null, $path = null, $name = null, $custom_fields = null)
     {
-        $request = $this->designsUpdateRequest($id, $tenant_id, $metadata_fonts, $metadata_surfaces, $metadata_has_data_schema, $metadata_data_schema_id, $metadata_data_schema_name, $has_problems, $file, $path, $name, $custom_fields);
+        $request = $this->designsUpdateRequest($id, $tenant_id, $metadata_fonts, $metadata_surfaces, $metadata_print_areas, $metadata_has_data_schema, $metadata_data_schema_id, $metadata_data_schema_name, $has_problems, $file, $path, $name, $custom_fields);
 
         try {
             $options = $this->createHttpClientOption();
@@ -6427,15 +7329,16 @@ class DesignsApi
     /**
      * Operation designsUpdateAsync
      *
-     * Updates specified entity
+     * Updates the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\DesignFontMetadata[] $metadata_fonts Design font metadata list (optional)
-     * @param  \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[] $metadata_surfaces Design surface metadata list (optional)
-     * @param  bool $metadata_has_data_schema Indicates whether design has data schema (optional)
-     * @param  string $metadata_data_schema_id Design data schema id. Empty string for embedded schema (optional)
-     * @param  string $metadata_data_schema_name Design data schema name (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignFontMetadata[] $metadata_fonts Design font metadata list. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[] $metadata_surfaces Design surface metadata list. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignPrintAreaMetadata[] $metadata_print_areas Design print area metadata list. (optional)
+     * @param  bool $metadata_has_data_schema Indicates whether design has data schema. (optional)
+     * @param  string $metadata_data_schema_id Design data schema identifier. Empty string for embedded schema. (optional)
+     * @param  string $metadata_data_schema_name Design data schema name. (optional)
      * @param  bool $has_problems Indicates whether design has any problems preventing normal processing, e.g. missing font etc. (optional)
      * @param  \SplFileObject $file Entity file content (optional)
      * @param  string $path Parent folder full path (optional)
@@ -6445,9 +7348,9 @@ class DesignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designsUpdateAsync($id, $tenant_id = null, $metadata_fonts = null, $metadata_surfaces = null, $metadata_has_data_schema = null, $metadata_data_schema_id = null, $metadata_data_schema_name = null, $has_problems = null, $file = null, $path = null, $name = null, $custom_fields = null)
+    public function designsUpdateAsync($id, $tenant_id = null, $metadata_fonts = null, $metadata_surfaces = null, $metadata_print_areas = null, $metadata_has_data_schema = null, $metadata_data_schema_id = null, $metadata_data_schema_name = null, $has_problems = null, $file = null, $path = null, $name = null, $custom_fields = null)
     {
-        return $this->designsUpdateAsyncWithHttpInfo($id, $tenant_id, $metadata_fonts, $metadata_surfaces, $metadata_has_data_schema, $metadata_data_schema_id, $metadata_data_schema_name, $has_problems, $file, $path, $name, $custom_fields)
+        return $this->designsUpdateAsyncWithHttpInfo($id, $tenant_id, $metadata_fonts, $metadata_surfaces, $metadata_print_areas, $metadata_has_data_schema, $metadata_data_schema_id, $metadata_data_schema_name, $has_problems, $file, $path, $name, $custom_fields)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -6458,15 +7361,16 @@ class DesignsApi
     /**
      * Operation designsUpdateAsyncWithHttpInfo
      *
-     * Updates specified entity
+     * Updates the specified entity.
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\DesignFontMetadata[] $metadata_fonts Design font metadata list (optional)
-     * @param  \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[] $metadata_surfaces Design surface metadata list (optional)
-     * @param  bool $metadata_has_data_schema Indicates whether design has data schema (optional)
-     * @param  string $metadata_data_schema_id Design data schema id. Empty string for embedded schema (optional)
-     * @param  string $metadata_data_schema_name Design data schema name (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignFontMetadata[] $metadata_fonts Design font metadata list. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[] $metadata_surfaces Design surface metadata list. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignPrintAreaMetadata[] $metadata_print_areas Design print area metadata list. (optional)
+     * @param  bool $metadata_has_data_schema Indicates whether design has data schema. (optional)
+     * @param  string $metadata_data_schema_id Design data schema identifier. Empty string for embedded schema. (optional)
+     * @param  string $metadata_data_schema_name Design data schema name. (optional)
      * @param  bool $has_problems Indicates whether design has any problems preventing normal processing, e.g. missing font etc. (optional)
      * @param  \SplFileObject $file Entity file content (optional)
      * @param  string $path Parent folder full path (optional)
@@ -6476,10 +7380,10 @@ class DesignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function designsUpdateAsyncWithHttpInfo($id, $tenant_id = null, $metadata_fonts = null, $metadata_surfaces = null, $metadata_has_data_schema = null, $metadata_data_schema_id = null, $metadata_data_schema_name = null, $has_problems = null, $file = null, $path = null, $name = null, $custom_fields = null)
+    public function designsUpdateAsyncWithHttpInfo($id, $tenant_id = null, $metadata_fonts = null, $metadata_surfaces = null, $metadata_print_areas = null, $metadata_has_data_schema = null, $metadata_data_schema_id = null, $metadata_data_schema_name = null, $has_problems = null, $file = null, $path = null, $name = null, $custom_fields = null)
     {
         $returnType = '\Aurigma\AssetStorage\Model\DesignDto';
-        $request = $this->designsUpdateRequest($id, $tenant_id, $metadata_fonts, $metadata_surfaces, $metadata_has_data_schema, $metadata_data_schema_id, $metadata_data_schema_name, $has_problems, $file, $path, $name, $custom_fields);
+        $request = $this->designsUpdateRequest($id, $tenant_id, $metadata_fonts, $metadata_surfaces, $metadata_print_areas, $metadata_has_data_schema, $metadata_data_schema_id, $metadata_data_schema_name, $has_problems, $file, $path, $name, $custom_fields);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -6517,13 +7421,14 @@ class DesignsApi
     /**
      * Create request for operation 'designsUpdate'
      *
-     * @param  string $id Entity unique identifier (required)
+     * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\DesignFontMetadata[] $metadata_fonts Design font metadata list (optional)
-     * @param  \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[] $metadata_surfaces Design surface metadata list (optional)
-     * @param  bool $metadata_has_data_schema Indicates whether design has data schema (optional)
-     * @param  string $metadata_data_schema_id Design data schema id. Empty string for embedded schema (optional)
-     * @param  string $metadata_data_schema_name Design data schema name (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignFontMetadata[] $metadata_fonts Design font metadata list. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignSurfaceMetadata[] $metadata_surfaces Design surface metadata list. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DesignPrintAreaMetadata[] $metadata_print_areas Design print area metadata list. (optional)
+     * @param  bool $metadata_has_data_schema Indicates whether design has data schema. (optional)
+     * @param  string $metadata_data_schema_id Design data schema identifier. Empty string for embedded schema. (optional)
+     * @param  string $metadata_data_schema_name Design data schema name. (optional)
      * @param  bool $has_problems Indicates whether design has any problems preventing normal processing, e.g. missing font etc. (optional)
      * @param  \SplFileObject $file Entity file content (optional)
      * @param  string $path Parent folder full path (optional)
@@ -6533,7 +7438,7 @@ class DesignsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function designsUpdateRequest($id, $tenant_id = null, $metadata_fonts = null, $metadata_surfaces = null, $metadata_has_data_schema = null, $metadata_data_schema_id = null, $metadata_data_schema_name = null, $has_problems = null, $file = null, $path = null, $name = null, $custom_fields = null)
+    public function designsUpdateRequest($id, $tenant_id = null, $metadata_fonts = null, $metadata_surfaces = null, $metadata_print_areas = null, $metadata_has_data_schema = null, $metadata_data_schema_id = null, $metadata_data_schema_name = null, $has_problems = null, $file = null, $path = null, $name = null, $custom_fields = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -6582,6 +7487,10 @@ class DesignsApi
         // form params
         if ($metadata_surfaces !== null) {
             $formParams['metadata.surfaces'] = ObjectSerializer::toFormValue($metadata_surfaces);
+        }
+        // form params
+        if ($metadata_print_areas !== null) {
+            $formParams['metadata.printAreas'] = ObjectSerializer::toFormValue($metadata_print_areas);
         }
         // form params
         if ($metadata_has_data_schema !== null) {
@@ -6665,6 +7574,23 @@ class DesignsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -6695,11 +7621,11 @@ class DesignsApi
     /**
      * Operation designsUpdateCollection
      *
-     * Updates specified collection
+     * Updates the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -6714,11 +7640,11 @@ class DesignsApi
     /**
      * Operation designsUpdateCollectionWithHttpInfo
      *
-     * Updates specified collection
+     * Updates the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -6842,11 +7768,11 @@ class DesignsApi
     /**
      * Operation designsUpdateCollectionAsync
      *
-     * Updates specified collection
+     * Updates the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -6864,11 +7790,11 @@ class DesignsApi
     /**
      * Operation designsUpdateCollectionAsyncWithHttpInfo
      *
-     * Updates specified collection
+     * Updates the specified collection.
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -6914,9 +7840,9 @@ class DesignsApi
     /**
      * Create request for operation 'designsUpdateCollection'
      *
-     * @param  string $id Collection unique identifier (required)
+     * @param  string $id Collection identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateCollectionDto $update_collection_dto Update operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -7015,6 +7941,23 @@ class DesignsApi
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
         }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3
         $token = $this->config->getAccessToken();
@@ -7045,11 +7988,11 @@ class DesignsApi
     /**
      * Operation designsUpdateFolder
      *
-     * Updates specified folder
+     * Updates the specified folder.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -7064,11 +8007,11 @@ class DesignsApi
     /**
      * Operation designsUpdateFolderWithHttpInfo
      *
-     * Updates specified folder
+     * Updates the specified folder.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -7192,11 +8135,11 @@ class DesignsApi
     /**
      * Operation designsUpdateFolderAsync
      *
-     * Updates specified folder
+     * Updates the specified folder.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -7214,11 +8157,11 @@ class DesignsApi
     /**
      * Operation designsUpdateFolderAsyncWithHttpInfo
      *
-     * Updates specified folder
+     * Updates the specified folder.
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -7264,9 +8207,9 @@ class DesignsApi
     /**
      * Create request for operation 'designsUpdateFolder'
      *
-     * @param  string $id Folder unique identifier (required)
+     * @param  string $id Folder identifier. (required)
      * @param  int $tenant_id Tenant identifier (optional)
-     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Update operation parameters (optional)
+     * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -7364,6 +8307,23 @@ class DesignsApi
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
             $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         // aurigmafix 3

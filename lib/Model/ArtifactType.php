@@ -44,6 +44,7 @@ class ArtifactType
      */
     const TEMPORARY = 'Temporary';
     const _FINAL = 'Final';
+    const SERVICE = 'Service';
     
     /**
      * Gets allowable values of the enum
@@ -54,6 +55,7 @@ class ArtifactType
         return [
             self::TEMPORARY,
             self::_FINAL,
+            self::SERVICE,
         ];
     }
 }

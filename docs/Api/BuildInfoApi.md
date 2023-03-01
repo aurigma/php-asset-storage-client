@@ -4,8 +4,8 @@ All URIs are relative to http://localhost.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**buildInfoGetInfo()**](BuildInfoApi.md#buildInfoGetInfo) | **GET** /api/storage/v1/info | Gets assembly build info
-[**buildInfoHeadInfo()**](BuildInfoApi.md#buildInfoHeadInfo) | **HEAD** /api/storage/v1/info | Gets assembly build info
+[**buildInfoGetInfo()**](BuildInfoApi.md#buildInfoGetInfo) | **GET** /api/storage/v1/info | Returns an assembly build info.
+[**buildInfoHeadInfo()**](BuildInfoApi.md#buildInfoHeadInfo) | **HEAD** /api/storage/v1/info | Retruns an assembly build info.
 
 
 ## `buildInfoGetInfo()`
@@ -14,7 +14,7 @@ Method | HTTP request | Description
 buildInfoGetInfo(): \Aurigma\AssetStorage\Model\BuildInfoModel
 ```
 
-Gets assembly build info
+Returns an assembly build info.
 
 ### Example
 
@@ -65,7 +65,7 @@ No authorization required
 buildInfoHeadInfo()
 ```
 
-Gets assembly build info
+Retruns an assembly build info.
 
 ### Example
 

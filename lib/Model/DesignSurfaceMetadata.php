@@ -35,7 +35,7 @@ use \Aurigma\AssetStorage\ObjectSerializer;
  * DesignSurfaceMetadata Class Doc Comment
  *
  * @category Class
- * @description Design surface metadata
+ * @description Design surface metadata.
  * @package  Aurigma\AssetStorage
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -225,7 +225,7 @@ class DesignSurfaceMetadata implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets width
      *
-     * @param float|null $width Design surface width
+     * @param float|null $width Design surface width.
      *
      * @return self
      */
@@ -249,7 +249,7 @@ class DesignSurfaceMetadata implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets height
      *
-     * @param float|null $height Design surface height
+     * @param float|null $height Design surface height.
      *
      * @return self
      */
