@@ -4,12 +4,87 @@ All URIs are relative to http://localhost.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**tenantsCleanUp()**](TenantsApi.md#tenantsCleanUp) | **POST** /api/storage/v1/tenants/{id}/clean-up | Forcefully starts obsolete assets clean-up as background job.
 [**tenantsCreate()**](TenantsApi.md#tenantsCreate) | **POST** /api/storage/v1/tenants | Creates a new tenant.
 [**tenantsDelete()**](TenantsApi.md#tenantsDelete) | **DELETE** /api/storage/v1/tenants/{id} | Deletes the specified tenant.
 [**tenantsGet()**](TenantsApi.md#tenantsGet) | **GET** /api/storage/v1/tenants/{id} | Returns a tenant by ID.
 [**tenantsGetAll()**](TenantsApi.md#tenantsGetAll) | **GET** /api/storage/v1/tenants | Returns all tenants.
 [**tenantsUpdate()**](TenantsApi.md#tenantsUpdate) | **PUT** /api/storage/v1/tenants/{id} | Updates the specified tenant.
 
+
+## `tenantsCleanUp()`
+
+```php
+tenantsCleanUp($id): \Aurigma\AssetStorage\Model\StatusCodeResult
+```
+
+Forcefully starts obsolete assets clean-up as background job.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Aurigma\AssetStorage\Api\TenantsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 56; // int | Tenant identifier.
+
+try {
+    $result = $apiInstance->tenantsCleanUp($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling TenantsApi->tenantsCleanUp: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Tenant identifier. |
+
+### Return type
+
+[**\Aurigma\AssetStorage\Model\StatusCodeResult**](../Model/StatusCodeResult.md)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `tenantsCreate()`
 

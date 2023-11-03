@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**settings** | [**\Aurigma\AssetStorage\Model\TenantSettingsDto**](TenantSettingsDto.md) |  | [optional]
 **name** | **string** | Entity name | [optional]
 **custom_fields** | **array<string,mixed>** | Entity custom attributes | [optional]
 

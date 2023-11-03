@@ -1,6 +1,6 @@
 <?php
 /**
- * TenantDto
+ * BatchCopyResourcesInput
  *
  * PHP version 7.2
  *
@@ -32,10 +32,10 @@ use \ArrayAccess;
 use \Aurigma\AssetStorage\ObjectSerializer;
 
 /**
- * TenantDto Class Doc Comment
+ * BatchCopyResourcesInput Class Doc Comment
  *
  * @category Class
- * @description Tenant dto class.
+ * @description Dto class, containing parameters for batch delete resources operation
  * @package  Aurigma\AssetStorage
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -43,7 +43,7 @@ use \Aurigma\AssetStorage\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
+class BatchCopyResourcesInput implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'TenantDto';
+    protected static $openAPIModelName = 'BatchCopyResourcesInput';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,11 +60,10 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'int',
-        'settings' => '\Aurigma\AssetStorage\Model\TenantSettingsDto',
-        'name' => 'string',
-        'custom_fields' => 'array<string,mixed>',
-        'last_modified' => '\DateTime'
+        'entity_ids' => 'string[]',
+        'conflict_strategy' => '\Aurigma\AssetStorage\Model\ConflictResolvingStrategy',
+        'namespace' => 'string',
+        'source_id' => 'string'
     ];
 
     /**
@@ -75,11 +74,10 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => 'int32',
-        'settings' => null,
-        'name' => null,
-        'custom_fields' => null,
-        'last_modified' => 'date-time'
+        'entity_ids' => null,
+        'conflict_strategy' => null,
+        'namespace' => null,
+        'source_id' => null
     ];
 
     /**
@@ -109,11 +107,10 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'settings' => 'settings',
-        'name' => 'name',
-        'custom_fields' => 'customFields',
-        'last_modified' => 'lastModified'
+        'entity_ids' => 'entityIds',
+        'conflict_strategy' => 'conflictStrategy',
+        'namespace' => 'namespace',
+        'source_id' => 'sourceId'
     ];
 
     /**
@@ -122,11 +119,10 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'settings' => 'setSettings',
-        'name' => 'setName',
-        'custom_fields' => 'setCustomFields',
-        'last_modified' => 'setLastModified'
+        'entity_ids' => 'setEntityIds',
+        'conflict_strategy' => 'setConflictStrategy',
+        'namespace' => 'setNamespace',
+        'source_id' => 'setSourceId'
     ];
 
     /**
@@ -135,11 +131,10 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'settings' => 'getSettings',
-        'name' => 'getName',
-        'custom_fields' => 'getCustomFields',
-        'last_modified' => 'getLastModified'
+        'entity_ids' => 'getEntityIds',
+        'conflict_strategy' => 'getConflictStrategy',
+        'namespace' => 'getNamespace',
+        'source_id' => 'getSourceId'
     ];
 
     /**
@@ -199,11 +194,10 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = $data['id'] ?? null;
-        $this->container['settings'] = $data['settings'] ?? null;
-        $this->container['name'] = $data['name'] ?? null;
-        $this->container['custom_fields'] = $data['custom_fields'] ?? null;
-        $this->container['last_modified'] = $data['last_modified'] ?? null;
+        $this->container['entity_ids'] = $data['entity_ids'] ?? null;
+        $this->container['conflict_strategy'] = $data['conflict_strategy'] ?? null;
+        $this->container['namespace'] = $data['namespace'] ?? null;
+        $this->container['source_id'] = $data['source_id'] ?? null;
     }
 
     /**
@@ -215,6 +209,9 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['source_id'] === null) {
+            $invalidProperties[] = "'source_id' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -231,121 +228,97 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
+     * Gets entity_ids
      *
-     * @return int|null
+     * @return string[]|null
      */
-    public function getId()
+    public function getEntityIds()
     {
-        return $this->container['id'];
+        return $this->container['entity_ids'];
     }
 
     /**
-     * Sets id
+     * Sets entity_ids
      *
-     * @param int|null $id Tenant entity unique identifier.
+     * @param string[]|null $entity_ids List of entities, which are operation subjects
      *
      * @return self
      */
-    public function setId($id)
+    public function setEntityIds($entity_ids)
     {
-        $this->container['id'] = $id;
+        $this->container['entity_ids'] = $entity_ids;
 
         return $this;
     }
 
     /**
-     * Gets settings
+     * Gets conflict_strategy
      *
-     * @return \Aurigma\AssetStorage\Model\TenantSettingsDto|null
+     * @return \Aurigma\AssetStorage\Model\ConflictResolvingStrategy|null
      */
-    public function getSettings()
+    public function getConflictStrategy()
     {
-        return $this->container['settings'];
+        return $this->container['conflict_strategy'];
     }
 
     /**
-     * Sets settings
+     * Sets conflict_strategy
      *
-     * @param \Aurigma\AssetStorage\Model\TenantSettingsDto|null $settings settings
+     * @param \Aurigma\AssetStorage\Model\ConflictResolvingStrategy|null $conflict_strategy conflict_strategy
      *
      * @return self
      */
-    public function setSettings($settings)
+    public function setConflictStrategy($conflict_strategy)
     {
-        $this->container['settings'] = $settings;
+        $this->container['conflict_strategy'] = $conflict_strategy;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets namespace
      *
      * @return string|null
      */
-    public function getName()
+    public function getNamespace()
     {
-        return $this->container['name'];
+        return $this->container['namespace'];
     }
 
     /**
-     * Sets name
+     * Sets namespace
      *
-     * @param string|null $name Entity name
+     * @param string|null $namespace Resource namespace.
      *
      * @return self
      */
-    public function setName($name)
+    public function setNamespace($namespace)
     {
-        $this->container['name'] = $name;
+        $this->container['namespace'] = $namespace;
 
         return $this;
     }
 
     /**
-     * Gets custom_fields
+     * Gets source_id
      *
-     * @return array<string,mixed>|null
+     * @return string
      */
-    public function getCustomFields()
+    public function getSourceId()
     {
-        return $this->container['custom_fields'];
+        return $this->container['source_id'];
     }
 
     /**
-     * Sets custom_fields
+     * Sets source_id
      *
-     * @param array<string,mixed>|null $custom_fields Entity custom attributes
+     * @param string $source_id Resource source identifier.
      *
      * @return self
      */
-    public function setCustomFields($custom_fields)
+    public function setSourceId($source_id)
     {
-        $this->container['custom_fields'] = $custom_fields;
-
-        return $this;
-    }
-
-    /**
-     * Gets last_modified
-     *
-     * @return \DateTime|null
-     */
-    public function getLastModified()
-    {
-        return $this->container['last_modified'];
-    }
-
-    /**
-     * Sets last_modified
-     *
-     * @param \DateTime|null $last_modified Last entity modification date and time
-     *
-     * @return self
-     */
-    public function setLastModified($last_modified)
-    {
-        $this->container['last_modified'] = $last_modified;
+        $this->container['source_id'] = $source_id;
 
         return $this;
     }

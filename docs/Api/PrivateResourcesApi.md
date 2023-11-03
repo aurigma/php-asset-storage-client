@@ -4,9 +4,11 @@ All URIs are relative to http://localhost.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**privateResourcesBatchDelete()**](PrivateResourcesApi.md#privateResourcesBatchDelete) | **POST** /api/storage/v1/private-resources/batchDelete | Deletes the selected entities and folders.
+[**privateResourcesBatchCopy()**](PrivateResourcesApi.md#privateResourcesBatchCopy) | **POST** /api/storage/v1/private-resources/batchCopy | Copies the selected entities.
+[**privateResourcesBatchDelete()**](PrivateResourcesApi.md#privateResourcesBatchDelete) | **POST** /api/storage/v1/private-resources/batchDelete | Deletes the selected entities.
 [**privateResourcesBatchUpdateCustomFields()**](PrivateResourcesApi.md#privateResourcesBatchUpdateCustomFields) | **POST** /api/storage/v1/private-resources/batchUpdateCustomFields | Updates the custom fields values for selected entities.
-[**privateResourcesBatchUpdateOwner()**](PrivateResourcesApi.md#privateResourcesBatchUpdateOwner) | **POST** /api/storage/v1/private-resources/batchUpdateOwner | Updates the owner for selected entities and folders.
+[**privateResourcesBatchUpdateOwner()**](PrivateResourcesApi.md#privateResourcesBatchUpdateOwner) | **POST** /api/storage/v1/private-resources/batchUpdateOwner | Updates the owner for selected entities.
+[**privateResourcesCopy()**](PrivateResourcesApi.md#privateResourcesCopy) | **POST** /api/storage/v1/private-resources/{id} | Copies the specified entity.
 [**privateResourcesCreate()**](PrivateResourcesApi.md#privateResourcesCreate) | **POST** /api/storage/v1/private-resources | Creates a new entity.
 [**privateResourcesDelete()**](PrivateResourcesApi.md#privateResourcesDelete) | **DELETE** /api/storage/v1/private-resources/{id} | Deletes the specified entity.
 [**privateResourcesGet()**](PrivateResourcesApi.md#privateResourcesGet) | **GET** /api/storage/v1/private-resources/{id} | Returns an entity by ID.
@@ -18,13 +20,90 @@ Method | HTTP request | Description
 [**privateResourcesUpdate()**](PrivateResourcesApi.md#privateResourcesUpdate) | **PUT** /api/storage/v1/private-resources/{id} | Updates the specified entity.
 
 
+## `privateResourcesBatchCopy()`
+
+```php
+privateResourcesBatchCopy($tenant_id, $owner_id, $batch_copy_resources_input)
+```
+
+Copies the selected entities.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Aurigma\AssetStorage\Api\PrivateResourcesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$tenant_id = 56; // int | Tenant identifier
+$owner_id = 'owner_id_example'; // string
+$batch_copy_resources_input = new \Aurigma\AssetStorage\Model\BatchCopyResourcesInput(); // \Aurigma\AssetStorage\Model\BatchCopyResourcesInput | Operation parameters.
+
+try {
+    $apiInstance->privateResourcesBatchCopy($tenant_id, $owner_id, $batch_copy_resources_input);
+} catch (Exception $e) {
+    echo 'Exception when calling PrivateResourcesApi->privateResourcesBatchCopy: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tenant_id** | **int**| Tenant identifier | [optional]
+ **owner_id** | **string**|  | [optional]
+ **batch_copy_resources_input** | [**\Aurigma\AssetStorage\Model\BatchCopyResourcesInput**](../Model/BatchCopyResourcesInput.md)| Operation parameters. | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `privateResourcesBatchDelete()`
 
 ```php
 privateResourcesBatchDelete($tenant_id, $owner_id, $batch_delete_resources_input)
 ```
 
-Deletes the selected entities and folders.
+Deletes the selected entities.
 
 ### Example
 
@@ -178,7 +257,7 @@ void (empty response body)
 privateResourcesBatchUpdateOwner($old_owner_id, $tenant_id, $owner_id, $batch_update_resources_owner_input)
 ```
 
-Updates the owner for selected entities and folders.
+Updates the owner for selected entities.
 
 ### Example
 
@@ -245,6 +324,92 @@ void (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `privateResourcesCopy()`
+
+```php
+privateResourcesCopy($id, $name, $namespace, $source_id, $strategy, $tenant_id, $owner_id): \Aurigma\AssetStorage\Model\ResourceDto
+```
+
+Copies the specified entity.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: apiKey
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Aurigma\AssetStorage\Api\PrivateResourcesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | Source entity identifier.
+$name = 'name_example'; // string | Desired name.
+$namespace = 'namespace_example'; // string | Desired namespace.
+$source_id = 'source_id_example'; // string | Desired source identifier.
+$strategy = new \Aurigma\AssetStorage\Model\\Aurigma\AssetStorage\Model\ConflictResolvingStrategy(); // \Aurigma\AssetStorage\Model\ConflictResolvingStrategy | Conflict resolving strategy.
+$tenant_id = 56; // int | Tenant identifier
+$owner_id = 'owner_id_example'; // string | Private storage owner identifier.
+
+try {
+    $result = $apiInstance->privateResourcesCopy($id, $name, $namespace, $source_id, $strategy, $tenant_id, $owner_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PrivateResourcesApi->privateResourcesCopy: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| Source entity identifier. |
+ **name** | **string**| Desired name. | [optional]
+ **namespace** | **string**| Desired namespace. | [optional]
+ **source_id** | **string**| Desired source identifier. | [optional]
+ **strategy** | [**\Aurigma\AssetStorage\Model\ConflictResolvingStrategy**](../Model/.md)| Conflict resolving strategy. | [optional]
+ **tenant_id** | **int**| Tenant identifier | [optional]
+ **owner_id** | **string**| Private storage owner identifier. | [optional]
+
+### Return type
+
+[**\Aurigma\AssetStorage\Model\ResourceDto**](../Model/ResourceDto.md)
+
+### Authorization
+
+[apiKey](../../README.md#apiKey), [jwtBearer](../../README.md#jwtBearer), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [oauth2-code](../../README.md#oauth2-code), [oauth2-implicit](../../README.md#oauth2-implicit)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

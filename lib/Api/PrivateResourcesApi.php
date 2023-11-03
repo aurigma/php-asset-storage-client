@@ -115,9 +115,304 @@ class PrivateResourcesApi
     }
 
     /**
+     * Operation privateResourcesBatchCopy
+     *
+     * Copies the selected entities.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id owner_id (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchCopyResourcesInput $batch_copy_resources_input Operation parameters. (optional)
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function privateResourcesBatchCopy($tenant_id = null, $owner_id = null, $batch_copy_resources_input = null)
+    {
+        $this->privateResourcesBatchCopyWithHttpInfo($tenant_id, $owner_id, $batch_copy_resources_input);
+    }
+
+    /**
+     * Operation privateResourcesBatchCopyWithHttpInfo
+     *
+     * Copies the selected entities.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchCopyResourcesInput $batch_copy_resources_input Operation parameters. (optional)
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function privateResourcesBatchCopyWithHttpInfo($tenant_id = null, $owner_id = null, $batch_copy_resources_input = null)
+    {
+        $request = $this->privateResourcesBatchCopyRequest($tenant_id, $owner_id, $batch_copy_resources_input);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\BatchConflictDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation privateResourcesBatchCopyAsync
+     *
+     * Copies the selected entities.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchCopyResourcesInput $batch_copy_resources_input Operation parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function privateResourcesBatchCopyAsync($tenant_id = null, $owner_id = null, $batch_copy_resources_input = null)
+    {
+        return $this->privateResourcesBatchCopyAsyncWithHttpInfo($tenant_id, $owner_id, $batch_copy_resources_input)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation privateResourcesBatchCopyAsyncWithHttpInfo
+     *
+     * Copies the selected entities.
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchCopyResourcesInput $batch_copy_resources_input Operation parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function privateResourcesBatchCopyAsyncWithHttpInfo($tenant_id = null, $owner_id = null, $batch_copy_resources_input = null)
+    {
+        $returnType = '';
+        $request = $this->privateResourcesBatchCopyRequest($tenant_id, $owner_id, $batch_copy_resources_input);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'privateResourcesBatchCopy'
+     *
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id (optional)
+     * @param  \Aurigma\AssetStorage\Model\BatchCopyResourcesInput $batch_copy_resources_input Operation parameters. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function privateResourcesBatchCopyRequest($tenant_id = null, $owner_id = null, $batch_copy_resources_input = null)
+    {
+
+        $resourcePath = '/api/storage/v1/private-resources/batchCopy';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+        // query params
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['ownerId'] = $owner_id;
+            }
+        }
+
+
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($batch_copy_resources_input)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($batch_copy_resources_input));
+            } else {
+                $httpBody = $batch_copy_resources_input;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation privateResourcesBatchDelete
      *
-     * Deletes the selected entities and folders.
+     * Deletes the selected entities.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
@@ -135,7 +430,7 @@ class PrivateResourcesApi
     /**
      * Operation privateResourcesBatchDeleteWithHttpInfo
      *
-     * Deletes the selected entities and folders.
+     * Deletes the selected entities.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
@@ -197,7 +492,7 @@ class PrivateResourcesApi
     /**
      * Operation privateResourcesBatchDeleteAsync
      *
-     * Deletes the selected entities and folders.
+     * Deletes the selected entities.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
@@ -219,7 +514,7 @@ class PrivateResourcesApi
     /**
      * Operation privateResourcesBatchDeleteAsyncWithHttpInfo
      *
-     * Deletes the selected entities and folders.
+     * Deletes the selected entities.
      *
      * @param  int $tenant_id Tenant identifier (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
@@ -691,7 +986,7 @@ class PrivateResourcesApi
     /**
      * Operation privateResourcesBatchUpdateOwner
      *
-     * Updates the owner for selected entities and folders.
+     * Updates the owner for selected entities.
      *
      * @param  string $old_owner_id Source private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
@@ -710,7 +1005,7 @@ class PrivateResourcesApi
     /**
      * Operation privateResourcesBatchUpdateOwnerWithHttpInfo
      *
-     * Updates the owner for selected entities and folders.
+     * Updates the owner for selected entities.
      *
      * @param  string $old_owner_id Source private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
@@ -781,7 +1076,7 @@ class PrivateResourcesApi
     /**
      * Operation privateResourcesBatchUpdateOwnerAsync
      *
-     * Updates the owner for selected entities and folders.
+     * Updates the owner for selected entities.
      *
      * @param  string $old_owner_id Source private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
@@ -804,7 +1099,7 @@ class PrivateResourcesApi
     /**
      * Operation privateResourcesBatchUpdateOwnerAsyncWithHttpInfo
      *
-     * Updates the owner for selected entities and folders.
+     * Updates the owner for selected entities.
      *
      * @param  string $old_owner_id Source private storage owner identifier. (optional)
      * @param  int $tenant_id Tenant identifier (optional)
@@ -919,6 +1214,442 @@ class PrivateResourcesApi
                 $httpBody = $batch_update_resources_owner_input;
             }
         } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        // aurigmafix 6
+                        if (gettype($formParamValueItem) === 'object') {
+                            if (!($formParamValueItem instanceof StreamInterface 
+                            || $formParamValueItem instanceof \Iterator 
+                            || method_exists($formParamValueItem, '__toString'))) {
+                                $formParamValueItem = json_encode($formParamValueItem);
+                            }
+                        } 
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        // aurigmafix 3
+        $token = $this->config->getAccessToken();
+        if ($token !== null && $token !== '' && !ctype_space($token)) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation privateResourcesCopy
+     *
+     * Copies the specified entity.
+     *
+     * @param  string $id Source entity identifier. (required)
+     * @param  string $name Desired name. (optional)
+     * @param  string $namespace Desired namespace. (optional)
+     * @param  string $source_id Desired source identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Aurigma\AssetStorage\Model\ResourceDto|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
+     */
+    public function privateResourcesCopy($id, $name = null, $namespace = null, $source_id = null, $strategy = null, $tenant_id = null, $owner_id = null)
+    {
+        list($response) = $this->privateResourcesCopyWithHttpInfo($id, $name, $namespace, $source_id, $strategy, $tenant_id, $owner_id);
+        return $response;
+    }
+
+    /**
+     * Operation privateResourcesCopyWithHttpInfo
+     *
+     * Copies the specified entity.
+     *
+     * @param  string $id Source entity identifier. (required)
+     * @param  string $name Desired name. (optional)
+     * @param  string $namespace Desired namespace. (optional)
+     * @param  string $source_id Desired source identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Aurigma\AssetStorage\Model\ResourceDto|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function privateResourcesCopyWithHttpInfo($id, $name = null, $namespace = null, $source_id = null, $strategy = null, $tenant_id = null, $owner_id = null)
+    {
+        $request = $this->privateResourcesCopyRequest($id, $name, $namespace, $source_id, $strategy, $tenant_id, $owner_id);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 201:
+                    if ('\Aurigma\AssetStorage\Model\ResourceDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ResourceDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\AssetStorage\Model\NameConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\NameConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Aurigma\AssetStorage\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Aurigma\AssetStorage\Model\ResourceDto';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\ResourceDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\NameConflictDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation privateResourcesCopyAsync
+     *
+     * Copies the specified entity.
+     *
+     * @param  string $id Source entity identifier. (required)
+     * @param  string $name Desired name. (optional)
+     * @param  string $namespace Desired namespace. (optional)
+     * @param  string $source_id Desired source identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function privateResourcesCopyAsync($id, $name = null, $namespace = null, $source_id = null, $strategy = null, $tenant_id = null, $owner_id = null)
+    {
+        return $this->privateResourcesCopyAsyncWithHttpInfo($id, $name, $namespace, $source_id, $strategy, $tenant_id, $owner_id)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation privateResourcesCopyAsyncWithHttpInfo
+     *
+     * Copies the specified entity.
+     *
+     * @param  string $id Source entity identifier. (required)
+     * @param  string $name Desired name. (optional)
+     * @param  string $namespace Desired namespace. (optional)
+     * @param  string $source_id Desired source identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function privateResourcesCopyAsyncWithHttpInfo($id, $name = null, $namespace = null, $source_id = null, $strategy = null, $tenant_id = null, $owner_id = null)
+    {
+        $returnType = '\Aurigma\AssetStorage\Model\ResourceDto';
+        $request = $this->privateResourcesCopyRequest($id, $name, $namespace, $source_id, $strategy, $tenant_id, $owner_id);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'privateResourcesCopy'
+     *
+     * @param  string $id Source entity identifier. (required)
+     * @param  string $name Desired name. (optional)
+     * @param  string $namespace Desired namespace. (optional)
+     * @param  string $source_id Desired source identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
+     * @param  int $tenant_id Tenant identifier (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function privateResourcesCopyRequest($id, $name = null, $namespace = null, $source_id = null, $strategy = null, $tenant_id = null, $owner_id = null)
+    {
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling privateResourcesCopy'
+            );
+        }
+
+        $resourcePath = '/api/storage/v1/private-resources/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        if ($name !== null) {
+            if('form' === 'form' && is_array($name)) {
+                foreach($name as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['name'] = $name;
+            }
+        }
+        // query params
+        if ($namespace !== null) {
+            if('form' === 'form' && is_array($namespace)) {
+                foreach($namespace as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['namespace'] = $namespace;
+            }
+        }
+        // query params
+        if ($source_id !== null) {
+            if('form' === 'form' && is_array($source_id)) {
+                foreach($source_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['sourceId'] = $source_id;
+            }
+        }
+        // query params
+        if ($strategy !== null) {
+            if('form' === 'form' && is_array($strategy)) {
+                foreach($strategy as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['strategy'] = $strategy;
+            }
+        }
+        // query params
+        if ($tenant_id !== null) {
+            if('form' === 'form' && is_array($tenant_id)) {
+                foreach($tenant_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['tenantId'] = $tenant_id;
+            }
+        }
+        // query params
+        if ($owner_id !== null) {
+            if('form' === 'form' && is_array($owner_id)) {
+                foreach($owner_id as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            }
+            else {
+                $queryParams['ownerId'] = $owner_id;
+            }
+        }
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

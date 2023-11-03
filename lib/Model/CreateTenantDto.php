@@ -35,7 +35,7 @@ use \Aurigma\AssetStorage\ObjectSerializer;
  * CreateTenantDto Class Doc Comment
  *
  * @category Class
- * @description Dto class, containing create operation parameters for tenant entity
+ * @description Dto class, containing create operation parameters for tenant entity.
  * @package  Aurigma\AssetStorage
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -61,6 +61,7 @@ class CreateTenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'id' => 'int',
+        'settings' => '\Aurigma\AssetStorage\Model\TenantSettingsDto',
         'name' => 'string',
         'custom_fields' => 'array<string,mixed>'
     ];
@@ -74,6 +75,7 @@ class CreateTenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'id' => 'int32',
+        'settings' => null,
         'name' => null,
         'custom_fields' => null
     ];
@@ -106,6 +108,7 @@ class CreateTenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'id' => 'id',
+        'settings' => 'settings',
         'name' => 'name',
         'custom_fields' => 'customFields'
     ];
@@ -117,6 +120,7 @@ class CreateTenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'id' => 'setId',
+        'settings' => 'setSettings',
         'name' => 'setName',
         'custom_fields' => 'setCustomFields'
     ];
@@ -128,6 +132,7 @@ class CreateTenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'id' => 'getId',
+        'settings' => 'getSettings',
         'name' => 'getName',
         'custom_fields' => 'getCustomFields'
     ];
@@ -190,6 +195,7 @@ class CreateTenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->container['id'] = $data['id'] ?? null;
+        $this->container['settings'] = $data['settings'] ?? null;
         $this->container['name'] = $data['name'] ?? null;
         $this->container['custom_fields'] = $data['custom_fields'] ?? null;
     }
@@ -241,13 +247,37 @@ class CreateTenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets id
      *
-     * @param int $id Tenant entity unique identifier
+     * @param int $id Tenant entity desired identifier.
      *
      * @return self
      */
     public function setId($id)
     {
         $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets settings
+     *
+     * @return \Aurigma\AssetStorage\Model\TenantSettingsDto|null
+     */
+    public function getSettings()
+    {
+        return $this->container['settings'];
+    }
+
+    /**
+     * Sets settings
+     *
+     * @param \Aurigma\AssetStorage\Model\TenantSettingsDto|null $settings settings
+     *
+     * @return self
+     */
+    public function setSettings($settings)
+    {
+        $this->container['settings'] = $settings;
 
         return $this;
     }

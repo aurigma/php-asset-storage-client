@@ -1,6 +1,6 @@
 <?php
 /**
- * TenantDto
+ * TenantSettingsDto
  *
  * PHP version 7.2
  *
@@ -32,10 +32,10 @@ use \ArrayAccess;
 use \Aurigma\AssetStorage\ObjectSerializer;
 
 /**
- * TenantDto Class Doc Comment
+ * TenantSettingsDto Class Doc Comment
  *
  * @category Class
- * @description Tenant dto class.
+ * @description Tenant settings DTO class.
  * @package  Aurigma\AssetStorage
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -43,7 +43,7 @@ use \Aurigma\AssetStorage\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
+class TenantSettingsDto implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'TenantDto';
+    protected static $openAPIModelName = 'TenantSettingsDto';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,11 +60,8 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'int',
-        'settings' => '\Aurigma\AssetStorage\Model\TenantSettingsDto',
-        'name' => 'string',
-        'custom_fields' => 'array<string,mixed>',
-        'last_modified' => '\DateTime'
+        'enable_assets_retention' => 'bool',
+        'assets_retention_period_in_days' => 'int'
     ];
 
     /**
@@ -75,11 +72,8 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => 'int32',
-        'settings' => null,
-        'name' => null,
-        'custom_fields' => null,
-        'last_modified' => 'date-time'
+        'enable_assets_retention' => null,
+        'assets_retention_period_in_days' => 'int32'
     ];
 
     /**
@@ -109,11 +103,8 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'settings' => 'settings',
-        'name' => 'name',
-        'custom_fields' => 'customFields',
-        'last_modified' => 'lastModified'
+        'enable_assets_retention' => 'enableAssetsRetention',
+        'assets_retention_period_in_days' => 'assetsRetentionPeriodInDays'
     ];
 
     /**
@@ -122,11 +113,8 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'settings' => 'setSettings',
-        'name' => 'setName',
-        'custom_fields' => 'setCustomFields',
-        'last_modified' => 'setLastModified'
+        'enable_assets_retention' => 'setEnableAssetsRetention',
+        'assets_retention_period_in_days' => 'setAssetsRetentionPeriodInDays'
     ];
 
     /**
@@ -135,11 +123,8 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'settings' => 'getSettings',
-        'name' => 'getName',
-        'custom_fields' => 'getCustomFields',
-        'last_modified' => 'getLastModified'
+        'enable_assets_retention' => 'getEnableAssetsRetention',
+        'assets_retention_period_in_days' => 'getAssetsRetentionPeriodInDays'
     ];
 
     /**
@@ -199,11 +184,8 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = $data['id'] ?? null;
-        $this->container['settings'] = $data['settings'] ?? null;
-        $this->container['name'] = $data['name'] ?? null;
-        $this->container['custom_fields'] = $data['custom_fields'] ?? null;
-        $this->container['last_modified'] = $data['last_modified'] ?? null;
+        $this->container['enable_assets_retention'] = $data['enable_assets_retention'] ?? null;
+        $this->container['assets_retention_period_in_days'] = $data['assets_retention_period_in_days'] ?? null;
     }
 
     /**
@@ -231,121 +213,49 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
+     * Gets enable_assets_retention
+     *
+     * @return bool|null
+     */
+    public function getEnableAssetsRetention()
+    {
+        return $this->container['enable_assets_retention'];
+    }
+
+    /**
+     * Sets enable_assets_retention
+     *
+     * @param bool|null $enable_assets_retention Indicates if specific assets should be removed after a retention period.
+     *
+     * @return self
+     */
+    public function setEnableAssetsRetention($enable_assets_retention)
+    {
+        $this->container['enable_assets_retention'] = $enable_assets_retention;
+
+        return $this;
+    }
+
+    /**
+     * Gets assets_retention_period_in_days
      *
      * @return int|null
      */
-    public function getId()
+    public function getAssetsRetentionPeriodInDays()
     {
-        return $this->container['id'];
+        return $this->container['assets_retention_period_in_days'];
     }
 
     /**
-     * Sets id
+     * Sets assets_retention_period_in_days
      *
-     * @param int|null $id Tenant entity unique identifier.
+     * @param int|null $assets_retention_period_in_days Period of assets retention in days.
      *
      * @return self
      */
-    public function setId($id)
+    public function setAssetsRetentionPeriodInDays($assets_retention_period_in_days)
     {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets settings
-     *
-     * @return \Aurigma\AssetStorage\Model\TenantSettingsDto|null
-     */
-    public function getSettings()
-    {
-        return $this->container['settings'];
-    }
-
-    /**
-     * Sets settings
-     *
-     * @param \Aurigma\AssetStorage\Model\TenantSettingsDto|null $settings settings
-     *
-     * @return self
-     */
-    public function setSettings($settings)
-    {
-        $this->container['settings'] = $settings;
-
-        return $this;
-    }
-
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Entity name
-     *
-     * @return self
-     */
-    public function setName($name)
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets custom_fields
-     *
-     * @return array<string,mixed>|null
-     */
-    public function getCustomFields()
-    {
-        return $this->container['custom_fields'];
-    }
-
-    /**
-     * Sets custom_fields
-     *
-     * @param array<string,mixed>|null $custom_fields Entity custom attributes
-     *
-     * @return self
-     */
-    public function setCustomFields($custom_fields)
-    {
-        $this->container['custom_fields'] = $custom_fields;
-
-        return $this;
-    }
-
-    /**
-     * Gets last_modified
-     *
-     * @return \DateTime|null
-     */
-    public function getLastModified()
-    {
-        return $this->container['last_modified'];
-    }
-
-    /**
-     * Sets last_modified
-     *
-     * @param \DateTime|null $last_modified Last entity modification date and time
-     *
-     * @return self
-     */
-    public function setLastModified($last_modified)
-    {
-        $this->container['last_modified'] = $last_modified;
+        $this->container['assets_retention_period_in_days'] = $assets_retention_period_in_days;
 
         return $this;
     }

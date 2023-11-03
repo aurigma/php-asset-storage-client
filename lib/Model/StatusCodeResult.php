@@ -1,6 +1,6 @@
 <?php
 /**
- * TenantDto
+ * StatusCodeResult
  *
  * PHP version 7.2
  *
@@ -32,10 +32,9 @@ use \ArrayAccess;
 use \Aurigma\AssetStorage\ObjectSerializer;
 
 /**
- * TenantDto Class Doc Comment
+ * StatusCodeResult Class Doc Comment
  *
  * @category Class
- * @description Tenant dto class.
  * @package  Aurigma\AssetStorage
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -43,7 +42,7 @@ use \Aurigma\AssetStorage\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
+class StatusCodeResult implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +51,7 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'TenantDto';
+    protected static $openAPIModelName = 'StatusCodeResult';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,11 +59,7 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'int',
-        'settings' => '\Aurigma\AssetStorage\Model\TenantSettingsDto',
-        'name' => 'string',
-        'custom_fields' => 'array<string,mixed>',
-        'last_modified' => '\DateTime'
+        'status_code' => 'int'
     ];
 
     /**
@@ -75,11 +70,7 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => 'int32',
-        'settings' => null,
-        'name' => null,
-        'custom_fields' => null,
-        'last_modified' => 'date-time'
+        'status_code' => 'int32'
     ];
 
     /**
@@ -109,11 +100,7 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'settings' => 'settings',
-        'name' => 'name',
-        'custom_fields' => 'customFields',
-        'last_modified' => 'lastModified'
+        'status_code' => 'statusCode'
     ];
 
     /**
@@ -122,11 +109,7 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'settings' => 'setSettings',
-        'name' => 'setName',
-        'custom_fields' => 'setCustomFields',
-        'last_modified' => 'setLastModified'
+        'status_code' => 'setStatusCode'
     ];
 
     /**
@@ -135,11 +118,7 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'settings' => 'getSettings',
-        'name' => 'getName',
-        'custom_fields' => 'getCustomFields',
-        'last_modified' => 'getLastModified'
+        'status_code' => 'getStatusCode'
     ];
 
     /**
@@ -199,11 +178,7 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = $data['id'] ?? null;
-        $this->container['settings'] = $data['settings'] ?? null;
-        $this->container['name'] = $data['name'] ?? null;
-        $this->container['custom_fields'] = $data['custom_fields'] ?? null;
-        $this->container['last_modified'] = $data['last_modified'] ?? null;
+        $this->container['status_code'] = $data['status_code'] ?? null;
     }
 
     /**
@@ -231,121 +206,25 @@ class TenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
+     * Gets status_code
      *
      * @return int|null
      */
-    public function getId()
+    public function getStatusCode()
     {
-        return $this->container['id'];
+        return $this->container['status_code'];
     }
 
     /**
-     * Sets id
+     * Sets status_code
      *
-     * @param int|null $id Tenant entity unique identifier.
+     * @param int|null $status_code status_code
      *
      * @return self
      */
-    public function setId($id)
+    public function setStatusCode($status_code)
     {
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets settings
-     *
-     * @return \Aurigma\AssetStorage\Model\TenantSettingsDto|null
-     */
-    public function getSettings()
-    {
-        return $this->container['settings'];
-    }
-
-    /**
-     * Sets settings
-     *
-     * @param \Aurigma\AssetStorage\Model\TenantSettingsDto|null $settings settings
-     *
-     * @return self
-     */
-    public function setSettings($settings)
-    {
-        $this->container['settings'] = $settings;
-
-        return $this;
-    }
-
-    /**
-     * Gets name
-     *
-     * @return string|null
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string|null $name Entity name
-     *
-     * @return self
-     */
-    public function setName($name)
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets custom_fields
-     *
-     * @return array<string,mixed>|null
-     */
-    public function getCustomFields()
-    {
-        return $this->container['custom_fields'];
-    }
-
-    /**
-     * Sets custom_fields
-     *
-     * @param array<string,mixed>|null $custom_fields Entity custom attributes
-     *
-     * @return self
-     */
-    public function setCustomFields($custom_fields)
-    {
-        $this->container['custom_fields'] = $custom_fields;
-
-        return $this;
-    }
-
-    /**
-     * Gets last_modified
-     *
-     * @return \DateTime|null
-     */
-    public function getLastModified()
-    {
-        return $this->container['last_modified'];
-    }
-
-    /**
-     * Sets last_modified
-     *
-     * @param \DateTime|null $last_modified Last entity modification date and time
-     *
-     * @return self
-     */
-    public function setLastModified($last_modified)
-    {
-        $this->container['last_modified'] = $last_modified;
+        $this->container['status_code'] = $status_code;
 
         return $this;
     }
