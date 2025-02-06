@@ -6,7 +6,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | ------------- | ------------- | ------------- |
 | [**artifactsCreate()**](ArtifactsApi.md#artifactsCreate) | **POST** /api/storage/v1/artifacts | Creates a new entity. |
 | [**artifactsDelete()**](ArtifactsApi.md#artifactsDelete) | **DELETE** /api/storage/v1/artifacts/{id} | Deletes the specified entity. |
-| [**artifactsDeleteGroup()**](ArtifactsApi.md#artifactsDeleteGroup) | **DELETE** /api/storage/v1/artifacts/group/{group} | Deletes all entities with specified group. |
+| [**artifactsDeleteGroup()**](ArtifactsApi.md#artifactsDeleteGroup) | **DELETE** /api/storage/v1/artifacts/groups/{group} | Deletes all entities within the specified group. |
 | [**artifactsGet()**](ArtifactsApi.md#artifactsGet) | **GET** /api/storage/v1/artifacts/{id} | Returns an entity by ID. |
 | [**artifactsGetAll()**](ArtifactsApi.md#artifactsGetAll) | **GET** /api/storage/v1/artifacts | Returns all entities relevant to specified query parameters. |
 | [**artifactsGetFile()**](ArtifactsApi.md#artifactsGetFile) | **GET** /api/storage/v1/artifacts/{id}/file | Returns an entity file from file storage. |
@@ -17,7 +17,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 ## `artifactsCreate()`
 
 ```php
-artifactsCreate($name, $tenant_id, $file, $description, $group, $alias, $type, $format, $anonymous_access, $custom_fields): \Aurigma\AssetStorage\Model\ArtifactDto
+artifactsCreate($file, $name, $tenant_id, $description, $group, $alias, $type, $format, $anonymous_access, $custom_fields): \Aurigma\AssetStorage\Model\ArtifactDto
 ```
 
 Creates a new entity.
@@ -55,19 +55,19 @@ $apiInstance = new Aurigma\AssetStorage\Api\ArtifactsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$name = 'name_example'; // string | Entity name
-$tenant_id = 56; // int | Tenant identifier
-$file = "/path/to/file.txt"; // \SplFileObject | Entity file content.
+$file = "/path/to/file.txt"; // \SplFileObject | File content.
+$name = 'name_example'; // string | Entity name.
+$tenant_id = 56; // int | Tenant identifier.
 $description = 'description_example'; // string | Artifact description.
 $group = 'group_example'; // string | Artifact group.
 $alias = 'alias_example'; // string | Artifact alias (special name within group).
 $type = new \Aurigma\AssetStorage\Model\ArtifactType(); // \Aurigma\AssetStorage\Model\ArtifactType
 $format = 'format_example'; // string | Artifact file format.
 $anonymous_access = True; // bool | Artifact 'anonymous access' tag. It indicates whether artifact can be accessed anonymously.
-$custom_fields = NULL; // array<string,mixed> | Entity custom attributes
+$custom_fields = NULL; // array<string,mixed> | Entity custom attributes.
 
 try {
-    $result = $apiInstance->artifactsCreate($name, $tenant_id, $file, $description, $group, $alias, $type, $format, $anonymous_access, $custom_fields);
+    $result = $apiInstance->artifactsCreate($file, $name, $tenant_id, $description, $group, $alias, $type, $format, $anonymous_access, $custom_fields);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ArtifactsApi->artifactsCreate: ', $e->getMessage(), PHP_EOL;
@@ -78,16 +78,16 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **name** | **string**| Entity name | |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| Entity file content. | [optional] |
+| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | |
+| **name** | **string**| Entity name. | |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
 | **description** | **string**| Artifact description. | [optional] |
 | **group** | **string**| Artifact group. | [optional] |
 | **alias** | **string**| Artifact alias (special name within group). | [optional] |
 | **type** | [**\Aurigma\AssetStorage\Model\ArtifactType**](../Model/ArtifactType.md)|  | [optional] |
 | **format** | **string**| Artifact file format. | [optional] |
 | **anonymous_access** | **bool**| Artifact &#39;anonymous access&#39; tag. It indicates whether artifact can be accessed anonymously. | [optional] |
-| **custom_fields** | [**array<string,mixed>**](../Model/array.md)| Entity custom attributes | [optional] |
+| **custom_fields** | [**array<string,mixed>**](../Model/array.md)| Entity custom attributes. | [optional] |
 
 ### Return type
 
@@ -148,7 +148,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\ArtifactsApi(
     $config
 );
 $id = 'id_example'; // string | Entity identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant identifier.
 
 try {
     $result = $apiInstance->artifactsDelete($id, $tenant_id);
@@ -163,7 +163,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Entity identifier. | |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
 
 ### Return type
 
@@ -188,7 +188,7 @@ try {
 artifactsDeleteGroup($group, $tenant_id)
 ```
 
-Deletes all entities with specified group.
+Deletes all entities within the specified group.
 
 ### Example
 
@@ -224,7 +224,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\ArtifactsApi(
     $config
 );
 $group = 'group_example'; // string | Group name.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant identifier.
 
 try {
     $apiInstance->artifactsDeleteGroup($group, $tenant_id);
@@ -238,7 +238,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **group** | **string**| Group name. | |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
 
 ### Return type
 
@@ -299,7 +299,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\ArtifactsApi(
     $config
 );
 $id = 'id_example'; // string | Entity identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant identifier.
 
 try {
     $result = $apiInstance->artifactsGet($id, $tenant_id);
@@ -314,7 +314,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Entity identifier. | |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
 
 ### Return type
 
@@ -374,15 +374,15 @@ $apiInstance = new Aurigma\AssetStorage\Api\ArtifactsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$group = 'group_example'; // string | Artifact group filter
-$alias = 'alias_example'; // string | Artifact alias(special name within group) filter
-$type = new \Aurigma\AssetStorage\Model\ArtifactType(); // ArtifactType | Artifact type filter
-$skip = 56; // int | Defines page start offset from beginning of sorted result list
-$take = 56; // int | Defines page length (how much consequent items of sorted result list should be taken)
-$sorting = 'sorting_example'; // string | Defines sorting order of result list e.g.: \"Title ASC, LastModified DESC\"
-$search = 'search_example'; // string | Search string for partial match
-$custom_fields = 'custom_fields_example'; // string | Custom attributes dictionary filter. For example: `{\"public\":\"true\",\"name\":\"my item\"}`
-$tenant_id = 56; // int | Tenant identifier
+$group = 'group_example'; // string | Artifact group filter.
+$alias = 'alias_example'; // string | Artifact alias(special name within group) filter.
+$type = new \Aurigma\AssetStorage\Model\ArtifactType(); // ArtifactType | Artifact type filter.
+$skip = 56; // int | Defines page start offset from beginning of sorted result list.
+$take = 56; // int | Defines page length (how much consequent items of sorted result list should be taken).
+$sorting = 'sorting_example'; // string | Defines sorting order of result list e.g.: \"Title ASC, LastModified DESC\".
+$search = 'search_example'; // string | Search string for partial match.
+$custom_fields = 'custom_fields_example'; // string | Custom attributes dictionary filter. For example: `{\"public\":\"true\",\"name\":\"my item\"}`.
+$tenant_id = 56; // int | Tenant identifier.
 
 try {
     $result = $apiInstance->artifactsGetAll($group, $alias, $type, $skip, $take, $sorting, $search, $custom_fields, $tenant_id);
@@ -396,15 +396,15 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **group** | **string**| Artifact group filter | [optional] |
-| **alias** | **string**| Artifact alias(special name within group) filter | [optional] |
-| **type** | [**ArtifactType**](../Model/.md)| Artifact type filter | [optional] |
-| **skip** | **int**| Defines page start offset from beginning of sorted result list | [optional] |
-| **take** | **int**| Defines page length (how much consequent items of sorted result list should be taken) | [optional] |
-| **sorting** | **string**| Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; | [optional] |
-| **search** | **string**| Search string for partial match | [optional] |
-| **custom_fields** | **string**| Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **group** | **string**| Artifact group filter. | [optional] |
+| **alias** | **string**| Artifact alias(special name within group) filter. | [optional] |
+| **type** | [**ArtifactType**](../Model/.md)| Artifact type filter. | [optional] |
+| **skip** | **int**| Defines page start offset from beginning of sorted result list. | [optional] |
+| **take** | **int**| Defines page length (how much consequent items of sorted result list should be taken). | [optional] |
+| **sorting** | **string**| Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. | [optional] |
+| **search** | **string**| Search string for partial match. | [optional] |
+| **custom_fields** | **string**| Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. | [optional] |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
 
 ### Return type
 
@@ -466,7 +466,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\ArtifactsApi(
 );
 $id = 'id_example'; // string | Entity identifier.
 $attachment = True; // bool | Indicates if file should be provided as an attachment with proper filename supplied (default value is 'false').
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant identifier.
 
 try {
     $result = $apiInstance->artifactsGetFile($id, $attachment, $tenant_id);
@@ -482,7 +482,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Entity identifier. | |
 | **attachment** | **bool**| Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
 
 ### Return type
 
@@ -495,7 +495,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/octet-stream`
+- **Accept**: `application/octet-stream`, `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -542,7 +542,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\ArtifactsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant identifier.
 
 try {
     $result = $apiInstance->artifactsGetFileStorageInfo($tenant_id);
@@ -556,7 +556,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
 
 ### Return type
 
@@ -617,15 +617,15 @@ $apiInstance = new Aurigma\AssetStorage\Api\ArtifactsApi(
     $config
 );
 $id = 'id_example'; // string | Entity identifier.
-$tenant_id = 56; // int | Tenant identifier
-$file = "/path/to/file.txt"; // \SplFileObject | Entity file content.
+$tenant_id = 56; // int | Tenant identifier.
+$file = "/path/to/file.txt"; // \SplFileObject | File content.
 $description = 'description_example'; // string | Artifact description.
 $alias = 'alias_example'; // string | Artifact alias (special name within group).
 $type = new \Aurigma\AssetStorage\Model\ArtifactType(); // \Aurigma\AssetStorage\Model\ArtifactType
 $format = 'format_example'; // string | Artifact file format.
 $anonymous_access = True; // bool | Artifact 'anonymous access' tag. It indicates whether artifact can be accessed anonymously.
-$name = 'name_example'; // string | Entity name
-$custom_fields = NULL; // array<string,mixed> | Entity custom attributes
+$name = 'name_example'; // string | Entity name.
+$custom_fields = NULL; // array<string,mixed> | Entity custom attributes.
 
 try {
     $result = $apiInstance->artifactsUpdate($id, $tenant_id, $file, $description, $alias, $type, $format, $anonymous_access, $name, $custom_fields);
@@ -640,15 +640,15 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Entity identifier. | |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| Entity file content. | [optional] |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
+| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | [optional] |
 | **description** | **string**| Artifact description. | [optional] |
 | **alias** | **string**| Artifact alias (special name within group). | [optional] |
 | **type** | [**\Aurigma\AssetStorage\Model\ArtifactType**](../Model/ArtifactType.md)|  | [optional] |
 | **format** | **string**| Artifact file format. | [optional] |
 | **anonymous_access** | **bool**| Artifact &#39;anonymous access&#39; tag. It indicates whether artifact can be accessed anonymously. | [optional] |
-| **name** | **string**| Entity name | [optional] |
-| **custom_fields** | [**array<string,mixed>**](../Model/array.md)| Entity custom attributes | [optional] |
+| **name** | **string**| Entity name. | [optional] |
+| **custom_fields** | [**array<string,mixed>**](../Model/array.md)| Entity custom attributes. | [optional] |
 
 ### Return type
 

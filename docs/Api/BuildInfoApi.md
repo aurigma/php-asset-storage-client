@@ -5,7 +5,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**buildInfoGetInfo()**](BuildInfoApi.md#buildInfoGetInfo) | **GET** /api/storage/v1/info | Returns an assembly build info. |
-| [**buildInfoHeadInfo()**](BuildInfoApi.md#buildInfoHeadInfo) | **HEAD** /api/storage/v1/info | Retruns an assembly build info. |
+| [**buildInfoHeadInfo()**](BuildInfoApi.md#buildInfoHeadInfo) | **HEAD** /api/storage/v1/info | Returns an assembly build info. |
 
 
 ## `buildInfoGetInfo()`
@@ -65,7 +65,7 @@ No authorization required
 buildInfoHeadInfo()
 ```
 
-Retruns an assembly build info.
+Returns an assembly build info.
 
 ### Example
 

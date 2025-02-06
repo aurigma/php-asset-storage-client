@@ -4,11 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**fonts** | [**\Aurigma\AssetStorage\Model\DesignFontMetadata[]**](DesignFontMetadata.md) | Design font metadata list. | [optional]
-**surfaces** | [**\Aurigma\AssetStorage\Model\DesignSurfaceMetadata[]**](DesignSurfaceMetadata.md) | Design surface metadata list. | [optional]
-**print_areas** | [**\Aurigma\AssetStorage\Model\DesignPrintAreaMetadata[]**](DesignPrintAreaMetadata.md) | Design print area metadata list. | [optional]
-**has_data_schema** | **bool** | Indicates whether design has data schema. | [optional]
-**data_schema_id** | **string** | Design data schema identifier. Empty string for embedded schema. | [optional]
-**data_schema_name** | **string** | Design data schema name. | [optional]
+**fonts** | [**\Aurigma\AssetStorage\Model\DesignFontMetadata[]**](DesignFontMetadata.md) |  | [optional]
+**surfaces** | [**\Aurigma\AssetStorage\Model\DesignSurfaceMetadata[]**](DesignSurfaceMetadata.md) |  | [optional]
+**print_areas** | [**\Aurigma\AssetStorage\Model\DesignPrintAreaMetadata[]**](DesignPrintAreaMetadata.md) |  | [optional]
+**has_data_schema** | **bool** |  | [optional]
+**data_schema_id** | **string** |  | [optional]
+**data_schema_name** | **string** |  | [optional]
+**has_toggle_set** | **bool** |  | [optional]
+**toggle_set_id** | **string** |  | [optional]
+**toggle_set_name** | **string** |  | [optional]
+**has_palettes** | **bool** |  | [optional]
+**palettes** | [**\Aurigma\AssetStorage\Model\DesignPaletteMetadata[]**](DesignPaletteMetadata.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

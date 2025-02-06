@@ -4,12 +4,13 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**resourcesBatchCopy()**](ResourcesApi.md#resourcesBatchCopy) | **POST** /api/storage/v1/resources/batchCopy | Copies the selected entities. |
-| [**resourcesBatchDelete()**](ResourcesApi.md#resourcesBatchDelete) | **POST** /api/storage/v1/resources/batchDelete | Deletes the selected entities. |
-| [**resourcesBatchUpdateCustomFields()**](ResourcesApi.md#resourcesBatchUpdateCustomFields) | **POST** /api/storage/v1/resources/batchUpdateCustomFields | Updates the custom fields for selected entities. |
+| [**resourcesBatchCopy()**](ResourcesApi.md#resourcesBatchCopy) | **POST** /api/storage/v1/resources/batch-copy | Copies the specified entities. |
+| [**resourcesBatchDelete()**](ResourcesApi.md#resourcesBatchDelete) | **POST** /api/storage/v1/resources/batch-delete | Deletes the specified entities. |
+| [**resourcesBatchUpdateCustomFields()**](ResourcesApi.md#resourcesBatchUpdateCustomFields) | **POST** /api/storage/v1/resources/batch-update-custom-fields | Updates custom fields values for the specified entities. |
 | [**resourcesCopy()**](ResourcesApi.md#resourcesCopy) | **POST** /api/storage/v1/resources/{id} | Copies the specified entity. |
 | [**resourcesCreate()**](ResourcesApi.md#resourcesCreate) | **POST** /api/storage/v1/resources | Creates a new entity. |
 | [**resourcesDelete()**](ResourcesApi.md#resourcesDelete) | **DELETE** /api/storage/v1/resources/{id} | Deletes the specified entity. |
+| [**resourcesDeleteByNamespace()**](ResourcesApi.md#resourcesDeleteByNamespace) | **DELETE** /api/storage/v1/resources/namespaces/{namespace} | Deletes all resources that use a specified namespace. |
 | [**resourcesGet()**](ResourcesApi.md#resourcesGet) | **GET** /api/storage/v1/resources/{id} | Returns an entity by ID. |
 | [**resourcesGetAll()**](ResourcesApi.md#resourcesGetAll) | **GET** /api/storage/v1/resources | Returns all entities relevant to specified query parameters. |
 | [**resourcesGetFile()**](ResourcesApi.md#resourcesGetFile) | **GET** /api/storage/v1/resources/{id}/file | Returns an entity file from file storage. |
@@ -23,7 +24,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 resourcesBatchCopy($tenant_id, $batch_copy_resources_input)
 ```
 
-Copies the selected entities.
+Copies the specified entities.
 
 ### Example
 
@@ -58,7 +59,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant identifier.
 $batch_copy_resources_input = new \Aurigma\AssetStorage\Model\BatchCopyResourcesInput(); // \Aurigma\AssetStorage\Model\BatchCopyResourcesInput | Operation parameters.
 
 try {
@@ -72,7 +73,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
 | **batch_copy_resources_input** | [**\Aurigma\AssetStorage\Model\BatchCopyResourcesInput**](../Model/BatchCopyResourcesInput.md)| Operation parameters. | [optional] |
 
 ### Return type
@@ -98,7 +99,7 @@ void (empty response body)
 resourcesBatchDelete($tenant_id, $batch_delete_resources_input)
 ```
 
-Deletes the selected entities.
+Deletes the specified entities.
 
 ### Example
 
@@ -133,7 +134,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant identifier.
 $batch_delete_resources_input = new \Aurigma\AssetStorage\Model\BatchDeleteResourcesInput(); // \Aurigma\AssetStorage\Model\BatchDeleteResourcesInput | Operation parameters.
 
 try {
@@ -147,7 +148,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
 | **batch_delete_resources_input** | [**\Aurigma\AssetStorage\Model\BatchDeleteResourcesInput**](../Model/BatchDeleteResourcesInput.md)| Operation parameters. | [optional] |
 
 ### Return type
@@ -173,7 +174,7 @@ void (empty response body)
 resourcesBatchUpdateCustomFields($tenant_id, $batch_update_custom_fields_input)
 ```
 
-Updates the custom fields for selected entities.
+Updates custom fields values for the specified entities.
 
 ### Example
 
@@ -208,7 +209,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant identifier.
 $batch_update_custom_fields_input = new \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput(); // \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput | Operation parameters.
 
 try {
@@ -222,7 +223,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
 | **batch_update_custom_fields_input** | [**\Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput**](../Model/BatchUpdateCustomFieldsInput.md)| Operation parameters. | [optional] |
 
 ### Return type
@@ -288,7 +289,7 @@ $name = 'name_example'; // string | Desired name.
 $namespace = 'namespace_example'; // string | Desired namespace.
 $source_id = 'source_id_example'; // string | Desired source identifier.
 $strategy = new \Aurigma\AssetStorage\Model\ConflictResolvingStrategy(); // ConflictResolvingStrategy | Conflict resolving strategy.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant identifier.
 
 try {
     $result = $apiInstance->resourcesCopy($id, $name, $namespace, $source_id, $strategy, $tenant_id);
@@ -307,7 +308,7 @@ try {
 | **namespace** | **string**| Desired namespace. | [optional] |
 | **source_id** | **string**| Desired source identifier. | [optional] |
 | **strategy** | [**ConflictResolvingStrategy**](../Model/.md)| Conflict resolving strategy. | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
 
 ### Return type
 
@@ -329,7 +330,7 @@ try {
 ## `resourcesCreate()`
 
 ```php
-resourcesCreate($name, $tenant_id, $file, $id, $namespace, $source_id, $type, $format, $anonymous_access, $custom_fields): \Aurigma\AssetStorage\Model\ResourceDto
+resourcesCreate($file, $name, $tenant_id, $id, $namespace, $source_id, $type, $format, $anonymous_access, $custom_fields): \Aurigma\AssetStorage\Model\ResourceDto
 ```
 
 Creates a new entity.
@@ -367,19 +368,19 @@ $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$name = 'name_example'; // string | Entity name
-$tenant_id = 56; // int | Tenant identifier
-$file = "/path/to/file.txt"; // \SplFileObject | Entity file content.
+$file = "/path/to/file.txt"; // \SplFileObject | File content.
+$name = 'name_example'; // string | Entity name.
+$tenant_id = 56; // int | Tenant identifier.
 $id = 'id_example'; // string | Desired unique identifier for new resource.
 $namespace = 'namespace_example'; // string | Resource namespace.
 $source_id = 'source_id_example'; // string | Resource source identifier.
 $type = 'type_example'; // string | Resource type.
 $format = 'format_example'; // string | Resource file format.
 $anonymous_access = True; // bool | Resource 'anonymous access' tag. It indicates whether resource can be accessed anonymously.
-$custom_fields = NULL; // array<string,mixed> | Entity custom attributes
+$custom_fields = NULL; // array<string,mixed> | Entity custom attributes.
 
 try {
-    $result = $apiInstance->resourcesCreate($name, $tenant_id, $file, $id, $namespace, $source_id, $type, $format, $anonymous_access, $custom_fields);
+    $result = $apiInstance->resourcesCreate($file, $name, $tenant_id, $id, $namespace, $source_id, $type, $format, $anonymous_access, $custom_fields);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ResourcesApi->resourcesCreate: ', $e->getMessage(), PHP_EOL;
@@ -390,16 +391,16 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **name** | **string**| Entity name | |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| Entity file content. | [optional] |
+| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | |
+| **name** | **string**| Entity name. | |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
 | **id** | **string**| Desired unique identifier for new resource. | [optional] |
 | **namespace** | **string**| Resource namespace. | [optional] |
 | **source_id** | **string**| Resource source identifier. | [optional] |
 | **type** | **string**| Resource type. | [optional] |
 | **format** | **string**| Resource file format. | [optional] |
 | **anonymous_access** | **bool**| Resource &#39;anonymous access&#39; tag. It indicates whether resource can be accessed anonymously. | [optional] |
-| **custom_fields** | [**array<string,mixed>**](../Model/array.md)| Entity custom attributes | [optional] |
+| **custom_fields** | [**array<string,mixed>**](../Model/array.md)| Entity custom attributes. | [optional] |
 
 ### Return type
 
@@ -460,7 +461,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
     $config
 );
 $id = 'id_example'; // string | Entity identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant identifier.
 
 try {
     $result = $apiInstance->resourcesDelete($id, $tenant_id);
@@ -475,11 +476,86 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Entity identifier. | |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
 
 ### Return type
 
 [**\Aurigma\AssetStorage\Model\ResourceDto**](../Model/ResourceDto.md)
+
+### Authorization
+
+[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `resourcesDeleteByNamespace()`
+
+```php
+resourcesDeleteByNamespace($namespace, $tenant_id)
+```
+
+Deletes all resources that use a specified namespace.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure OAuth2 access token for authorization: oauth2-code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: apiKey
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: jwtBearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+// Configure OAuth2 access token for authorization: oauth2-implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+
+$apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$namespace = 'namespace_example'; // string | Namespace value.
+$tenant_id = 56; // int | Tenant identifier.
+
+try {
+    $apiInstance->resourcesDeleteByNamespace($namespace, $tenant_id);
+} catch (Exception $e) {
+    echo 'Exception when calling ResourcesApi->resourcesDeleteByNamespace: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **namespace** | **string**| Namespace value. | |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
+
+### Return type
+
+void (empty response body)
 
 ### Authorization
 
@@ -536,7 +612,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
     $config
 );
 $id = 'id_example'; // string | Entity identifier.
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant identifier.
 
 try {
     $result = $apiInstance->resourcesGet($id, $tenant_id);
@@ -551,7 +627,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Entity identifier. | |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
 
 ### Return type
 
@@ -611,15 +687,15 @@ $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$namespace = 'namespace_example'; // string | Resource namespace filter
-$source_id = 'source_id_example'; // string | Resource source identifier filter
-$type = 'type_example'; // string | Resource type filter
-$skip = 56; // int | Defines page start offset from beginning of sorted result list
-$take = 56; // int | Defines page length (how much consequent items of sorted result list should be taken)
-$sorting = 'sorting_example'; // string | Defines sorting order of result list e.g.: \"Title ASC, LastModified DESC\"
-$search = 'search_example'; // string | Search string for partial match
-$custom_fields = 'custom_fields_example'; // string | Custom attributes dictionary filter. For example: `{\"public\":\"true\",\"name\":\"my item\"}`
-$tenant_id = 56; // int | Tenant identifier
+$namespace = 'namespace_example'; // string | Resource namespace filter.
+$source_id = 'source_id_example'; // string | Resource source identifier filter.
+$type = 'type_example'; // string | Resource type filter.
+$skip = 56; // int | Defines page start offset from beginning of sorted result list.
+$take = 56; // int | Defines page length (how much consequent items of sorted result list should be taken).
+$sorting = 'sorting_example'; // string | Defines sorting order of result list e.g.: \"Title ASC, LastModified DESC\".
+$search = 'search_example'; // string | Search string for partial match.
+$custom_fields = 'custom_fields_example'; // string | Custom attributes dictionary filter. For example: `{\"public\":\"true\",\"name\":\"my item\"}`.
+$tenant_id = 56; // int | Tenant identifier.
 
 try {
     $result = $apiInstance->resourcesGetAll($namespace, $source_id, $type, $skip, $take, $sorting, $search, $custom_fields, $tenant_id);
@@ -633,15 +709,15 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **namespace** | **string**| Resource namespace filter | [optional] |
-| **source_id** | **string**| Resource source identifier filter | [optional] |
-| **type** | **string**| Resource type filter | [optional] |
-| **skip** | **int**| Defines page start offset from beginning of sorted result list | [optional] |
-| **take** | **int**| Defines page length (how much consequent items of sorted result list should be taken) | [optional] |
-| **sorting** | **string**| Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; | [optional] |
-| **search** | **string**| Search string for partial match | [optional] |
-| **custom_fields** | **string**| Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **namespace** | **string**| Resource namespace filter. | [optional] |
+| **source_id** | **string**| Resource source identifier filter. | [optional] |
+| **type** | **string**| Resource type filter. | [optional] |
+| **skip** | **int**| Defines page start offset from beginning of sorted result list. | [optional] |
+| **take** | **int**| Defines page length (how much consequent items of sorted result list should be taken). | [optional] |
+| **sorting** | **string**| Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. | [optional] |
+| **search** | **string**| Search string for partial match. | [optional] |
+| **custom_fields** | **string**| Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. | [optional] |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
 
 ### Return type
 
@@ -703,7 +779,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
 );
 $id = 'id_example'; // string | Entity identifier.
 $attachment = True; // bool | Indicates if file should be provided as an attachment with proper filename supplied (default value is 'false').
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant identifier.
 
 try {
     $result = $apiInstance->resourcesGetFile($id, $attachment, $tenant_id);
@@ -719,7 +795,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Entity identifier. | |
 | **attachment** | **bool**| Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). | [optional] |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
 
 ### Return type
 
@@ -732,7 +808,7 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `application/octet-stream`
+- **Accept**: `application/octet-stream`, `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -779,7 +855,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier
+$tenant_id = 56; // int | Tenant identifier.
 
 try {
     $result = $apiInstance->resourcesGetFileStorageInfo($tenant_id);
@@ -793,7 +869,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
 
 ### Return type
 
@@ -854,15 +930,15 @@ $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
     $config
 );
 $id = 'id_example'; // string | Entity identifier.
-$tenant_id = 56; // int | Tenant identifier
-$file = "/path/to/file.txt"; // \SplFileObject | Entity file content.
+$tenant_id = 56; // int | Tenant identifier.
+$file = "/path/to/file.txt"; // \SplFileObject | File content.
 $namespace = 'namespace_example'; // string | Resource namespace.
 $source_id = 'source_id_example'; // string | Resource source identifier.
 $type = 'type_example'; // string | Resource type.
 $format = 'format_example'; // string | Resource file format.
 $anonymous_access = True; // bool | Resource 'anonymous access' tag. It indicates whether resource can be accessed anonymously.
-$name = 'name_example'; // string | Entity name
-$custom_fields = NULL; // array<string,mixed> | Entity custom attributes
+$name = 'name_example'; // string | Entity name.
+$custom_fields = NULL; // array<string,mixed> | Entity custom attributes.
 
 try {
     $result = $apiInstance->resourcesUpdate($id, $tenant_id, $file, $namespace, $source_id, $type, $format, $anonymous_access, $name, $custom_fields);
@@ -877,15 +953,15 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Entity identifier. | |
-| **tenant_id** | **int**| Tenant identifier | [optional] |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| Entity file content. | [optional] |
+| **tenant_id** | **int**| Tenant identifier. | [optional] |
+| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | [optional] |
 | **namespace** | **string**| Resource namespace. | [optional] |
 | **source_id** | **string**| Resource source identifier. | [optional] |
 | **type** | **string**| Resource type. | [optional] |
 | **format** | **string**| Resource file format. | [optional] |
 | **anonymous_access** | **bool**| Resource &#39;anonymous access&#39; tag. It indicates whether resource can be accessed anonymously. | [optional] |
-| **name** | **string**| Entity name | [optional] |
-| **custom_fields** | [**array<string,mixed>**](../Model/array.md)| Entity custom attributes | [optional] |
+| **name** | **string**| Entity name. | [optional] |
+| **custom_fields** | [**array<string,mixed>**](../Model/array.md)| Entity custom attributes. | [optional] |
 
 ### Return type
 

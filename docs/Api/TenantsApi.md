@@ -349,11 +349,11 @@ $apiInstance = new Aurigma\AssetStorage\Api\TenantsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$skip = 56; // int | Defines page start offset from beginning of sorted result list
-$take = 56; // int | Defines page length (how much consequent items of sorted result list should be taken)
-$sorting = 'sorting_example'; // string | Defines sorting order of result list e.g.: \"Title ASC, LastModified DESC\"
-$search = 'search_example'; // string | Search string for partial match
-$custom_fields = 'custom_fields_example'; // string | Custom attributes dictionary filter. For example: `{\"public\":\"true\",\"name\":\"my item\"}`
+$skip = 56; // int | Defines page start offset from beginning of sorted result list.
+$take = 56; // int | Defines page length (how much consequent items of sorted result list should be taken).
+$sorting = 'sorting_example'; // string | Defines sorting order of result list e.g.: \"Title ASC, LastModified DESC\".
+$search = 'search_example'; // string | Search string for partial match.
+$custom_fields = 'custom_fields_example'; // string | Custom attributes dictionary filter. For example: `{\"public\":\"true\",\"name\":\"my item\"}`.
 
 try {
     $result = $apiInstance->tenantsGetAll($skip, $take, $sorting, $search, $custom_fields);
@@ -367,11 +367,11 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **skip** | **int**| Defines page start offset from beginning of sorted result list | [optional] |
-| **take** | **int**| Defines page length (how much consequent items of sorted result list should be taken) | [optional] |
-| **sorting** | **string**| Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot; | [optional] |
-| **search** | **string**| Search string for partial match | [optional] |
-| **custom_fields** | **string**| Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60; | [optional] |
+| **skip** | **int**| Defines page start offset from beginning of sorted result list. | [optional] |
+| **take** | **int**| Defines page length (how much consequent items of sorted result list should be taken). | [optional] |
+| **sorting** | **string**| Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. | [optional] |
+| **search** | **string**| Search string for partial match. | [optional] |
+| **custom_fields** | **string**| Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. | [optional] |
 
 ### Return type
 
