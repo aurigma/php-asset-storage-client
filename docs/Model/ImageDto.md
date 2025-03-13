@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**metadata** | [**\Aurigma\AssetStorage\Model\ImageMetadata**](ImageMetadata.md) |  | [optional]
+**metadata** | [**\Aurigma\AssetStorage\Model\ImageDtoMetadata**](ImageDtoMetadata.md) |  | [optional]
 **private** | **bool** | Image &#39;private&#39; tag  indicates whether image is private. | [optional]
 **mime_type** | **string** | Image file associated media format type. | [optional]
 **previews** | [**array<string,\Aurigma\AssetStorage\Model\PreviewMetadata>**](PreviewMetadata.md) | Preview dictionary.  Key: %preview_namespace%-%preview_name%.  Value: \&quot;preview description\&quot;. | [optional]

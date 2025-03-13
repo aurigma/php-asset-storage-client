@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**metadata** | [**\Aurigma\AssetStorage\Model\MockupMetadataDto**](MockupMetadataDto.md) |  | [optional]
+**metadata** | [**\Aurigma\AssetStorage\Model\MockupDtoMetadata**](MockupDtoMetadata.md) |  | [optional]
 **private** | **bool** | Indicates if the mockup is private. | [optional]
-**type** | [**\Aurigma\AssetStorage\Model\MockupType**](MockupType.md) |  | [optional]
+**type** | [**\Aurigma\AssetStorage\Model\MockupType**](MockupType.md) | Mockup type. | [optional]
 **previews** | [**array<string,\Aurigma\AssetStorage\Model\PreviewMetadata>**](PreviewMetadata.md) | Preview dictionary.  Key: %preview_namespace%-%preview_name%.  Value: \&quot;preview description\&quot;. | [optional]
 **size** | **int** | File size. | [optional]
 **descriptor** | **string** | File descriptor. | [optional]

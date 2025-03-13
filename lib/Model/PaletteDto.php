@@ -58,7 +58,7 @@ class PaletteDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'metadata' => '\Aurigma\AssetStorage\Model\PaletteMetadata',
+        'metadata' => '\Aurigma\AssetStorage\Model\PaletteDtoMetadata',
         'previews' => 'array<string,\Aurigma\AssetStorage\Model\PreviewMetadata>',
         'size' => 'int',
         'descriptor' => 'string',
@@ -98,7 +98,7 @@ class PaletteDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'metadata' => false,
+        'metadata' => true,
         'previews' => true,
         'size' => false,
         'descriptor' => true,
@@ -363,7 +363,7 @@ class PaletteDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets metadata
      *
-     * @return \Aurigma\AssetStorage\Model\PaletteMetadata|null
+     * @return \Aurigma\AssetStorage\Model\PaletteDtoMetadata|null
      */
     public function getMetadata()
     {
@@ -373,14 +373,21 @@ class PaletteDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets metadata
      *
-     * @param \Aurigma\AssetStorage\Model\PaletteMetadata|null $metadata metadata
+     * @param \Aurigma\AssetStorage\Model\PaletteDtoMetadata|null $metadata metadata
      *
      * @return self
      */
     public function setMetadata($metadata)
     {
         if (is_null($metadata)) {
-            throw new \InvalidArgumentException('non-nullable metadata cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'metadata');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('metadata', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['metadata'] = $metadata;
 

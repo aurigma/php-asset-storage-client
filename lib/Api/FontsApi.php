@@ -189,7 +189,7 @@ class FontsApi
      * @param  string $namespace Preview namespace. (required)
      * @param  int $width Preview image width. (required)
      * @param  int $height Preview image height. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $format Preview image format, e.g. Jpeg, Png, Bmp. (optional)
      * @param  \SplFileObject $file Preview file content. (optional)
      * @param  bool $is_custom Indicates if the preview is custom.  Custom previews preserved even if source is changed. (optional)
@@ -215,7 +215,7 @@ class FontsApi
      * @param  string $namespace Preview namespace. (required)
      * @param  int $width Preview image width. (required)
      * @param  int $height Preview image height. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $format Preview image format, e.g. Jpeg, Png, Bmp. (optional)
      * @param  \SplFileObject $file Preview file content. (optional)
      * @param  bool $is_custom Indicates if the preview is custom.  Custom previews preserved even if source is changed. (optional)
@@ -417,7 +417,7 @@ class FontsApi
      * @param  string $namespace Preview namespace. (required)
      * @param  int $width Preview image width. (required)
      * @param  int $height Preview image height. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $format Preview image format, e.g. Jpeg, Png, Bmp. (optional)
      * @param  \SplFileObject $file Preview file content. (optional)
      * @param  bool $is_custom Indicates if the preview is custom.  Custom previews preserved even if source is changed. (optional)
@@ -446,7 +446,7 @@ class FontsApi
      * @param  string $namespace Preview namespace. (required)
      * @param  int $width Preview image width. (required)
      * @param  int $height Preview image height. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $format Preview image format, e.g. Jpeg, Png, Bmp. (optional)
      * @param  \SplFileObject $file Preview file content. (optional)
      * @param  bool $is_custom Indicates if the preview is custom.  Custom previews preserved even if source is changed. (optional)
@@ -504,7 +504,7 @@ class FontsApi
      * @param  string $namespace Preview namespace. (required)
      * @param  int $width Preview image width. (required)
      * @param  int $height Preview image height. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $format Preview image format, e.g. Jpeg, Png, Bmp. (optional)
      * @param  \SplFileObject $file Preview file content. (optional)
      * @param  bool $is_custom Indicates if the preview is custom.  Custom previews preserved even if source is changed. (optional)
@@ -643,10 +643,6 @@ class FontsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -656,14 +652,18 @@ class FontsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -692,7 +692,7 @@ class FontsApi
      *
      * Copies the specified entities and folders to another folder.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsBatchCopy'] to see the possible values for this operation
      *
@@ -710,7 +710,7 @@ class FontsApi
      *
      * Copies the specified entities and folders to another folder.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsBatchCopy'] to see the possible values for this operation
      *
@@ -787,7 +787,7 @@ class FontsApi
      *
      * Copies the specified entities and folders to another folder.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsBatchCopy'] to see the possible values for this operation
      *
@@ -809,7 +809,7 @@ class FontsApi
      *
      * Copies the specified entities and folders to another folder.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsBatchCopy'] to see the possible values for this operation
      *
@@ -847,7 +847,7 @@ class FontsApi
     /**
      * Create request for operation 'fontsBatchCopy'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsBatchCopy'] to see the possible values for this operation
      *
@@ -918,10 +918,6 @@ class FontsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -931,14 +927,18 @@ class FontsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -967,7 +967,7 @@ class FontsApi
      *
      * Deletes the specified entities and folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsBatchDelete'] to see the possible values for this operation
      *
@@ -985,7 +985,7 @@ class FontsApi
      *
      * Deletes the specified entities and folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsBatchDelete'] to see the possible values for this operation
      *
@@ -1054,7 +1054,7 @@ class FontsApi
      *
      * Deletes the specified entities and folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsBatchDelete'] to see the possible values for this operation
      *
@@ -1076,7 +1076,7 @@ class FontsApi
      *
      * Deletes the specified entities and folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsBatchDelete'] to see the possible values for this operation
      *
@@ -1114,7 +1114,7 @@ class FontsApi
     /**
      * Create request for operation 'fontsBatchDelete'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsBatchDelete'] to see the possible values for this operation
      *
@@ -1185,10 +1185,6 @@ class FontsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -1198,14 +1194,18 @@ class FontsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1234,7 +1234,7 @@ class FontsApi
      *
      * Updates custom fields values for the specified entities.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsBatchUpdateCustomFields'] to see the possible values for this operation
      *
@@ -1252,7 +1252,7 @@ class FontsApi
      *
      * Updates custom fields values for the specified entities.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsBatchUpdateCustomFields'] to see the possible values for this operation
      *
@@ -1321,7 +1321,7 @@ class FontsApi
      *
      * Updates custom fields values for the specified entities.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsBatchUpdateCustomFields'] to see the possible values for this operation
      *
@@ -1343,7 +1343,7 @@ class FontsApi
      *
      * Updates custom fields values for the specified entities.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsBatchUpdateCustomFields'] to see the possible values for this operation
      *
@@ -1381,7 +1381,7 @@ class FontsApi
     /**
      * Create request for operation 'fontsBatchUpdateCustomFields'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsBatchUpdateCustomFields'] to see the possible values for this operation
      *
@@ -1452,10 +1452,6 @@ class FontsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -1465,14 +1461,18 @@ class FontsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1501,7 +1501,7 @@ class FontsApi
      *
      * Updates parent folder for the specified entities and folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsBatchUpdateParentFolder'] to see the possible values for this operation
      *
@@ -1519,7 +1519,7 @@ class FontsApi
      *
      * Updates parent folder for the specified entities and folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsBatchUpdateParentFolder'] to see the possible values for this operation
      *
@@ -1596,7 +1596,7 @@ class FontsApi
      *
      * Updates parent folder for the specified entities and folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsBatchUpdateParentFolder'] to see the possible values for this operation
      *
@@ -1618,7 +1618,7 @@ class FontsApi
      *
      * Updates parent folder for the specified entities and folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsBatchUpdateParentFolder'] to see the possible values for this operation
      *
@@ -1656,7 +1656,7 @@ class FontsApi
     /**
      * Create request for operation 'fontsBatchUpdateParentFolder'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsBatchUpdateParentFolder'] to see the possible values for this operation
      *
@@ -1727,10 +1727,6 @@ class FontsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -1740,14 +1736,18 @@ class FontsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1779,13 +1779,13 @@ class FontsApi
      * @param  string $id Source entity identifier. (required)
      * @param  string $path Desired path. (optional)
      * @param  string $name Desired name. (optional)
-     * @param  ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsCopy'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\AssetStorage\Model\FontDto|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
+     * @return \Aurigma\AssetStorage\Model\FontDto|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
     public function fontsCopy($id, $path = null, $name = null, $strategy = null, $tenant_id = null, string $contentType = self::contentTypes['fontsCopy'][0])
     {
@@ -1801,13 +1801,13 @@ class FontsApi
      * @param  string $id Source entity identifier. (required)
      * @param  string $path Desired path. (optional)
      * @param  string $name Desired name. (optional)
-     * @param  ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsCopy'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\AssetStorage\Model\FontDto|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\AssetStorage\Model\FontDto|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function fontsCopyWithHttpInfo($id, $path = null, $name = null, $strategy = null, $tenant_id = null, string $contentType = self::contentTypes['fontsCopy'][0])
     {
@@ -1877,11 +1877,11 @@ class FontsApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\AssetStorage\Model\NameConflictDto' === '\SplFileObject') {
+                    if ('\Aurigma\AssetStorage\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\AssetStorage\Model\NameConflictDto' !== 'string') {
+                        if ('\Aurigma\AssetStorage\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1899,7 +1899,7 @@ class FontsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\NameConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1973,7 +1973,7 @@ class FontsApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\NameConflictDto',
+                        '\Aurigma\AssetStorage\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1999,8 +1999,8 @@ class FontsApi
      * @param  string $id Source entity identifier. (required)
      * @param  string $path Desired path. (optional)
      * @param  string $name Desired name. (optional)
-     * @param  ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsCopy'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2024,8 +2024,8 @@ class FontsApi
      * @param  string $id Source entity identifier. (required)
      * @param  string $path Desired path. (optional)
      * @param  string $name Desired name. (optional)
-     * @param  ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsCopy'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2078,8 +2078,8 @@ class FontsApi
      * @param  string $id Source entity identifier. (required)
      * @param  string $path Desired path. (optional)
      * @param  string $name Desired name. (optional)
-     * @param  ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsCopy'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2186,10 +2186,6 @@ class FontsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -2199,14 +2195,18 @@ class FontsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -2238,7 +2238,7 @@ class FontsApi
      * @param  \SplFileObject $file File content. (required)
      * @param  string $path Parent folder full path. (required)
      * @param  string $name Entity name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $metadata_postscript_name metadata_postscript_name (optional)
      * @param  string $metadata_family metadata_family (optional)
      * @param  string $metadata_style metadata_style (optional)
@@ -2247,7 +2247,7 @@ class FontsApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\AssetStorage\Model\FontDto|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
+     * @return \Aurigma\AssetStorage\Model\FontDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
     public function fontsCreate($file, $path, $name, $tenant_id = null, $metadata_postscript_name = null, $metadata_family = null, $metadata_style = null, $custom_fields = null, string $contentType = self::contentTypes['fontsCreate'][0])
     {
@@ -2263,7 +2263,7 @@ class FontsApi
      * @param  \SplFileObject $file File content. (required)
      * @param  string $path Parent folder full path. (required)
      * @param  string $name Entity name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $metadata_postscript_name (optional)
      * @param  string $metadata_family (optional)
      * @param  string $metadata_style (optional)
@@ -2272,7 +2272,7 @@ class FontsApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\AssetStorage\Model\FontDto|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\AssetStorage\Model\FontDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function fontsCreateWithHttpInfo($file, $path, $name, $tenant_id = null, $metadata_postscript_name = null, $metadata_family = null, $metadata_style = null, $custom_fields = null, string $contentType = self::contentTypes['fontsCreate'][0])
     {
@@ -2341,12 +2341,12 @@ class FontsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 409:
-                    if ('\Aurigma\AssetStorage\Model\NameConflictDto' === '\SplFileObject') {
+                case 404:
+                    if ('\Aurigma\AssetStorage\Model\ProblemDetails' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\AssetStorage\Model\NameConflictDto' !== 'string') {
+                        if ('\Aurigma\AssetStorage\Model\ProblemDetails' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2364,7 +2364,34 @@ class FontsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\NameConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\AssetStorage\Model\ConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\AssetStorage\Model\ConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2435,10 +2462,18 @@ class FontsApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\NameConflictDto',
+                        '\Aurigma\AssetStorage\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2464,7 +2499,7 @@ class FontsApi
      * @param  \SplFileObject $file File content. (required)
      * @param  string $path Parent folder full path. (required)
      * @param  string $name Entity name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $metadata_postscript_name (optional)
      * @param  string $metadata_family (optional)
      * @param  string $metadata_style (optional)
@@ -2492,7 +2527,7 @@ class FontsApi
      * @param  \SplFileObject $file File content. (required)
      * @param  string $path Parent folder full path. (required)
      * @param  string $name Entity name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $metadata_postscript_name (optional)
      * @param  string $metadata_family (optional)
      * @param  string $metadata_style (optional)
@@ -2549,7 +2584,7 @@ class FontsApi
      * @param  \SplFileObject $file File content. (required)
      * @param  string $path Parent folder full path. (required)
      * @param  string $name Entity name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $metadata_postscript_name (optional)
      * @param  string $metadata_family (optional)
      * @param  string $metadata_style (optional)
@@ -2671,10 +2706,6 @@ class FontsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -2684,14 +2715,18 @@ class FontsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -2720,13 +2755,13 @@ class FontsApi
      *
      * Creates a new folder.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsCreateFolder'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\NameConflictDto
+     * @return \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto
      */
     public function fontsCreateFolder($tenant_id = null, $create_folder_dto = null, string $contentType = self::contentTypes['fontsCreateFolder'][0])
     {
@@ -2739,13 +2774,13 @@ class FontsApi
      *
      * Creates a new folder.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsCreateFolder'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\NameConflictDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function fontsCreateFolderWithHttpInfo($tenant_id = null, $create_folder_dto = null, string $contentType = self::contentTypes['fontsCreateFolder'][0])
     {
@@ -2814,12 +2849,12 @@ class FontsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 409:
-                    if ('\Aurigma\AssetStorage\Model\NameConflictDto' === '\SplFileObject') {
+                case 404:
+                    if ('\Aurigma\AssetStorage\Model\ProblemDetails' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\AssetStorage\Model\NameConflictDto' !== 'string') {
+                        if ('\Aurigma\AssetStorage\Model\ProblemDetails' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2837,7 +2872,34 @@ class FontsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\NameConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\AssetStorage\Model\ConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\AssetStorage\Model\ConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2881,10 +2943,18 @@ class FontsApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\NameConflictDto',
+                        '\Aurigma\AssetStorage\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2899,7 +2969,7 @@ class FontsApi
      *
      * Creates a new folder.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsCreateFolder'] to see the possible values for this operation
      *
@@ -2921,7 +2991,7 @@ class FontsApi
      *
      * Creates a new folder.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsCreateFolder'] to see the possible values for this operation
      *
@@ -2972,7 +3042,7 @@ class FontsApi
     /**
      * Create request for operation 'fontsCreateFolder'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsCreateFolder'] to see the possible values for this operation
      *
@@ -3043,10 +3113,6 @@ class FontsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -3056,14 +3122,18 @@ class FontsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -3093,7 +3163,7 @@ class FontsApi
      * Deletes the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsDelete'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3112,7 +3182,7 @@ class FontsApi
      * Deletes the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsDelete'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3272,7 +3342,7 @@ class FontsApi
      * Deletes the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3294,7 +3364,7 @@ class FontsApi
      * Deletes the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3345,7 +3415,7 @@ class FontsApi
      * Create request for operation 'fontsDelete'
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3422,10 +3492,6 @@ class FontsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -3435,14 +3501,18 @@ class FontsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -3472,7 +3542,7 @@ class FontsApi
      * Deletes the specified folder and its content by folder path.
      *
      * @param  string $full_path Folder full path. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsDeleteFolder'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3491,7 +3561,7 @@ class FontsApi
      * Deletes the specified folder and its content by folder path.
      *
      * @param  string $full_path Folder full path. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsDeleteFolder'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3651,7 +3721,7 @@ class FontsApi
      * Deletes the specified folder and its content by folder path.
      *
      * @param  string $full_path Folder full path. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsDeleteFolder'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3673,7 +3743,7 @@ class FontsApi
      * Deletes the specified folder and its content by folder path.
      *
      * @param  string $full_path Folder full path. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsDeleteFolder'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3724,7 +3794,7 @@ class FontsApi
      * Create request for operation 'fontsDeleteFolder'
      *
      * @param  string $full_path Folder full path. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsDeleteFolder'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3796,10 +3866,6 @@ class FontsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -3809,14 +3875,18 @@ class FontsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -3846,7 +3916,7 @@ class FontsApi
      * Deletes the specified folder and its content by folder identifier.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsDeleteFolderById'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3865,7 +3935,7 @@ class FontsApi
      * Deletes the specified folder and its content by folder identifier.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsDeleteFolderById'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4025,7 +4095,7 @@ class FontsApi
      * Deletes the specified folder and its content by folder identifier.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsDeleteFolderById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4047,7 +4117,7 @@ class FontsApi
      * Deletes the specified folder and its content by folder identifier.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsDeleteFolderById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4098,7 +4168,7 @@ class FontsApi
      * Create request for operation 'fontsDeleteFolderById'
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsDeleteFolderById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4175,10 +4245,6 @@ class FontsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -4188,14 +4254,18 @@ class FontsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -4225,7 +4295,7 @@ class FontsApi
      * Returns an entity by ID.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGet'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4244,7 +4314,7 @@ class FontsApi
      * Returns an entity by ID.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGet'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4404,7 +4474,7 @@ class FontsApi
      * Returns an entity by ID.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4426,7 +4496,7 @@ class FontsApi
      * Returns an entity by ID.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4477,7 +4547,7 @@ class FontsApi
      * Create request for operation 'fontsGet'
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4554,10 +4624,6 @@ class FontsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -4567,14 +4633,18 @@ class FontsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -4611,7 +4681,7 @@ class FontsApi
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetAll'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4637,7 +4707,7 @@ class FontsApi
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetAll'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4769,7 +4839,7 @@ class FontsApi
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4798,7 +4868,7 @@ class FontsApi
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4856,7 +4926,7 @@ class FontsApi
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4998,10 +5068,6 @@ class FontsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -5011,14 +5077,18 @@ class FontsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -5047,7 +5117,7 @@ class FontsApi
      *
      * Returns all folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetAllFolders'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5065,7 +5135,7 @@ class FontsApi
      *
      * Returns all folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetAllFolders'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5189,7 +5259,7 @@ class FontsApi
      *
      * Returns all folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetAllFolders'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5210,7 +5280,7 @@ class FontsApi
      *
      * Returns all folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetAllFolders'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5260,7 +5330,7 @@ class FontsApi
     /**
      * Create request for operation 'fontsGetAllFolders'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetAllFolders'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5322,10 +5392,6 @@ class FontsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -5335,14 +5401,18 @@ class FontsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -5373,7 +5443,7 @@ class FontsApi
      *
      * @param  string $id Entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetFile'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5393,7 +5463,7 @@ class FontsApi
      *
      * @param  string $id Entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetFile'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5589,7 +5659,7 @@ class FontsApi
      *
      * @param  string $id Entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5612,7 +5682,7 @@ class FontsApi
      *
      * @param  string $id Entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5664,7 +5734,7 @@ class FontsApi
      *
      * @param  string $id Entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5751,10 +5821,6 @@ class FontsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -5764,14 +5830,18 @@ class FontsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -5800,7 +5870,7 @@ class FontsApi
      *
      * Returns information about the use of file storage.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetFileStorageInfo'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5818,7 +5888,7 @@ class FontsApi
      *
      * Returns information about the use of file storage.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetFileStorageInfo'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5942,7 +6012,7 @@ class FontsApi
      *
      * Returns information about the use of file storage.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetFileStorageInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5963,7 +6033,7 @@ class FontsApi
      *
      * Returns information about the use of file storage.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetFileStorageInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6013,7 +6083,7 @@ class FontsApi
     /**
      * Create request for operation 'fontsGetFileStorageInfo'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetFileStorageInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6075,10 +6145,6 @@ class FontsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -6088,14 +6154,18 @@ class FontsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -6125,7 +6195,7 @@ class FontsApi
      * Returns a folder and its content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetFolder'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -6144,7 +6214,7 @@ class FontsApi
      * Returns a folder and its content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetFolder'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -6304,7 +6374,7 @@ class FontsApi
      * Returns a folder and its content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetFolder'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6326,7 +6396,7 @@ class FontsApi
      * Returns a folder and its content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetFolder'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6377,7 +6447,7 @@ class FontsApi
      * Create request for operation 'fontsGetFolder'
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetFolder'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6449,10 +6519,6 @@ class FontsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -6462,14 +6528,18 @@ class FontsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -6499,7 +6569,7 @@ class FontsApi
      * Returns a folder by ID.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetFolderInfo'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -6518,7 +6588,7 @@ class FontsApi
      * Returns a folder by ID.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetFolderInfo'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -6678,7 +6748,7 @@ class FontsApi
      * Returns a folder by ID.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetFolderInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6700,7 +6770,7 @@ class FontsApi
      * Returns a folder by ID.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetFolderInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6751,7 +6821,7 @@ class FontsApi
      * Create request for operation 'fontsGetFolderInfo'
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsGetFolderInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6828,10 +6898,6 @@ class FontsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -6841,14 +6907,18 @@ class FontsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -6878,7 +6948,7 @@ class FontsApi
      * Updates the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $metadata_postscript_name metadata_postscript_name (optional)
      * @param  string $metadata_family metadata_family (optional)
      * @param  string $metadata_style metadata_style (optional)
@@ -6890,7 +6960,7 @@ class FontsApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\AssetStorage\Model\FontDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
+     * @return \Aurigma\AssetStorage\Model\FontDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
     public function fontsUpdate($id, $tenant_id = null, $metadata_postscript_name = null, $metadata_family = null, $metadata_style = null, $file = null, $path = null, $name = null, $custom_fields = null, string $contentType = self::contentTypes['fontsUpdate'][0])
     {
@@ -6904,7 +6974,7 @@ class FontsApi
      * Updates the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $metadata_postscript_name (optional)
      * @param  string $metadata_family (optional)
      * @param  string $metadata_style (optional)
@@ -6916,7 +6986,7 @@ class FontsApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\AssetStorage\Model\FontDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\AssetStorage\Model\FontDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function fontsUpdateWithHttpInfo($id, $tenant_id = null, $metadata_postscript_name = null, $metadata_family = null, $metadata_style = null, $file = null, $path = null, $name = null, $custom_fields = null, string $contentType = self::contentTypes['fontsUpdate'][0])
     {
@@ -7013,11 +7083,11 @@ class FontsApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\AssetStorage\Model\NameConflictDto' === '\SplFileObject') {
+                    if ('\Aurigma\AssetStorage\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\AssetStorage\Model\NameConflictDto' !== 'string') {
+                        if ('\Aurigma\AssetStorage\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -7035,7 +7105,7 @@ class FontsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\NameConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -7117,7 +7187,7 @@ class FontsApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\NameConflictDto',
+                        '\Aurigma\AssetStorage\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7141,7 +7211,7 @@ class FontsApi
      * Updates the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $metadata_postscript_name (optional)
      * @param  string $metadata_family (optional)
      * @param  string $metadata_style (optional)
@@ -7170,7 +7240,7 @@ class FontsApi
      * Updates the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $metadata_postscript_name (optional)
      * @param  string $metadata_family (optional)
      * @param  string $metadata_style (optional)
@@ -7228,7 +7298,7 @@ class FontsApi
      * Create request for operation 'fontsUpdate'
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $metadata_postscript_name (optional)
      * @param  string $metadata_family (optional)
      * @param  string $metadata_style (optional)
@@ -7350,10 +7420,6 @@ class FontsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -7363,14 +7429,18 @@ class FontsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -7400,13 +7470,13 @@ class FontsApi
      * Updates the specified folder.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsUpdateFolder'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto
+     * @return \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto
      */
     public function fontsUpdateFolder($id, $tenant_id = null, $update_folder_dto = null, string $contentType = self::contentTypes['fontsUpdateFolder'][0])
     {
@@ -7420,13 +7490,13 @@ class FontsApi
      * Updates the specified folder.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsUpdateFolder'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function fontsUpdateFolderWithHttpInfo($id, $tenant_id = null, $update_folder_dto = null, string $contentType = self::contentTypes['fontsUpdateFolder'][0])
     {
@@ -7523,11 +7593,11 @@ class FontsApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\AssetStorage\Model\NameConflictDto' === '\SplFileObject') {
+                    if ('\Aurigma\AssetStorage\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\AssetStorage\Model\NameConflictDto' !== 'string') {
+                        if ('\Aurigma\AssetStorage\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -7545,7 +7615,7 @@ class FontsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\NameConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -7600,7 +7670,7 @@ class FontsApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\NameConflictDto',
+                        '\Aurigma\AssetStorage\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7616,7 +7686,7 @@ class FontsApi
      * Updates the specified folder.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsUpdateFolder'] to see the possible values for this operation
      *
@@ -7639,7 +7709,7 @@ class FontsApi
      * Updates the specified folder.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsUpdateFolder'] to see the possible values for this operation
      *
@@ -7691,7 +7761,7 @@ class FontsApi
      * Create request for operation 'fontsUpdateFolder'
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['fontsUpdateFolder'] to see the possible values for this operation
      *
@@ -7777,10 +7847,6 @@ class FontsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -7790,14 +7856,18 @@ class FontsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];

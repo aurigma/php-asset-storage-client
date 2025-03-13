@@ -43,9 +43,13 @@ class ConflictType
     /**
      * Possible values of this enum
      */
-    public const NAME = 'Name';
+    public const NAME_CONFLICT = 'NameConflict';
 
-    public const FOLDER_OVERWRITE = 'FolderOverwrite';
+    public const FOLDER_OVERWRITE_CONFLICT = 'FolderOverwriteConflict';
+
+    public const ID_CONFLICT = 'IdConflict';
+
+    public const GENERAL_CONFLICT = 'GeneralConflict';
 
     /**
      * Gets allowable values of the enum
@@ -54,8 +58,10 @@ class ConflictType
     public static function getAllowableEnumValues()
     {
         return [
-            self::NAME,
-            self::FOLDER_OVERWRITE
+            self::NAME_CONFLICT,
+            self::FOLDER_OVERWRITE_CONFLICT,
+            self::ID_CONFLICT,
+            self::GENERAL_CONFLICT
         ];
     }
 }

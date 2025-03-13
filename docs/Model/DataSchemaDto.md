@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**metadata** | [**\Aurigma\AssetStorage\Model\DataSchemaMetadata**](DataSchemaMetadata.md) |  | [optional]
+**metadata** | [**\Aurigma\AssetStorage\Model\DataSchemaDtoMetadata**](DataSchemaDtoMetadata.md) |  | [optional]
 **size** | **int** | File size. | [optional]
 **descriptor** | **string** | File descriptor. | [optional]
 **folder_id** | **string** | Parent folder id. | [optional]

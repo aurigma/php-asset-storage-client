@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **entity_ids** | **string[]** | List of entities, which are operation subjects. | [optional]
-**conflict_strategy** | [**\Aurigma\AssetStorage\Model\ConflictResolvingStrategy**](ConflictResolvingStrategy.md) |  | [optional]
+**conflict_strategy** | [**\Aurigma\AssetStorage\Model\ConflictResolvingStrategy**](ConflictResolvingStrategy.md) | Conflict resolving strategy. | [optional]
 **namespace** | **string** | Resource namespace. | [optional]
 **source_id** | **string** | Resource source identifier. |
 

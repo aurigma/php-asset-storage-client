@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**metadata** | [**\Aurigma\AssetStorage\Model\PaletteMetadata**](PaletteMetadata.md) |  | [optional]
+**metadata** | [**\Aurigma\AssetStorage\Model\PaletteDtoMetadata**](PaletteDtoMetadata.md) |  | [optional]
 **previews** | [**array<string,\Aurigma\AssetStorage\Model\PreviewMetadata>**](PreviewMetadata.md) | Preview dictionary.  Key: %preview_namespace%-%preview_name%.  Value: \&quot;preview description\&quot;. | [optional]
 **size** | **int** | File size. | [optional]
 **descriptor** | **string** | File descriptor. | [optional]

@@ -140,7 +140,7 @@ class PreviewsApi
      * Deletes the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['previewsDelete'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -159,7 +159,7 @@ class PreviewsApi
      * Deletes the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['previewsDelete'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -319,7 +319,7 @@ class PreviewsApi
      * Deletes the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['previewsDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -341,7 +341,7 @@ class PreviewsApi
      * Deletes the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['previewsDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -392,7 +392,7 @@ class PreviewsApi
      * Create request for operation 'previewsDelete'
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['previewsDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -469,10 +469,6 @@ class PreviewsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -482,14 +478,18 @@ class PreviewsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -519,7 +519,7 @@ class PreviewsApi
      * Returns preview entity by ID.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['previewsGet'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -538,7 +538,7 @@ class PreviewsApi
      * Returns preview entity by ID.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['previewsGet'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -698,7 +698,7 @@ class PreviewsApi
      * Returns preview entity by ID.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['previewsGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -720,7 +720,7 @@ class PreviewsApi
      * Returns preview entity by ID.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['previewsGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -771,7 +771,7 @@ class PreviewsApi
      * Create request for operation 'previewsGet'
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['previewsGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -848,10 +848,6 @@ class PreviewsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -861,14 +857,18 @@ class PreviewsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -901,7 +901,7 @@ class PreviewsApi
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['previewsGetAll'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -923,7 +923,7 @@ class PreviewsApi
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['previewsGetAll'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1051,7 +1051,7 @@ class PreviewsApi
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['previewsGetAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1076,7 +1076,7 @@ class PreviewsApi
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['previewsGetAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1130,7 +1130,7 @@ class PreviewsApi
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['previewsGetAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1232,10 +1232,6 @@ class PreviewsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -1245,14 +1241,18 @@ class PreviewsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1283,7 +1283,7 @@ class PreviewsApi
      *
      * @param  string $id Preview entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['previewsGetFile'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1303,7 +1303,7 @@ class PreviewsApi
      *
      * @param  string $id Preview entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['previewsGetFile'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1499,7 +1499,7 @@ class PreviewsApi
      *
      * @param  string $id Preview entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['previewsGetFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1522,7 +1522,7 @@ class PreviewsApi
      *
      * @param  string $id Preview entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['previewsGetFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1574,7 +1574,7 @@ class PreviewsApi
      *
      * @param  string $id Preview entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['previewsGetFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1661,6 +1661,28 @@ class PreviewsApi
             }
         }
 
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
 
         $defaultHeaders = [];
         if ($this->config->getUserAgent()) {
@@ -1688,7 +1710,7 @@ class PreviewsApi
      *
      * Returns information about storage usage by preview files.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['previewsGetFileStorageInfo'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1706,7 +1728,7 @@ class PreviewsApi
      *
      * Returns information about storage usage by preview files.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['previewsGetFileStorageInfo'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1830,7 +1852,7 @@ class PreviewsApi
      *
      * Returns information about storage usage by preview files.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['previewsGetFileStorageInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1851,7 +1873,7 @@ class PreviewsApi
      *
      * Returns information about storage usage by preview files.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['previewsGetFileStorageInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1901,7 +1923,7 @@ class PreviewsApi
     /**
      * Create request for operation 'previewsGetFileStorageInfo'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['previewsGetFileStorageInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1963,10 +1985,6 @@ class PreviewsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -1976,14 +1994,18 @@ class PreviewsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];

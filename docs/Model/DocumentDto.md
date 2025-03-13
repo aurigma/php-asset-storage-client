@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**\Aurigma\AssetStorage\Model\DocumentType**](DocumentType.md) |  | [optional]
-**format** | [**\Aurigma\AssetStorage\Model\DocumentFormatType**](DocumentFormatType.md) |  | [optional]
+**type** | [**\Aurigma\AssetStorage\Model\DocumentType**](DocumentType.md) | Document type. | [optional]
+**format** | [**\Aurigma\AssetStorage\Model\DocumentFormatType**](DocumentFormatType.md) | Document format. | [optional]
 **size** | **int** | File size. | [optional]
 **descriptor** | **string** | File descriptor. | [optional]
 **folder_id** | **string** | Parent folder id. | [optional]

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **description** | **string** | Artifact description. | [optional]
 **group** | **string** | Artifact group. | [optional]
 **alias** | **string** | Artifact alias (special name within group). | [optional]
-**type** | [**\Aurigma\AssetStorage\Model\ArtifactType**](ArtifactType.md) |  | [optional]
+**type** | [**\Aurigma\AssetStorage\Model\ArtifactType**](ArtifactType.md) | Artifact type. | [optional]
 **format** | **string** | Artifact file format. | [optional]
 **anonymous_access** | **bool** | Artifact &#39;anonymous access&#39; tag. It indicates whether artifact can be accessed anonymously. | [optional]
 **url** | **string** | Artifact URL. | [optional]

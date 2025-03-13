@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**metadata** | [**\Aurigma\AssetStorage\Model\ColorProfileMetadata**](ColorProfileMetadata.md) |  | [optional]
+**metadata** | [**\Aurigma\AssetStorage\Model\ColorProfileDtoMetadata**](ColorProfileDtoMetadata.md) |  | [optional]
 **size** | **int** | File size. | [optional]
 **descriptor** | **string** | File descriptor. | [optional]
 **folder_id** | **string** | Parent folder id. | [optional]

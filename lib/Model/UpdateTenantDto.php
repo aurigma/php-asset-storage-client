@@ -58,7 +58,7 @@ class UpdateTenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'settings' => '\Aurigma\AssetStorage\Model\TenantSettingsDto',
+        'settings' => '\Aurigma\AssetStorage\Model\CreateTenantDtoSettings',
         'name' => 'string',
         'custom_fields' => 'array<string,mixed>'
     ];
@@ -82,7 +82,7 @@ class UpdateTenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'settings' => false,
+        'settings' => true,
         'name' => true,
         'custom_fields' => true
     ];
@@ -311,7 +311,7 @@ class UpdateTenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets settings
      *
-     * @return \Aurigma\AssetStorage\Model\TenantSettingsDto|null
+     * @return \Aurigma\AssetStorage\Model\CreateTenantDtoSettings|null
      */
     public function getSettings()
     {
@@ -321,14 +321,21 @@ class UpdateTenantDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets settings
      *
-     * @param \Aurigma\AssetStorage\Model\TenantSettingsDto|null $settings settings
+     * @param \Aurigma\AssetStorage\Model\CreateTenantDtoSettings|null $settings settings
      *
      * @return self
      */
     public function setSettings($settings)
     {
         if (is_null($settings)) {
-            throw new \InvalidArgumentException('non-nullable settings cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'settings');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('settings', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['settings'] = $settings;
 

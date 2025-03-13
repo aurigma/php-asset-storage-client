@@ -78,7 +78,7 @@ class MockupMetadataDto implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'format' => false
+        'format' => true
     ];
 
     /**
@@ -303,14 +303,21 @@ class MockupMetadataDto implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets format
      *
-     * @param \Aurigma\AssetStorage\Model\MockupFormatType|null $format format
+     * @param \Aurigma\AssetStorage\Model\MockupFormatType|null $format Mockup file format.
      *
      * @return self
      */
     public function setFormat($format)
     {
         if (is_null($format)) {
-            throw new \InvalidArgumentException('non-nullable format cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'format');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('format', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['format'] = $format;
 

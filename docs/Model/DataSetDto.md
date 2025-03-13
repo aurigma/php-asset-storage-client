@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**metadata** | [**\Aurigma\AssetStorage\Model\DataSetMetadata**](DataSetMetadata.md) |  | [optional]
+**metadata** | [**\Aurigma\AssetStorage\Model\DataSetDtoMetadata**](DataSetDtoMetadata.md) |  | [optional]
 **has_problems** | **bool** | Indicates whether data set has any schema validation problems. | [optional]
 **size** | **int** | File size. | [optional]
 **descriptor** | **string** | File descriptor. | [optional]

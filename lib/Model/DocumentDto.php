@@ -373,7 +373,7 @@ class DocumentDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param \Aurigma\AssetStorage\Model\DocumentType|null $type type
+     * @param \Aurigma\AssetStorage\Model\DocumentType|null $type Document type.
      *
      * @return self
      */
@@ -400,7 +400,7 @@ class DocumentDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets format
      *
-     * @param \Aurigma\AssetStorage\Model\DocumentFormatType|null $format format
+     * @param \Aurigma\AssetStorage\Model\DocumentFormatType|null $format Document format.
      *
      * @return self
      */

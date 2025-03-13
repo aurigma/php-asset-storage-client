@@ -150,11 +150,11 @@ class ArtifactsApi
      *
      * @param  \SplFileObject $file File content. (required)
      * @param  string $name Entity name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $description Artifact description. (optional)
      * @param  string $group Artifact group. (optional)
      * @param  string $alias Artifact alias (special name within group). (optional)
-     * @param  \Aurigma\AssetStorage\Model\ArtifactType $type type (optional)
+     * @param  \Aurigma\AssetStorage\Model\ArtifactType $type Artifact type. (optional)
      * @param  string $format Artifact file format. (optional)
      * @param  bool $anonymous_access Artifact &#39;anonymous access&#39; tag. It indicates whether artifact can be accessed anonymously. (optional)
      * @param  array<string,mixed> $custom_fields Entity custom attributes. (optional)
@@ -162,7 +162,7 @@ class ArtifactsApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\AssetStorage\Model\ArtifactDto|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
+     * @return \Aurigma\AssetStorage\Model\ArtifactDto|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ProblemDetails
      */
     public function artifactsCreate($file, $name, $tenant_id = null, $description = null, $group = null, $alias = null, $type = null, $format = null, $anonymous_access = null, $custom_fields = null, string $contentType = self::contentTypes['artifactsCreate'][0])
     {
@@ -177,11 +177,11 @@ class ArtifactsApi
      *
      * @param  \SplFileObject $file File content. (required)
      * @param  string $name Entity name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $description Artifact description. (optional)
      * @param  string $group Artifact group. (optional)
      * @param  string $alias Artifact alias (special name within group). (optional)
-     * @param  \Aurigma\AssetStorage\Model\ArtifactType $type (optional)
+     * @param  \Aurigma\AssetStorage\Model\ArtifactType $type Artifact type. (optional)
      * @param  string $format Artifact file format. (optional)
      * @param  bool $anonymous_access Artifact &#39;anonymous access&#39; tag. It indicates whether artifact can be accessed anonymously. (optional)
      * @param  array<string,mixed> $custom_fields Entity custom attributes. (optional)
@@ -189,7 +189,7 @@ class ArtifactsApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\AssetStorage\Model\ArtifactDto|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\AssetStorage\Model\ArtifactDto|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function artifactsCreateWithHttpInfo($file, $name, $tenant_id = null, $description = null, $group = null, $alias = null, $type = null, $format = null, $anonymous_access = null, $custom_fields = null, string $contentType = self::contentTypes['artifactsCreate'][0])
     {
@@ -259,11 +259,11 @@ class ArtifactsApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\AssetStorage\Model\NameConflictDto' === '\SplFileObject') {
+                    if ('\Aurigma\AssetStorage\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\AssetStorage\Model\NameConflictDto' !== 'string') {
+                        if ('\Aurigma\AssetStorage\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -281,7 +281,34 @@ class ArtifactsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\NameConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Aurigma\AssetStorage\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\AssetStorage\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ProblemDetails', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -355,7 +382,15 @@ class ArtifactsApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\NameConflictDto',
+                        '\Aurigma\AssetStorage\Model\ConflictDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -380,11 +415,11 @@ class ArtifactsApi
      *
      * @param  \SplFileObject $file File content. (required)
      * @param  string $name Entity name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $description Artifact description. (optional)
      * @param  string $group Artifact group. (optional)
      * @param  string $alias Artifact alias (special name within group). (optional)
-     * @param  \Aurigma\AssetStorage\Model\ArtifactType $type (optional)
+     * @param  \Aurigma\AssetStorage\Model\ArtifactType $type Artifact type. (optional)
      * @param  string $format Artifact file format. (optional)
      * @param  bool $anonymous_access Artifact &#39;anonymous access&#39; tag. It indicates whether artifact can be accessed anonymously. (optional)
      * @param  array<string,mixed> $custom_fields Entity custom attributes. (optional)
@@ -410,11 +445,11 @@ class ArtifactsApi
      *
      * @param  \SplFileObject $file File content. (required)
      * @param  string $name Entity name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $description Artifact description. (optional)
      * @param  string $group Artifact group. (optional)
      * @param  string $alias Artifact alias (special name within group). (optional)
-     * @param  \Aurigma\AssetStorage\Model\ArtifactType $type (optional)
+     * @param  \Aurigma\AssetStorage\Model\ArtifactType $type Artifact type. (optional)
      * @param  string $format Artifact file format. (optional)
      * @param  bool $anonymous_access Artifact &#39;anonymous access&#39; tag. It indicates whether artifact can be accessed anonymously. (optional)
      * @param  array<string,mixed> $custom_fields Entity custom attributes. (optional)
@@ -469,11 +504,11 @@ class ArtifactsApi
      *
      * @param  \SplFileObject $file File content. (required)
      * @param  string $name Entity name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $description Artifact description. (optional)
      * @param  string $group Artifact group. (optional)
      * @param  string $alias Artifact alias (special name within group). (optional)
-     * @param  \Aurigma\AssetStorage\Model\ArtifactType $type (optional)
+     * @param  \Aurigma\AssetStorage\Model\ArtifactType $type Artifact type. (optional)
      * @param  string $format Artifact file format. (optional)
      * @param  bool $anonymous_access Artifact &#39;anonymous access&#39; tag. It indicates whether artifact can be accessed anonymously. (optional)
      * @param  array<string,mixed> $custom_fields Entity custom attributes. (optional)
@@ -601,10 +636,6 @@ class ArtifactsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -614,14 +645,18 @@ class ArtifactsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -651,7 +686,7 @@ class ArtifactsApi
      * Deletes the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsDelete'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -670,7 +705,7 @@ class ArtifactsApi
      * Deletes the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsDelete'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -830,7 +865,7 @@ class ArtifactsApi
      * Deletes the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -852,7 +887,7 @@ class ArtifactsApi
      * Deletes the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -903,7 +938,7 @@ class ArtifactsApi
      * Create request for operation 'artifactsDelete'
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -980,10 +1015,6 @@ class ArtifactsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -993,14 +1024,18 @@ class ArtifactsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1030,7 +1065,7 @@ class ArtifactsApi
      * Deletes all entities within the specified group.
      *
      * @param  string $group Group name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsDeleteGroup'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1048,7 +1083,7 @@ class ArtifactsApi
      * Deletes all entities within the specified group.
      *
      * @param  string $group Group name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsDeleteGroup'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1117,7 +1152,7 @@ class ArtifactsApi
      * Deletes all entities within the specified group.
      *
      * @param  string $group Group name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsDeleteGroup'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1139,7 +1174,7 @@ class ArtifactsApi
      * Deletes all entities within the specified group.
      *
      * @param  string $group Group name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsDeleteGroup'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1177,7 +1212,7 @@ class ArtifactsApi
      * Create request for operation 'artifactsDeleteGroup'
      *
      * @param  string $group Group name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsDeleteGroup'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1254,10 +1289,6 @@ class ArtifactsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -1267,14 +1298,18 @@ class ArtifactsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1304,7 +1339,7 @@ class ArtifactsApi
      * Returns an entity by ID.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsGet'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1323,7 +1358,7 @@ class ArtifactsApi
      * Returns an entity by ID.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsGet'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1483,7 +1518,7 @@ class ArtifactsApi
      * Returns an entity by ID.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1505,7 +1540,7 @@ class ArtifactsApi
      * Returns an entity by ID.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1556,7 +1591,7 @@ class ArtifactsApi
      * Create request for operation 'artifactsGet'
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1633,10 +1668,6 @@ class ArtifactsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -1646,14 +1677,18 @@ class ArtifactsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1684,13 +1719,13 @@ class ArtifactsApi
      *
      * @param  string $group Artifact group filter. (optional)
      * @param  string $alias Artifact alias(special name within group) filter. (optional)
-     * @param  ArtifactType $type Artifact type filter. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ArtifactType $type Artifact type filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsGetAll'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1710,13 +1745,13 @@ class ArtifactsApi
      *
      * @param  string $group Artifact group filter. (optional)
      * @param  string $alias Artifact alias(special name within group) filter. (optional)
-     * @param  ArtifactType $type Artifact type filter. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ArtifactType $type Artifact type filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsGetAll'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1842,13 +1877,13 @@ class ArtifactsApi
      *
      * @param  string $group Artifact group filter. (optional)
      * @param  string $alias Artifact alias(special name within group) filter. (optional)
-     * @param  ArtifactType $type Artifact type filter. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ArtifactType $type Artifact type filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsGetAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1871,13 +1906,13 @@ class ArtifactsApi
      *
      * @param  string $group Artifact group filter. (optional)
      * @param  string $alias Artifact alias(special name within group) filter. (optional)
-     * @param  ArtifactType $type Artifact type filter. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ArtifactType $type Artifact type filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsGetAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1929,13 +1964,13 @@ class ArtifactsApi
      *
      * @param  string $group Artifact group filter. (optional)
      * @param  string $alias Artifact alias(special name within group) filter. (optional)
-     * @param  ArtifactType $type Artifact type filter. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ArtifactType $type Artifact type filter. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
      * @param  int $take Defines page length (how much consequent items of sorted result list should be taken). (optional)
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsGetAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2077,10 +2112,6 @@ class ArtifactsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -2090,14 +2121,18 @@ class ArtifactsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -2128,7 +2163,7 @@ class ArtifactsApi
      *
      * @param  string $id Entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsGetFile'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -2148,7 +2183,7 @@ class ArtifactsApi
      *
      * @param  string $id Entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsGetFile'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -2344,7 +2379,7 @@ class ArtifactsApi
      *
      * @param  string $id Entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsGetFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2367,7 +2402,7 @@ class ArtifactsApi
      *
      * @param  string $id Entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsGetFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2419,7 +2454,7 @@ class ArtifactsApi
      *
      * @param  string $id Entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsGetFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2506,10 +2541,6 @@ class ArtifactsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -2519,14 +2550,18 @@ class ArtifactsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -2555,7 +2590,7 @@ class ArtifactsApi
      *
      * Returns information about storage usage by artifact files.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsGetFileStorageInfo'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -2573,7 +2608,7 @@ class ArtifactsApi
      *
      * Returns information about storage usage by artifact files.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsGetFileStorageInfo'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -2697,7 +2732,7 @@ class ArtifactsApi
      *
      * Returns information about storage usage by artifact files.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsGetFileStorageInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2718,7 +2753,7 @@ class ArtifactsApi
      *
      * Returns information about storage usage by artifact files.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsGetFileStorageInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2768,7 +2803,7 @@ class ArtifactsApi
     /**
      * Create request for operation 'artifactsGetFileStorageInfo'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsGetFileStorageInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2830,10 +2865,6 @@ class ArtifactsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -2843,14 +2874,18 @@ class ArtifactsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -2880,11 +2915,11 @@ class ArtifactsApi
      * Updates the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \SplFileObject $file File content. (optional)
      * @param  string $description Artifact description. (optional)
      * @param  string $alias Artifact alias (special name within group). (optional)
-     * @param  \Aurigma\AssetStorage\Model\ArtifactType $type type (optional)
+     * @param  \Aurigma\AssetStorage\Model\ArtifactType $type Artifact type. (optional)
      * @param  string $format Artifact file format. (optional)
      * @param  bool $anonymous_access Artifact &#39;anonymous access&#39; tag. It indicates whether artifact can be accessed anonymously. (optional)
      * @param  string $name Entity name. (optional)
@@ -2893,7 +2928,7 @@ class ArtifactsApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\AssetStorage\Model\ArtifactDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
+     * @return \Aurigma\AssetStorage\Model\ArtifactDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
     public function artifactsUpdate($id, $tenant_id = null, $file = null, $description = null, $alias = null, $type = null, $format = null, $anonymous_access = null, $name = null, $custom_fields = null, string $contentType = self::contentTypes['artifactsUpdate'][0])
     {
@@ -2907,11 +2942,11 @@ class ArtifactsApi
      * Updates the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \SplFileObject $file File content. (optional)
      * @param  string $description Artifact description. (optional)
      * @param  string $alias Artifact alias (special name within group). (optional)
-     * @param  \Aurigma\AssetStorage\Model\ArtifactType $type (optional)
+     * @param  \Aurigma\AssetStorage\Model\ArtifactType $type Artifact type. (optional)
      * @param  string $format Artifact file format. (optional)
      * @param  bool $anonymous_access Artifact &#39;anonymous access&#39; tag. It indicates whether artifact can be accessed anonymously. (optional)
      * @param  string $name Entity name. (optional)
@@ -2920,7 +2955,7 @@ class ArtifactsApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\AssetStorage\Model\ArtifactDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\AssetStorage\Model\ArtifactDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function artifactsUpdateWithHttpInfo($id, $tenant_id = null, $file = null, $description = null, $alias = null, $type = null, $format = null, $anonymous_access = null, $name = null, $custom_fields = null, string $contentType = self::contentTypes['artifactsUpdate'][0])
     {
@@ -3017,11 +3052,11 @@ class ArtifactsApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\AssetStorage\Model\NameConflictDto' === '\SplFileObject') {
+                    if ('\Aurigma\AssetStorage\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\AssetStorage\Model\NameConflictDto' !== 'string') {
+                        if ('\Aurigma\AssetStorage\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -3039,7 +3074,7 @@ class ArtifactsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\NameConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -3121,7 +3156,7 @@ class ArtifactsApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\NameConflictDto',
+                        '\Aurigma\AssetStorage\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3145,11 +3180,11 @@ class ArtifactsApi
      * Updates the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \SplFileObject $file File content. (optional)
      * @param  string $description Artifact description. (optional)
      * @param  string $alias Artifact alias (special name within group). (optional)
-     * @param  \Aurigma\AssetStorage\Model\ArtifactType $type (optional)
+     * @param  \Aurigma\AssetStorage\Model\ArtifactType $type Artifact type. (optional)
      * @param  string $format Artifact file format. (optional)
      * @param  bool $anonymous_access Artifact &#39;anonymous access&#39; tag. It indicates whether artifact can be accessed anonymously. (optional)
      * @param  string $name Entity name. (optional)
@@ -3175,11 +3210,11 @@ class ArtifactsApi
      * Updates the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \SplFileObject $file File content. (optional)
      * @param  string $description Artifact description. (optional)
      * @param  string $alias Artifact alias (special name within group). (optional)
-     * @param  \Aurigma\AssetStorage\Model\ArtifactType $type (optional)
+     * @param  \Aurigma\AssetStorage\Model\ArtifactType $type Artifact type. (optional)
      * @param  string $format Artifact file format. (optional)
      * @param  bool $anonymous_access Artifact &#39;anonymous access&#39; tag. It indicates whether artifact can be accessed anonymously. (optional)
      * @param  string $name Entity name. (optional)
@@ -3234,11 +3269,11 @@ class ArtifactsApi
      * Create request for operation 'artifactsUpdate'
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \SplFileObject $file File content. (optional)
      * @param  string $description Artifact description. (optional)
      * @param  string $alias Artifact alias (special name within group). (optional)
-     * @param  \Aurigma\AssetStorage\Model\ArtifactType $type (optional)
+     * @param  \Aurigma\AssetStorage\Model\ArtifactType $type Artifact type. (optional)
      * @param  string $format Artifact file format. (optional)
      * @param  bool $anonymous_access Artifact &#39;anonymous access&#39; tag. It indicates whether artifact can be accessed anonymously. (optional)
      * @param  string $name Entity name. (optional)
@@ -3365,10 +3400,6 @@ class ArtifactsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -3378,14 +3409,18 @@ class ArtifactsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];

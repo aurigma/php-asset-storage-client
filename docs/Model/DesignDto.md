@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**metadata** | [**\Aurigma\AssetStorage\Model\DesignMetadata**](DesignMetadata.md) |  | [optional]
+**metadata** | [**\Aurigma\AssetStorage\Model\DesignDtoMetadata**](DesignDtoMetadata.md) |  | [optional]
 **has_problems** | **bool** | Design &#39;hasProblems&#39; tag  indicates whether design has any problems preventing normal processing, e.g. missing font etc. | [optional]
 **private** | **bool** | Design &#39;private&#39; tag  indicates whether design is private. | [optional]
 **previews** | [**array<string,\Aurigma\AssetStorage\Model\PreviewMetadata>**](PreviewMetadata.md) | Preview dictionary.  Key: %preview_namespace%-%preview_name%.  Value: \&quot;preview description\&quot;. | [optional]

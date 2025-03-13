@@ -58,7 +58,7 @@ class DataSchemaDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'metadata' => '\Aurigma\AssetStorage\Model\DataSchemaMetadata',
+        'metadata' => '\Aurigma\AssetStorage\Model\DataSchemaDtoMetadata',
         'size' => 'int',
         'descriptor' => 'string',
         'folder_id' => 'string',
@@ -96,7 +96,7 @@ class DataSchemaDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'metadata' => false,
+        'metadata' => true,
         'size' => false,
         'descriptor' => true,
         'folder_id' => true,
@@ -356,7 +356,7 @@ class DataSchemaDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets metadata
      *
-     * @return \Aurigma\AssetStorage\Model\DataSchemaMetadata|null
+     * @return \Aurigma\AssetStorage\Model\DataSchemaDtoMetadata|null
      */
     public function getMetadata()
     {
@@ -366,14 +366,21 @@ class DataSchemaDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets metadata
      *
-     * @param \Aurigma\AssetStorage\Model\DataSchemaMetadata|null $metadata metadata
+     * @param \Aurigma\AssetStorage\Model\DataSchemaDtoMetadata|null $metadata metadata
      *
      * @return self
      */
     public function setMetadata($metadata)
     {
         if (is_null($metadata)) {
-            throw new \InvalidArgumentException('non-nullable metadata cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'metadata');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('metadata', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['metadata'] = $metadata;
 

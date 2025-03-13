@@ -426,7 +426,7 @@ class BatchUpdateParentFolderInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets conflict_strategy
      *
-     * @param \Aurigma\AssetStorage\Model\ConflictResolvingStrategy|null $conflict_strategy conflict_strategy
+     * @param \Aurigma\AssetStorage\Model\ConflictResolvingStrategy|null $conflict_strategy Conflict resolving strategy.
      *
      * @return self
      */

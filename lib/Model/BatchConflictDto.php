@@ -35,7 +35,7 @@ use \Aurigma\AssetStorage\ObjectSerializer;
  * BatchConflictDto Class Doc Comment
  *
  * @category Class
- * @description Information about batch operation name conflicts.
+ * @description Information about batch operation conflicts rised by existing entity ID.
  * @package  Aurigma\AssetStorage
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -58,9 +58,10 @@ class BatchConflictDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'entity_conflicts' => '\Aurigma\AssetStorage\Model\ConflictDto[]',
-        'folder_conflicts' => '\Aurigma\AssetStorage\Model\ConflictDto[]',
-        'type' => '\Aurigma\AssetStorage\Model\ConflictType'
+        'entity_conflicts' => '\Aurigma\AssetStorage\Model\ConflictSpecifierDto[]',
+        'folder_conflicts' => '\Aurigma\AssetStorage\Model\ConflictSpecifierDto[]',
+        'type' => '\Aurigma\AssetStorage\Model\ConflictType',
+        'description' => 'string'
     ];
 
     /**
@@ -73,7 +74,8 @@ class BatchConflictDto implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'entity_conflicts' => null,
         'folder_conflicts' => null,
-        'type' => null
+        'type' => null,
+        'description' => null
     ];
 
     /**
@@ -84,7 +86,8 @@ class BatchConflictDto implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'entity_conflicts' => true,
         'folder_conflicts' => true,
-        'type' => false
+        'type' => false,
+        'description' => true
     ];
 
     /**
@@ -175,7 +178,8 @@ class BatchConflictDto implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'entity_conflicts' => 'entityConflicts',
         'folder_conflicts' => 'folderConflicts',
-        'type' => 'type'
+        'type' => 'type',
+        'description' => 'description'
     ];
 
     /**
@@ -186,7 +190,8 @@ class BatchConflictDto implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'entity_conflicts' => 'setEntityConflicts',
         'folder_conflicts' => 'setFolderConflicts',
-        'type' => 'setType'
+        'type' => 'setType',
+        'description' => 'setDescription'
     ];
 
     /**
@@ -197,7 +202,8 @@ class BatchConflictDto implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'entity_conflicts' => 'getEntityConflicts',
         'folder_conflicts' => 'getFolderConflicts',
-        'type' => 'getType'
+        'type' => 'getType',
+        'description' => 'getDescription'
     ];
 
     /**
@@ -260,6 +266,7 @@ class BatchConflictDto implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('entity_conflicts', $data ?? [], null);
         $this->setIfExists('folder_conflicts', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
     }
 
     /**
@@ -307,7 +314,7 @@ class BatchConflictDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets entity_conflicts
      *
-     * @return \Aurigma\AssetStorage\Model\ConflictDto[]|null
+     * @return \Aurigma\AssetStorage\Model\ConflictSpecifierDto[]|null
      */
     public function getEntityConflicts()
     {
@@ -317,7 +324,7 @@ class BatchConflictDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets entity_conflicts
      *
-     * @param \Aurigma\AssetStorage\Model\ConflictDto[]|null $entity_conflicts List of operation conflict entity descriptions.
+     * @param \Aurigma\AssetStorage\Model\ConflictSpecifierDto[]|null $entity_conflicts List of operation conflict entity descriptions.
      *
      * @return self
      */
@@ -341,7 +348,7 @@ class BatchConflictDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets folder_conflicts
      *
-     * @return \Aurigma\AssetStorage\Model\ConflictDto[]|null
+     * @return \Aurigma\AssetStorage\Model\ConflictSpecifierDto[]|null
      */
     public function getFolderConflicts()
     {
@@ -351,7 +358,7 @@ class BatchConflictDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets folder_conflicts
      *
-     * @param \Aurigma\AssetStorage\Model\ConflictDto[]|null $folder_conflicts List of operation conflict folder descriptions.
+     * @param \Aurigma\AssetStorage\Model\ConflictSpecifierDto[]|null $folder_conflicts List of operation conflict folder descriptions.
      *
      * @return self
      */
@@ -385,7 +392,7 @@ class BatchConflictDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param \Aurigma\AssetStorage\Model\ConflictType|null $type type
+     * @param \Aurigma\AssetStorage\Model\ConflictType|null $type Coflict type.
      *
      * @return self
      */
@@ -395,6 +402,40 @@ class BatchConflictDto implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description Problem description.
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            array_push($this->openAPINullablesSetToNull, 'description');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('description', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['description'] = $description;
 
         return $this;
     }

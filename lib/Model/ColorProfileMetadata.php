@@ -91,8 +91,8 @@ class ColorProfileMetadata implements ModelInterface, ArrayAccess, \JsonSerializ
         'model' => true,
         'copyright' => true,
         'manufacturer' => true,
-        'color_space' => false,
-        'device_class' => false
+        'color_space' => true,
+        'device_class' => true
     ];
 
     /**
@@ -480,7 +480,14 @@ class ColorProfileMetadata implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setColorSpace($color_space)
     {
         if (is_null($color_space)) {
-            throw new \InvalidArgumentException('non-nullable color_space cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'color_space');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('color_space', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['color_space'] = $color_space;
 
@@ -507,7 +514,14 @@ class ColorProfileMetadata implements ModelInterface, ArrayAccess, \JsonSerializ
     public function setDeviceClass($device_class)
     {
         if (is_null($device_class)) {
-            throw new \InvalidArgumentException('non-nullable device_class cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'device_class');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('device_class', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['device_class'] = $device_class;
 

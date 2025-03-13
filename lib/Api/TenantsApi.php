@@ -147,12 +147,11 @@ class TenantsApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\AssetStorage\Model\StatusCodeResult
+     * @return void
      */
     public function tenantsCleanUp($id, string $contentType = self::contentTypes['tenantsCleanUp'][0])
     {
-        list($response) = $this->tenantsCleanUpWithHttpInfo($id, $contentType);
-        return $response;
+        $this->tenantsCleanUpWithHttpInfo($id, $contentType);
     }
 
     /**
@@ -165,7 +164,7 @@ class TenantsApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\AssetStorage\Model\StatusCodeResult, HTTP status code, HTTP response headers (array of strings)
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
     public function tenantsCleanUpWithHttpInfo($id, string $contentType = self::contentTypes['tenantsCleanUp'][0])
     {
@@ -206,74 +205,10 @@ class TenantsApi
                 );
             }
 
-            switch($statusCode) {
-                case 200:
-                    if ('\Aurigma\AssetStorage\Model\StatusCodeResult' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Aurigma\AssetStorage\Model\StatusCodeResult' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\StatusCodeResult', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Aurigma\AssetStorage\Model\StatusCodeResult';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
+            return [null, $statusCode, $response->getHeaders()];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\StatusCodeResult',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
             }
             throw $e;
         }
@@ -313,27 +248,14 @@ class TenantsApi
      */
     public function tenantsCleanUpAsyncWithHttpInfo($id, string $contentType = self::contentTypes['tenantsCleanUp'][0])
     {
-        $returnType = '\Aurigma\AssetStorage\Model\StatusCodeResult';
+        $returnType = '';
         $request = $this->tenantsCleanUpRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -392,7 +314,7 @@ class TenantsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
+            [],
             $contentType,
             $multipart
         );
@@ -422,10 +344,6 @@ class TenantsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -435,14 +353,18 @@ class TenantsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -476,7 +398,7 @@ class TenantsApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\AssetStorage\Model\TenantDto|\Aurigma\AssetStorage\Model\NameConflictDto
+     * @return \Aurigma\AssetStorage\Model\TenantDto|\Aurigma\AssetStorage\Model\ConflictDto
      */
     public function tenantsCreate($create_tenant_dto = null, string $contentType = self::contentTypes['tenantsCreate'][0])
     {
@@ -494,7 +416,7 @@ class TenantsApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\AssetStorage\Model\TenantDto|\Aurigma\AssetStorage\Model\NameConflictDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\AssetStorage\Model\TenantDto|\Aurigma\AssetStorage\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function tenantsCreateWithHttpInfo($create_tenant_dto = null, string $contentType = self::contentTypes['tenantsCreate'][0])
     {
@@ -564,11 +486,11 @@ class TenantsApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\AssetStorage\Model\NameConflictDto' === '\SplFileObject') {
+                    if ('\Aurigma\AssetStorage\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\AssetStorage\Model\NameConflictDto' !== 'string') {
+                        if ('\Aurigma\AssetStorage\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -586,7 +508,7 @@ class TenantsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\NameConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -633,7 +555,7 @@ class TenantsApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\NameConflictDto',
+                        '\Aurigma\AssetStorage\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -779,10 +701,6 @@ class TenantsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -792,14 +710,18 @@ class TenantsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1143,10 +1065,6 @@ class TenantsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -1156,14 +1074,18 @@ class TenantsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1507,10 +1429,6 @@ class TenantsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -1520,14 +1438,18 @@ class TenantsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1891,10 +1813,6 @@ class TenantsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -1904,14 +1822,18 @@ class TenantsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1946,7 +1868,7 @@ class TenantsApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\AssetStorage\Model\TenantDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto
+     * @return \Aurigma\AssetStorage\Model\TenantDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto
      */
     public function tenantsUpdate($id, $update_tenant_dto = null, string $contentType = self::contentTypes['tenantsUpdate'][0])
     {
@@ -1965,7 +1887,7 @@ class TenantsApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\AssetStorage\Model\TenantDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\AssetStorage\Model\TenantDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function tenantsUpdateWithHttpInfo($id, $update_tenant_dto = null, string $contentType = self::contentTypes['tenantsUpdate'][0])
     {
@@ -2062,11 +1984,11 @@ class TenantsApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\AssetStorage\Model\NameConflictDto' === '\SplFileObject') {
+                    if ('\Aurigma\AssetStorage\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\AssetStorage\Model\NameConflictDto' !== 'string') {
+                        if ('\Aurigma\AssetStorage\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2084,7 +2006,7 @@ class TenantsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\NameConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2139,7 +2061,7 @@ class TenantsApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\NameConflictDto',
+                        '\Aurigma\AssetStorage\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2303,10 +2225,6 @@ class TenantsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -2316,14 +2234,18 @@ class TenantsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];

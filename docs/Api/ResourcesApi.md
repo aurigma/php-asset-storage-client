@@ -33,24 +33,24 @@ Copies the specified entities.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
@@ -59,7 +59,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier.
+$tenant_id = 56; // int | Tenant ID.
 $batch_copy_resources_input = new \Aurigma\AssetStorage\Model\BatchCopyResourcesInput(); // \Aurigma\AssetStorage\Model\BatchCopyResourcesInput | Operation parameters.
 
 try {
@@ -73,7 +73,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier. | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **batch_copy_resources_input** | [**\Aurigma\AssetStorage\Model\BatchCopyResourcesInput**](../Model/BatchCopyResourcesInput.md)| Operation parameters. | [optional] |
 
 ### Return type
@@ -82,7 +82,7 @@ void (empty response body)
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -108,24 +108,24 @@ Deletes the specified entities.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
@@ -134,7 +134,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier.
+$tenant_id = 56; // int | Tenant ID.
 $batch_delete_resources_input = new \Aurigma\AssetStorage\Model\BatchDeleteResourcesInput(); // \Aurigma\AssetStorage\Model\BatchDeleteResourcesInput | Operation parameters.
 
 try {
@@ -148,7 +148,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier. | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **batch_delete_resources_input** | [**\Aurigma\AssetStorage\Model\BatchDeleteResourcesInput**](../Model/BatchDeleteResourcesInput.md)| Operation parameters. | [optional] |
 
 ### Return type
@@ -157,7 +157,7 @@ void (empty response body)
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -183,24 +183,24 @@ Updates custom fields values for the specified entities.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
@@ -209,7 +209,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier.
+$tenant_id = 56; // int | Tenant ID.
 $batch_update_custom_fields_input = new \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput(); // \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput | Operation parameters.
 
 try {
@@ -223,7 +223,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier. | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **batch_update_custom_fields_input** | [**\Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput**](../Model/BatchUpdateCustomFieldsInput.md)| Operation parameters. | [optional] |
 
 ### Return type
@@ -232,7 +232,7 @@ void (empty response body)
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -258,24 +258,24 @@ Copies the specified entity.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
@@ -288,8 +288,8 @@ $id = 'id_example'; // string | Source entity identifier.
 $name = 'name_example'; // string | Desired name.
 $namespace = 'namespace_example'; // string | Desired namespace.
 $source_id = 'source_id_example'; // string | Desired source identifier.
-$strategy = new \Aurigma\AssetStorage\Model\ConflictResolvingStrategy(); // ConflictResolvingStrategy | Conflict resolving strategy.
-$tenant_id = 56; // int | Tenant identifier.
+$strategy = new \Aurigma\AssetStorage\Model\\Aurigma\AssetStorage\Model\ConflictResolvingStrategy(); // \Aurigma\AssetStorage\Model\ConflictResolvingStrategy | Conflict resolving strategy.
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->resourcesCopy($id, $name, $namespace, $source_id, $strategy, $tenant_id);
@@ -307,8 +307,8 @@ try {
 | **name** | **string**| Desired name. | [optional] |
 | **namespace** | **string**| Desired namespace. | [optional] |
 | **source_id** | **string**| Desired source identifier. | [optional] |
-| **strategy** | [**ConflictResolvingStrategy**](../Model/.md)| Conflict resolving strategy. | [optional] |
-| **tenant_id** | **int**| Tenant identifier. | [optional] |
+| **strategy** | [**\Aurigma\AssetStorage\Model\ConflictResolvingStrategy**](../Model/.md)| Conflict resolving strategy. | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -316,7 +316,7 @@ try {
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -342,24 +342,24 @@ Creates a new entity.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
@@ -370,7 +370,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
 );
 $file = "/path/to/file.txt"; // \SplFileObject | File content.
 $name = 'name_example'; // string | Entity name.
-$tenant_id = 56; // int | Tenant identifier.
+$tenant_id = 56; // int | Tenant ID.
 $id = 'id_example'; // string | Desired unique identifier for new resource.
 $namespace = 'namespace_example'; // string | Resource namespace.
 $source_id = 'source_id_example'; // string | Resource source identifier.
@@ -393,7 +393,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | |
 | **name** | **string**| Entity name. | |
-| **tenant_id** | **int**| Tenant identifier. | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **id** | **string**| Desired unique identifier for new resource. | [optional] |
 | **namespace** | **string**| Resource namespace. | [optional] |
 | **source_id** | **string**| Resource source identifier. | [optional] |
@@ -408,7 +408,7 @@ try {
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -434,24 +434,24 @@ Deletes the specified entity.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
@@ -461,7 +461,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
     $config
 );
 $id = 'id_example'; // string | Entity identifier.
-$tenant_id = 56; // int | Tenant identifier.
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->resourcesDelete($id, $tenant_id);
@@ -476,7 +476,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Entity identifier. | |
-| **tenant_id** | **int**| Tenant identifier. | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -484,7 +484,7 @@ try {
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -510,24 +510,24 @@ Deletes all resources that use a specified namespace.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
@@ -537,7 +537,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
     $config
 );
 $namespace = 'namespace_example'; // string | Namespace value.
-$tenant_id = 56; // int | Tenant identifier.
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $apiInstance->resourcesDeleteByNamespace($namespace, $tenant_id);
@@ -551,7 +551,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **namespace** | **string**| Namespace value. | |
-| **tenant_id** | **int**| Tenant identifier. | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -559,7 +559,7 @@ void (empty response body)
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -585,24 +585,24 @@ Returns an entity by ID.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
@@ -612,7 +612,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
     $config
 );
 $id = 'id_example'; // string | Entity identifier.
-$tenant_id = 56; // int | Tenant identifier.
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->resourcesGet($id, $tenant_id);
@@ -627,7 +627,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Entity identifier. | |
-| **tenant_id** | **int**| Tenant identifier. | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -635,7 +635,7 @@ try {
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -661,24 +661,24 @@ Returns all entities relevant to specified query parameters.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
@@ -695,7 +695,7 @@ $take = 56; // int | Defines page length (how much consequent items of sorted re
 $sorting = 'sorting_example'; // string | Defines sorting order of result list e.g.: \"Title ASC, LastModified DESC\".
 $search = 'search_example'; // string | Search string for partial match.
 $custom_fields = 'custom_fields_example'; // string | Custom attributes dictionary filter. For example: `{\"public\":\"true\",\"name\":\"my item\"}`.
-$tenant_id = 56; // int | Tenant identifier.
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->resourcesGetAll($namespace, $source_id, $type, $skip, $take, $sorting, $search, $custom_fields, $tenant_id);
@@ -717,7 +717,7 @@ try {
 | **sorting** | **string**| Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. | [optional] |
 | **search** | **string**| Search string for partial match. | [optional] |
 | **custom_fields** | **string**| Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. | [optional] |
-| **tenant_id** | **int**| Tenant identifier. | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -725,7 +725,7 @@ try {
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -751,24 +751,24 @@ Returns an entity file from file storage.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
@@ -779,7 +779,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
 );
 $id = 'id_example'; // string | Entity identifier.
 $attachment = True; // bool | Indicates if file should be provided as an attachment with proper filename supplied (default value is 'false').
-$tenant_id = 56; // int | Tenant identifier.
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->resourcesGetFile($id, $attachment, $tenant_id);
@@ -795,7 +795,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Entity identifier. | |
 | **attachment** | **bool**| Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). | [optional] |
-| **tenant_id** | **int**| Tenant identifier. | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -803,7 +803,7 @@ try {
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -829,24 +829,24 @@ Returns information about storage usage by resource files.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
@@ -855,7 +855,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$tenant_id = 56; // int | Tenant identifier.
+$tenant_id = 56; // int | Tenant ID.
 
 try {
     $result = $apiInstance->resourcesGetFileStorageInfo($tenant_id);
@@ -869,7 +869,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **tenant_id** | **int**| Tenant identifier. | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
 
@@ -877,7 +877,7 @@ try {
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 
@@ -903,24 +903,24 @@ Updates the specified entity.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: oauth2-code
-$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-// Configure API key authorization: apiKey
+// Configure API key authorization: ApiKey
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-// Configure OAuth2 access token for authorization: oauth2-clientCredentials
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-// Configure API key authorization: jwtBearer
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
 $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-// Configure OAuth2 access token for authorization: oauth2-implicit
-$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
 
 $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
@@ -930,7 +930,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\ResourcesApi(
     $config
 );
 $id = 'id_example'; // string | Entity identifier.
-$tenant_id = 56; // int | Tenant identifier.
+$tenant_id = 56; // int | Tenant ID.
 $file = "/path/to/file.txt"; // \SplFileObject | File content.
 $namespace = 'namespace_example'; // string | Resource namespace.
 $source_id = 'source_id_example'; // string | Resource source identifier.
@@ -953,7 +953,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Entity identifier. | |
-| **tenant_id** | **int**| Tenant identifier. | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
 | **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | [optional] |
 | **namespace** | **string**| Resource namespace. | [optional] |
 | **source_id** | **string**| Resource source identifier. | [optional] |
@@ -969,7 +969,7 @@ try {
 
 ### Authorization
 
-[oauth2-code](../../README.md#oauth2-code), [apiKey](../../README.md#apiKey), [oauth2-clientCredentials](../../README.md#oauth2-clientCredentials), [jwtBearer](../../README.md#jwtBearer), [oauth2-implicit](../../README.md#oauth2-implicit)
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
 
 ### HTTP request headers
 

@@ -351,7 +351,7 @@ class BatchUpdateResourcesOwnerInput implements ModelInterface, ArrayAccess, \Js
     /**
      * Sets conflict_strategy
      *
-     * @param \Aurigma\AssetStorage\Model\ConflictResolvingStrategy|null $conflict_strategy conflict_strategy
+     * @param \Aurigma\AssetStorage\Model\ConflictResolvingStrategy|null $conflict_strategy List of folders, which are operation subjects.
      *
      * @return self
      */

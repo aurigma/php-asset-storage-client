@@ -169,7 +169,7 @@ class PrivateResourcesApi
      *
      * Copies the specified entities.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchCopyResourcesInput $batch_copy_resources_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesBatchCopy'] to see the possible values for this operation
@@ -188,7 +188,7 @@ class PrivateResourcesApi
      *
      * Copies the specified entities.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchCopyResourcesInput $batch_copy_resources_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesBatchCopy'] to see the possible values for this operation
@@ -266,7 +266,7 @@ class PrivateResourcesApi
      *
      * Copies the specified entities.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchCopyResourcesInput $batch_copy_resources_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesBatchCopy'] to see the possible values for this operation
@@ -289,7 +289,7 @@ class PrivateResourcesApi
      *
      * Copies the specified entities.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchCopyResourcesInput $batch_copy_resources_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesBatchCopy'] to see the possible values for this operation
@@ -328,7 +328,7 @@ class PrivateResourcesApi
     /**
      * Create request for operation 'privateResourcesBatchCopy'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchCopyResourcesInput $batch_copy_resources_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesBatchCopy'] to see the possible values for this operation
@@ -410,10 +410,6 @@ class PrivateResourcesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -423,14 +419,18 @@ class PrivateResourcesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -459,7 +459,7 @@ class PrivateResourcesApi
      *
      * Deletes the specified entities.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchDeleteResourcesInput $batch_delete_resources_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesBatchDelete'] to see the possible values for this operation
@@ -478,7 +478,7 @@ class PrivateResourcesApi
      *
      * Deletes the specified entities.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchDeleteResourcesInput $batch_delete_resources_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesBatchDelete'] to see the possible values for this operation
@@ -548,7 +548,7 @@ class PrivateResourcesApi
      *
      * Deletes the specified entities.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchDeleteResourcesInput $batch_delete_resources_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesBatchDelete'] to see the possible values for this operation
@@ -571,7 +571,7 @@ class PrivateResourcesApi
      *
      * Deletes the specified entities.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchDeleteResourcesInput $batch_delete_resources_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesBatchDelete'] to see the possible values for this operation
@@ -610,7 +610,7 @@ class PrivateResourcesApi
     /**
      * Create request for operation 'privateResourcesBatchDelete'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchDeleteResourcesInput $batch_delete_resources_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesBatchDelete'] to see the possible values for this operation
@@ -692,10 +692,6 @@ class PrivateResourcesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -705,14 +701,18 @@ class PrivateResourcesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -741,7 +741,7 @@ class PrivateResourcesApi
      *
      * Updates custom fields values for the specified entities.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesBatchUpdateCustomFields'] to see the possible values for this operation
@@ -760,7 +760,7 @@ class PrivateResourcesApi
      *
      * Updates custom fields values for the specified entities.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesBatchUpdateCustomFields'] to see the possible values for this operation
@@ -830,7 +830,7 @@ class PrivateResourcesApi
      *
      * Updates custom fields values for the specified entities.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesBatchUpdateCustomFields'] to see the possible values for this operation
@@ -853,7 +853,7 @@ class PrivateResourcesApi
      *
      * Updates custom fields values for the specified entities.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesBatchUpdateCustomFields'] to see the possible values for this operation
@@ -892,7 +892,7 @@ class PrivateResourcesApi
     /**
      * Create request for operation 'privateResourcesBatchUpdateCustomFields'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesBatchUpdateCustomFields'] to see the possible values for this operation
@@ -974,10 +974,6 @@ class PrivateResourcesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -987,14 +983,18 @@ class PrivateResourcesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1024,7 +1024,7 @@ class PrivateResourcesApi
      * Updates owner for the specified entities.
      *
      * @param  string $old_owner_id Source private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id New private storage owner identifier. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateResourcesOwnerInput $batch_update_resources_owner_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesBatchUpdateOwner'] to see the possible values for this operation
@@ -1044,7 +1044,7 @@ class PrivateResourcesApi
      * Updates owner for the specified entities.
      *
      * @param  string $old_owner_id Source private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id New private storage owner identifier. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateResourcesOwnerInput $batch_update_resources_owner_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesBatchUpdateOwner'] to see the possible values for this operation
@@ -1123,7 +1123,7 @@ class PrivateResourcesApi
      * Updates owner for the specified entities.
      *
      * @param  string $old_owner_id Source private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id New private storage owner identifier. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateResourcesOwnerInput $batch_update_resources_owner_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesBatchUpdateOwner'] to see the possible values for this operation
@@ -1147,7 +1147,7 @@ class PrivateResourcesApi
      * Updates owner for the specified entities.
      *
      * @param  string $old_owner_id Source private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id New private storage owner identifier. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateResourcesOwnerInput $batch_update_resources_owner_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesBatchUpdateOwner'] to see the possible values for this operation
@@ -1187,7 +1187,7 @@ class PrivateResourcesApi
      * Create request for operation 'privateResourcesBatchUpdateOwner'
      *
      * @param  string $old_owner_id Source private storage owner identifier. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id New private storage owner identifier. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateResourcesOwnerInput $batch_update_resources_owner_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesBatchUpdateOwner'] to see the possible values for this operation
@@ -1279,10 +1279,6 @@ class PrivateResourcesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -1292,14 +1288,18 @@ class PrivateResourcesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1332,14 +1332,14 @@ class PrivateResourcesApi
      * @param  string $name Desired name. (optional)
      * @param  string $namespace Desired namespace. (optional)
      * @param  string $source_id Desired source identifier. (optional)
-     * @param  ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesCopy'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\AssetStorage\Model\ResourceDto|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
+     * @return \Aurigma\AssetStorage\Model\ResourceDto|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
     public function privateResourcesCopy($id, $name = null, $namespace = null, $source_id = null, $strategy = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateResourcesCopy'][0])
     {
@@ -1356,14 +1356,14 @@ class PrivateResourcesApi
      * @param  string $name Desired name. (optional)
      * @param  string $namespace Desired namespace. (optional)
      * @param  string $source_id Desired source identifier. (optional)
-     * @param  ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesCopy'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\AssetStorage\Model\ResourceDto|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\AssetStorage\Model\ResourceDto|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function privateResourcesCopyWithHttpInfo($id, $name = null, $namespace = null, $source_id = null, $strategy = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateResourcesCopy'][0])
     {
@@ -1433,11 +1433,11 @@ class PrivateResourcesApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\AssetStorage\Model\NameConflictDto' === '\SplFileObject') {
+                    if ('\Aurigma\AssetStorage\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\AssetStorage\Model\NameConflictDto' !== 'string') {
+                        if ('\Aurigma\AssetStorage\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1455,7 +1455,7 @@ class PrivateResourcesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\NameConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1529,7 +1529,7 @@ class PrivateResourcesApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\NameConflictDto',
+                        '\Aurigma\AssetStorage\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1556,8 +1556,8 @@ class PrivateResourcesApi
      * @param  string $name Desired name. (optional)
      * @param  string $namespace Desired namespace. (optional)
      * @param  string $source_id Desired source identifier. (optional)
-     * @param  ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesCopy'] to see the possible values for this operation
      *
@@ -1583,8 +1583,8 @@ class PrivateResourcesApi
      * @param  string $name Desired name. (optional)
      * @param  string $namespace Desired namespace. (optional)
      * @param  string $source_id Desired source identifier. (optional)
-     * @param  ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesCopy'] to see the possible values for this operation
      *
@@ -1639,8 +1639,8 @@ class PrivateResourcesApi
      * @param  string $name Desired name. (optional)
      * @param  string $namespace Desired namespace. (optional)
      * @param  string $source_id Desired source identifier. (optional)
-     * @param  ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesCopy'] to see the possible values for this operation
      *
@@ -1768,10 +1768,6 @@ class PrivateResourcesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -1781,14 +1777,18 @@ class PrivateResourcesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1819,7 +1819,7 @@ class PrivateResourcesApi
      *
      * @param  \SplFileObject $file File content. (required)
      * @param  string $name Entity name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $id Desired unique identifier for new resource. (optional)
      * @param  string $namespace Resource namespace. (optional)
@@ -1832,7 +1832,7 @@ class PrivateResourcesApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\AssetStorage\Model\ResourceDto|\Aurigma\AssetStorage\Model\NameConflictDto
+     * @return \Aurigma\AssetStorage\Model\ResourceDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
     public function privateResourcesCreate($file, $name, $tenant_id = null, $owner_id = null, $id = null, $namespace = null, $source_id = null, $type = null, $format = null, $anonymous_access = null, $custom_fields = null, string $contentType = self::contentTypes['privateResourcesCreate'][0])
     {
@@ -1847,7 +1847,7 @@ class PrivateResourcesApi
      *
      * @param  \SplFileObject $file File content. (required)
      * @param  string $name Entity name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $id Desired unique identifier for new resource. (optional)
      * @param  string $namespace Resource namespace. (optional)
@@ -1860,7 +1860,7 @@ class PrivateResourcesApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\AssetStorage\Model\ResourceDto|\Aurigma\AssetStorage\Model\NameConflictDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\AssetStorage\Model\ResourceDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function privateResourcesCreateWithHttpInfo($file, $name, $tenant_id = null, $owner_id = null, $id = null, $namespace = null, $source_id = null, $type = null, $format = null, $anonymous_access = null, $custom_fields = null, string $contentType = self::contentTypes['privateResourcesCreate'][0])
     {
@@ -1929,12 +1929,12 @@ class PrivateResourcesApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 409:
-                    if ('\Aurigma\AssetStorage\Model\NameConflictDto' === '\SplFileObject') {
+                case 404:
+                    if ('\Aurigma\AssetStorage\Model\ProblemDetails' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\AssetStorage\Model\NameConflictDto' !== 'string') {
+                        if ('\Aurigma\AssetStorage\Model\ProblemDetails' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1952,7 +1952,61 @@ class PrivateResourcesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\NameConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\AssetStorage\Model\ConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\AssetStorage\Model\ConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ConflictDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 429:
+                    if ('\Aurigma\AssetStorage\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\AssetStorage\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ProblemDetails', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1996,10 +2050,26 @@ class PrivateResourcesApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\NameConflictDto',
+                        '\Aurigma\AssetStorage\Model\ConflictDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 429:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\ProblemDetails',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2016,7 +2086,7 @@ class PrivateResourcesApi
      *
      * @param  \SplFileObject $file File content. (required)
      * @param  string $name Entity name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $id Desired unique identifier for new resource. (optional)
      * @param  string $namespace Resource namespace. (optional)
@@ -2047,7 +2117,7 @@ class PrivateResourcesApi
      *
      * @param  \SplFileObject $file File content. (required)
      * @param  string $name Entity name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $id Desired unique identifier for new resource. (optional)
      * @param  string $namespace Resource namespace. (optional)
@@ -2107,7 +2177,7 @@ class PrivateResourcesApi
      *
      * @param  \SplFileObject $file File content. (required)
      * @param  string $name Entity name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $id Desired unique identifier for new resource. (optional)
      * @param  string $namespace Resource namespace. (optional)
@@ -2247,10 +2317,6 @@ class PrivateResourcesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -2260,14 +2326,18 @@ class PrivateResourcesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -2297,7 +2367,7 @@ class PrivateResourcesApi
      * Deletes the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesDelete'] to see the possible values for this operation
      *
@@ -2317,7 +2387,7 @@ class PrivateResourcesApi
      * Deletes the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesDelete'] to see the possible values for this operation
      *
@@ -2478,7 +2548,7 @@ class PrivateResourcesApi
      * Deletes the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesDelete'] to see the possible values for this operation
      *
@@ -2501,7 +2571,7 @@ class PrivateResourcesApi
      * Deletes the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesDelete'] to see the possible values for this operation
      *
@@ -2553,7 +2623,7 @@ class PrivateResourcesApi
      * Create request for operation 'privateResourcesDelete'
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesDelete'] to see the possible values for this operation
      *
@@ -2641,10 +2711,6 @@ class PrivateResourcesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -2654,14 +2720,18 @@ class PrivateResourcesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -2692,7 +2762,7 @@ class PrivateResourcesApi
      *
      * @param  string $namespace2 namespace2 (required)
      * @param  string $namespace Namespace value. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private resources owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesDeleteByNamespace'] to see the possible values for this operation
      *
@@ -2712,7 +2782,7 @@ class PrivateResourcesApi
      *
      * @param  string $namespace2 (required)
      * @param  string $namespace Namespace value. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private resources owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesDeleteByNamespace'] to see the possible values for this operation
      *
@@ -2783,7 +2853,7 @@ class PrivateResourcesApi
      *
      * @param  string $namespace2 (required)
      * @param  string $namespace Namespace value. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private resources owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesDeleteByNamespace'] to see the possible values for this operation
      *
@@ -2807,7 +2877,7 @@ class PrivateResourcesApi
      *
      * @param  string $namespace2 (required)
      * @param  string $namespace Namespace value. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private resources owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesDeleteByNamespace'] to see the possible values for this operation
      *
@@ -2847,7 +2917,7 @@ class PrivateResourcesApi
      *
      * @param  string $namespace2 (required)
      * @param  string $namespace Namespace value. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private resources owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesDeleteByNamespace'] to see the possible values for this operation
      *
@@ -2945,10 +3015,6 @@ class PrivateResourcesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -2958,14 +3024,18 @@ class PrivateResourcesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -2995,7 +3065,7 @@ class PrivateResourcesApi
      * Returns an entity by ID.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesGet'] to see the possible values for this operation
      *
@@ -3015,7 +3085,7 @@ class PrivateResourcesApi
      * Returns an entity by ID.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesGet'] to see the possible values for this operation
      *
@@ -3176,7 +3246,7 @@ class PrivateResourcesApi
      * Returns an entity by ID.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesGet'] to see the possible values for this operation
      *
@@ -3199,7 +3269,7 @@ class PrivateResourcesApi
      * Returns an entity by ID.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesGet'] to see the possible values for this operation
      *
@@ -3251,7 +3321,7 @@ class PrivateResourcesApi
      * Create request for operation 'privateResourcesGet'
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesGet'] to see the possible values for this operation
      *
@@ -3339,10 +3409,6 @@ class PrivateResourcesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -3352,14 +3418,18 @@ class PrivateResourcesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -3396,7 +3466,7 @@ class PrivateResourcesApi
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesGetAll'] to see the possible values for this operation
      *
@@ -3423,7 +3493,7 @@ class PrivateResourcesApi
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesGetAll'] to see the possible values for this operation
      *
@@ -3556,7 +3626,7 @@ class PrivateResourcesApi
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesGetAll'] to see the possible values for this operation
      *
@@ -3586,7 +3656,7 @@ class PrivateResourcesApi
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesGetAll'] to see the possible values for this operation
      *
@@ -3645,7 +3715,7 @@ class PrivateResourcesApi
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesGetAll'] to see the possible values for this operation
      *
@@ -3798,10 +3868,6 @@ class PrivateResourcesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -3811,14 +3877,18 @@ class PrivateResourcesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -3849,7 +3919,7 @@ class PrivateResourcesApi
      *
      * @param  string $id Entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesGetFile'] to see the possible values for this operation
      *
@@ -3870,7 +3940,7 @@ class PrivateResourcesApi
      *
      * @param  string $id Entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesGetFile'] to see the possible values for this operation
      *
@@ -4067,7 +4137,7 @@ class PrivateResourcesApi
      *
      * @param  string $id Entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesGetFile'] to see the possible values for this operation
      *
@@ -4091,7 +4161,7 @@ class PrivateResourcesApi
      *
      * @param  string $id Entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesGetFile'] to see the possible values for this operation
      *
@@ -4144,7 +4214,7 @@ class PrivateResourcesApi
      *
      * @param  string $id Entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesGetFile'] to see the possible values for this operation
      *
@@ -4242,10 +4312,6 @@ class PrivateResourcesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -4255,14 +4321,18 @@ class PrivateResourcesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -4291,7 +4361,7 @@ class PrivateResourcesApi
      *
      * Returns information about storage usage by private resource files.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesGetFileStorageInfo'] to see the possible values for this operation
      *
@@ -4310,7 +4380,7 @@ class PrivateResourcesApi
      *
      * Returns information about storage usage by private resource files.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesGetFileStorageInfo'] to see the possible values for this operation
      *
@@ -4435,7 +4505,7 @@ class PrivateResourcesApi
      *
      * Returns information about storage usage by private resource files.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesGetFileStorageInfo'] to see the possible values for this operation
      *
@@ -4457,7 +4527,7 @@ class PrivateResourcesApi
      *
      * Returns information about storage usage by private resource files.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesGetFileStorageInfo'] to see the possible values for this operation
      *
@@ -4508,7 +4578,7 @@ class PrivateResourcesApi
     /**
      * Create request for operation 'privateResourcesGetFileStorageInfo'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesGetFileStorageInfo'] to see the possible values for this operation
      *
@@ -4581,10 +4651,6 @@ class PrivateResourcesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -4594,14 +4660,18 @@ class PrivateResourcesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -4631,7 +4701,7 @@ class PrivateResourcesApi
      * Returns an entity retention policy by entity identifier.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesGetRetentionPolicy'] to see the possible values for this operation
      *
@@ -4651,7 +4721,7 @@ class PrivateResourcesApi
      * Returns an entity retention policy by entity identifier.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesGetRetentionPolicy'] to see the possible values for this operation
      *
@@ -4812,7 +4882,7 @@ class PrivateResourcesApi
      * Returns an entity retention policy by entity identifier.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesGetRetentionPolicy'] to see the possible values for this operation
      *
@@ -4835,7 +4905,7 @@ class PrivateResourcesApi
      * Returns an entity retention policy by entity identifier.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesGetRetentionPolicy'] to see the possible values for this operation
      *
@@ -4887,7 +4957,7 @@ class PrivateResourcesApi
      * Create request for operation 'privateResourcesGetRetentionPolicy'
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesGetRetentionPolicy'] to see the possible values for this operation
      *
@@ -4975,10 +5045,6 @@ class PrivateResourcesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -4988,14 +5054,18 @@ class PrivateResourcesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -5025,8 +5095,8 @@ class PrivateResourcesApi
      * Updates an entity retention policy by entity identifier.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  RetentionPolicy $policy New entity retention policy. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\RetentionPolicy $policy New entity retention policy. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesSetRetentionPolicy'] to see the possible values for this operation
      *
@@ -5045,8 +5115,8 @@ class PrivateResourcesApi
      * Updates an entity retention policy by entity identifier.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  RetentionPolicy $policy New entity retention policy. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\RetentionPolicy $policy New entity retention policy. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesSetRetentionPolicy'] to see the possible values for this operation
      *
@@ -5116,8 +5186,8 @@ class PrivateResourcesApi
      * Updates an entity retention policy by entity identifier.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  RetentionPolicy $policy New entity retention policy. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\RetentionPolicy $policy New entity retention policy. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesSetRetentionPolicy'] to see the possible values for this operation
      *
@@ -5140,8 +5210,8 @@ class PrivateResourcesApi
      * Updates an entity retention policy by entity identifier.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  RetentionPolicy $policy New entity retention policy. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\RetentionPolicy $policy New entity retention policy. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesSetRetentionPolicy'] to see the possible values for this operation
      *
@@ -5180,8 +5250,8 @@ class PrivateResourcesApi
      * Create request for operation 'privateResourcesSetRetentionPolicy'
      *
      * @param  string $id Entity identifier. (required)
-     * @param  RetentionPolicy $policy New entity retention policy. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\RetentionPolicy $policy New entity retention policy. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateResourcesSetRetentionPolicy'] to see the possible values for this operation
      *
@@ -5279,10 +5349,6 @@ class PrivateResourcesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -5292,14 +5358,18 @@ class PrivateResourcesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -5329,7 +5399,7 @@ class PrivateResourcesApi
      * Updates the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  \SplFileObject $file File content. (optional)
      * @param  string $namespace Resource namespace. (optional)
@@ -5343,7 +5413,7 @@ class PrivateResourcesApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\AssetStorage\Model\ResourceDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto
+     * @return \Aurigma\AssetStorage\Model\ResourceDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto
      */
     public function privateResourcesUpdate($id, $tenant_id = null, $owner_id = null, $file = null, $namespace = null, $source_id = null, $type = null, $format = null, $anonymous_access = null, $name = null, $custom_fields = null, string $contentType = self::contentTypes['privateResourcesUpdate'][0])
     {
@@ -5357,7 +5427,7 @@ class PrivateResourcesApi
      * Updates the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  \SplFileObject $file File content. (optional)
      * @param  string $namespace Resource namespace. (optional)
@@ -5371,7 +5441,7 @@ class PrivateResourcesApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\AssetStorage\Model\ResourceDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\AssetStorage\Model\ResourceDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function privateResourcesUpdateWithHttpInfo($id, $tenant_id = null, $owner_id = null, $file = null, $namespace = null, $source_id = null, $type = null, $format = null, $anonymous_access = null, $name = null, $custom_fields = null, string $contentType = self::contentTypes['privateResourcesUpdate'][0])
     {
@@ -5468,11 +5538,11 @@ class PrivateResourcesApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\AssetStorage\Model\NameConflictDto' === '\SplFileObject') {
+                    if ('\Aurigma\AssetStorage\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\AssetStorage\Model\NameConflictDto' !== 'string') {
+                        if ('\Aurigma\AssetStorage\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -5490,7 +5560,7 @@ class PrivateResourcesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\NameConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -5545,7 +5615,7 @@ class PrivateResourcesApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\NameConflictDto',
+                        '\Aurigma\AssetStorage\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -5561,7 +5631,7 @@ class PrivateResourcesApi
      * Updates the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  \SplFileObject $file File content. (optional)
      * @param  string $namespace Resource namespace. (optional)
@@ -5592,7 +5662,7 @@ class PrivateResourcesApi
      * Updates the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  \SplFileObject $file File content. (optional)
      * @param  string $namespace Resource namespace. (optional)
@@ -5652,7 +5722,7 @@ class PrivateResourcesApi
      * Create request for operation 'privateResourcesUpdate'
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
      * @param  \SplFileObject $file File content. (optional)
      * @param  string $namespace Resource namespace. (optional)
@@ -5791,10 +5861,6 @@ class PrivateResourcesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -5804,14 +5870,18 @@ class PrivateResourcesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];

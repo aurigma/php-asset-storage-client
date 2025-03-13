@@ -189,7 +189,7 @@ class ImagesApi
      * @param  string $namespace Preview namespace. (required)
      * @param  int $width Preview image width. (required)
      * @param  int $height Preview image height. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $format Preview image format, e.g. Jpeg, Png, Bmp. (optional)
      * @param  \SplFileObject $file Preview file content. (optional)
      * @param  bool $is_custom Indicates if the preview is custom.  Custom previews preserved even if source is changed. (optional)
@@ -215,7 +215,7 @@ class ImagesApi
      * @param  string $namespace Preview namespace. (required)
      * @param  int $width Preview image width. (required)
      * @param  int $height Preview image height. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $format Preview image format, e.g. Jpeg, Png, Bmp. (optional)
      * @param  \SplFileObject $file Preview file content. (optional)
      * @param  bool $is_custom Indicates if the preview is custom.  Custom previews preserved even if source is changed. (optional)
@@ -417,7 +417,7 @@ class ImagesApi
      * @param  string $namespace Preview namespace. (required)
      * @param  int $width Preview image width. (required)
      * @param  int $height Preview image height. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $format Preview image format, e.g. Jpeg, Png, Bmp. (optional)
      * @param  \SplFileObject $file Preview file content. (optional)
      * @param  bool $is_custom Indicates if the preview is custom.  Custom previews preserved even if source is changed. (optional)
@@ -446,7 +446,7 @@ class ImagesApi
      * @param  string $namespace Preview namespace. (required)
      * @param  int $width Preview image width. (required)
      * @param  int $height Preview image height. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $format Preview image format, e.g. Jpeg, Png, Bmp. (optional)
      * @param  \SplFileObject $file Preview file content. (optional)
      * @param  bool $is_custom Indicates if the preview is custom.  Custom previews preserved even if source is changed. (optional)
@@ -504,7 +504,7 @@ class ImagesApi
      * @param  string $namespace Preview namespace. (required)
      * @param  int $width Preview image width. (required)
      * @param  int $height Preview image height. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $format Preview image format, e.g. Jpeg, Png, Bmp. (optional)
      * @param  \SplFileObject $file Preview file content. (optional)
      * @param  bool $is_custom Indicates if the preview is custom.  Custom previews preserved even if source is changed. (optional)
@@ -643,10 +643,6 @@ class ImagesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -656,14 +652,18 @@ class ImagesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -692,7 +692,7 @@ class ImagesApi
      *
      * Copies the specified entities and folders to another folder.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesBatchCopy'] to see the possible values for this operation
      *
@@ -710,7 +710,7 @@ class ImagesApi
      *
      * Copies the specified entities and folders to another folder.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesBatchCopy'] to see the possible values for this operation
      *
@@ -787,7 +787,7 @@ class ImagesApi
      *
      * Copies the specified entities and folders to another folder.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesBatchCopy'] to see the possible values for this operation
      *
@@ -809,7 +809,7 @@ class ImagesApi
      *
      * Copies the specified entities and folders to another folder.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesBatchCopy'] to see the possible values for this operation
      *
@@ -847,7 +847,7 @@ class ImagesApi
     /**
      * Create request for operation 'imagesBatchCopy'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesBatchCopy'] to see the possible values for this operation
      *
@@ -918,10 +918,6 @@ class ImagesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -931,14 +927,18 @@ class ImagesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -967,7 +967,7 @@ class ImagesApi
      *
      * Deletes the specified entities and folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesBatchDelete'] to see the possible values for this operation
      *
@@ -985,7 +985,7 @@ class ImagesApi
      *
      * Deletes the specified entities and folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesBatchDelete'] to see the possible values for this operation
      *
@@ -1054,7 +1054,7 @@ class ImagesApi
      *
      * Deletes the specified entities and folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesBatchDelete'] to see the possible values for this operation
      *
@@ -1076,7 +1076,7 @@ class ImagesApi
      *
      * Deletes the specified entities and folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesBatchDelete'] to see the possible values for this operation
      *
@@ -1114,7 +1114,7 @@ class ImagesApi
     /**
      * Create request for operation 'imagesBatchDelete'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesBatchDelete'] to see the possible values for this operation
      *
@@ -1185,10 +1185,6 @@ class ImagesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -1198,14 +1194,18 @@ class ImagesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1234,7 +1234,7 @@ class ImagesApi
      *
      * Updates custom fields values for the specified entities.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesBatchUpdateCustomFields'] to see the possible values for this operation
      *
@@ -1252,7 +1252,7 @@ class ImagesApi
      *
      * Updates custom fields values for the specified entities.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesBatchUpdateCustomFields'] to see the possible values for this operation
      *
@@ -1321,7 +1321,7 @@ class ImagesApi
      *
      * Updates custom fields values for the specified entities.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesBatchUpdateCustomFields'] to see the possible values for this operation
      *
@@ -1343,7 +1343,7 @@ class ImagesApi
      *
      * Updates custom fields values for the specified entities.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesBatchUpdateCustomFields'] to see the possible values for this operation
      *
@@ -1381,7 +1381,7 @@ class ImagesApi
     /**
      * Create request for operation 'imagesBatchUpdateCustomFields'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesBatchUpdateCustomFields'] to see the possible values for this operation
      *
@@ -1452,10 +1452,6 @@ class ImagesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -1465,14 +1461,18 @@ class ImagesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1501,7 +1501,7 @@ class ImagesApi
      *
      * Updates parent folder for the specified entities and folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesBatchUpdateParentFolder'] to see the possible values for this operation
      *
@@ -1519,7 +1519,7 @@ class ImagesApi
      *
      * Updates parent folder for the specified entities and folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesBatchUpdateParentFolder'] to see the possible values for this operation
      *
@@ -1596,7 +1596,7 @@ class ImagesApi
      *
      * Updates parent folder for the specified entities and folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesBatchUpdateParentFolder'] to see the possible values for this operation
      *
@@ -1618,7 +1618,7 @@ class ImagesApi
      *
      * Updates parent folder for the specified entities and folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesBatchUpdateParentFolder'] to see the possible values for this operation
      *
@@ -1656,7 +1656,7 @@ class ImagesApi
     /**
      * Create request for operation 'imagesBatchUpdateParentFolder'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesBatchUpdateParentFolder'] to see the possible values for this operation
      *
@@ -1727,10 +1727,6 @@ class ImagesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -1740,14 +1736,18 @@ class ImagesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1779,13 +1779,13 @@ class ImagesApi
      * @param  string $id Source entity identifier. (required)
      * @param  string $path Desired path. (optional)
      * @param  string $name Desired name. (optional)
-     * @param  ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesCopy'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\AssetStorage\Model\ImageDto|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
+     * @return \Aurigma\AssetStorage\Model\ImageDto|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
     public function imagesCopy($id, $path = null, $name = null, $strategy = null, $tenant_id = null, string $contentType = self::contentTypes['imagesCopy'][0])
     {
@@ -1801,13 +1801,13 @@ class ImagesApi
      * @param  string $id Source entity identifier. (required)
      * @param  string $path Desired path. (optional)
      * @param  string $name Desired name. (optional)
-     * @param  ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesCopy'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\AssetStorage\Model\ImageDto|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\AssetStorage\Model\ImageDto|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function imagesCopyWithHttpInfo($id, $path = null, $name = null, $strategy = null, $tenant_id = null, string $contentType = self::contentTypes['imagesCopy'][0])
     {
@@ -1877,11 +1877,11 @@ class ImagesApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\AssetStorage\Model\NameConflictDto' === '\SplFileObject') {
+                    if ('\Aurigma\AssetStorage\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\AssetStorage\Model\NameConflictDto' !== 'string') {
+                        if ('\Aurigma\AssetStorage\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1899,7 +1899,7 @@ class ImagesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\NameConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1973,7 +1973,7 @@ class ImagesApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\NameConflictDto',
+                        '\Aurigma\AssetStorage\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1999,8 +1999,8 @@ class ImagesApi
      * @param  string $id Source entity identifier. (required)
      * @param  string $path Desired path. (optional)
      * @param  string $name Desired name. (optional)
-     * @param  ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesCopy'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2024,8 +2024,8 @@ class ImagesApi
      * @param  string $id Source entity identifier. (required)
      * @param  string $path Desired path. (optional)
      * @param  string $name Desired name. (optional)
-     * @param  ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesCopy'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2078,8 +2078,8 @@ class ImagesApi
      * @param  string $id Source entity identifier. (required)
      * @param  string $path Desired path. (optional)
      * @param  string $name Desired name. (optional)
-     * @param  ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesCopy'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2186,10 +2186,6 @@ class ImagesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -2199,14 +2195,18 @@ class ImagesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -2238,7 +2238,7 @@ class ImagesApi
      * @param  \SplFileObject $file File content. (required)
      * @param  string $path Parent folder full path. (required)
      * @param  string $name Entity name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  bool $metadata_is_vector metadata_is_vector (optional)
      * @param  int $metadata_width metadata_width (optional)
      * @param  int $metadata_height metadata_height (optional)
@@ -2251,7 +2251,7 @@ class ImagesApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\AssetStorage\Model\ImageDto|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
+     * @return \Aurigma\AssetStorage\Model\ImageDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
     public function imagesCreate($file, $path, $name, $tenant_id = null, $metadata_is_vector = null, $metadata_width = null, $metadata_height = null, $metadata_format = null, $metadata_dpi_x = null, $metadata_dpi_y = null, $metadata_pages = null, $custom_fields = null, string $contentType = self::contentTypes['imagesCreate'][0])
     {
@@ -2267,7 +2267,7 @@ class ImagesApi
      * @param  \SplFileObject $file File content. (required)
      * @param  string $path Parent folder full path. (required)
      * @param  string $name Entity name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  bool $metadata_is_vector (optional)
      * @param  int $metadata_width (optional)
      * @param  int $metadata_height (optional)
@@ -2280,7 +2280,7 @@ class ImagesApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\AssetStorage\Model\ImageDto|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\AssetStorage\Model\ImageDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function imagesCreateWithHttpInfo($file, $path, $name, $tenant_id = null, $metadata_is_vector = null, $metadata_width = null, $metadata_height = null, $metadata_format = null, $metadata_dpi_x = null, $metadata_dpi_y = null, $metadata_pages = null, $custom_fields = null, string $contentType = self::contentTypes['imagesCreate'][0])
     {
@@ -2349,12 +2349,12 @@ class ImagesApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 409:
-                    if ('\Aurigma\AssetStorage\Model\NameConflictDto' === '\SplFileObject') {
+                case 404:
+                    if ('\Aurigma\AssetStorage\Model\ProblemDetails' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\AssetStorage\Model\NameConflictDto' !== 'string') {
+                        if ('\Aurigma\AssetStorage\Model\ProblemDetails' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2372,7 +2372,34 @@ class ImagesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\NameConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\AssetStorage\Model\ConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\AssetStorage\Model\ConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2443,10 +2470,18 @@ class ImagesApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\NameConflictDto',
+                        '\Aurigma\AssetStorage\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2472,7 +2507,7 @@ class ImagesApi
      * @param  \SplFileObject $file File content. (required)
      * @param  string $path Parent folder full path. (required)
      * @param  string $name Entity name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  bool $metadata_is_vector (optional)
      * @param  int $metadata_width (optional)
      * @param  int $metadata_height (optional)
@@ -2504,7 +2539,7 @@ class ImagesApi
      * @param  \SplFileObject $file File content. (required)
      * @param  string $path Parent folder full path. (required)
      * @param  string $name Entity name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  bool $metadata_is_vector (optional)
      * @param  int $metadata_width (optional)
      * @param  int $metadata_height (optional)
@@ -2565,7 +2600,7 @@ class ImagesApi
      * @param  \SplFileObject $file File content. (required)
      * @param  string $path Parent folder full path. (required)
      * @param  string $name Entity name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  bool $metadata_is_vector (optional)
      * @param  int $metadata_width (optional)
      * @param  int $metadata_height (optional)
@@ -2711,10 +2746,6 @@ class ImagesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -2724,14 +2755,18 @@ class ImagesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -2760,13 +2795,13 @@ class ImagesApi
      *
      * Creates a new folder.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesCreateFolder'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\NameConflictDto
+     * @return \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto
      */
     public function imagesCreateFolder($tenant_id = null, $create_folder_dto = null, string $contentType = self::contentTypes['imagesCreateFolder'][0])
     {
@@ -2779,13 +2814,13 @@ class ImagesApi
      *
      * Creates a new folder.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesCreateFolder'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\NameConflictDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function imagesCreateFolderWithHttpInfo($tenant_id = null, $create_folder_dto = null, string $contentType = self::contentTypes['imagesCreateFolder'][0])
     {
@@ -2854,12 +2889,12 @@ class ImagesApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 409:
-                    if ('\Aurigma\AssetStorage\Model\NameConflictDto' === '\SplFileObject') {
+                case 404:
+                    if ('\Aurigma\AssetStorage\Model\ProblemDetails' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\AssetStorage\Model\NameConflictDto' !== 'string') {
+                        if ('\Aurigma\AssetStorage\Model\ProblemDetails' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2877,7 +2912,34 @@ class ImagesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\NameConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\AssetStorage\Model\ConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\AssetStorage\Model\ConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2921,10 +2983,18 @@ class ImagesApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\NameConflictDto',
+                        '\Aurigma\AssetStorage\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2939,7 +3009,7 @@ class ImagesApi
      *
      * Creates a new folder.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesCreateFolder'] to see the possible values for this operation
      *
@@ -2961,7 +3031,7 @@ class ImagesApi
      *
      * Creates a new folder.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesCreateFolder'] to see the possible values for this operation
      *
@@ -3012,7 +3082,7 @@ class ImagesApi
     /**
      * Create request for operation 'imagesCreateFolder'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesCreateFolder'] to see the possible values for this operation
      *
@@ -3083,10 +3153,6 @@ class ImagesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -3096,14 +3162,18 @@ class ImagesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -3133,7 +3203,7 @@ class ImagesApi
      * Deletes the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesDelete'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3152,7 +3222,7 @@ class ImagesApi
      * Deletes the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesDelete'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3312,7 +3382,7 @@ class ImagesApi
      * Deletes the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3334,7 +3404,7 @@ class ImagesApi
      * Deletes the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3385,7 +3455,7 @@ class ImagesApi
      * Create request for operation 'imagesDelete'
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3462,10 +3532,6 @@ class ImagesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -3475,14 +3541,18 @@ class ImagesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -3512,7 +3582,7 @@ class ImagesApi
      * Deletes the specified folder and its content by folder path.
      *
      * @param  string $full_path Folder full path. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesDeleteFolder'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3531,7 +3601,7 @@ class ImagesApi
      * Deletes the specified folder and its content by folder path.
      *
      * @param  string $full_path Folder full path. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesDeleteFolder'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3691,7 +3761,7 @@ class ImagesApi
      * Deletes the specified folder and its content by folder path.
      *
      * @param  string $full_path Folder full path. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesDeleteFolder'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3713,7 +3783,7 @@ class ImagesApi
      * Deletes the specified folder and its content by folder path.
      *
      * @param  string $full_path Folder full path. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesDeleteFolder'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3764,7 +3834,7 @@ class ImagesApi
      * Create request for operation 'imagesDeleteFolder'
      *
      * @param  string $full_path Folder full path. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesDeleteFolder'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3836,10 +3906,6 @@ class ImagesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -3849,14 +3915,18 @@ class ImagesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -3886,7 +3956,7 @@ class ImagesApi
      * Deletes the specified folder and its content by folder identifier.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesDeleteFolderById'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3905,7 +3975,7 @@ class ImagesApi
      * Deletes the specified folder and its content by folder identifier.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesDeleteFolderById'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4065,7 +4135,7 @@ class ImagesApi
      * Deletes the specified folder and its content by folder identifier.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesDeleteFolderById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4087,7 +4157,7 @@ class ImagesApi
      * Deletes the specified folder and its content by folder identifier.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesDeleteFolderById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4138,7 +4208,7 @@ class ImagesApi
      * Create request for operation 'imagesDeleteFolderById'
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesDeleteFolderById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4215,10 +4285,6 @@ class ImagesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -4228,14 +4294,18 @@ class ImagesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -4265,7 +4335,7 @@ class ImagesApi
      * Returns an entity by ID.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGet'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4284,7 +4354,7 @@ class ImagesApi
      * Returns an entity by ID.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGet'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4444,7 +4514,7 @@ class ImagesApi
      * Returns an entity by ID.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4466,7 +4536,7 @@ class ImagesApi
      * Returns an entity by ID.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4517,7 +4587,7 @@ class ImagesApi
      * Create request for operation 'imagesGet'
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4594,10 +4664,6 @@ class ImagesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -4607,14 +4673,18 @@ class ImagesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -4650,7 +4720,7 @@ class ImagesApi
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetAll'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4675,7 +4745,7 @@ class ImagesApi
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetAll'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4806,7 +4876,7 @@ class ImagesApi
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4834,7 +4904,7 @@ class ImagesApi
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4891,7 +4961,7 @@ class ImagesApi
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5023,10 +5093,6 @@ class ImagesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -5036,14 +5102,18 @@ class ImagesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -5072,7 +5142,7 @@ class ImagesApi
      *
      * Returns all folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetAllFolders'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5090,7 +5160,7 @@ class ImagesApi
      *
      * Returns all folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetAllFolders'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5214,7 +5284,7 @@ class ImagesApi
      *
      * Returns all folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetAllFolders'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5235,7 +5305,7 @@ class ImagesApi
      *
      * Returns all folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetAllFolders'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5285,7 +5355,7 @@ class ImagesApi
     /**
      * Create request for operation 'imagesGetAllFolders'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetAllFolders'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5347,10 +5417,6 @@ class ImagesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -5360,14 +5426,18 @@ class ImagesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -5398,7 +5468,7 @@ class ImagesApi
      *
      * @param  string $id Entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetFile'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5418,7 +5488,7 @@ class ImagesApi
      *
      * @param  string $id Entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetFile'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5614,7 +5684,7 @@ class ImagesApi
      *
      * @param  string $id Entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5637,7 +5707,7 @@ class ImagesApi
      *
      * @param  string $id Entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5689,7 +5759,7 @@ class ImagesApi
      *
      * @param  string $id Entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5776,10 +5846,6 @@ class ImagesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -5789,14 +5855,18 @@ class ImagesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -5825,7 +5895,7 @@ class ImagesApi
      *
      * Returns information about the use of file storage.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetFileStorageInfo'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5843,7 +5913,7 @@ class ImagesApi
      *
      * Returns information about the use of file storage.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetFileStorageInfo'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5967,7 +6037,7 @@ class ImagesApi
      *
      * Returns information about the use of file storage.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetFileStorageInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5988,7 +6058,7 @@ class ImagesApi
      *
      * Returns information about the use of file storage.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetFileStorageInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6038,7 +6108,7 @@ class ImagesApi
     /**
      * Create request for operation 'imagesGetFileStorageInfo'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetFileStorageInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6100,10 +6170,6 @@ class ImagesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -6113,14 +6179,18 @@ class ImagesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -6150,7 +6220,7 @@ class ImagesApi
      * Returns a folder and its content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetFolder'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -6169,7 +6239,7 @@ class ImagesApi
      * Returns a folder and its content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetFolder'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -6329,7 +6399,7 @@ class ImagesApi
      * Returns a folder and its content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetFolder'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6351,7 +6421,7 @@ class ImagesApi
      * Returns a folder and its content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetFolder'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6402,7 +6472,7 @@ class ImagesApi
      * Create request for operation 'imagesGetFolder'
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetFolder'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6474,10 +6544,6 @@ class ImagesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -6487,14 +6553,18 @@ class ImagesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -6524,7 +6594,7 @@ class ImagesApi
      * Returns a folder by ID.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetFolderInfo'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -6543,7 +6613,7 @@ class ImagesApi
      * Returns a folder by ID.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetFolderInfo'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -6703,7 +6773,7 @@ class ImagesApi
      * Returns a folder by ID.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetFolderInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6725,7 +6795,7 @@ class ImagesApi
      * Returns a folder by ID.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetFolderInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6776,7 +6846,7 @@ class ImagesApi
      * Create request for operation 'imagesGetFolderInfo'
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesGetFolderInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6853,10 +6923,6 @@ class ImagesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -6866,14 +6932,18 @@ class ImagesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -6903,7 +6973,7 @@ class ImagesApi
      * Updates the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  bool $metadata_is_vector metadata_is_vector (optional)
      * @param  int $metadata_width metadata_width (optional)
      * @param  int $metadata_height metadata_height (optional)
@@ -6919,7 +6989,7 @@ class ImagesApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\AssetStorage\Model\ImageDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
+     * @return \Aurigma\AssetStorage\Model\ImageDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
     public function imagesUpdate($id, $tenant_id = null, $metadata_is_vector = null, $metadata_width = null, $metadata_height = null, $metadata_format = null, $metadata_dpi_x = null, $metadata_dpi_y = null, $metadata_pages = null, $file = null, $path = null, $name = null, $custom_fields = null, string $contentType = self::contentTypes['imagesUpdate'][0])
     {
@@ -6933,7 +7003,7 @@ class ImagesApi
      * Updates the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  bool $metadata_is_vector (optional)
      * @param  int $metadata_width (optional)
      * @param  int $metadata_height (optional)
@@ -6949,7 +7019,7 @@ class ImagesApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\AssetStorage\Model\ImageDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\AssetStorage\Model\ImageDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function imagesUpdateWithHttpInfo($id, $tenant_id = null, $metadata_is_vector = null, $metadata_width = null, $metadata_height = null, $metadata_format = null, $metadata_dpi_x = null, $metadata_dpi_y = null, $metadata_pages = null, $file = null, $path = null, $name = null, $custom_fields = null, string $contentType = self::contentTypes['imagesUpdate'][0])
     {
@@ -7046,11 +7116,11 @@ class ImagesApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\AssetStorage\Model\NameConflictDto' === '\SplFileObject') {
+                    if ('\Aurigma\AssetStorage\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\AssetStorage\Model\NameConflictDto' !== 'string') {
+                        if ('\Aurigma\AssetStorage\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -7068,7 +7138,7 @@ class ImagesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\NameConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -7150,7 +7220,7 @@ class ImagesApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\NameConflictDto',
+                        '\Aurigma\AssetStorage\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7174,7 +7244,7 @@ class ImagesApi
      * Updates the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  bool $metadata_is_vector (optional)
      * @param  int $metadata_width (optional)
      * @param  int $metadata_height (optional)
@@ -7207,7 +7277,7 @@ class ImagesApi
      * Updates the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  bool $metadata_is_vector (optional)
      * @param  int $metadata_width (optional)
      * @param  int $metadata_height (optional)
@@ -7269,7 +7339,7 @@ class ImagesApi
      * Create request for operation 'imagesUpdate'
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  bool $metadata_is_vector (optional)
      * @param  int $metadata_width (optional)
      * @param  int $metadata_height (optional)
@@ -7415,10 +7485,6 @@ class ImagesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -7428,14 +7494,18 @@ class ImagesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -7465,13 +7535,13 @@ class ImagesApi
      * Updates the specified folder.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesUpdateFolder'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto
+     * @return \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto
      */
     public function imagesUpdateFolder($id, $tenant_id = null, $update_folder_dto = null, string $contentType = self::contentTypes['imagesUpdateFolder'][0])
     {
@@ -7485,13 +7555,13 @@ class ImagesApi
      * Updates the specified folder.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesUpdateFolder'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function imagesUpdateFolderWithHttpInfo($id, $tenant_id = null, $update_folder_dto = null, string $contentType = self::contentTypes['imagesUpdateFolder'][0])
     {
@@ -7588,11 +7658,11 @@ class ImagesApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\AssetStorage\Model\NameConflictDto' === '\SplFileObject') {
+                    if ('\Aurigma\AssetStorage\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\AssetStorage\Model\NameConflictDto' !== 'string') {
+                        if ('\Aurigma\AssetStorage\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -7610,7 +7680,7 @@ class ImagesApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\NameConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -7665,7 +7735,7 @@ class ImagesApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\NameConflictDto',
+                        '\Aurigma\AssetStorage\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7681,7 +7751,7 @@ class ImagesApi
      * Updates the specified folder.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesUpdateFolder'] to see the possible values for this operation
      *
@@ -7704,7 +7774,7 @@ class ImagesApi
      * Updates the specified folder.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesUpdateFolder'] to see the possible values for this operation
      *
@@ -7756,7 +7826,7 @@ class ImagesApi
      * Create request for operation 'imagesUpdateFolder'
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['imagesUpdateFolder'] to see the possible values for this operation
      *
@@ -7842,10 +7912,6 @@ class ImagesApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -7855,14 +7921,18 @@ class ImagesApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];

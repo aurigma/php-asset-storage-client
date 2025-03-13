@@ -385,7 +385,7 @@ class BatchUpdateCustomFieldsInput implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets update_strategy
      *
-     * @param \Aurigma\AssetStorage\Model\CustomFieldsUpdateStrategy|null $update_strategy update_strategy
+     * @param \Aurigma\AssetStorage\Model\CustomFieldsUpdateStrategy|null $update_strategy Custom fields update strategy.
      *
      * @return self
      */

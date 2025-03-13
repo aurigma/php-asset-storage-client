@@ -181,7 +181,7 @@ class DocumentsApi
      *
      * Copies the specified entities and folders to another folder.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsBatchCopy'] to see the possible values for this operation
      *
@@ -199,7 +199,7 @@ class DocumentsApi
      *
      * Copies the specified entities and folders to another folder.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsBatchCopy'] to see the possible values for this operation
      *
@@ -276,7 +276,7 @@ class DocumentsApi
      *
      * Copies the specified entities and folders to another folder.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsBatchCopy'] to see the possible values for this operation
      *
@@ -298,7 +298,7 @@ class DocumentsApi
      *
      * Copies the specified entities and folders to another folder.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsBatchCopy'] to see the possible values for this operation
      *
@@ -336,7 +336,7 @@ class DocumentsApi
     /**
      * Create request for operation 'documentsBatchCopy'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchCopyInput $batch_copy_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsBatchCopy'] to see the possible values for this operation
      *
@@ -407,10 +407,6 @@ class DocumentsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -420,14 +416,18 @@ class DocumentsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -456,7 +456,7 @@ class DocumentsApi
      *
      * Deletes the specified entities and folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsBatchDelete'] to see the possible values for this operation
      *
@@ -474,7 +474,7 @@ class DocumentsApi
      *
      * Deletes the specified entities and folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsBatchDelete'] to see the possible values for this operation
      *
@@ -543,7 +543,7 @@ class DocumentsApi
      *
      * Deletes the specified entities and folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsBatchDelete'] to see the possible values for this operation
      *
@@ -565,7 +565,7 @@ class DocumentsApi
      *
      * Deletes the specified entities and folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsBatchDelete'] to see the possible values for this operation
      *
@@ -603,7 +603,7 @@ class DocumentsApi
     /**
      * Create request for operation 'documentsBatchDelete'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchDeleteInput $batch_delete_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsBatchDelete'] to see the possible values for this operation
      *
@@ -674,10 +674,6 @@ class DocumentsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -687,14 +683,18 @@ class DocumentsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -723,7 +723,7 @@ class DocumentsApi
      *
      * Updates custom fields values for the specified entities.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsBatchUpdateCustomFields'] to see the possible values for this operation
      *
@@ -741,7 +741,7 @@ class DocumentsApi
      *
      * Updates custom fields values for the specified entities.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsBatchUpdateCustomFields'] to see the possible values for this operation
      *
@@ -810,7 +810,7 @@ class DocumentsApi
      *
      * Updates custom fields values for the specified entities.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsBatchUpdateCustomFields'] to see the possible values for this operation
      *
@@ -832,7 +832,7 @@ class DocumentsApi
      *
      * Updates custom fields values for the specified entities.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsBatchUpdateCustomFields'] to see the possible values for this operation
      *
@@ -870,7 +870,7 @@ class DocumentsApi
     /**
      * Create request for operation 'documentsBatchUpdateCustomFields'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateCustomFieldsInput $batch_update_custom_fields_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsBatchUpdateCustomFields'] to see the possible values for this operation
      *
@@ -941,10 +941,6 @@ class DocumentsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -954,14 +950,18 @@ class DocumentsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -990,7 +990,7 @@ class DocumentsApi
      *
      * Updates parent folder for the specified entities and folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsBatchUpdateParentFolder'] to see the possible values for this operation
      *
@@ -1008,7 +1008,7 @@ class DocumentsApi
      *
      * Updates parent folder for the specified entities and folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsBatchUpdateParentFolder'] to see the possible values for this operation
      *
@@ -1085,7 +1085,7 @@ class DocumentsApi
      *
      * Updates parent folder for the specified entities and folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsBatchUpdateParentFolder'] to see the possible values for this operation
      *
@@ -1107,7 +1107,7 @@ class DocumentsApi
      *
      * Updates parent folder for the specified entities and folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsBatchUpdateParentFolder'] to see the possible values for this operation
      *
@@ -1145,7 +1145,7 @@ class DocumentsApi
     /**
      * Create request for operation 'documentsBatchUpdateParentFolder'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\BatchUpdateParentFolderInput $batch_update_parent_folder_input Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsBatchUpdateParentFolder'] to see the possible values for this operation
      *
@@ -1216,10 +1216,6 @@ class DocumentsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -1229,14 +1225,18 @@ class DocumentsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1268,13 +1268,13 @@ class DocumentsApi
      * @param  string $id Source entity identifier. (required)
      * @param  string $path Desired path. (optional)
      * @param  string $name Desired name. (optional)
-     * @param  ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsCopy'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\AssetStorage\Model\DocumentDto|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
+     * @return \Aurigma\AssetStorage\Model\DocumentDto|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
     public function documentsCopy($id, $path = null, $name = null, $strategy = null, $tenant_id = null, string $contentType = self::contentTypes['documentsCopy'][0])
     {
@@ -1290,13 +1290,13 @@ class DocumentsApi
      * @param  string $id Source entity identifier. (required)
      * @param  string $path Desired path. (optional)
      * @param  string $name Desired name. (optional)
-     * @param  ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsCopy'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\AssetStorage\Model\DocumentDto|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\AssetStorage\Model\DocumentDto|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function documentsCopyWithHttpInfo($id, $path = null, $name = null, $strategy = null, $tenant_id = null, string $contentType = self::contentTypes['documentsCopy'][0])
     {
@@ -1366,11 +1366,11 @@ class DocumentsApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\AssetStorage\Model\NameConflictDto' === '\SplFileObject') {
+                    if ('\Aurigma\AssetStorage\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\AssetStorage\Model\NameConflictDto' !== 'string') {
+                        if ('\Aurigma\AssetStorage\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1388,7 +1388,7 @@ class DocumentsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\NameConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1462,7 +1462,7 @@ class DocumentsApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\NameConflictDto',
+                        '\Aurigma\AssetStorage\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1488,8 +1488,8 @@ class DocumentsApi
      * @param  string $id Source entity identifier. (required)
      * @param  string $path Desired path. (optional)
      * @param  string $name Desired name. (optional)
-     * @param  ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsCopy'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1513,8 +1513,8 @@ class DocumentsApi
      * @param  string $id Source entity identifier. (required)
      * @param  string $path Desired path. (optional)
      * @param  string $name Desired name. (optional)
-     * @param  ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsCopy'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1567,8 +1567,8 @@ class DocumentsApi
      * @param  string $id Source entity identifier. (required)
      * @param  string $path Desired path. (optional)
      * @param  string $name Desired name. (optional)
-     * @param  ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  \Aurigma\AssetStorage\Model\ConflictResolvingStrategy $strategy Conflict resolving strategy. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsCopy'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1675,10 +1675,6 @@ class DocumentsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -1688,14 +1684,18 @@ class DocumentsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1727,15 +1727,15 @@ class DocumentsApi
      * @param  \SplFileObject $file File content. (required)
      * @param  string $path Parent folder full path. (required)
      * @param  string $name Entity name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\AssetStorage\Model\DocumentType $type type (optional)
-     * @param  \Aurigma\AssetStorage\Model\DocumentFormatType $format format (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentType $type Document type. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentFormatType $format Document format. (optional)
      * @param  array<string,mixed> $custom_fields Entity custom attributes. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsCreate'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\AssetStorage\Model\DocumentDto|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
+     * @return \Aurigma\AssetStorage\Model\DocumentDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
     public function documentsCreate($file, $path, $name, $tenant_id = null, $type = null, $format = null, $custom_fields = null, string $contentType = self::contentTypes['documentsCreate'][0])
     {
@@ -1751,15 +1751,15 @@ class DocumentsApi
      * @param  \SplFileObject $file File content. (required)
      * @param  string $path Parent folder full path. (required)
      * @param  string $name Entity name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\AssetStorage\Model\DocumentType $type (optional)
-     * @param  \Aurigma\AssetStorage\Model\DocumentFormatType $format (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentType $type Document type. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentFormatType $format Document format. (optional)
      * @param  array<string,mixed> $custom_fields Entity custom attributes. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsCreate'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\AssetStorage\Model\DocumentDto|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\AssetStorage\Model\DocumentDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function documentsCreateWithHttpInfo($file, $path, $name, $tenant_id = null, $type = null, $format = null, $custom_fields = null, string $contentType = self::contentTypes['documentsCreate'][0])
     {
@@ -1828,12 +1828,12 @@ class DocumentsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 409:
-                    if ('\Aurigma\AssetStorage\Model\NameConflictDto' === '\SplFileObject') {
+                case 404:
+                    if ('\Aurigma\AssetStorage\Model\ProblemDetails' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\AssetStorage\Model\NameConflictDto' !== 'string') {
+                        if ('\Aurigma\AssetStorage\Model\ProblemDetails' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1851,7 +1851,34 @@ class DocumentsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\NameConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\AssetStorage\Model\ConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\AssetStorage\Model\ConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1922,10 +1949,18 @@ class DocumentsApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\NameConflictDto',
+                        '\Aurigma\AssetStorage\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1951,9 +1986,9 @@ class DocumentsApi
      * @param  \SplFileObject $file File content. (required)
      * @param  string $path Parent folder full path. (required)
      * @param  string $name Entity name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\AssetStorage\Model\DocumentType $type (optional)
-     * @param  \Aurigma\AssetStorage\Model\DocumentFormatType $format (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentType $type Document type. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentFormatType $format Document format. (optional)
      * @param  array<string,mixed> $custom_fields Entity custom attributes. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsCreate'] to see the possible values for this operation
      *
@@ -1978,9 +2013,9 @@ class DocumentsApi
      * @param  \SplFileObject $file File content. (required)
      * @param  string $path Parent folder full path. (required)
      * @param  string $name Entity name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\AssetStorage\Model\DocumentType $type (optional)
-     * @param  \Aurigma\AssetStorage\Model\DocumentFormatType $format (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentType $type Document type. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentFormatType $format Document format. (optional)
      * @param  array<string,mixed> $custom_fields Entity custom attributes. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsCreate'] to see the possible values for this operation
      *
@@ -2034,9 +2069,9 @@ class DocumentsApi
      * @param  \SplFileObject $file File content. (required)
      * @param  string $path Parent folder full path. (required)
      * @param  string $name Entity name. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\AssetStorage\Model\DocumentType $type (optional)
-     * @param  \Aurigma\AssetStorage\Model\DocumentFormatType $format (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentType $type Document type. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentFormatType $format Document format. (optional)
      * @param  array<string,mixed> $custom_fields Entity custom attributes. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsCreate'] to see the possible values for this operation
      *
@@ -2150,10 +2185,6 @@ class DocumentsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -2163,14 +2194,18 @@ class DocumentsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -2199,13 +2234,13 @@ class DocumentsApi
      *
      * Creates a new folder.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsCreateFolder'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\NameConflictDto
+     * @return \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto
      */
     public function documentsCreateFolder($tenant_id = null, $create_folder_dto = null, string $contentType = self::contentTypes['documentsCreateFolder'][0])
     {
@@ -2218,13 +2253,13 @@ class DocumentsApi
      *
      * Creates a new folder.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsCreateFolder'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\NameConflictDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function documentsCreateFolderWithHttpInfo($tenant_id = null, $create_folder_dto = null, string $contentType = self::contentTypes['documentsCreateFolder'][0])
     {
@@ -2293,12 +2328,12 @@ class DocumentsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 409:
-                    if ('\Aurigma\AssetStorage\Model\NameConflictDto' === '\SplFileObject') {
+                case 404:
+                    if ('\Aurigma\AssetStorage\Model\ProblemDetails' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\AssetStorage\Model\NameConflictDto' !== 'string') {
+                        if ('\Aurigma\AssetStorage\Model\ProblemDetails' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2316,7 +2351,34 @@ class DocumentsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\NameConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Aurigma\AssetStorage\Model\ConflictDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\AssetStorage\Model\ConflictDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -2360,10 +2422,18 @@ class DocumentsApi
                     );
                     $e->setResponseObject($data);
                     break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\NameConflictDto',
+                        '\Aurigma\AssetStorage\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2378,7 +2448,7 @@ class DocumentsApi
      *
      * Creates a new folder.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsCreateFolder'] to see the possible values for this operation
      *
@@ -2400,7 +2470,7 @@ class DocumentsApi
      *
      * Creates a new folder.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsCreateFolder'] to see the possible values for this operation
      *
@@ -2451,7 +2521,7 @@ class DocumentsApi
     /**
      * Create request for operation 'documentsCreateFolder'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\CreateFolderDto $create_folder_dto Create operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsCreateFolder'] to see the possible values for this operation
      *
@@ -2522,10 +2592,6 @@ class DocumentsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -2535,14 +2601,18 @@ class DocumentsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -2572,7 +2642,7 @@ class DocumentsApi
      * Deletes the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsDelete'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -2591,7 +2661,7 @@ class DocumentsApi
      * Deletes the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsDelete'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -2751,7 +2821,7 @@ class DocumentsApi
      * Deletes the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2773,7 +2843,7 @@ class DocumentsApi
      * Deletes the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2824,7 +2894,7 @@ class DocumentsApi
      * Create request for operation 'documentsDelete'
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsDelete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2901,10 +2971,6 @@ class DocumentsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -2914,14 +2980,18 @@ class DocumentsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -2951,7 +3021,7 @@ class DocumentsApi
      * Deletes the specified folder and its content by folder path.
      *
      * @param  string $full_path Folder full path. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsDeleteFolder'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -2970,7 +3040,7 @@ class DocumentsApi
      * Deletes the specified folder and its content by folder path.
      *
      * @param  string $full_path Folder full path. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsDeleteFolder'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3130,7 +3200,7 @@ class DocumentsApi
      * Deletes the specified folder and its content by folder path.
      *
      * @param  string $full_path Folder full path. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsDeleteFolder'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3152,7 +3222,7 @@ class DocumentsApi
      * Deletes the specified folder and its content by folder path.
      *
      * @param  string $full_path Folder full path. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsDeleteFolder'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3203,7 +3273,7 @@ class DocumentsApi
      * Create request for operation 'documentsDeleteFolder'
      *
      * @param  string $full_path Folder full path. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsDeleteFolder'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3275,10 +3345,6 @@ class DocumentsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -3288,14 +3354,18 @@ class DocumentsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -3325,7 +3395,7 @@ class DocumentsApi
      * Deletes the specified folder and its content by folder identifier.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsDeleteFolderById'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3344,7 +3414,7 @@ class DocumentsApi
      * Deletes the specified folder and its content by folder identifier.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsDeleteFolderById'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3504,7 +3574,7 @@ class DocumentsApi
      * Deletes the specified folder and its content by folder identifier.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsDeleteFolderById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3526,7 +3596,7 @@ class DocumentsApi
      * Deletes the specified folder and its content by folder identifier.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsDeleteFolderById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3577,7 +3647,7 @@ class DocumentsApi
      * Create request for operation 'documentsDeleteFolderById'
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsDeleteFolderById'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3654,10 +3724,6 @@ class DocumentsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -3667,14 +3733,18 @@ class DocumentsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -3704,7 +3774,7 @@ class DocumentsApi
      * Returns an entity by ID.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGet'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3723,7 +3793,7 @@ class DocumentsApi
      * Returns an entity by ID.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGet'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -3883,7 +3953,7 @@ class DocumentsApi
      * Returns an entity by ID.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3905,7 +3975,7 @@ class DocumentsApi
      * Returns an entity by ID.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -3956,7 +4026,7 @@ class DocumentsApi
      * Create request for operation 'documentsGet'
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4033,10 +4103,6 @@ class DocumentsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -4046,14 +4112,18 @@ class DocumentsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -4082,8 +4152,8 @@ class DocumentsApi
      *
      * Returns all entities relevant to specified query parameters.
      *
-     * @param  DocumentType $type Document type. (optional)
-     * @param  DocumentFormatType $format Document format. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentType $type Document type. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentFormatType $format Document format. (optional)
      * @param  string $path Folder path filter parameter. (optional)
      * @param  bool $include_subfolders If set to &#39;true&#39;, query result will contain list of all entities in desired folder and subfolders. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
@@ -4091,7 +4161,7 @@ class DocumentsApi
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetAll'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4109,8 +4179,8 @@ class DocumentsApi
      *
      * Returns all entities relevant to specified query parameters.
      *
-     * @param  DocumentType $type Document type. (optional)
-     * @param  DocumentFormatType $format Document format. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentType $type Document type. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentFormatType $format Document format. (optional)
      * @param  string $path Folder path filter parameter. (optional)
      * @param  bool $include_subfolders If set to &#39;true&#39;, query result will contain list of all entities in desired folder and subfolders. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
@@ -4118,7 +4188,7 @@ class DocumentsApi
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetAll'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4242,8 +4312,8 @@ class DocumentsApi
      *
      * Returns all entities relevant to specified query parameters.
      *
-     * @param  DocumentType $type Document type. (optional)
-     * @param  DocumentFormatType $format Document format. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentType $type Document type. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentFormatType $format Document format. (optional)
      * @param  string $path Folder path filter parameter. (optional)
      * @param  bool $include_subfolders If set to &#39;true&#39;, query result will contain list of all entities in desired folder and subfolders. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
@@ -4251,7 +4321,7 @@ class DocumentsApi
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4272,8 +4342,8 @@ class DocumentsApi
      *
      * Returns all entities relevant to specified query parameters.
      *
-     * @param  DocumentType $type Document type. (optional)
-     * @param  DocumentFormatType $format Document format. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentType $type Document type. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentFormatType $format Document format. (optional)
      * @param  string $path Folder path filter parameter. (optional)
      * @param  bool $include_subfolders If set to &#39;true&#39;, query result will contain list of all entities in desired folder and subfolders. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
@@ -4281,7 +4351,7 @@ class DocumentsApi
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4331,8 +4401,8 @@ class DocumentsApi
     /**
      * Create request for operation 'documentsGetAll'
      *
-     * @param  DocumentType $type Document type. (optional)
-     * @param  DocumentFormatType $format Document format. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentType $type Document type. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentFormatType $format Document format. (optional)
      * @param  string $path Folder path filter parameter. (optional)
      * @param  bool $include_subfolders If set to &#39;true&#39;, query result will contain list of all entities in desired folder and subfolders. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
@@ -4340,7 +4410,7 @@ class DocumentsApi
      * @param  string $sorting Defines sorting order of result list e.g.: \&quot;Title ASC, LastModified DESC\&quot;. (optional)
      * @param  string $search Search string for partial match. (optional)
      * @param  string $custom_fields Custom attributes dictionary filter. For example: &#x60;{\&quot;public\&quot;:\&quot;true\&quot;,\&quot;name\&quot;:\&quot;my item\&quot;}&#x60;. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4492,10 +4562,6 @@ class DocumentsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -4505,14 +4571,18 @@ class DocumentsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -4541,7 +4611,7 @@ class DocumentsApi
      *
      * Returns all folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetAllFolders'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4559,7 +4629,7 @@ class DocumentsApi
      *
      * Returns all folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetAllFolders'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4683,7 +4753,7 @@ class DocumentsApi
      *
      * Returns all folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetAllFolders'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4704,7 +4774,7 @@ class DocumentsApi
      *
      * Returns all folders.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetAllFolders'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4754,7 +4824,7 @@ class DocumentsApi
     /**
      * Create request for operation 'documentsGetAllFolders'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetAllFolders'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -4816,10 +4886,6 @@ class DocumentsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -4829,14 +4895,18 @@ class DocumentsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -4867,7 +4937,7 @@ class DocumentsApi
      *
      * @param  string $id Entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetFile'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4887,7 +4957,7 @@ class DocumentsApi
      *
      * @param  string $id Entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetFile'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5083,7 +5153,7 @@ class DocumentsApi
      *
      * @param  string $id Entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5106,7 +5176,7 @@ class DocumentsApi
      *
      * @param  string $id Entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5158,7 +5228,7 @@ class DocumentsApi
      *
      * @param  string $id Entity identifier. (required)
      * @param  bool $attachment Indicates if file should be provided as an attachment with proper filename supplied (default value is &#39;false&#39;). (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetFile'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5245,10 +5315,6 @@ class DocumentsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -5258,14 +5324,18 @@ class DocumentsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -5294,7 +5364,7 @@ class DocumentsApi
      *
      * Returns information about the use of file storage.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetFileStorageInfo'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5312,7 +5382,7 @@ class DocumentsApi
      *
      * Returns information about the use of file storage.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetFileStorageInfo'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5436,7 +5506,7 @@ class DocumentsApi
      *
      * Returns information about the use of file storage.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetFileStorageInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5457,7 +5527,7 @@ class DocumentsApi
      *
      * Returns information about the use of file storage.
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetFileStorageInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5507,7 +5577,7 @@ class DocumentsApi
     /**
      * Create request for operation 'documentsGetFileStorageInfo'
      *
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetFileStorageInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5569,10 +5639,6 @@ class DocumentsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -5582,14 +5648,18 @@ class DocumentsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -5619,7 +5689,7 @@ class DocumentsApi
      * Returns a folder and its content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetFolder'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5638,7 +5708,7 @@ class DocumentsApi
      * Returns a folder and its content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetFolder'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5798,7 +5868,7 @@ class DocumentsApi
      * Returns a folder and its content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetFolder'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5820,7 +5890,7 @@ class DocumentsApi
      * Returns a folder and its content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetFolder'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5871,7 +5941,7 @@ class DocumentsApi
      * Create request for operation 'documentsGetFolder'
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetFolder'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5943,10 +6013,6 @@ class DocumentsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -5956,14 +6022,18 @@ class DocumentsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -5993,7 +6063,7 @@ class DocumentsApi
      * Returns a folder by ID.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetFolderInfo'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -6012,7 +6082,7 @@ class DocumentsApi
      * Returns a folder by ID.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetFolderInfo'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
@@ -6172,7 +6242,7 @@ class DocumentsApi
      * Returns a folder by ID.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetFolderInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6194,7 +6264,7 @@ class DocumentsApi
      * Returns a folder by ID.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetFolderInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6245,7 +6315,7 @@ class DocumentsApi
      * Create request for operation 'documentsGetFolderInfo'
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsGetFolderInfo'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6322,10 +6392,6 @@ class DocumentsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -6335,14 +6401,18 @@ class DocumentsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -6372,9 +6442,9 @@ class DocumentsApi
      * Updates the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\AssetStorage\Model\DocumentType $type type (optional)
-     * @param  \Aurigma\AssetStorage\Model\DocumentFormatType $format format (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentType $type Document type. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentFormatType $format Document format. (optional)
      * @param  \SplFileObject $file File content. (optional)
      * @param  string $path Parent folder full path. (optional)
      * @param  string $name Entity name. (optional)
@@ -6383,7 +6453,7 @@ class DocumentsApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\AssetStorage\Model\DocumentDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
+     * @return \Aurigma\AssetStorage\Model\DocumentDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
     public function documentsUpdate($id, $tenant_id = null, $type = null, $format = null, $file = null, $path = null, $name = null, $custom_fields = null, string $contentType = self::contentTypes['documentsUpdate'][0])
     {
@@ -6397,9 +6467,9 @@ class DocumentsApi
      * Updates the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\AssetStorage\Model\DocumentType $type (optional)
-     * @param  \Aurigma\AssetStorage\Model\DocumentFormatType $format (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentType $type Document type. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentFormatType $format Document format. (optional)
      * @param  \SplFileObject $file File content. (optional)
      * @param  string $path Parent folder full path. (optional)
      * @param  string $name Entity name. (optional)
@@ -6408,7 +6478,7 @@ class DocumentsApi
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\AssetStorage\Model\DocumentDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\AssetStorage\Model\DocumentDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
     public function documentsUpdateWithHttpInfo($id, $tenant_id = null, $type = null, $format = null, $file = null, $path = null, $name = null, $custom_fields = null, string $contentType = self::contentTypes['documentsUpdate'][0])
     {
@@ -6505,11 +6575,11 @@ class DocumentsApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\AssetStorage\Model\NameConflictDto' === '\SplFileObject') {
+                    if ('\Aurigma\AssetStorage\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\AssetStorage\Model\NameConflictDto' !== 'string') {
+                        if ('\Aurigma\AssetStorage\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -6527,7 +6597,7 @@ class DocumentsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\NameConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -6609,7 +6679,7 @@ class DocumentsApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\NameConflictDto',
+                        '\Aurigma\AssetStorage\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -6633,9 +6703,9 @@ class DocumentsApi
      * Updates the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\AssetStorage\Model\DocumentType $type (optional)
-     * @param  \Aurigma\AssetStorage\Model\DocumentFormatType $format (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentType $type Document type. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentFormatType $format Document format. (optional)
      * @param  \SplFileObject $file File content. (optional)
      * @param  string $path Parent folder full path. (optional)
      * @param  string $name Entity name. (optional)
@@ -6661,9 +6731,9 @@ class DocumentsApi
      * Updates the specified entity.
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\AssetStorage\Model\DocumentType $type (optional)
-     * @param  \Aurigma\AssetStorage\Model\DocumentFormatType $format (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentType $type Document type. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentFormatType $format Document format. (optional)
      * @param  \SplFileObject $file File content. (optional)
      * @param  string $path Parent folder full path. (optional)
      * @param  string $name Entity name. (optional)
@@ -6718,9 +6788,9 @@ class DocumentsApi
      * Create request for operation 'documentsUpdate'
      *
      * @param  string $id Entity identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
-     * @param  \Aurigma\AssetStorage\Model\DocumentType $type (optional)
-     * @param  \Aurigma\AssetStorage\Model\DocumentFormatType $format (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentType $type Document type. (optional)
+     * @param  \Aurigma\AssetStorage\Model\DocumentFormatType $format Document format. (optional)
      * @param  \SplFileObject $file File content. (optional)
      * @param  string $path Parent folder full path. (optional)
      * @param  string $name Entity name. (optional)
@@ -6834,10 +6904,6 @@ class DocumentsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -6847,14 +6913,18 @@ class DocumentsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -6884,13 +6954,13 @@ class DocumentsApi
      * Updates the specified folder.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsUpdateFolder'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto
+     * @return \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto
      */
     public function documentsUpdateFolder($id, $tenant_id = null, $update_folder_dto = null, string $contentType = self::contentTypes['documentsUpdateFolder'][0])
     {
@@ -6904,13 +6974,13 @@ class DocumentsApi
      * Updates the specified folder.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsUpdateFolder'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\NameConflictDto, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Aurigma\AssetStorage\Model\FolderDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto, HTTP status code, HTTP response headers (array of strings)
      */
     public function documentsUpdateFolderWithHttpInfo($id, $tenant_id = null, $update_folder_dto = null, string $contentType = self::contentTypes['documentsUpdateFolder'][0])
     {
@@ -7007,11 +7077,11 @@ class DocumentsApi
                         $response->getHeaders()
                     ];
                 case 409:
-                    if ('\Aurigma\AssetStorage\Model\NameConflictDto' === '\SplFileObject') {
+                    if ('\Aurigma\AssetStorage\Model\ConflictDto' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Aurigma\AssetStorage\Model\NameConflictDto' !== 'string') {
+                        if ('\Aurigma\AssetStorage\Model\ConflictDto' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -7029,7 +7099,7 @@ class DocumentsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\NameConflictDto', []),
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ConflictDto', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -7084,7 +7154,7 @@ class DocumentsApi
                 case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Aurigma\AssetStorage\Model\NameConflictDto',
+                        '\Aurigma\AssetStorage\Model\ConflictDto',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -7100,7 +7170,7 @@ class DocumentsApi
      * Updates the specified folder.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsUpdateFolder'] to see the possible values for this operation
      *
@@ -7123,7 +7193,7 @@ class DocumentsApi
      * Updates the specified folder.
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsUpdateFolder'] to see the possible values for this operation
      *
@@ -7175,7 +7245,7 @@ class DocumentsApi
      * Create request for operation 'documentsUpdateFolder'
      *
      * @param  string $id Folder identifier. (required)
-     * @param  int $tenant_id Tenant identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\UpdateFolderDto $update_folder_dto Operation parameters. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['documentsUpdateFolder'] to see the possible values for this operation
      *
@@ -7261,10 +7331,6 @@ class DocumentsApi
             }
         }
 
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->config->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
-        }
         // this endpoint requires API key authentication
         $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
         if ($apiKey !== null) {
@@ -7274,14 +7340,18 @@ class DocumentsApi
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
         }
         // this endpoint requires OAuth (access token)
         if (!empty($this->config->getAccessToken())) {
             $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
         }
 
         $defaultHeaders = [];

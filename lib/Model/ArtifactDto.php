@@ -564,7 +564,7 @@ class ArtifactDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param \Aurigma\AssetStorage\Model\ArtifactType|null $type type
+     * @param \Aurigma\AssetStorage\Model\ArtifactType|null $type Artifact type.
      *
      * @return self
      */

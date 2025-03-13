@@ -58,7 +58,7 @@ class DesignDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'metadata' => '\Aurigma\AssetStorage\Model\DesignMetadata',
+        'metadata' => '\Aurigma\AssetStorage\Model\DesignDtoMetadata',
         'has_problems' => 'bool',
         'private' => 'bool',
         'previews' => 'array<string,\Aurigma\AssetStorage\Model\PreviewMetadata>',
@@ -102,7 +102,7 @@ class DesignDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'metadata' => false,
+        'metadata' => true,
         'has_problems' => false,
         'private' => false,
         'previews' => true,
@@ -377,7 +377,7 @@ class DesignDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets metadata
      *
-     * @return \Aurigma\AssetStorage\Model\DesignMetadata|null
+     * @return \Aurigma\AssetStorage\Model\DesignDtoMetadata|null
      */
     public function getMetadata()
     {
@@ -387,14 +387,21 @@ class DesignDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets metadata
      *
-     * @param \Aurigma\AssetStorage\Model\DesignMetadata|null $metadata metadata
+     * @param \Aurigma\AssetStorage\Model\DesignDtoMetadata|null $metadata metadata
      *
      * @return self
      */
     public function setMetadata($metadata)
     {
         if (is_null($metadata)) {
-            throw new \InvalidArgumentException('non-nullable metadata cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'metadata');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('metadata', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['metadata'] = $metadata;
 

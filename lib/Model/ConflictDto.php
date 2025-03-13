@@ -35,7 +35,6 @@ use \Aurigma\AssetStorage\ObjectSerializer;
  * ConflictDto Class Doc Comment
  *
  * @category Class
- * @description Information about operation conflict.
  * @package  Aurigma\AssetStorage
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -58,9 +57,9 @@ class ConflictDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'string',
-        'name' => 'string',
-        'path' => 'string'
+        'specifier' => '\Aurigma\AssetStorage\Model\ConflictDtoSpecifier',
+        'description' => 'string',
+        'type' => '\Aurigma\AssetStorage\Model\ConflictType'
     ];
 
     /**
@@ -71,9 +70,9 @@ class ConflictDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
-        'name' => null,
-        'path' => null
+        'specifier' => null,
+        'description' => null,
+        'type' => null
     ];
 
     /**
@@ -82,9 +81,9 @@ class ConflictDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'id' => true,
-        'name' => true,
-        'path' => true
+        'specifier' => true,
+        'description' => true,
+        'type' => false
     ];
 
     /**
@@ -173,9 +172,9 @@ class ConflictDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'name' => 'name',
-        'path' => 'path'
+        'specifier' => 'specifier',
+        'description' => 'description',
+        'type' => 'type'
     ];
 
     /**
@@ -184,9 +183,9 @@ class ConflictDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'name' => 'setName',
-        'path' => 'setPath'
+        'specifier' => 'setSpecifier',
+        'description' => 'setDescription',
+        'type' => 'setType'
     ];
 
     /**
@@ -195,9 +194,9 @@ class ConflictDto implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'name' => 'getName',
-        'path' => 'getPath'
+        'specifier' => 'getSpecifier',
+        'description' => 'getDescription',
+        'type' => 'getType'
     ];
 
     /**
@@ -257,9 +256,9 @@ class ConflictDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('path', $data ?? [], null);
+        $this->setIfExists('specifier', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
     }
 
     /**
@@ -305,103 +304,96 @@ class ConflictDto implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
+     * Gets specifier
      *
-     * @return string|null
+     * @return \Aurigma\AssetStorage\Model\ConflictDtoSpecifier|null
      */
-    public function getId()
+    public function getSpecifier()
     {
-        return $this->container['id'];
+        return $this->container['specifier'];
     }
 
     /**
-     * Sets id
+     * Sets specifier
      *
-     * @param string|null $id Operation conflict entity identifier.
+     * @param \Aurigma\AssetStorage\Model\ConflictDtoSpecifier|null $specifier specifier
      *
      * @return self
      */
-    public function setId($id)
+    public function setSpecifier($specifier)
     {
-        if (is_null($id)) {
-            array_push($this->openAPINullablesSetToNull, 'id');
+        if (is_null($specifier)) {
+            array_push($this->openAPINullablesSetToNull, 'specifier');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('id', $nullablesSetToNull);
+            $index = array_search('specifier', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['id'] = $id;
+        $this->container['specifier'] = $specifier;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets description
      *
      * @return string|null
      */
-    public function getName()
+    public function getDescription()
     {
-        return $this->container['name'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets name
+     * Sets description
      *
-     * @param string|null $name Operation conflict entity name.
+     * @param string|null $description Problem description.
      *
      * @return self
      */
-    public function setName($name)
+    public function setDescription($description)
     {
-        if (is_null($name)) {
-            array_push($this->openAPINullablesSetToNull, 'name');
+        if (is_null($description)) {
+            array_push($this->openAPINullablesSetToNull, 'description');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('name', $nullablesSetToNull);
+            $index = array_search('description', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['name'] = $name;
+        $this->container['description'] = $description;
 
         return $this;
     }
 
     /**
-     * Gets path
+     * Gets type
      *
-     * @return string|null
+     * @return \Aurigma\AssetStorage\Model\ConflictType|null
      */
-    public function getPath()
+    public function getType()
     {
-        return $this->container['path'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets path
+     * Sets type
      *
-     * @param string|null $path Operation conflict entity folder path.
+     * @param \Aurigma\AssetStorage\Model\ConflictType|null $type Conflict types.
      *
      * @return self
      */
-    public function setPath($path)
+    public function setType($type)
     {
-        if (is_null($path)) {
-            array_push($this->openAPINullablesSetToNull, 'path');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('path', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
-        $this->container['path'] = $path;
+        $this->container['type'] = $type;
 
         return $this;
     }

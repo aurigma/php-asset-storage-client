@@ -58,7 +58,7 @@ class MockupDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'metadata' => '\Aurigma\AssetStorage\Model\MockupMetadataDto',
+        'metadata' => '\Aurigma\AssetStorage\Model\MockupDtoMetadata',
         'private' => 'bool',
         'type' => '\Aurigma\AssetStorage\Model\MockupType',
         'previews' => 'array<string,\Aurigma\AssetStorage\Model\PreviewMetadata>',
@@ -102,7 +102,7 @@ class MockupDto implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'metadata' => false,
+        'metadata' => true,
         'private' => false,
         'type' => false,
         'previews' => true,
@@ -377,7 +377,7 @@ class MockupDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets metadata
      *
-     * @return \Aurigma\AssetStorage\Model\MockupMetadataDto|null
+     * @return \Aurigma\AssetStorage\Model\MockupDtoMetadata|null
      */
     public function getMetadata()
     {
@@ -387,14 +387,21 @@ class MockupDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets metadata
      *
-     * @param \Aurigma\AssetStorage\Model\MockupMetadataDto|null $metadata metadata
+     * @param \Aurigma\AssetStorage\Model\MockupDtoMetadata|null $metadata metadata
      *
      * @return self
      */
     public function setMetadata($metadata)
     {
         if (is_null($metadata)) {
-            throw new \InvalidArgumentException('non-nullable metadata cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'metadata');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('metadata', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['metadata'] = $metadata;
 
@@ -441,7 +448,7 @@ class MockupDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param \Aurigma\AssetStorage\Model\MockupType|null $type type
+     * @param \Aurigma\AssetStorage\Model\MockupType|null $type Mockup type.
      *
      * @return self
      */
