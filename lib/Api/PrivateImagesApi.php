@@ -122,7 +122,10 @@ class PrivateImagesApi
         'privateImagesGetFileStorageInfo' => [
             'application/json',
         ],
-        'privateImagesGetFolder' => [
+        'privateImagesGetFolderContent' => [
+            'application/json',
+        ],
+        'privateImagesGetFolderContentById' => [
             'application/json',
         ],
         'privateImagesGetFolderInfo' => [
@@ -629,7 +632,15 @@ class PrivateImagesApi
         }
         // form params
         if ($file !== null) {
-            $formParams['file'] = ObjectSerializer::toFormValue($file);
+            $multipart = true;
+            $formParams['file'] = [];
+            $paramFiles = is_array($file) ? $file : [$file];
+            foreach ($paramFiles as $paramFile) {
+                $formParams['file'][] = \GuzzleHttp\Psr7\Utils::tryFopen(
+                    ObjectSerializer::toFormValue($paramFile),
+                    'rb'
+                );
+            }
         }
         // form params
         if ($is_custom !== null) {
@@ -3119,7 +3130,15 @@ class PrivateImagesApi
         }
         // form params
         if ($file !== null) {
-            $formParams['file'] = ObjectSerializer::toFormValue($file);
+            $multipart = true;
+            $formParams['file'] = [];
+            $paramFiles = is_array($file) ? $file : [$file];
+            foreach ($paramFiles as $paramFile) {
+                $formParams['file'][] = \GuzzleHttp\Psr7\Utils::tryFopen(
+                    ObjectSerializer::toFormValue($paramFile),
+                    'rb'
+                );
+            }
         }
         // form params
         if ($path !== null) {
@@ -4301,7 +4320,7 @@ class PrivateImagesApi
 
 
 
-        $resourcePath = '/api/storage/v1/private-images/folders/content-by-path';
+        $resourcePath = '/api/storage/v1/private-images/folders/by-path';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -5207,6 +5226,7 @@ class PrivateImagesApi
      *
      * Returns all entities relevant to specified query parameters.
      *
+     * @param  \Aurigma\AssetStorage\Model\RetentionPolicy $retention_policy retention_policy (optional)
      * @param  string $path Folder path filter parameter. (optional)
      * @param  bool $include_subfolders If set to &#39;true&#39;, query result will contain list of all entities in desired folder and subfolders. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
@@ -5222,9 +5242,9 @@ class PrivateImagesApi
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\PagedOfImageDto
      */
-    public function privateImagesGetAll($path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateImagesGetAll'][0])
+    public function privateImagesGetAll($retention_policy = null, $path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateImagesGetAll'][0])
     {
-        list($response) = $this->privateImagesGetAllWithHttpInfo($path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id, $contentType);
+        list($response) = $this->privateImagesGetAllWithHttpInfo($retention_policy, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id, $contentType);
         return $response;
     }
 
@@ -5233,6 +5253,7 @@ class PrivateImagesApi
      *
      * Returns all entities relevant to specified query parameters.
      *
+     * @param  \Aurigma\AssetStorage\Model\RetentionPolicy $retention_policy (optional)
      * @param  string $path Folder path filter parameter. (optional)
      * @param  bool $include_subfolders If set to &#39;true&#39;, query result will contain list of all entities in desired folder and subfolders. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
@@ -5248,9 +5269,9 @@ class PrivateImagesApi
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\PagedOfImageDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateImagesGetAllWithHttpInfo($path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateImagesGetAll'][0])
+    public function privateImagesGetAllWithHttpInfo($retention_policy = null, $path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateImagesGetAll'][0])
     {
-        $request = $this->privateImagesGetAllRequest($path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id, $contentType);
+        $request = $this->privateImagesGetAllRequest($retention_policy, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5365,6 +5386,7 @@ class PrivateImagesApi
      *
      * Returns all entities relevant to specified query parameters.
      *
+     * @param  \Aurigma\AssetStorage\Model\RetentionPolicy $retention_policy (optional)
      * @param  string $path Folder path filter parameter. (optional)
      * @param  bool $include_subfolders If set to &#39;true&#39;, query result will contain list of all entities in desired folder and subfolders. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
@@ -5379,9 +5401,9 @@ class PrivateImagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesGetAllAsync($path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateImagesGetAll'][0])
+    public function privateImagesGetAllAsync($retention_policy = null, $path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateImagesGetAll'][0])
     {
-        return $this->privateImagesGetAllAsyncWithHttpInfo($path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id, $contentType)
+        return $this->privateImagesGetAllAsyncWithHttpInfo($retention_policy, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5394,6 +5416,7 @@ class PrivateImagesApi
      *
      * Returns all entities relevant to specified query parameters.
      *
+     * @param  \Aurigma\AssetStorage\Model\RetentionPolicy $retention_policy (optional)
      * @param  string $path Folder path filter parameter. (optional)
      * @param  bool $include_subfolders If set to &#39;true&#39;, query result will contain list of all entities in desired folder and subfolders. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
@@ -5408,10 +5431,10 @@ class PrivateImagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesGetAllAsyncWithHttpInfo($path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateImagesGetAll'][0])
+    public function privateImagesGetAllAsyncWithHttpInfo($retention_policy = null, $path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateImagesGetAll'][0])
     {
         $returnType = '\Aurigma\AssetStorage\Model\PagedOfImageDto';
-        $request = $this->privateImagesGetAllRequest($path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id, $contentType);
+        $request = $this->privateImagesGetAllRequest($retention_policy, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5452,6 +5475,7 @@ class PrivateImagesApi
     /**
      * Create request for operation 'privateImagesGetAll'
      *
+     * @param  \Aurigma\AssetStorage\Model\RetentionPolicy $retention_policy (optional)
      * @param  string $path Folder path filter parameter. (optional)
      * @param  bool $include_subfolders If set to &#39;true&#39;, query result will contain list of all entities in desired folder and subfolders. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
@@ -5466,8 +5490,9 @@ class PrivateImagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateImagesGetAllRequest($path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateImagesGetAll'][0])
+    public function privateImagesGetAllRequest($retention_policy = null, $path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateImagesGetAll'][0])
     {
+
 
 
 
@@ -5486,6 +5511,15 @@ class PrivateImagesApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $retention_policy,
+            'retentionPolicy', // param base name
+            'RetentionPolicy', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $path,
@@ -6769,42 +6803,42 @@ class PrivateImagesApi
     }
 
     /**
-     * Operation privateImagesGetFolder
+     * Operation privateImagesGetFolderContent
      *
      * Returns a folder and its content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
      * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateImagesGetFolder'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateImagesGetFolderContent'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\FolderContentOfImageDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
-    public function privateImagesGetFolder($full_path = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateImagesGetFolder'][0])
+    public function privateImagesGetFolderContent($full_path = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateImagesGetFolderContent'][0])
     {
-        list($response) = $this->privateImagesGetFolderWithHttpInfo($full_path, $tenant_id, $owner_id, $contentType);
+        list($response) = $this->privateImagesGetFolderContentWithHttpInfo($full_path, $tenant_id, $owner_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation privateImagesGetFolderWithHttpInfo
+     * Operation privateImagesGetFolderContentWithHttpInfo
      *
      * Returns a folder and its content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
      * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateImagesGetFolder'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateImagesGetFolderContent'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\FolderContentOfImageDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateImagesGetFolderWithHttpInfo($full_path = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateImagesGetFolder'][0])
+    public function privateImagesGetFolderContentWithHttpInfo($full_path = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateImagesGetFolderContent'][0])
     {
-        $request = $this->privateImagesGetFolderRequest($full_path, $tenant_id, $owner_id, $contentType);
+        $request = $this->privateImagesGetFolderContentRequest($full_path, $tenant_id, $owner_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -6950,21 +6984,21 @@ class PrivateImagesApi
     }
 
     /**
-     * Operation privateImagesGetFolderAsync
+     * Operation privateImagesGetFolderContentAsync
      *
      * Returns a folder and its content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
      * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateImagesGetFolder'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateImagesGetFolderContent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesGetFolderAsync($full_path = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateImagesGetFolder'][0])
+    public function privateImagesGetFolderContentAsync($full_path = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateImagesGetFolderContent'][0])
     {
-        return $this->privateImagesGetFolderAsyncWithHttpInfo($full_path, $tenant_id, $owner_id, $contentType)
+        return $this->privateImagesGetFolderContentAsyncWithHttpInfo($full_path, $tenant_id, $owner_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -6973,22 +7007,22 @@ class PrivateImagesApi
     }
 
     /**
-     * Operation privateImagesGetFolderAsyncWithHttpInfo
+     * Operation privateImagesGetFolderContentAsyncWithHttpInfo
      *
      * Returns a folder and its content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
      * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateImagesGetFolder'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateImagesGetFolderContent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateImagesGetFolderAsyncWithHttpInfo($full_path = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateImagesGetFolder'][0])
+    public function privateImagesGetFolderContentAsyncWithHttpInfo($full_path = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateImagesGetFolderContent'][0])
     {
         $returnType = '\Aurigma\AssetStorage\Model\FolderContentOfImageDto';
-        $request = $this->privateImagesGetFolderRequest($full_path, $tenant_id, $owner_id, $contentType);
+        $request = $this->privateImagesGetFolderContentRequest($full_path, $tenant_id, $owner_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -7027,24 +7061,24 @@ class PrivateImagesApi
     }
 
     /**
-     * Create request for operation 'privateImagesGetFolder'
+     * Create request for operation 'privateImagesGetFolderContent'
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
      * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $owner_id Private storage owner identifier. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateImagesGetFolder'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateImagesGetFolderContent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateImagesGetFolderRequest($full_path = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateImagesGetFolder'][0])
+    public function privateImagesGetFolderContentRequest($full_path = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateImagesGetFolderContent'][0])
     {
 
 
 
 
 
-        $resourcePath = '/api/storage/v1/private-images/folders/content-by-path';
+        $resourcePath = '/api/storage/v1/private-images/folders/content/by-path';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -7055,6 +7089,395 @@ class PrivateImagesApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $full_path,
             'fullPath', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tenant_id,
+            'tenantId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $owner_id,
+            'ownerId', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation privateImagesGetFolderContentById
+     *
+     * Returns a folder and its content by folder id.
+     *
+     * @param  string $id Folder identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateImagesGetFolderContentById'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Aurigma\AssetStorage\Model\FolderContentOfImageDto|\Aurigma\AssetStorage\Model\ProblemDetails
+     */
+    public function privateImagesGetFolderContentById($id = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateImagesGetFolderContentById'][0])
+    {
+        list($response) = $this->privateImagesGetFolderContentByIdWithHttpInfo($id, $tenant_id, $owner_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation privateImagesGetFolderContentByIdWithHttpInfo
+     *
+     * Returns a folder and its content by folder id.
+     *
+     * @param  string $id Folder identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateImagesGetFolderContentById'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Aurigma\AssetStorage\Model\FolderContentOfImageDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function privateImagesGetFolderContentByIdWithHttpInfo($id = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateImagesGetFolderContentById'][0])
+    {
+        $request = $this->privateImagesGetFolderContentByIdRequest($id, $tenant_id, $owner_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Aurigma\AssetStorage\Model\FolderContentOfImageDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\AssetStorage\Model\FolderContentOfImageDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\FolderContentOfImageDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Aurigma\AssetStorage\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\AssetStorage\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Aurigma\AssetStorage\Model\FolderContentOfImageDto';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\FolderContentOfImageDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation privateImagesGetFolderContentByIdAsync
+     *
+     * Returns a folder and its content by folder id.
+     *
+     * @param  string $id Folder identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateImagesGetFolderContentById'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function privateImagesGetFolderContentByIdAsync($id = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateImagesGetFolderContentById'][0])
+    {
+        return $this->privateImagesGetFolderContentByIdAsyncWithHttpInfo($id, $tenant_id, $owner_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation privateImagesGetFolderContentByIdAsyncWithHttpInfo
+     *
+     * Returns a folder and its content by folder id.
+     *
+     * @param  string $id Folder identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateImagesGetFolderContentById'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function privateImagesGetFolderContentByIdAsyncWithHttpInfo($id = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateImagesGetFolderContentById'][0])
+    {
+        $returnType = '\Aurigma\AssetStorage\Model\FolderContentOfImageDto';
+        $request = $this->privateImagesGetFolderContentByIdRequest($id, $tenant_id, $owner_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'privateImagesGetFolderContentById'
+     *
+     * @param  string $id Folder identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  string $owner_id Private storage owner identifier. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['privateImagesGetFolderContentById'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function privateImagesGetFolderContentByIdRequest($id = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateImagesGetFolderContentById'][0])
+    {
+
+
+
+
+
+        $resourcePath = '/api/storage/v1/private-images/folders/content';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $id,
+            'id', // param base name
             'string', // openApiType
             'form', // style
             true, // explode
@@ -8736,7 +9159,15 @@ class PrivateImagesApi
         }
         // form params
         if ($file !== null) {
-            $formParams['file'] = ObjectSerializer::toFormValue($file);
+            $multipart = true;
+            $formParams['file'] = [];
+            $paramFiles = is_array($file) ? $file : [$file];
+            foreach ($paramFiles as $paramFile) {
+                $formParams['file'][] = \GuzzleHttp\Psr7\Utils::tryFopen(
+                    ObjectSerializer::toFormValue($paramFile),
+                    'rb'
+                );
+            }
         }
         // form params
         if ($path !== null) {

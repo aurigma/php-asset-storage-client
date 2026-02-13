@@ -264,12 +264,24 @@ class PalettesApiTest extends TestCase
     }
 
     /**
-     * Test case for palettesGetFolder
+     * Test case for palettesGetFolderContent
      *
      * Returns a folder and its content by folder path..
      *
      */
-    public function testPalettesGetFolder()
+    public function testPalettesGetFolderContent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for palettesGetFolderContentById
+     *
+     * Returns a folder and its content by folder id..
+     *
+     */
+    public function testPalettesGetFolderContentById()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

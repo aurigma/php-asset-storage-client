@@ -14,14 +14,15 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**privateImagesCreate()**](PrivateImagesApi.md#privateImagesCreate) | **POST** /api/storage/v1/private-images | Creates a new entity. |
 | [**privateImagesCreateFolder()**](PrivateImagesApi.md#privateImagesCreateFolder) | **POST** /api/storage/v1/private-images/folders | Creates a new folder. |
 | [**privateImagesDelete()**](PrivateImagesApi.md#privateImagesDelete) | **DELETE** /api/storage/v1/private-images/{id} | Deletes the specified entity. |
-| [**privateImagesDeleteFolder()**](PrivateImagesApi.md#privateImagesDeleteFolder) | **DELETE** /api/storage/v1/private-images/folders/content-by-path | Deletes the specified folder and its content by folder path. |
+| [**privateImagesDeleteFolder()**](PrivateImagesApi.md#privateImagesDeleteFolder) | **DELETE** /api/storage/v1/private-images/folders/by-path | Deletes the specified folder and its content by folder path. |
 | [**privateImagesDeleteFolderById()**](PrivateImagesApi.md#privateImagesDeleteFolderById) | **DELETE** /api/storage/v1/private-images/folders/{id} | Deletes the specified folder and its content by folder identifier. |
 | [**privateImagesGet()**](PrivateImagesApi.md#privateImagesGet) | **GET** /api/storage/v1/private-images/{id} | Returns an entity by ID. |
 | [**privateImagesGetAll()**](PrivateImagesApi.md#privateImagesGetAll) | **GET** /api/storage/v1/private-images | Returns all entities relevant to specified query parameters. |
 | [**privateImagesGetAllFolders()**](PrivateImagesApi.md#privateImagesGetAllFolders) | **GET** /api/storage/v1/private-images/folders/all | Returns all folders. |
 | [**privateImagesGetFile()**](PrivateImagesApi.md#privateImagesGetFile) | **GET** /api/storage/v1/private-images/{id}/file | Returns an entity file from file storage. |
 | [**privateImagesGetFileStorageInfo()**](PrivateImagesApi.md#privateImagesGetFileStorageInfo) | **GET** /api/storage/v1/private-images/file-storage-info | Returns information about the use of file storage. |
-| [**privateImagesGetFolder()**](PrivateImagesApi.md#privateImagesGetFolder) | **GET** /api/storage/v1/private-images/folders/content-by-path | Returns a folder and its content by folder path. |
+| [**privateImagesGetFolderContent()**](PrivateImagesApi.md#privateImagesGetFolderContent) | **GET** /api/storage/v1/private-images/folders/content/by-path | Returns a folder and its content by folder path. |
+| [**privateImagesGetFolderContentById()**](PrivateImagesApi.md#privateImagesGetFolderContentById) | **GET** /api/storage/v1/private-images/folders/content | Returns a folder and its content by folder id. |
 | [**privateImagesGetFolderInfo()**](PrivateImagesApi.md#privateImagesGetFolderInfo) | **GET** /api/storage/v1/private-images/folders/{id} | Returns a folder by ID. |
 | [**privateImagesGetRetentionPolicy()**](PrivateImagesApi.md#privateImagesGetRetentionPolicy) | **GET** /api/storage/v1/private-images/{id}/retention-policy | Returns an entity retention policy by entity identifier. |
 | [**privateImagesSetRetentionPolicy()**](PrivateImagesApi.md#privateImagesSetRetentionPolicy) | **POST** /api/storage/v1/private-images/{id}/retention-policy | Updates an entity retention policy by entity identifier. |
@@ -103,7 +104,7 @@ try {
 | **tenant_id** | **int**| Tenant ID. | [optional] |
 | **owner_id** | **string**| Private storage owner identifier. | [optional] |
 | **format** | **string**| Preview image format, e.g. Jpeg, Png, Bmp. | [optional] |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| Preview file content. | [optional] |
+| **file** | **\SplFileObject****\SplFileObject**| Preview file content. | [optional] |
 | **is_custom** | **bool**| Indicates if the preview is custom.  Custom previews preserved even if source is changed. | [optional] |
 
 ### Return type
@@ -661,7 +662,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | |
+| **file** | **\SplFileObject****\SplFileObject**| File content. | |
 | **path** | **string**| Parent folder full path. | |
 | **name** | **string**| Entity name. | |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
@@ -1085,7 +1086,7 @@ try {
 ## `privateImagesGetAll()`
 
 ```php
-privateImagesGetAll($path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id): \Aurigma\AssetStorage\Model\PagedOfImageDto
+privateImagesGetAll($retention_policy, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id): \Aurigma\AssetStorage\Model\PagedOfImageDto
 ```
 
 Returns all entities relevant to specified query parameters.
@@ -1123,6 +1124,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\PrivateImagesApi(
     new GuzzleHttp\Client(),
     $config
 );
+$retention_policy = new \Aurigma\AssetStorage\Model\\Aurigma\AssetStorage\Model\RetentionPolicy(); // \Aurigma\AssetStorage\Model\RetentionPolicy
 $path = 'path_example'; // string | Folder path filter parameter.
 $include_subfolders = True; // bool | If set to 'true', query result will contain list of all entities in desired folder and subfolders.
 $skip = 56; // int | Defines page start offset from beginning of sorted result list.
@@ -1134,7 +1136,7 @@ $tenant_id = 56; // int | Tenant ID.
 $owner_id = 'owner_id_example'; // string | Private storage owner identifier.
 
 try {
-    $result = $apiInstance->privateImagesGetAll($path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id);
+    $result = $apiInstance->privateImagesGetAll($retention_policy, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PrivateImagesApi->privateImagesGetAll: ', $e->getMessage(), PHP_EOL;
@@ -1145,6 +1147,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **retention_policy** | [**\Aurigma\AssetStorage\Model\RetentionPolicy**](../Model/.md)|  | [optional] |
 | **path** | **string**| Folder path filter parameter. | [optional] |
 | **include_subfolders** | **bool**| If set to &#39;true&#39;, query result will contain list of all entities in desired folder and subfolders. | [optional] |
 | **skip** | **int**| Defines page start offset from beginning of sorted result list. | [optional] |
@@ -1404,10 +1407,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `privateImagesGetFolder()`
+## `privateImagesGetFolderContent()`
 
 ```php
-privateImagesGetFolder($full_path, $tenant_id, $owner_id): \Aurigma\AssetStorage\Model\FolderContentOfImageDto
+privateImagesGetFolderContent($full_path, $tenant_id, $owner_id): \Aurigma\AssetStorage\Model\FolderContentOfImageDto
 ```
 
 Returns a folder and its content by folder path.
@@ -1450,10 +1453,10 @@ $tenant_id = 56; // int | Tenant ID.
 $owner_id = 'owner_id_example'; // string | Private storage owner identifier.
 
 try {
-    $result = $apiInstance->privateImagesGetFolder($full_path, $tenant_id, $owner_id);
+    $result = $apiInstance->privateImagesGetFolderContent($full_path, $tenant_id, $owner_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling PrivateImagesApi->privateImagesGetFolder: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling PrivateImagesApi->privateImagesGetFolderContent: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -1462,6 +1465,84 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **full_path** | **string**| Full folder path, if not set then root folder path is used. | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
+| **owner_id** | **string**| Private storage owner identifier. | [optional] |
+
+### Return type
+
+[**\Aurigma\AssetStorage\Model\FolderContentOfImageDto**](../Model/FolderContentOfImageDto.md)
+
+### Authorization
+
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `privateImagesGetFolderContentById()`
+
+```php
+privateImagesGetFolderContentById($id, $tenant_id, $owner_id): \Aurigma\AssetStorage\Model\FolderContentOfImageDto
+```
+
+Returns a folder and its content by folder id.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKey
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Aurigma\AssetStorage\Api\PrivateImagesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | Folder identifier.
+$tenant_id = 56; // int | Tenant ID.
+$owner_id = 'owner_id_example'; // string | Private storage owner identifier.
+
+try {
+    $result = $apiInstance->privateImagesGetFolderContentById($id, $tenant_id, $owner_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PrivateImagesApi->privateImagesGetFolderContentById: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| Folder identifier. | [optional] |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
 | **owner_id** | **string**| Private storage owner identifier. | [optional] |
 
@@ -1795,7 +1876,7 @@ try {
 | **metadata_dpi_x** | **string**|  | [optional] |
 | **metadata_dpi_y** | **string**|  | [optional] |
 | **metadata_pages** | [**\Aurigma\AssetStorage\Model\ImagePageMetadata[]**](../Model/\Aurigma\AssetStorage\Model\ImagePageMetadata.md)|  | [optional] |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | [optional] |
+| **file** | **\SplFileObject****\SplFileObject**| File content. | [optional] |
 | **path** | **string**| Parent folder full path. | [optional] |
 | **name** | **string**| Entity name. | [optional] |
 | **custom_fields** | [**array<string,mixed>**](../Model/array.md)| Entity custom attributes. | [optional] |

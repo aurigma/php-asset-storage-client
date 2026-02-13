@@ -2251,7 +2251,15 @@ class PrivateResourcesApi
 
         // form params
         if ($file !== null) {
-            $formParams['file'] = ObjectSerializer::toFormValue($file);
+            $multipart = true;
+            $formParams['file'] = [];
+            $paramFiles = is_array($file) ? $file : [$file];
+            foreach ($paramFiles as $paramFile) {
+                $formParams['file'][] = \GuzzleHttp\Psr7\Utils::tryFopen(
+                    ObjectSerializer::toFormValue($paramFile),
+                    'rb'
+                );
+            }
         }
         // form params
         if ($id !== null) {
@@ -3458,6 +3466,7 @@ class PrivateResourcesApi
      *
      * Returns all entities relevant to specified query parameters.
      *
+     * @param  \Aurigma\AssetStorage\Model\RetentionPolicy $retention_policy retention_policy (optional)
      * @param  string $namespace Resource namespace filter. (optional)
      * @param  string $source_id Resource source identifier filter. (optional)
      * @param  string $type Resource type filter. (optional)
@@ -3474,9 +3483,9 @@ class PrivateResourcesApi
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\PagedOfResourceDto
      */
-    public function privateResourcesGetAll($namespace = null, $source_id = null, $type = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateResourcesGetAll'][0])
+    public function privateResourcesGetAll($retention_policy = null, $namespace = null, $source_id = null, $type = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateResourcesGetAll'][0])
     {
-        list($response) = $this->privateResourcesGetAllWithHttpInfo($namespace, $source_id, $type, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id, $contentType);
+        list($response) = $this->privateResourcesGetAllWithHttpInfo($retention_policy, $namespace, $source_id, $type, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id, $contentType);
         return $response;
     }
 
@@ -3485,6 +3494,7 @@ class PrivateResourcesApi
      *
      * Returns all entities relevant to specified query parameters.
      *
+     * @param  \Aurigma\AssetStorage\Model\RetentionPolicy $retention_policy (optional)
      * @param  string $namespace Resource namespace filter. (optional)
      * @param  string $source_id Resource source identifier filter. (optional)
      * @param  string $type Resource type filter. (optional)
@@ -3501,9 +3511,9 @@ class PrivateResourcesApi
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\PagedOfResourceDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function privateResourcesGetAllWithHttpInfo($namespace = null, $source_id = null, $type = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateResourcesGetAll'][0])
+    public function privateResourcesGetAllWithHttpInfo($retention_policy = null, $namespace = null, $source_id = null, $type = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateResourcesGetAll'][0])
     {
-        $request = $this->privateResourcesGetAllRequest($namespace, $source_id, $type, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id, $contentType);
+        $request = $this->privateResourcesGetAllRequest($retention_policy, $namespace, $source_id, $type, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3618,6 +3628,7 @@ class PrivateResourcesApi
      *
      * Returns all entities relevant to specified query parameters.
      *
+     * @param  \Aurigma\AssetStorage\Model\RetentionPolicy $retention_policy (optional)
      * @param  string $namespace Resource namespace filter. (optional)
      * @param  string $source_id Resource source identifier filter. (optional)
      * @param  string $type Resource type filter. (optional)
@@ -3633,9 +3644,9 @@ class PrivateResourcesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateResourcesGetAllAsync($namespace = null, $source_id = null, $type = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateResourcesGetAll'][0])
+    public function privateResourcesGetAllAsync($retention_policy = null, $namespace = null, $source_id = null, $type = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateResourcesGetAll'][0])
     {
-        return $this->privateResourcesGetAllAsyncWithHttpInfo($namespace, $source_id, $type, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id, $contentType)
+        return $this->privateResourcesGetAllAsyncWithHttpInfo($retention_policy, $namespace, $source_id, $type, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3648,6 +3659,7 @@ class PrivateResourcesApi
      *
      * Returns all entities relevant to specified query parameters.
      *
+     * @param  \Aurigma\AssetStorage\Model\RetentionPolicy $retention_policy (optional)
      * @param  string $namespace Resource namespace filter. (optional)
      * @param  string $source_id Resource source identifier filter. (optional)
      * @param  string $type Resource type filter. (optional)
@@ -3663,10 +3675,10 @@ class PrivateResourcesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function privateResourcesGetAllAsyncWithHttpInfo($namespace = null, $source_id = null, $type = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateResourcesGetAll'][0])
+    public function privateResourcesGetAllAsyncWithHttpInfo($retention_policy = null, $namespace = null, $source_id = null, $type = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateResourcesGetAll'][0])
     {
         $returnType = '\Aurigma\AssetStorage\Model\PagedOfResourceDto';
-        $request = $this->privateResourcesGetAllRequest($namespace, $source_id, $type, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id, $contentType);
+        $request = $this->privateResourcesGetAllRequest($retention_policy, $namespace, $source_id, $type, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3707,6 +3719,7 @@ class PrivateResourcesApi
     /**
      * Create request for operation 'privateResourcesGetAll'
      *
+     * @param  \Aurigma\AssetStorage\Model\RetentionPolicy $retention_policy (optional)
      * @param  string $namespace Resource namespace filter. (optional)
      * @param  string $source_id Resource source identifier filter. (optional)
      * @param  string $type Resource type filter. (optional)
@@ -3722,8 +3735,9 @@ class PrivateResourcesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function privateResourcesGetAllRequest($namespace = null, $source_id = null, $type = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateResourcesGetAll'][0])
+    public function privateResourcesGetAllRequest($retention_policy = null, $namespace = null, $source_id = null, $type = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, $owner_id = null, string $contentType = self::contentTypes['privateResourcesGetAll'][0])
     {
+
 
 
 
@@ -3743,6 +3757,15 @@ class PrivateResourcesApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $retention_policy,
+            'retentionPolicy', // param base name
+            'RetentionPolicy', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $namespace,
@@ -5799,7 +5822,15 @@ class PrivateResourcesApi
 
         // form params
         if ($file !== null) {
-            $formParams['file'] = ObjectSerializer::toFormValue($file);
+            $multipart = true;
+            $formParams['file'] = [];
+            $paramFiles = is_array($file) ? $file : [$file];
+            foreach ($paramFiles as $paramFile) {
+                $formParams['file'][] = \GuzzleHttp\Psr7\Utils::tryFopen(
+                    ObjectSerializer::toFormValue($paramFile),
+                    'rb'
+                );
+            }
         }
         // form params
         if ($namespace !== null) {

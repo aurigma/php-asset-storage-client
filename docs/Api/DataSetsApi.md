@@ -12,14 +12,15 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**dataSetsCreate()**](DataSetsApi.md#dataSetsCreate) | **POST** /api/storage/v1/data-sets | Creates a new entity. |
 | [**dataSetsCreateFolder()**](DataSetsApi.md#dataSetsCreateFolder) | **POST** /api/storage/v1/data-sets/folders | Creates a new folder. |
 | [**dataSetsDelete()**](DataSetsApi.md#dataSetsDelete) | **DELETE** /api/storage/v1/data-sets/{id} | Deletes the specified entity. |
-| [**dataSetsDeleteFolder()**](DataSetsApi.md#dataSetsDeleteFolder) | **DELETE** /api/storage/v1/data-sets/folders/content-by-path | Deletes the specified folder and its content by folder path. |
+| [**dataSetsDeleteFolder()**](DataSetsApi.md#dataSetsDeleteFolder) | **DELETE** /api/storage/v1/data-sets/folders/by-path | Deletes the specified folder and its content by folder path. |
 | [**dataSetsDeleteFolderById()**](DataSetsApi.md#dataSetsDeleteFolderById) | **DELETE** /api/storage/v1/data-sets/folders/{id} | Deletes the specified folder and its content by folder identifier. |
 | [**dataSetsGet()**](DataSetsApi.md#dataSetsGet) | **GET** /api/storage/v1/data-sets/{id} | Returns an entity by ID. |
 | [**dataSetsGetAll()**](DataSetsApi.md#dataSetsGetAll) | **GET** /api/storage/v1/data-sets | Returns all entities relevant to specified query parameters. |
 | [**dataSetsGetAllFolders()**](DataSetsApi.md#dataSetsGetAllFolders) | **GET** /api/storage/v1/data-sets/folders/all | Returns all folders. |
 | [**dataSetsGetFile()**](DataSetsApi.md#dataSetsGetFile) | **GET** /api/storage/v1/data-sets/{id}/file | Returns an entity file from file storage. |
 | [**dataSetsGetFileStorageInfo()**](DataSetsApi.md#dataSetsGetFileStorageInfo) | **GET** /api/storage/v1/data-sets/file-storage-info | Returns information about the use of file storage. |
-| [**dataSetsGetFolder()**](DataSetsApi.md#dataSetsGetFolder) | **GET** /api/storage/v1/data-sets/folders/content-by-path | Returns a folder and its content by folder path. |
+| [**dataSetsGetFolderContent()**](DataSetsApi.md#dataSetsGetFolderContent) | **GET** /api/storage/v1/data-sets/folders/content/by-path | Returns a folder and its content by folder path. |
+| [**dataSetsGetFolderContentById()**](DataSetsApi.md#dataSetsGetFolderContentById) | **GET** /api/storage/v1/data-sets/folders/content | Returns a folder and its content by folder ID. |
 | [**dataSetsGetFolderInfo()**](DataSetsApi.md#dataSetsGetFolderInfo) | **GET** /api/storage/v1/data-sets/folders/{id} | Returns a folder by ID. |
 | [**dataSetsUpdate()**](DataSetsApi.md#dataSetsUpdate) | **PUT** /api/storage/v1/data-sets/{id} | Updates the specified entity. |
 | [**dataSetsUpdateFolder()**](DataSetsApi.md#dataSetsUpdateFolder) | **PUT** /api/storage/v1/data-sets/folders/{id} | Updates the specified folder. |
@@ -470,7 +471,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | |
+| **file** | **\SplFileObject****\SplFileObject**| File content. | |
 | **path** | **string**| Parent folder full path. | |
 | **name** | **string**| Entity name. | |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
@@ -1193,10 +1194,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `dataSetsGetFolder()`
+## `dataSetsGetFolderContent()`
 
 ```php
-dataSetsGetFolder($full_path, $tenant_id): \Aurigma\AssetStorage\Model\FolderContentOfDataSetDto
+dataSetsGetFolderContent($full_path, $tenant_id): \Aurigma\AssetStorage\Model\FolderContentOfDataSetDto
 ```
 
 Returns a folder and its content by folder path.
@@ -1238,10 +1239,10 @@ $full_path = 'full_path_example'; // string | Full folder path, if not set then 
 $tenant_id = 56; // int | Tenant ID.
 
 try {
-    $result = $apiInstance->dataSetsGetFolder($full_path, $tenant_id);
+    $result = $apiInstance->dataSetsGetFolderContent($full_path, $tenant_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DataSetsApi->dataSetsGetFolder: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DataSetsApi->dataSetsGetFolderContent: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -1250,6 +1251,82 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **full_path** | **string**| Full folder path, if not set then root folder path is used. | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
+
+### Return type
+
+[**\Aurigma\AssetStorage\Model\FolderContentOfDataSetDto**](../Model/FolderContentOfDataSetDto.md)
+
+### Authorization
+
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `dataSetsGetFolderContentById()`
+
+```php
+dataSetsGetFolderContentById($id, $tenant_id): \Aurigma\AssetStorage\Model\FolderContentOfDataSetDto
+```
+
+Returns a folder and its content by folder ID.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKey
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Aurigma\AssetStorage\Api\DataSetsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | Folder identifier.
+$tenant_id = 56; // int | Tenant ID.
+
+try {
+    $result = $apiInstance->dataSetsGetFolderContentById($id, $tenant_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DataSetsApi->dataSetsGetFolderContentById: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| Folder identifier. | [optional] |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
@@ -1415,7 +1492,7 @@ try {
 | **metadata_data_schema_name** | **string**|  | [optional] |
 | **metadata_row_count** | **int**|  | [optional] |
 | **has_problems** | **bool**| Indicates whether data set has any schema validation problems. | [optional] |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | [optional] |
+| **file** | **\SplFileObject****\SplFileObject**| File content. | [optional] |
 | **path** | **string**| Parent folder full path. | [optional] |
 | **name** | **string**| Entity name. | [optional] |
 | **custom_fields** | [**array<string,mixed>**](../Model/array.md)| Entity custom attributes. | [optional] |

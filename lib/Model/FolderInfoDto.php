@@ -59,6 +59,7 @@ class FolderInfoDto implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'has_children' => 'bool',
+        'has_content' => 'bool',
         'id' => 'string',
         'path' => 'string',
         'private' => 'bool',
@@ -76,6 +77,7 @@ class FolderInfoDto implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'has_children' => null,
+        'has_content' => null,
         'id' => null,
         'path' => null,
         'private' => null,
@@ -91,6 +93,7 @@ class FolderInfoDto implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'has_children' => true,
+        'has_content' => true,
         'id' => true,
         'path' => true,
         'private' => false,
@@ -186,6 +189,7 @@ class FolderInfoDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'has_children' => 'hasChildren',
+        'has_content' => 'hasContent',
         'id' => 'id',
         'path' => 'path',
         'private' => 'private',
@@ -201,6 +205,7 @@ class FolderInfoDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'has_children' => 'setHasChildren',
+        'has_content' => 'setHasContent',
         'id' => 'setId',
         'path' => 'setPath',
         'private' => 'setPrivate',
@@ -216,6 +221,7 @@ class FolderInfoDto implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'has_children' => 'getHasChildren',
+        'has_content' => 'getHasContent',
         'id' => 'getId',
         'path' => 'getPath',
         'private' => 'getPrivate',
@@ -282,6 +288,7 @@ class FolderInfoDto implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('has_children', $data ?? [], null);
+        $this->setIfExists('has_content', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('path', $data ?? [], null);
         $this->setIfExists('private', $data ?? [], null);
@@ -345,7 +352,7 @@ class FolderInfoDto implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets has_children
      *
-     * @param bool|null $has_children Folder 'has children' tag.
+     * @param bool|null $has_children Indicates if folder has nested folders.
      *
      * @return self
      */
@@ -362,6 +369,40 @@ class FolderInfoDto implements ModelInterface, ArrayAccess, \JsonSerializable
             }
         }
         $this->container['has_children'] = $has_children;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_content
+     *
+     * @return bool|null
+     */
+    public function getHasContent()
+    {
+        return $this->container['has_content'];
+    }
+
+    /**
+     * Sets has_content
+     *
+     * @param bool|null $has_content Indicates if folder has contents.
+     *
+     * @return self
+     */
+    public function setHasContent($has_content)
+    {
+        if (is_null($has_content)) {
+            array_push($this->openAPINullablesSetToNull, 'has_content');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('has_content', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['has_content'] = $has_content;
 
         return $this;
     }

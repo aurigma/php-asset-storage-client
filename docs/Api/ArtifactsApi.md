@@ -6,7 +6,7 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | ------------- | ------------- | ------------- |
 | [**artifactsCreate()**](ArtifactsApi.md#artifactsCreate) | **POST** /api/storage/v1/artifacts | Creates a new entity. |
 | [**artifactsDelete()**](ArtifactsApi.md#artifactsDelete) | **DELETE** /api/storage/v1/artifacts/{id} | Deletes the specified entity. |
-| [**artifactsDeleteGroup()**](ArtifactsApi.md#artifactsDeleteGroup) | **DELETE** /api/storage/v1/artifacts/groups/{group} | Deletes all entities within the specified group. |
+| [**artifactsDeleteGroup()**](ArtifactsApi.md#artifactsDeleteGroup) | **DELETE** /api/storage/v1/artifacts/by-group | Deletes all entities within the specified group. |
 | [**artifactsGet()**](ArtifactsApi.md#artifactsGet) | **GET** /api/storage/v1/artifacts/{id} | Returns an entity by ID. |
 | [**artifactsGetAll()**](ArtifactsApi.md#artifactsGetAll) | **GET** /api/storage/v1/artifacts | Returns all entities relevant to specified query parameters. |
 | [**artifactsGetFile()**](ArtifactsApi.md#artifactsGetFile) | **GET** /api/storage/v1/artifacts/{id}/file | Returns an entity file from file storage. |
@@ -78,7 +78,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | |
+| **file** | **\SplFileObject****\SplFileObject**| File content. | |
 | **name** | **string**| Entity name. | |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
 | **description** | **string**| Artifact description. | [optional] |
@@ -641,7 +641,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Entity identifier. | |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | [optional] |
+| **file** | **\SplFileObject****\SplFileObject**| File content. | [optional] |
 | **description** | **string**| Artifact description. | [optional] |
 | **alias** | **string**| Artifact alias (special name within group). | [optional] |
 | **type** | [**\Aurigma\AssetStorage\Model\ArtifactType**](../Model/ArtifactType.md)| Artifact type. | [optional] |

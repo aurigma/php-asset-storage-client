@@ -107,6 +107,15 @@ class MockupDtoTest extends TestCase
     }
 
     /**
+     * Test attribute "has_problems"
+     */
+    public function testPropertyHasProblems()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "previews"
      */
     public function testPropertyPreviews()

@@ -61,6 +61,7 @@ class MockupDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'metadata' => '\Aurigma\AssetStorage\Model\MockupDtoMetadata',
         'private' => 'bool',
         'type' => '\Aurigma\AssetStorage\Model\MockupType',
+        'has_problems' => 'bool',
         'previews' => 'array<string,\Aurigma\AssetStorage\Model\PreviewMetadata>',
         'size' => 'int',
         'descriptor' => 'string',
@@ -84,6 +85,7 @@ class MockupDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'metadata' => null,
         'private' => null,
         'type' => null,
+        'has_problems' => null,
         'previews' => null,
         'size' => 'int64',
         'descriptor' => null,
@@ -105,6 +107,7 @@ class MockupDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'metadata' => true,
         'private' => false,
         'type' => false,
+        'has_problems' => true,
         'previews' => true,
         'size' => false,
         'descriptor' => true,
@@ -206,6 +209,7 @@ class MockupDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'metadata' => 'metadata',
         'private' => 'private',
         'type' => 'type',
+        'has_problems' => 'hasProblems',
         'previews' => 'previews',
         'size' => 'size',
         'descriptor' => 'descriptor',
@@ -227,6 +231,7 @@ class MockupDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'metadata' => 'setMetadata',
         'private' => 'setPrivate',
         'type' => 'setType',
+        'has_problems' => 'setHasProblems',
         'previews' => 'setPreviews',
         'size' => 'setSize',
         'descriptor' => 'setDescriptor',
@@ -248,6 +253,7 @@ class MockupDto implements ModelInterface, ArrayAccess, \JsonSerializable
         'metadata' => 'getMetadata',
         'private' => 'getPrivate',
         'type' => 'getType',
+        'has_problems' => 'getHasProblems',
         'previews' => 'getPreviews',
         'size' => 'getSize',
         'descriptor' => 'getDescriptor',
@@ -320,6 +326,7 @@ class MockupDto implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('metadata', $data ?? [], null);
         $this->setIfExists('private', $data ?? [], null);
         $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('has_problems', $data ?? [], null);
         $this->setIfExists('previews', $data ?? [], null);
         $this->setIfExists('size', $data ?? [], null);
         $this->setIfExists('descriptor', $data ?? [], null);
@@ -458,6 +465,40 @@ class MockupDto implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_problems
+     *
+     * @return bool|null
+     */
+    public function getHasProblems()
+    {
+        return $this->container['has_problems'];
+    }
+
+    /**
+     * Sets has_problems
+     *
+     * @param bool|null $has_problems Mockup 'has problems' tag.  Indicates whether mockup has any problems preventing normal processing, e.g. missing source file for mockup link.
+     *
+     * @return self
+     */
+    public function setHasProblems($has_problems)
+    {
+        if (is_null($has_problems)) {
+            array_push($this->openAPINullablesSetToNull, 'has_problems');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('has_problems', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['has_problems'] = $has_problems;
 
         return $this;
     }

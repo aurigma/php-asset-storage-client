@@ -252,12 +252,24 @@ class DataSchemasApiTest extends TestCase
     }
 
     /**
-     * Test case for dataSchemasGetFolder
+     * Test case for dataSchemasGetFolderContent
      *
      * Returns a folder and its content by folder path..
      *
      */
-    public function testDataSchemasGetFolder()
+    public function testDataSchemasGetFolderContent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for dataSchemasGetFolderContentById
+     *
+     * Returns a folder and its content by folder ID..
+     *
+     */
+    public function testDataSchemasGetFolderContentById()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

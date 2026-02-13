@@ -1862,7 +1862,15 @@ class ResourcesApi
 
         // form params
         if ($file !== null) {
-            $formParams['file'] = ObjectSerializer::toFormValue($file);
+            $multipart = true;
+            $formParams['file'] = [];
+            $paramFiles = is_array($file) ? $file : [$file];
+            foreach ($paramFiles as $paramFile) {
+                $formParams['file'][] = \GuzzleHttp\Psr7\Utils::tryFopen(
+                    ObjectSerializer::toFormValue($paramFile),
+                    'rb'
+                );
+            }
         }
         // form params
         if ($id !== null) {
@@ -4627,7 +4635,15 @@ class ResourcesApi
 
         // form params
         if ($file !== null) {
-            $formParams['file'] = ObjectSerializer::toFormValue($file);
+            $multipart = true;
+            $formParams['file'] = [];
+            $paramFiles = is_array($file) ? $file : [$file];
+            foreach ($paramFiles as $paramFile) {
+                $formParams['file'][] = \GuzzleHttp\Psr7\Utils::tryFopen(
+                    ObjectSerializer::toFormValue($paramFile),
+                    'rb'
+                );
+            }
         }
         // form params
         if ($namespace !== null) {

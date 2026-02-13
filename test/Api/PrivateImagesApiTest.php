@@ -276,12 +276,24 @@ class PrivateImagesApiTest extends TestCase
     }
 
     /**
-     * Test case for privateImagesGetFolder
+     * Test case for privateImagesGetFolderContent
      *
      * Returns a folder and its content by folder path..
      *
      */
-    public function testPrivateImagesGetFolder()
+    public function testPrivateImagesGetFolderContent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for privateImagesGetFolderContentById
+     *
+     * Returns a folder and its content by folder id..
+     *
+     */
+    public function testPrivateImagesGetFolderContentById()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

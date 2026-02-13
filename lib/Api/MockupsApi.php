@@ -119,7 +119,10 @@ class MockupsApi
         'mockupsGetFileStorageInfo' => [
             'application/json',
         ],
-        'mockupsGetFolder' => [
+        'mockupsGetFolderContent' => [
+            'application/json',
+        ],
+        'mockupsGetFolderContentById' => [
             'application/json',
         ],
         'mockupsGetFolderInfo' => [
@@ -605,7 +608,15 @@ class MockupsApi
         }
         // form params
         if ($file !== null) {
-            $formParams['file'] = ObjectSerializer::toFormValue($file);
+            $multipart = true;
+            $formParams['file'] = [];
+            $paramFiles = is_array($file) ? $file : [$file];
+            foreach ($paramFiles as $paramFile) {
+                $formParams['file'][] = \GuzzleHttp\Psr7\Utils::tryFopen(
+                    ObjectSerializer::toFormValue($paramFile),
+                    'rb'
+                );
+            }
         }
         // form params
         if ($is_custom !== null) {
@@ -2240,7 +2251,9 @@ class MockupsApi
      * @param  string $name Entity name. (required)
      * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\MockupFormatType $metadata_format Mockup file format. (optional)
+     * @param  string $metadata_link_source_id Mockup link source file identifier. (optional)
      * @param  \Aurigma\AssetStorage\Model\MockupType $type Mockup type. (optional)
+     * @param  bool $has_problems Mockup &#39;has problems&#39; tag.  Indicates whether mockup has any problems preventing normal processing, e.g. missing source file for mockup link. (optional)
      * @param  array<string,mixed> $custom_fields Entity custom attributes. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mockupsCreate'] to see the possible values for this operation
      *
@@ -2248,9 +2261,9 @@ class MockupsApi
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\MockupDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
-    public function mockupsCreate($file, $path, $name, $tenant_id = null, $metadata_format = null, $type = null, $custom_fields = null, string $contentType = self::contentTypes['mockupsCreate'][0])
+    public function mockupsCreate($file, $path, $name, $tenant_id = null, $metadata_format = null, $metadata_link_source_id = null, $type = null, $has_problems = null, $custom_fields = null, string $contentType = self::contentTypes['mockupsCreate'][0])
     {
-        list($response) = $this->mockupsCreateWithHttpInfo($file, $path, $name, $tenant_id, $metadata_format, $type, $custom_fields, $contentType);
+        list($response) = $this->mockupsCreateWithHttpInfo($file, $path, $name, $tenant_id, $metadata_format, $metadata_link_source_id, $type, $has_problems, $custom_fields, $contentType);
         return $response;
     }
 
@@ -2264,7 +2277,9 @@ class MockupsApi
      * @param  string $name Entity name. (required)
      * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\MockupFormatType $metadata_format Mockup file format. (optional)
+     * @param  string $metadata_link_source_id Mockup link source file identifier. (optional)
      * @param  \Aurigma\AssetStorage\Model\MockupType $type Mockup type. (optional)
+     * @param  bool $has_problems Mockup &#39;has problems&#39; tag.  Indicates whether mockup has any problems preventing normal processing, e.g. missing source file for mockup link. (optional)
      * @param  array<string,mixed> $custom_fields Entity custom attributes. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mockupsCreate'] to see the possible values for this operation
      *
@@ -2272,9 +2287,9 @@ class MockupsApi
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\MockupDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function mockupsCreateWithHttpInfo($file, $path, $name, $tenant_id = null, $metadata_format = null, $type = null, $custom_fields = null, string $contentType = self::contentTypes['mockupsCreate'][0])
+    public function mockupsCreateWithHttpInfo($file, $path, $name, $tenant_id = null, $metadata_format = null, $metadata_link_source_id = null, $type = null, $has_problems = null, $custom_fields = null, string $contentType = self::contentTypes['mockupsCreate'][0])
     {
-        $request = $this->mockupsCreateRequest($file, $path, $name, $tenant_id, $metadata_format, $type, $custom_fields, $contentType);
+        $request = $this->mockupsCreateRequest($file, $path, $name, $tenant_id, $metadata_format, $metadata_link_source_id, $type, $has_problems, $custom_fields, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2499,16 +2514,18 @@ class MockupsApi
      * @param  string $name Entity name. (required)
      * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\MockupFormatType $metadata_format Mockup file format. (optional)
+     * @param  string $metadata_link_source_id Mockup link source file identifier. (optional)
      * @param  \Aurigma\AssetStorage\Model\MockupType $type Mockup type. (optional)
+     * @param  bool $has_problems Mockup &#39;has problems&#39; tag.  Indicates whether mockup has any problems preventing normal processing, e.g. missing source file for mockup link. (optional)
      * @param  array<string,mixed> $custom_fields Entity custom attributes. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mockupsCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function mockupsCreateAsync($file, $path, $name, $tenant_id = null, $metadata_format = null, $type = null, $custom_fields = null, string $contentType = self::contentTypes['mockupsCreate'][0])
+    public function mockupsCreateAsync($file, $path, $name, $tenant_id = null, $metadata_format = null, $metadata_link_source_id = null, $type = null, $has_problems = null, $custom_fields = null, string $contentType = self::contentTypes['mockupsCreate'][0])
     {
-        return $this->mockupsCreateAsyncWithHttpInfo($file, $path, $name, $tenant_id, $metadata_format, $type, $custom_fields, $contentType)
+        return $this->mockupsCreateAsyncWithHttpInfo($file, $path, $name, $tenant_id, $metadata_format, $metadata_link_source_id, $type, $has_problems, $custom_fields, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2526,17 +2543,19 @@ class MockupsApi
      * @param  string $name Entity name. (required)
      * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\MockupFormatType $metadata_format Mockup file format. (optional)
+     * @param  string $metadata_link_source_id Mockup link source file identifier. (optional)
      * @param  \Aurigma\AssetStorage\Model\MockupType $type Mockup type. (optional)
+     * @param  bool $has_problems Mockup &#39;has problems&#39; tag.  Indicates whether mockup has any problems preventing normal processing, e.g. missing source file for mockup link. (optional)
      * @param  array<string,mixed> $custom_fields Entity custom attributes. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mockupsCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function mockupsCreateAsyncWithHttpInfo($file, $path, $name, $tenant_id = null, $metadata_format = null, $type = null, $custom_fields = null, string $contentType = self::contentTypes['mockupsCreate'][0])
+    public function mockupsCreateAsyncWithHttpInfo($file, $path, $name, $tenant_id = null, $metadata_format = null, $metadata_link_source_id = null, $type = null, $has_problems = null, $custom_fields = null, string $contentType = self::contentTypes['mockupsCreate'][0])
     {
         $returnType = '\Aurigma\AssetStorage\Model\MockupDto';
-        $request = $this->mockupsCreateRequest($file, $path, $name, $tenant_id, $metadata_format, $type, $custom_fields, $contentType);
+        $request = $this->mockupsCreateRequest($file, $path, $name, $tenant_id, $metadata_format, $metadata_link_source_id, $type, $has_problems, $custom_fields, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2582,14 +2601,16 @@ class MockupsApi
      * @param  string $name Entity name. (required)
      * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\MockupFormatType $metadata_format Mockup file format. (optional)
+     * @param  string $metadata_link_source_id Mockup link source file identifier. (optional)
      * @param  \Aurigma\AssetStorage\Model\MockupType $type Mockup type. (optional)
+     * @param  bool $has_problems Mockup &#39;has problems&#39; tag.  Indicates whether mockup has any problems preventing normal processing, e.g. missing source file for mockup link. (optional)
      * @param  array<string,mixed> $custom_fields Entity custom attributes. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mockupsCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function mockupsCreateRequest($file, $path, $name, $tenant_id = null, $metadata_format = null, $type = null, $custom_fields = null, string $contentType = self::contentTypes['mockupsCreate'][0])
+    public function mockupsCreateRequest($file, $path, $name, $tenant_id = null, $metadata_format = null, $metadata_link_source_id = null, $type = null, $has_problems = null, $custom_fields = null, string $contentType = self::contentTypes['mockupsCreate'][0])
     {
 
         // verify the required parameter 'file' is set
@@ -2621,6 +2642,8 @@ class MockupsApi
 
 
 
+
+
         $resourcePath = '/api/storage/v1/mockups';
         $formParams = [];
         $queryParams = [];
@@ -2645,12 +2668,28 @@ class MockupsApi
             $formParams['metadata.format'] = ObjectSerializer::toFormValue($metadata_format);
         }
         // form params
+        if ($metadata_link_source_id !== null) {
+            $formParams['metadata.linkSourceId'] = ObjectSerializer::toFormValue($metadata_link_source_id);
+        }
+        // form params
         if ($type !== null) {
             $formParams['type'] = ObjectSerializer::toFormValue($type);
         }
         // form params
+        if ($has_problems !== null) {
+            $formParams['hasProblems'] = ObjectSerializer::toFormValue($has_problems);
+        }
+        // form params
         if ($file !== null) {
-            $formParams['file'] = ObjectSerializer::toFormValue($file);
+            $multipart = true;
+            $formParams['file'] = [];
+            $paramFiles = is_array($file) ? $file : [$file];
+            foreach ($paramFiles as $paramFile) {
+                $formParams['file'][] = \GuzzleHttp\Psr7\Utils::tryFopen(
+                    ObjectSerializer::toFormValue($paramFile),
+                    'rb'
+                );
+            }
         }
         // form params
         if ($path !== null) {
@@ -3796,7 +3835,7 @@ class MockupsApi
 
 
 
-        $resourcePath = '/api/storage/v1/mockups/folders/content-by-path';
+        $resourcePath = '/api/storage/v1/mockups/folders/by-path';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -4664,6 +4703,7 @@ class MockupsApi
      * Returns all entities relevant to specified query parameters.
      *
      * @param  \Aurigma\AssetStorage\Model\MockupType $type Mockup type. (optional)
+     * @param  string $mockup_link_source_id Mockup link source identifier. (optional)
      * @param  string $path Folder path filter parameter. (optional)
      * @param  bool $include_subfolders If set to &#39;true&#39;, query result will contain list of all entities in desired folder and subfolders. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
@@ -4678,9 +4718,9 @@ class MockupsApi
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\PagedOfMockupDto
      */
-    public function mockupsGetAll($type = null, $path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsGetAll'][0])
+    public function mockupsGetAll($type = null, $mockup_link_source_id = null, $path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsGetAll'][0])
     {
-        list($response) = $this->mockupsGetAllWithHttpInfo($type, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $contentType);
+        list($response) = $this->mockupsGetAllWithHttpInfo($type, $mockup_link_source_id, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $contentType);
         return $response;
     }
 
@@ -4690,6 +4730,7 @@ class MockupsApi
      * Returns all entities relevant to specified query parameters.
      *
      * @param  \Aurigma\AssetStorage\Model\MockupType $type Mockup type. (optional)
+     * @param  string $mockup_link_source_id Mockup link source identifier. (optional)
      * @param  string $path Folder path filter parameter. (optional)
      * @param  bool $include_subfolders If set to &#39;true&#39;, query result will contain list of all entities in desired folder and subfolders. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
@@ -4704,9 +4745,9 @@ class MockupsApi
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\PagedOfMockupDto, HTTP status code, HTTP response headers (array of strings)
      */
-    public function mockupsGetAllWithHttpInfo($type = null, $path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsGetAll'][0])
+    public function mockupsGetAllWithHttpInfo($type = null, $mockup_link_source_id = null, $path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsGetAll'][0])
     {
-        $request = $this->mockupsGetAllRequest($type, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $contentType);
+        $request = $this->mockupsGetAllRequest($type, $mockup_link_source_id, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4822,6 +4863,7 @@ class MockupsApi
      * Returns all entities relevant to specified query parameters.
      *
      * @param  \Aurigma\AssetStorage\Model\MockupType $type Mockup type. (optional)
+     * @param  string $mockup_link_source_id Mockup link source identifier. (optional)
      * @param  string $path Folder path filter parameter. (optional)
      * @param  bool $include_subfolders If set to &#39;true&#39;, query result will contain list of all entities in desired folder and subfolders. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
@@ -4835,9 +4877,9 @@ class MockupsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function mockupsGetAllAsync($type = null, $path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsGetAll'][0])
+    public function mockupsGetAllAsync($type = null, $mockup_link_source_id = null, $path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsGetAll'][0])
     {
-        return $this->mockupsGetAllAsyncWithHttpInfo($type, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $contentType)
+        return $this->mockupsGetAllAsyncWithHttpInfo($type, $mockup_link_source_id, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4851,6 +4893,7 @@ class MockupsApi
      * Returns all entities relevant to specified query parameters.
      *
      * @param  \Aurigma\AssetStorage\Model\MockupType $type Mockup type. (optional)
+     * @param  string $mockup_link_source_id Mockup link source identifier. (optional)
      * @param  string $path Folder path filter parameter. (optional)
      * @param  bool $include_subfolders If set to &#39;true&#39;, query result will contain list of all entities in desired folder and subfolders. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
@@ -4864,10 +4907,10 @@ class MockupsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function mockupsGetAllAsyncWithHttpInfo($type = null, $path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsGetAll'][0])
+    public function mockupsGetAllAsyncWithHttpInfo($type = null, $mockup_link_source_id = null, $path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsGetAll'][0])
     {
         $returnType = '\Aurigma\AssetStorage\Model\PagedOfMockupDto';
-        $request = $this->mockupsGetAllRequest($type, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $contentType);
+        $request = $this->mockupsGetAllRequest($type, $mockup_link_source_id, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4909,6 +4952,7 @@ class MockupsApi
      * Create request for operation 'mockupsGetAll'
      *
      * @param  \Aurigma\AssetStorage\Model\MockupType $type Mockup type. (optional)
+     * @param  string $mockup_link_source_id Mockup link source identifier. (optional)
      * @param  string $path Folder path filter parameter. (optional)
      * @param  bool $include_subfolders If set to &#39;true&#39;, query result will contain list of all entities in desired folder and subfolders. (optional)
      * @param  int $skip Defines page start offset from beginning of sorted result list. (optional)
@@ -4922,8 +4966,9 @@ class MockupsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function mockupsGetAllRequest($type = null, $path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsGetAll'][0])
+    public function mockupsGetAllRequest($type = null, $mockup_link_source_id = null, $path = null, $include_subfolders = null, $skip = null, $take = null, $sorting = null, $search = null, $custom_fields = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsGetAll'][0])
     {
+
 
 
 
@@ -4947,6 +4992,15 @@ class MockupsApi
             $type,
             'type', // param base name
             'MockupType', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $mockup_link_source_id,
+            'mockupLinkSourceId', // param base name
+            'string', // openApiType
             'form', // style
             true, // explode
             false // required
@@ -6180,40 +6234,40 @@ class MockupsApi
     }
 
     /**
-     * Operation mockupsGetFolder
+     * Operation mockupsGetFolderContent
      *
      * Returns a folder and its content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
      * @param  int $tenant_id Tenant ID. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mockupsGetFolder'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mockupsGetFolderContent'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\FolderContentOfMockupDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
-    public function mockupsGetFolder($full_path = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsGetFolder'][0])
+    public function mockupsGetFolderContent($full_path = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsGetFolderContent'][0])
     {
-        list($response) = $this->mockupsGetFolderWithHttpInfo($full_path, $tenant_id, $contentType);
+        list($response) = $this->mockupsGetFolderContentWithHttpInfo($full_path, $tenant_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation mockupsGetFolderWithHttpInfo
+     * Operation mockupsGetFolderContentWithHttpInfo
      *
      * Returns a folder and its content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
      * @param  int $tenant_id Tenant ID. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mockupsGetFolder'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mockupsGetFolderContent'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\FolderContentOfMockupDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function mockupsGetFolderWithHttpInfo($full_path = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsGetFolder'][0])
+    public function mockupsGetFolderContentWithHttpInfo($full_path = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsGetFolderContent'][0])
     {
-        $request = $this->mockupsGetFolderRequest($full_path, $tenant_id, $contentType);
+        $request = $this->mockupsGetFolderContentRequest($full_path, $tenant_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -6359,20 +6413,20 @@ class MockupsApi
     }
 
     /**
-     * Operation mockupsGetFolderAsync
+     * Operation mockupsGetFolderContentAsync
      *
      * Returns a folder and its content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
      * @param  int $tenant_id Tenant ID. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mockupsGetFolder'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mockupsGetFolderContent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function mockupsGetFolderAsync($full_path = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsGetFolder'][0])
+    public function mockupsGetFolderContentAsync($full_path = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsGetFolderContent'][0])
     {
-        return $this->mockupsGetFolderAsyncWithHttpInfo($full_path, $tenant_id, $contentType)
+        return $this->mockupsGetFolderContentAsyncWithHttpInfo($full_path, $tenant_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -6381,21 +6435,21 @@ class MockupsApi
     }
 
     /**
-     * Operation mockupsGetFolderAsyncWithHttpInfo
+     * Operation mockupsGetFolderContentAsyncWithHttpInfo
      *
      * Returns a folder and its content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
      * @param  int $tenant_id Tenant ID. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mockupsGetFolder'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mockupsGetFolderContent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function mockupsGetFolderAsyncWithHttpInfo($full_path = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsGetFolder'][0])
+    public function mockupsGetFolderContentAsyncWithHttpInfo($full_path = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsGetFolderContent'][0])
     {
         $returnType = '\Aurigma\AssetStorage\Model\FolderContentOfMockupDto';
-        $request = $this->mockupsGetFolderRequest($full_path, $tenant_id, $contentType);
+        $request = $this->mockupsGetFolderContentRequest($full_path, $tenant_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -6434,22 +6488,22 @@ class MockupsApi
     }
 
     /**
-     * Create request for operation 'mockupsGetFolder'
+     * Create request for operation 'mockupsGetFolderContent'
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
      * @param  int $tenant_id Tenant ID. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mockupsGetFolder'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mockupsGetFolderContent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function mockupsGetFolderRequest($full_path = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsGetFolder'][0])
+    public function mockupsGetFolderContentRequest($full_path = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsGetFolderContent'][0])
     {
 
 
 
 
-        $resourcePath = '/api/storage/v1/mockups/folders/content-by-path';
+        $resourcePath = '/api/storage/v1/mockups/folders/content/by-path';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -6460,6 +6514,380 @@ class MockupsApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $full_path,
             'fullPath', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tenant_id,
+            'tenantId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation mockupsGetFolderContentById
+     *
+     * Returns a folder and its content by folder ID.
+     *
+     * @param  string $id Folder identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mockupsGetFolderContentById'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Aurigma\AssetStorage\Model\FolderContentOfMockupDto|\Aurigma\AssetStorage\Model\ProblemDetails
+     */
+    public function mockupsGetFolderContentById($id = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsGetFolderContentById'][0])
+    {
+        list($response) = $this->mockupsGetFolderContentByIdWithHttpInfo($id, $tenant_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation mockupsGetFolderContentByIdWithHttpInfo
+     *
+     * Returns a folder and its content by folder ID.
+     *
+     * @param  string $id Folder identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mockupsGetFolderContentById'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Aurigma\AssetStorage\Model\FolderContentOfMockupDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function mockupsGetFolderContentByIdWithHttpInfo($id = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsGetFolderContentById'][0])
+    {
+        $request = $this->mockupsGetFolderContentByIdRequest($id, $tenant_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Aurigma\AssetStorage\Model\FolderContentOfMockupDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\AssetStorage\Model\FolderContentOfMockupDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\FolderContentOfMockupDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Aurigma\AssetStorage\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\AssetStorage\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Aurigma\AssetStorage\Model\FolderContentOfMockupDto';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\FolderContentOfMockupDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation mockupsGetFolderContentByIdAsync
+     *
+     * Returns a folder and its content by folder ID.
+     *
+     * @param  string $id Folder identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mockupsGetFolderContentById'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function mockupsGetFolderContentByIdAsync($id = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsGetFolderContentById'][0])
+    {
+        return $this->mockupsGetFolderContentByIdAsyncWithHttpInfo($id, $tenant_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation mockupsGetFolderContentByIdAsyncWithHttpInfo
+     *
+     * Returns a folder and its content by folder ID.
+     *
+     * @param  string $id Folder identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mockupsGetFolderContentById'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function mockupsGetFolderContentByIdAsyncWithHttpInfo($id = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsGetFolderContentById'][0])
+    {
+        $returnType = '\Aurigma\AssetStorage\Model\FolderContentOfMockupDto';
+        $request = $this->mockupsGetFolderContentByIdRequest($id, $tenant_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'mockupsGetFolderContentById'
+     *
+     * @param  string $id Folder identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['mockupsGetFolderContentById'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function mockupsGetFolderContentByIdRequest($id = null, $tenant_id = null, string $contentType = self::contentTypes['mockupsGetFolderContentById'][0])
+    {
+
+
+
+
+        $resourcePath = '/api/storage/v1/mockups/folders/content';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $id,
+            'id', // param base name
             'string', // openApiType
             'form', // style
             true, // explode
@@ -6940,6 +7368,8 @@ class MockupsApi
      * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\MockupFormatType $metadata_format Mockup file format. (optional)
+     * @param  string $metadata_link_source_id Mockup link source file identifier. (optional)
+     * @param  bool $has_problems Mockup &#39;has problems&#39; tag.  Indicates whether mockup has any problems preventing normal processing, e.g. missing source file for mockup link. (optional)
      * @param  \SplFileObject $file File content. (optional)
      * @param  string $path Parent folder full path. (optional)
      * @param  string $name Entity name. (optional)
@@ -6950,9 +7380,9 @@ class MockupsApi
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\MockupDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
-    public function mockupsUpdate($id, $tenant_id = null, $metadata_format = null, $file = null, $path = null, $name = null, $custom_fields = null, string $contentType = self::contentTypes['mockupsUpdate'][0])
+    public function mockupsUpdate($id, $tenant_id = null, $metadata_format = null, $metadata_link_source_id = null, $has_problems = null, $file = null, $path = null, $name = null, $custom_fields = null, string $contentType = self::contentTypes['mockupsUpdate'][0])
     {
-        list($response) = $this->mockupsUpdateWithHttpInfo($id, $tenant_id, $metadata_format, $file, $path, $name, $custom_fields, $contentType);
+        list($response) = $this->mockupsUpdateWithHttpInfo($id, $tenant_id, $metadata_format, $metadata_link_source_id, $has_problems, $file, $path, $name, $custom_fields, $contentType);
         return $response;
     }
 
@@ -6964,6 +7394,8 @@ class MockupsApi
      * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\MockupFormatType $metadata_format Mockup file format. (optional)
+     * @param  string $metadata_link_source_id Mockup link source file identifier. (optional)
+     * @param  bool $has_problems Mockup &#39;has problems&#39; tag.  Indicates whether mockup has any problems preventing normal processing, e.g. missing source file for mockup link. (optional)
      * @param  \SplFileObject $file File content. (optional)
      * @param  string $path Parent folder full path. (optional)
      * @param  string $name Entity name. (optional)
@@ -6974,9 +7406,9 @@ class MockupsApi
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\MockupDto|\Aurigma\AssetStorage\Model\ProblemDetails|\Aurigma\AssetStorage\Model\ConflictDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function mockupsUpdateWithHttpInfo($id, $tenant_id = null, $metadata_format = null, $file = null, $path = null, $name = null, $custom_fields = null, string $contentType = self::contentTypes['mockupsUpdate'][0])
+    public function mockupsUpdateWithHttpInfo($id, $tenant_id = null, $metadata_format = null, $metadata_link_source_id = null, $has_problems = null, $file = null, $path = null, $name = null, $custom_fields = null, string $contentType = self::contentTypes['mockupsUpdate'][0])
     {
-        $request = $this->mockupsUpdateRequest($id, $tenant_id, $metadata_format, $file, $path, $name, $custom_fields, $contentType);
+        $request = $this->mockupsUpdateRequest($id, $tenant_id, $metadata_format, $metadata_link_source_id, $has_problems, $file, $path, $name, $custom_fields, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -7199,6 +7631,8 @@ class MockupsApi
      * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\MockupFormatType $metadata_format Mockup file format. (optional)
+     * @param  string $metadata_link_source_id Mockup link source file identifier. (optional)
+     * @param  bool $has_problems Mockup &#39;has problems&#39; tag.  Indicates whether mockup has any problems preventing normal processing, e.g. missing source file for mockup link. (optional)
      * @param  \SplFileObject $file File content. (optional)
      * @param  string $path Parent folder full path. (optional)
      * @param  string $name Entity name. (optional)
@@ -7208,9 +7642,9 @@ class MockupsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function mockupsUpdateAsync($id, $tenant_id = null, $metadata_format = null, $file = null, $path = null, $name = null, $custom_fields = null, string $contentType = self::contentTypes['mockupsUpdate'][0])
+    public function mockupsUpdateAsync($id, $tenant_id = null, $metadata_format = null, $metadata_link_source_id = null, $has_problems = null, $file = null, $path = null, $name = null, $custom_fields = null, string $contentType = self::contentTypes['mockupsUpdate'][0])
     {
-        return $this->mockupsUpdateAsyncWithHttpInfo($id, $tenant_id, $metadata_format, $file, $path, $name, $custom_fields, $contentType)
+        return $this->mockupsUpdateAsyncWithHttpInfo($id, $tenant_id, $metadata_format, $metadata_link_source_id, $has_problems, $file, $path, $name, $custom_fields, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -7226,6 +7660,8 @@ class MockupsApi
      * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\MockupFormatType $metadata_format Mockup file format. (optional)
+     * @param  string $metadata_link_source_id Mockup link source file identifier. (optional)
+     * @param  bool $has_problems Mockup &#39;has problems&#39; tag.  Indicates whether mockup has any problems preventing normal processing, e.g. missing source file for mockup link. (optional)
      * @param  \SplFileObject $file File content. (optional)
      * @param  string $path Parent folder full path. (optional)
      * @param  string $name Entity name. (optional)
@@ -7235,10 +7671,10 @@ class MockupsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function mockupsUpdateAsyncWithHttpInfo($id, $tenant_id = null, $metadata_format = null, $file = null, $path = null, $name = null, $custom_fields = null, string $contentType = self::contentTypes['mockupsUpdate'][0])
+    public function mockupsUpdateAsyncWithHttpInfo($id, $tenant_id = null, $metadata_format = null, $metadata_link_source_id = null, $has_problems = null, $file = null, $path = null, $name = null, $custom_fields = null, string $contentType = self::contentTypes['mockupsUpdate'][0])
     {
         $returnType = '\Aurigma\AssetStorage\Model\MockupDto';
-        $request = $this->mockupsUpdateRequest($id, $tenant_id, $metadata_format, $file, $path, $name, $custom_fields, $contentType);
+        $request = $this->mockupsUpdateRequest($id, $tenant_id, $metadata_format, $metadata_link_source_id, $has_problems, $file, $path, $name, $custom_fields, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -7282,6 +7718,8 @@ class MockupsApi
      * @param  string $id Entity identifier. (required)
      * @param  int $tenant_id Tenant ID. (optional)
      * @param  \Aurigma\AssetStorage\Model\MockupFormatType $metadata_format Mockup file format. (optional)
+     * @param  string $metadata_link_source_id Mockup link source file identifier. (optional)
+     * @param  bool $has_problems Mockup &#39;has problems&#39; tag.  Indicates whether mockup has any problems preventing normal processing, e.g. missing source file for mockup link. (optional)
      * @param  \SplFileObject $file File content. (optional)
      * @param  string $path Parent folder full path. (optional)
      * @param  string $name Entity name. (optional)
@@ -7291,7 +7729,7 @@ class MockupsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function mockupsUpdateRequest($id, $tenant_id = null, $metadata_format = null, $file = null, $path = null, $name = null, $custom_fields = null, string $contentType = self::contentTypes['mockupsUpdate'][0])
+    public function mockupsUpdateRequest($id, $tenant_id = null, $metadata_format = null, $metadata_link_source_id = null, $has_problems = null, $file = null, $path = null, $name = null, $custom_fields = null, string $contentType = self::contentTypes['mockupsUpdate'][0])
     {
 
         // verify the required parameter 'id' is set
@@ -7300,6 +7738,8 @@ class MockupsApi
                 'Missing the required parameter $id when calling mockupsUpdate'
             );
         }
+
+
 
 
 
@@ -7343,8 +7783,24 @@ class MockupsApi
             $formParams['metadata.format'] = ObjectSerializer::toFormValue($metadata_format);
         }
         // form params
+        if ($metadata_link_source_id !== null) {
+            $formParams['metadata.linkSourceId'] = ObjectSerializer::toFormValue($metadata_link_source_id);
+        }
+        // form params
+        if ($has_problems !== null) {
+            $formParams['hasProblems'] = ObjectSerializer::toFormValue($has_problems);
+        }
+        // form params
         if ($file !== null) {
-            $formParams['file'] = ObjectSerializer::toFormValue($file);
+            $multipart = true;
+            $formParams['file'] = [];
+            $paramFiles = is_array($file) ? $file : [$file];
+            foreach ($paramFiles as $paramFile) {
+                $formParams['file'][] = \GuzzleHttp\Psr7\Utils::tryFopen(
+                    ObjectSerializer::toFormValue($paramFile),
+                    'rb'
+                );
+            }
         }
         // form params
         if ($path !== null) {

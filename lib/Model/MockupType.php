@@ -46,6 +46,8 @@ class MockupType
 
     public const MOCKUP3_D = 'Mockup3D';
 
+    public const MOCKUP_LINK = 'MockupLink';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -54,7 +56,8 @@ class MockupType
     {
         return [
             self::MOCKUP2_D,
-            self::MOCKUP3_D
+            self::MOCKUP3_D,
+            self::MOCKUP_LINK
         ];
     }
 }

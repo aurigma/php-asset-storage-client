@@ -116,7 +116,10 @@ class ColorProfilesApi
         'colorProfilesGetFileStorageInfo' => [
             'application/json',
         ],
-        'colorProfilesGetFolder' => [
+        'colorProfilesGetFolderContent' => [
+            'application/json',
+        ],
+        'colorProfilesGetFolderContentById' => [
             'application/json',
         ],
         'colorProfilesGetFolderInfo' => [
@@ -2179,7 +2182,15 @@ class ColorProfilesApi
         }
         // form params
         if ($file !== null) {
-            $formParams['file'] = ObjectSerializer::toFormValue($file);
+            $multipart = true;
+            $formParams['file'] = [];
+            $paramFiles = is_array($file) ? $file : [$file];
+            foreach ($paramFiles as $paramFile) {
+                $formParams['file'][] = \GuzzleHttp\Psr7\Utils::tryFopen(
+                    ObjectSerializer::toFormValue($paramFile),
+                    'rb'
+                );
+            }
         }
         // form params
         if ($path !== null) {
@@ -3325,7 +3336,7 @@ class ColorProfilesApi
 
 
 
-        $resourcePath = '/api/storage/v1/color-profiles/folders/content-by-path';
+        $resourcePath = '/api/storage/v1/color-profiles/folders/by-path';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -5709,40 +5720,40 @@ class ColorProfilesApi
     }
 
     /**
-     * Operation colorProfilesGetFolder
+     * Operation colorProfilesGetFolderContent
      *
      * Returns a folder and its content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
      * @param  int $tenant_id Tenant ID. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['colorProfilesGetFolder'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['colorProfilesGetFolderContent'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Aurigma\AssetStorage\Model\FolderContentOfColorProfileDto|\Aurigma\AssetStorage\Model\ProblemDetails
      */
-    public function colorProfilesGetFolder($full_path = null, $tenant_id = null, string $contentType = self::contentTypes['colorProfilesGetFolder'][0])
+    public function colorProfilesGetFolderContent($full_path = null, $tenant_id = null, string $contentType = self::contentTypes['colorProfilesGetFolderContent'][0])
     {
-        list($response) = $this->colorProfilesGetFolderWithHttpInfo($full_path, $tenant_id, $contentType);
+        list($response) = $this->colorProfilesGetFolderContentWithHttpInfo($full_path, $tenant_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation colorProfilesGetFolderWithHttpInfo
+     * Operation colorProfilesGetFolderContentWithHttpInfo
      *
      * Returns a folder and its content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
      * @param  int $tenant_id Tenant ID. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['colorProfilesGetFolder'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['colorProfilesGetFolderContent'] to see the possible values for this operation
      *
      * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Aurigma\AssetStorage\Model\FolderContentOfColorProfileDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
      */
-    public function colorProfilesGetFolderWithHttpInfo($full_path = null, $tenant_id = null, string $contentType = self::contentTypes['colorProfilesGetFolder'][0])
+    public function colorProfilesGetFolderContentWithHttpInfo($full_path = null, $tenant_id = null, string $contentType = self::contentTypes['colorProfilesGetFolderContent'][0])
     {
-        $request = $this->colorProfilesGetFolderRequest($full_path, $tenant_id, $contentType);
+        $request = $this->colorProfilesGetFolderContentRequest($full_path, $tenant_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5888,20 +5899,20 @@ class ColorProfilesApi
     }
 
     /**
-     * Operation colorProfilesGetFolderAsync
+     * Operation colorProfilesGetFolderContentAsync
      *
      * Returns a folder and its content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
      * @param  int $tenant_id Tenant ID. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['colorProfilesGetFolder'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['colorProfilesGetFolderContent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function colorProfilesGetFolderAsync($full_path = null, $tenant_id = null, string $contentType = self::contentTypes['colorProfilesGetFolder'][0])
+    public function colorProfilesGetFolderContentAsync($full_path = null, $tenant_id = null, string $contentType = self::contentTypes['colorProfilesGetFolderContent'][0])
     {
-        return $this->colorProfilesGetFolderAsyncWithHttpInfo($full_path, $tenant_id, $contentType)
+        return $this->colorProfilesGetFolderContentAsyncWithHttpInfo($full_path, $tenant_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5910,21 +5921,21 @@ class ColorProfilesApi
     }
 
     /**
-     * Operation colorProfilesGetFolderAsyncWithHttpInfo
+     * Operation colorProfilesGetFolderContentAsyncWithHttpInfo
      *
      * Returns a folder and its content by folder path.
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
      * @param  int $tenant_id Tenant ID. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['colorProfilesGetFolder'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['colorProfilesGetFolderContent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function colorProfilesGetFolderAsyncWithHttpInfo($full_path = null, $tenant_id = null, string $contentType = self::contentTypes['colorProfilesGetFolder'][0])
+    public function colorProfilesGetFolderContentAsyncWithHttpInfo($full_path = null, $tenant_id = null, string $contentType = self::contentTypes['colorProfilesGetFolderContent'][0])
     {
         $returnType = '\Aurigma\AssetStorage\Model\FolderContentOfColorProfileDto';
-        $request = $this->colorProfilesGetFolderRequest($full_path, $tenant_id, $contentType);
+        $request = $this->colorProfilesGetFolderContentRequest($full_path, $tenant_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5963,22 +5974,22 @@ class ColorProfilesApi
     }
 
     /**
-     * Create request for operation 'colorProfilesGetFolder'
+     * Create request for operation 'colorProfilesGetFolderContent'
      *
      * @param  string $full_path Full folder path, if not set then root folder path is used. (optional)
      * @param  int $tenant_id Tenant ID. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['colorProfilesGetFolder'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['colorProfilesGetFolderContent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function colorProfilesGetFolderRequest($full_path = null, $tenant_id = null, string $contentType = self::contentTypes['colorProfilesGetFolder'][0])
+    public function colorProfilesGetFolderContentRequest($full_path = null, $tenant_id = null, string $contentType = self::contentTypes['colorProfilesGetFolderContent'][0])
     {
 
 
 
 
-        $resourcePath = '/api/storage/v1/color-profiles/folders/content-by-path';
+        $resourcePath = '/api/storage/v1/color-profiles/folders/content/by-path';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -5989,6 +6000,380 @@ class ColorProfilesApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $full_path,
             'fullPath', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tenant_id,
+            'tenantId', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('X-API-Key');
+        if ($apiKey !== null) {
+            $headers['X-API-Key'] = $apiKey;
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires OAuth (access token)
+        if (!empty($this->config->getAccessToken())) {
+            $headers['Authorization'] = 'Bearer ' . $this->config->getAccessToken();
+        }
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation colorProfilesGetFolderContentById
+     *
+     * Returns a folder and its content by folder ID.
+     *
+     * @param  string $id Folder identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['colorProfilesGetFolderContentById'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Aurigma\AssetStorage\Model\FolderContentOfColorProfileDto|\Aurigma\AssetStorage\Model\ProblemDetails
+     */
+    public function colorProfilesGetFolderContentById($id = null, $tenant_id = null, string $contentType = self::contentTypes['colorProfilesGetFolderContentById'][0])
+    {
+        list($response) = $this->colorProfilesGetFolderContentByIdWithHttpInfo($id, $tenant_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation colorProfilesGetFolderContentByIdWithHttpInfo
+     *
+     * Returns a folder and its content by folder ID.
+     *
+     * @param  string $id Folder identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['colorProfilesGetFolderContentById'] to see the possible values for this operation
+     *
+     * @throws \Aurigma\AssetStorage\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Aurigma\AssetStorage\Model\FolderContentOfColorProfileDto|\Aurigma\AssetStorage\Model\ProblemDetails, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function colorProfilesGetFolderContentByIdWithHttpInfo($id = null, $tenant_id = null, string $contentType = self::contentTypes['colorProfilesGetFolderContentById'][0])
+    {
+        $request = $this->colorProfilesGetFolderContentByIdRequest($id, $tenant_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Aurigma\AssetStorage\Model\FolderContentOfColorProfileDto' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\AssetStorage\Model\FolderContentOfColorProfileDto' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\FolderContentOfColorProfileDto', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Aurigma\AssetStorage\Model\ProblemDetails' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Aurigma\AssetStorage\Model\ProblemDetails' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Aurigma\AssetStorage\Model\ProblemDetails', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Aurigma\AssetStorage\Model\FolderContentOfColorProfileDto';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\FolderContentOfColorProfileDto',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aurigma\AssetStorage\Model\ProblemDetails',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation colorProfilesGetFolderContentByIdAsync
+     *
+     * Returns a folder and its content by folder ID.
+     *
+     * @param  string $id Folder identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['colorProfilesGetFolderContentById'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function colorProfilesGetFolderContentByIdAsync($id = null, $tenant_id = null, string $contentType = self::contentTypes['colorProfilesGetFolderContentById'][0])
+    {
+        return $this->colorProfilesGetFolderContentByIdAsyncWithHttpInfo($id, $tenant_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation colorProfilesGetFolderContentByIdAsyncWithHttpInfo
+     *
+     * Returns a folder and its content by folder ID.
+     *
+     * @param  string $id Folder identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['colorProfilesGetFolderContentById'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function colorProfilesGetFolderContentByIdAsyncWithHttpInfo($id = null, $tenant_id = null, string $contentType = self::contentTypes['colorProfilesGetFolderContentById'][0])
+    {
+        $returnType = '\Aurigma\AssetStorage\Model\FolderContentOfColorProfileDto';
+        $request = $this->colorProfilesGetFolderContentByIdRequest($id, $tenant_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'colorProfilesGetFolderContentById'
+     *
+     * @param  string $id Folder identifier. (optional)
+     * @param  int $tenant_id Tenant ID. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['colorProfilesGetFolderContentById'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function colorProfilesGetFolderContentByIdRequest($id = null, $tenant_id = null, string $contentType = self::contentTypes['colorProfilesGetFolderContentById'][0])
+    {
+
+
+
+
+        $resourcePath = '/api/storage/v1/color-profiles/folders/content';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $id,
+            'id', // param base name
             'string', // openApiType
             'form', // style
             true, // explode
@@ -6923,7 +7308,15 @@ class ColorProfilesApi
         }
         // form params
         if ($file !== null) {
-            $formParams['file'] = ObjectSerializer::toFormValue($file);
+            $multipart = true;
+            $formParams['file'] = [];
+            $paramFiles = is_array($file) ? $file : [$file];
+            foreach ($paramFiles as $paramFile) {
+                $formParams['file'][] = \GuzzleHttp\Psr7\Utils::tryFopen(
+                    ObjectSerializer::toFormValue($paramFile),
+                    'rb'
+                );
+            }
         }
         // form params
         if ($path !== null) {

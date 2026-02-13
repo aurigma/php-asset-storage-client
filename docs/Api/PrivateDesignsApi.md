@@ -14,14 +14,15 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**privateDesignsCreate()**](PrivateDesignsApi.md#privateDesignsCreate) | **POST** /api/storage/v1/private-designs | Creates a new entity. |
 | [**privateDesignsCreateFolder()**](PrivateDesignsApi.md#privateDesignsCreateFolder) | **POST** /api/storage/v1/private-designs/folders | Creates a new folder. |
 | [**privateDesignsDelete()**](PrivateDesignsApi.md#privateDesignsDelete) | **DELETE** /api/storage/v1/private-designs/{id} | Deletes the specified entity. |
-| [**privateDesignsDeleteFolder()**](PrivateDesignsApi.md#privateDesignsDeleteFolder) | **DELETE** /api/storage/v1/private-designs/folders/content-by-path | Deletes the specified folder and its content by folder path. |
+| [**privateDesignsDeleteFolder()**](PrivateDesignsApi.md#privateDesignsDeleteFolder) | **DELETE** /api/storage/v1/private-designs/folders/by-path | Deletes the specified folder and its content by folder path. |
 | [**privateDesignsDeleteFolderById()**](PrivateDesignsApi.md#privateDesignsDeleteFolderById) | **DELETE** /api/storage/v1/private-designs/folders/{id} | Deletes the specified folder and its content by folder identifier. |
 | [**privateDesignsGet()**](PrivateDesignsApi.md#privateDesignsGet) | **GET** /api/storage/v1/private-designs/{id} | Returns an entity by ID. |
 | [**privateDesignsGetAll()**](PrivateDesignsApi.md#privateDesignsGetAll) | **GET** /api/storage/v1/private-designs | Returns all entities relevant to specified query parameters. |
 | [**privateDesignsGetAllFolders()**](PrivateDesignsApi.md#privateDesignsGetAllFolders) | **GET** /api/storage/v1/private-designs/folders/all | Returns all folders. |
 | [**privateDesignsGetFile()**](PrivateDesignsApi.md#privateDesignsGetFile) | **GET** /api/storage/v1/private-designs/{id}/file | Returns an entity file from file storage. |
 | [**privateDesignsGetFileStorageInfo()**](PrivateDesignsApi.md#privateDesignsGetFileStorageInfo) | **GET** /api/storage/v1/private-designs/file-storage-info | Returns information about the use of file storage. |
-| [**privateDesignsGetFolder()**](PrivateDesignsApi.md#privateDesignsGetFolder) | **GET** /api/storage/v1/private-designs/folders/content-by-path | Returns a folder and its content by folder path. |
+| [**privateDesignsGetFolderContent()**](PrivateDesignsApi.md#privateDesignsGetFolderContent) | **GET** /api/storage/v1/private-designs/folders/content/by-path | Returns a folder and its content by folder path. |
+| [**privateDesignsGetFolderContentById()**](PrivateDesignsApi.md#privateDesignsGetFolderContentById) | **GET** /api/storage/v1/private-designs/folders/content | Returns a folder and its content by folder id. |
 | [**privateDesignsGetFolderInfo()**](PrivateDesignsApi.md#privateDesignsGetFolderInfo) | **GET** /api/storage/v1/private-designs/folders/{id} | Returns a folder by ID. |
 | [**privateDesignsGetRetentionPolicy()**](PrivateDesignsApi.md#privateDesignsGetRetentionPolicy) | **GET** /api/storage/v1/private-designs/{id}/retention-policy | Returns an entity retention policy by entity identifier. |
 | [**privateDesignsSetRetentionPolicy()**](PrivateDesignsApi.md#privateDesignsSetRetentionPolicy) | **POST** /api/storage/v1/private-designs/{id}/retention-policy | Updates an entity retention policy by entity identifier. |
@@ -103,7 +104,7 @@ try {
 | **tenant_id** | **int**| Tenant ID. | [optional] |
 | **owner_id** | **string**| Private storage owner identifier. | [optional] |
 | **format** | **string**| Preview image format, e.g. Jpeg, Png, Bmp. | [optional] |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| Preview file content. | [optional] |
+| **file** | **\SplFileObject****\SplFileObject**| Preview file content. | [optional] |
 | **is_custom** | **bool**| Indicates if the preview is custom.  Custom previews preserved even if source is changed. | [optional] |
 
 ### Return type
@@ -667,7 +668,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | |
+| **file** | **\SplFileObject****\SplFileObject**| File content. | |
 | **path** | **string**| Parent folder full path. | |
 | **name** | **string**| Entity name. | |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
@@ -1097,7 +1098,7 @@ try {
 ## `privateDesignsGetAll()`
 
 ```php
-privateDesignsGetAll($data_schema_id, $toggle_set_id, $palette_id, $palette_uid, $font_post_script_name, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id): \Aurigma\AssetStorage\Model\PagedOfDesignDto
+privateDesignsGetAll($retention_policy, $data_schema_id, $toggle_set_id, $palette_id, $palette_uid, $font_post_script_name, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id): \Aurigma\AssetStorage\Model\PagedOfDesignDto
 ```
 
 Returns all entities relevant to specified query parameters.
@@ -1135,6 +1136,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\PrivateDesignsApi(
     new GuzzleHttp\Client(),
     $config
 );
+$retention_policy = new \Aurigma\AssetStorage\Model\\Aurigma\AssetStorage\Model\RetentionPolicy(); // \Aurigma\AssetStorage\Model\RetentionPolicy
 $data_schema_id = 'data_schema_id_example'; // string | Associated data schema identifier filter.
 $toggle_set_id = 'toggle_set_id_example'; // string | Associated toggle set identifier filter.
 $palette_id = 'palette_id_example'; // string | Associated palette identifier filter.
@@ -1151,7 +1153,7 @@ $tenant_id = 56; // int | Tenant ID.
 $owner_id = 'owner_id_example'; // string | Private storage owner identifier.
 
 try {
-    $result = $apiInstance->privateDesignsGetAll($data_schema_id, $toggle_set_id, $palette_id, $palette_uid, $font_post_script_name, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id);
+    $result = $apiInstance->privateDesignsGetAll($retention_policy, $data_schema_id, $toggle_set_id, $palette_id, $palette_uid, $font_post_script_name, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PrivateDesignsApi->privateDesignsGetAll: ', $e->getMessage(), PHP_EOL;
@@ -1162,6 +1164,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **retention_policy** | [**\Aurigma\AssetStorage\Model\RetentionPolicy**](../Model/.md)|  | [optional] |
 | **data_schema_id** | **string**| Associated data schema identifier filter. | [optional] |
 | **toggle_set_id** | **string**| Associated toggle set identifier filter. | [optional] |
 | **palette_id** | **string**| Associated palette identifier filter. | [optional] |
@@ -1426,10 +1429,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `privateDesignsGetFolder()`
+## `privateDesignsGetFolderContent()`
 
 ```php
-privateDesignsGetFolder($full_path, $tenant_id, $owner_id): \Aurigma\AssetStorage\Model\FolderContentOfDesignDto
+privateDesignsGetFolderContent($full_path, $tenant_id, $owner_id): \Aurigma\AssetStorage\Model\FolderContentOfDesignDto
 ```
 
 Returns a folder and its content by folder path.
@@ -1472,10 +1475,10 @@ $tenant_id = 56; // int | Tenant ID.
 $owner_id = 'owner_id_example'; // string | Private storage owner identifier.
 
 try {
-    $result = $apiInstance->privateDesignsGetFolder($full_path, $tenant_id, $owner_id);
+    $result = $apiInstance->privateDesignsGetFolderContent($full_path, $tenant_id, $owner_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling PrivateDesignsApi->privateDesignsGetFolder: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling PrivateDesignsApi->privateDesignsGetFolderContent: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -1484,6 +1487,84 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **full_path** | **string**| Full folder path, if not set then root folder path is used. | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
+| **owner_id** | **string**| Private storage owner identifier. | [optional] |
+
+### Return type
+
+[**\Aurigma\AssetStorage\Model\FolderContentOfDesignDto**](../Model/FolderContentOfDesignDto.md)
+
+### Authorization
+
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `privateDesignsGetFolderContentById()`
+
+```php
+privateDesignsGetFolderContentById($id, $tenant_id, $owner_id): \Aurigma\AssetStorage\Model\FolderContentOfDesignDto
+```
+
+Returns a folder and its content by folder id.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKey
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Aurigma\AssetStorage\Api\PrivateDesignsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | Folder identifier.
+$tenant_id = 56; // int | Tenant ID.
+$owner_id = 'owner_id_example'; // string | Private storage owner identifier.
+
+try {
+    $result = $apiInstance->privateDesignsGetFolderContentById($id, $tenant_id, $owner_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PrivateDesignsApi->privateDesignsGetFolderContentById: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| Folder identifier. | [optional] |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
 | **owner_id** | **string**| Private storage owner identifier. | [optional] |
 
@@ -1827,7 +1908,7 @@ try {
 | **metadata_has_palettes** | **bool**|  | [optional] |
 | **metadata_palettes** | [**\Aurigma\AssetStorage\Model\DesignPaletteMetadata[]**](../Model/\Aurigma\AssetStorage\Model\DesignPaletteMetadata.md)|  | [optional] |
 | **has_problems** | **bool**| Indicates whether design has any problems preventing normal processing, e.g. missing font etc. | [optional] |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | [optional] |
+| **file** | **\SplFileObject****\SplFileObject**| File content. | [optional] |
 | **path** | **string**| Parent folder full path. | [optional] |
 | **name** | **string**| Entity name. | [optional] |
 | **custom_fields** | [**array<string,mixed>**](../Model/array.md)| Entity custom attributes. | [optional] |

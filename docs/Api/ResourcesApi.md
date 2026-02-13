@@ -391,7 +391,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | |
+| **file** | **\SplFileObject****\SplFileObject**| File content. | |
 | **name** | **string**| Entity name. | |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
 | **id** | **string**| Desired unique identifier for new resource. | [optional] |
@@ -954,7 +954,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **id** | **string**| Entity identifier. | |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | [optional] |
+| **file** | **\SplFileObject****\SplFileObject**| File content. | [optional] |
 | **namespace** | **string**| Resource namespace. | [optional] |
 | **source_id** | **string**| Resource source identifier. | [optional] |
 | **type** | **string**| Resource type. | [optional] |

@@ -264,12 +264,24 @@ class DesignsApiTest extends TestCase
     }
 
     /**
-     * Test case for designsGetFolder
+     * Test case for designsGetFolderContent
      *
      * Returns a folder and its content by folder path..
      *
      */
-    public function testDesignsGetFolder()
+    public function testDesignsGetFolderContent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for designsGetFolderContentById
+     *
+     * Returns a folder and its content by folder ID..
+     *
+     */
+    public function testDesignsGetFolderContentById()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

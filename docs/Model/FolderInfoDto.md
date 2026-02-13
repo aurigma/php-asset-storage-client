@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**has_children** | **bool** | Folder &#39;has children&#39; tag. | [optional]
+**has_children** | **bool** | Indicates if folder has nested folders. | [optional]
+**has_content** | **bool** | Indicates if folder has contents. | [optional]
 **id** | **string** | Folder unique identifier. | [optional]
 **path** | **string** | Parent folder full path. | [optional]
 **private** | **bool** | Folder &#39;private&#39; tag, indicates whether folder is private. | [optional]

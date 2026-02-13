@@ -87,4 +87,13 @@ class MockupMetadataDtoTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "link_source_id"
+     */
+    public function testPropertyLinkSourceId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

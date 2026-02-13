@@ -264,12 +264,24 @@ class FontsApiTest extends TestCase
     }
 
     /**
-     * Test case for fontsGetFolder
+     * Test case for fontsGetFolderContent
      *
      * Returns a folder and its content by folder path..
      *
      */
-    public function testFontsGetFolder()
+    public function testFontsGetFolderContent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for fontsGetFolderContentById
+     *
+     * Returns a folder and its content by folder ID..
+     *
+     */
+    public function testFontsGetFolderContentById()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

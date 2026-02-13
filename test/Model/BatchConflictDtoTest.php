@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * BatchConflictDtoTest Class Doc Comment
  *
  * @category    Class
- * @description Information about batch operation name conflicts.
+ * @description Information about batch operation conflicts rised by existing entity ID.
  * @package     Aurigma\AssetStorage
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
@@ -101,6 +101,15 @@ class BatchConflictDtoTest extends TestCase
      * Test attribute "type"
      */
     public function testPropertyType()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "description"
+     */
+    public function testPropertyDescription()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

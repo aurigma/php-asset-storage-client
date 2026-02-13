@@ -252,12 +252,24 @@ class ColorProfilesApiTest extends TestCase
     }
 
     /**
-     * Test case for colorProfilesGetFolder
+     * Test case for colorProfilesGetFolderContent
      *
      * Returns a folder and its content by folder path..
      *
      */
-    public function testColorProfilesGetFolder()
+    public function testColorProfilesGetFolderContent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for colorProfilesGetFolderContentById
+     *
+     * Returns a folder and its content by folder ID..
+     *
+     */
+    public function testColorProfilesGetFolderContentById()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

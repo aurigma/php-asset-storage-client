@@ -33,6 +33,7 @@ use \Aurigma\AssetStorage\ObjectSerializer;
  * RetentionPolicy Class Doc Comment
  *
  * @category Class
+ * @description Asset retention policy.
  * @package  Aurigma\AssetStorage
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

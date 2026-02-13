@@ -46,6 +46,8 @@ class MockupFormatType
 
     public const M3D = 'M3d';
 
+    public const MLINK = 'Mlink';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -54,7 +56,8 @@ class MockupFormatType
     {
         return [
             self::PSD,
-            self::M3D
+            self::M3D,
+            self::MLINK
         ];
     }
 }

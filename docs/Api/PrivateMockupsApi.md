@@ -14,14 +14,15 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**privateMockupsCreate()**](PrivateMockupsApi.md#privateMockupsCreate) | **POST** /api/storage/v1/private-mockups | Creates a new entity. |
 | [**privateMockupsCreateFolder()**](PrivateMockupsApi.md#privateMockupsCreateFolder) | **POST** /api/storage/v1/private-mockups/folders | Creates a new folder. |
 | [**privateMockupsDelete()**](PrivateMockupsApi.md#privateMockupsDelete) | **DELETE** /api/storage/v1/private-mockups/{id} | Deletes the specified entity. |
-| [**privateMockupsDeleteFolder()**](PrivateMockupsApi.md#privateMockupsDeleteFolder) | **DELETE** /api/storage/v1/private-mockups/folders/content-by-path | Deletes the specified folder and its content by folder path. |
+| [**privateMockupsDeleteFolder()**](PrivateMockupsApi.md#privateMockupsDeleteFolder) | **DELETE** /api/storage/v1/private-mockups/folders/by-path | Deletes the specified folder and its content by folder path. |
 | [**privateMockupsDeleteFolderById()**](PrivateMockupsApi.md#privateMockupsDeleteFolderById) | **DELETE** /api/storage/v1/private-mockups/folders/{id} | Deletes the specified folder and its content by folder identifier. |
 | [**privateMockupsGet()**](PrivateMockupsApi.md#privateMockupsGet) | **GET** /api/storage/v1/private-mockups/{id} | Returns an entity by ID. |
 | [**privateMockupsGetAll()**](PrivateMockupsApi.md#privateMockupsGetAll) | **GET** /api/storage/v1/private-mockups | Returns all entities relevant to specified query parameters. |
 | [**privateMockupsGetAllFolders()**](PrivateMockupsApi.md#privateMockupsGetAllFolders) | **GET** /api/storage/v1/private-mockups/folders/all | Returns all folders. |
 | [**privateMockupsGetFile()**](PrivateMockupsApi.md#privateMockupsGetFile) | **GET** /api/storage/v1/private-mockups/{id}/file | Returns an entity file from file storage. |
 | [**privateMockupsGetFileStorageInfo()**](PrivateMockupsApi.md#privateMockupsGetFileStorageInfo) | **GET** /api/storage/v1/private-mockups/file-storage-info | Returns information about the use of file storage. |
-| [**privateMockupsGetFolder()**](PrivateMockupsApi.md#privateMockupsGetFolder) | **GET** /api/storage/v1/private-mockups/folders/content-by-path | Returns a folder and its content by folder path. |
+| [**privateMockupsGetFolderContent()**](PrivateMockupsApi.md#privateMockupsGetFolderContent) | **GET** /api/storage/v1/private-mockups/folders/content/by-path | Returns a folder and its content by folder path. |
+| [**privateMockupsGetFolderContentById()**](PrivateMockupsApi.md#privateMockupsGetFolderContentById) | **GET** /api/storage/v1/private-mockups/folders/content | Returns a folder and its content by folder id. |
 | [**privateMockupsGetFolderInfo()**](PrivateMockupsApi.md#privateMockupsGetFolderInfo) | **GET** /api/storage/v1/private-mockups/folders/{id} | Returns a folder by ID. |
 | [**privateMockupsGetRetentionPolicy()**](PrivateMockupsApi.md#privateMockupsGetRetentionPolicy) | **GET** /api/storage/v1/private-mockups/{id}/retention-policy | Returns an entity retention policy by entity identifier. |
 | [**privateMockupsSetRetentionPolicy()**](PrivateMockupsApi.md#privateMockupsSetRetentionPolicy) | **POST** /api/storage/v1/private-mockups/{id}/retention-policy | Updates an entity retention policy by entity identifier. |
@@ -103,7 +104,7 @@ try {
 | **tenant_id** | **int**| Tenant ID. | [optional] |
 | **owner_id** | **string**| Private storage owner identifier. | [optional] |
 | **format** | **string**| Preview image format, e.g. Jpeg, Png, Bmp. | [optional] |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| Preview file content. | [optional] |
+| **file** | **\SplFileObject****\SplFileObject**| Preview file content. | [optional] |
 | **is_custom** | **bool**| Indicates if the preview is custom.  Custom previews preserved even if source is changed. | [optional] |
 
 ### Return type
@@ -597,7 +598,7 @@ try {
 ## `privateMockupsCreate()`
 
 ```php
-privateMockupsCreate($file, $path, $name, $tenant_id, $owner_id, $metadata_format, $type, $custom_fields): \Aurigma\AssetStorage\Model\MockupDto
+privateMockupsCreate($file, $path, $name, $tenant_id, $owner_id, $metadata_format, $metadata_link_source_id, $type, $has_problems, $custom_fields): \Aurigma\AssetStorage\Model\MockupDto
 ```
 
 Creates a new entity.
@@ -641,11 +642,13 @@ $name = 'name_example'; // string | Entity name.
 $tenant_id = 56; // int | Tenant ID.
 $owner_id = 'owner_id_example'; // string | Private storage owner identifier.
 $metadata_format = new \Aurigma\AssetStorage\Model\MockupFormatType(); // \Aurigma\AssetStorage\Model\MockupFormatType | Mockup file format.
+$metadata_link_source_id = 'metadata_link_source_id_example'; // string | Mockup link source file identifier.
 $type = new \Aurigma\AssetStorage\Model\MockupType(); // \Aurigma\AssetStorage\Model\MockupType | Mockup type.
+$has_problems = True; // bool | Mockup 'has problems' tag.  Indicates whether mockup has any problems preventing normal processing, e.g. missing source file for mockup link.
 $custom_fields = NULL; // array<string,mixed> | Entity custom attributes.
 
 try {
-    $result = $apiInstance->privateMockupsCreate($file, $path, $name, $tenant_id, $owner_id, $metadata_format, $type, $custom_fields);
+    $result = $apiInstance->privateMockupsCreate($file, $path, $name, $tenant_id, $owner_id, $metadata_format, $metadata_link_source_id, $type, $has_problems, $custom_fields);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PrivateMockupsApi->privateMockupsCreate: ', $e->getMessage(), PHP_EOL;
@@ -656,13 +659,15 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | |
+| **file** | **\SplFileObject****\SplFileObject**| File content. | |
 | **path** | **string**| Parent folder full path. | |
 | **name** | **string**| Entity name. | |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
 | **owner_id** | **string**| Private storage owner identifier. | [optional] |
 | **metadata_format** | [**\Aurigma\AssetStorage\Model\MockupFormatType**](../Model/MockupFormatType.md)| Mockup file format. | [optional] |
+| **metadata_link_source_id** | **string**| Mockup link source file identifier. | [optional] |
 | **type** | [**\Aurigma\AssetStorage\Model\MockupType**](../Model/MockupType.md)| Mockup type. | [optional] |
+| **has_problems** | **bool**| Mockup &#39;has problems&#39; tag.  Indicates whether mockup has any problems preventing normal processing, e.g. missing source file for mockup link. | [optional] |
 | **custom_fields** | [**array<string,mixed>**](../Model/array.md)| Entity custom attributes. | [optional] |
 
 ### Return type
@@ -1075,7 +1080,7 @@ try {
 ## `privateMockupsGetAll()`
 
 ```php
-privateMockupsGetAll($type, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id): \Aurigma\AssetStorage\Model\PagedOfMockupDto
+privateMockupsGetAll($retention_policy, $type, $mockup_link_source_id, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id): \Aurigma\AssetStorage\Model\PagedOfMockupDto
 ```
 
 Returns all entities relevant to specified query parameters.
@@ -1113,7 +1118,9 @@ $apiInstance = new Aurigma\AssetStorage\Api\PrivateMockupsApi(
     new GuzzleHttp\Client(),
     $config
 );
+$retention_policy = new \Aurigma\AssetStorage\Model\\Aurigma\AssetStorage\Model\RetentionPolicy(); // \Aurigma\AssetStorage\Model\RetentionPolicy
 $type = new \Aurigma\AssetStorage\Model\\Aurigma\AssetStorage\Model\MockupType(); // \Aurigma\AssetStorage\Model\MockupType | Mockup type.
+$mockup_link_source_id = 'mockup_link_source_id_example'; // string | Mockup link source identifier.
 $path = 'path_example'; // string | Folder path filter parameter.
 $include_subfolders = True; // bool | If set to 'true', query result will contain list of all entities in desired folder and subfolders.
 $skip = 56; // int | Defines page start offset from beginning of sorted result list.
@@ -1125,7 +1132,7 @@ $tenant_id = 56; // int | Tenant ID.
 $owner_id = 'owner_id_example'; // string | Private storage owner identifier.
 
 try {
-    $result = $apiInstance->privateMockupsGetAll($type, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id);
+    $result = $apiInstance->privateMockupsGetAll($retention_policy, $type, $mockup_link_source_id, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PrivateMockupsApi->privateMockupsGetAll: ', $e->getMessage(), PHP_EOL;
@@ -1136,7 +1143,9 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **retention_policy** | [**\Aurigma\AssetStorage\Model\RetentionPolicy**](../Model/.md)|  | [optional] |
 | **type** | [**\Aurigma\AssetStorage\Model\MockupType**](../Model/.md)| Mockup type. | [optional] |
+| **mockup_link_source_id** | **string**| Mockup link source identifier. | [optional] |
 | **path** | **string**| Folder path filter parameter. | [optional] |
 | **include_subfolders** | **bool**| If set to &#39;true&#39;, query result will contain list of all entities in desired folder and subfolders. | [optional] |
 | **skip** | **int**| Defines page start offset from beginning of sorted result list. | [optional] |
@@ -1396,10 +1405,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `privateMockupsGetFolder()`
+## `privateMockupsGetFolderContent()`
 
 ```php
-privateMockupsGetFolder($full_path, $tenant_id, $owner_id): \Aurigma\AssetStorage\Model\FolderContentOfMockupDto
+privateMockupsGetFolderContent($full_path, $tenant_id, $owner_id): \Aurigma\AssetStorage\Model\FolderContentOfMockupDto
 ```
 
 Returns a folder and its content by folder path.
@@ -1442,10 +1451,10 @@ $tenant_id = 56; // int | Tenant ID.
 $owner_id = 'owner_id_example'; // string | Private storage owner identifier.
 
 try {
-    $result = $apiInstance->privateMockupsGetFolder($full_path, $tenant_id, $owner_id);
+    $result = $apiInstance->privateMockupsGetFolderContent($full_path, $tenant_id, $owner_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling PrivateMockupsApi->privateMockupsGetFolder: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling PrivateMockupsApi->privateMockupsGetFolderContent: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -1454,6 +1463,84 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **full_path** | **string**| Full folder path, if not set then root folder path is used. | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
+| **owner_id** | **string**| Private storage owner identifier. | [optional] |
+
+### Return type
+
+[**\Aurigma\AssetStorage\Model\FolderContentOfMockupDto**](../Model/FolderContentOfMockupDto.md)
+
+### Authorization
+
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `privateMockupsGetFolderContentById()`
+
+```php
+privateMockupsGetFolderContentById($id, $tenant_id, $owner_id): \Aurigma\AssetStorage\Model\FolderContentOfMockupDto
+```
+
+Returns a folder and its content by folder id.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKey
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Aurigma\AssetStorage\Api\PrivateMockupsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | Folder identifier.
+$tenant_id = 56; // int | Tenant ID.
+$owner_id = 'owner_id_example'; // string | Private storage owner identifier.
+
+try {
+    $result = $apiInstance->privateMockupsGetFolderContentById($id, $tenant_id, $owner_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PrivateMockupsApi->privateMockupsGetFolderContentById: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| Folder identifier. | [optional] |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
 | **owner_id** | **string**| Private storage owner identifier. | [optional] |
 
@@ -1712,7 +1799,7 @@ void (empty response body)
 ## `privateMockupsUpdate()`
 
 ```php
-privateMockupsUpdate($id, $tenant_id, $owner_id, $metadata_format, $file, $path, $name, $custom_fields): \Aurigma\AssetStorage\Model\MockupDto
+privateMockupsUpdate($id, $tenant_id, $owner_id, $metadata_format, $metadata_link_source_id, $has_problems, $file, $path, $name, $custom_fields): \Aurigma\AssetStorage\Model\MockupDto
 ```
 
 Updates the specified entity.
@@ -1754,13 +1841,15 @@ $id = 'id_example'; // string | Entity identifier.
 $tenant_id = 56; // int | Tenant ID.
 $owner_id = 'owner_id_example'; // string | Private storage owner identifier.
 $metadata_format = new \Aurigma\AssetStorage\Model\MockupFormatType(); // \Aurigma\AssetStorage\Model\MockupFormatType | Mockup file format.
+$metadata_link_source_id = 'metadata_link_source_id_example'; // string | Mockup link source file identifier.
+$has_problems = True; // bool | Mockup 'has problems' tag.  Indicates whether mockup has any problems preventing normal processing, e.g. missing source file for mockup link.
 $file = "/path/to/file.txt"; // \SplFileObject | File content.
 $path = 'path_example'; // string | Parent folder full path.
 $name = 'name_example'; // string | Entity name.
 $custom_fields = NULL; // array<string,mixed> | Entity custom attributes.
 
 try {
-    $result = $apiInstance->privateMockupsUpdate($id, $tenant_id, $owner_id, $metadata_format, $file, $path, $name, $custom_fields);
+    $result = $apiInstance->privateMockupsUpdate($id, $tenant_id, $owner_id, $metadata_format, $metadata_link_source_id, $has_problems, $file, $path, $name, $custom_fields);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PrivateMockupsApi->privateMockupsUpdate: ', $e->getMessage(), PHP_EOL;
@@ -1775,7 +1864,9 @@ try {
 | **tenant_id** | **int**| Tenant ID. | [optional] |
 | **owner_id** | **string**| Private storage owner identifier. | [optional] |
 | **metadata_format** | [**\Aurigma\AssetStorage\Model\MockupFormatType**](../Model/MockupFormatType.md)| Mockup file format. | [optional] |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | [optional] |
+| **metadata_link_source_id** | **string**| Mockup link source file identifier. | [optional] |
+| **has_problems** | **bool**| Mockup &#39;has problems&#39; tag.  Indicates whether mockup has any problems preventing normal processing, e.g. missing source file for mockup link. | [optional] |
+| **file** | **\SplFileObject****\SplFileObject**| File content. | [optional] |
 | **path** | **string**| Parent folder full path. | [optional] |
 | **name** | **string**| Entity name. | [optional] |
 | **custom_fields** | [**array<string,mixed>**](../Model/array.md)| Entity custom attributes. | [optional] |

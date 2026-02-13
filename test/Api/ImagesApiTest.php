@@ -264,12 +264,24 @@ class ImagesApiTest extends TestCase
     }
 
     /**
-     * Test case for imagesGetFolder
+     * Test case for imagesGetFolderContent
      *
      * Returns a folder and its content by folder path..
      *
      */
-    public function testImagesGetFolder()
+    public function testImagesGetFolderContent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for imagesGetFolderContentById
+     *
+     * Returns a folder and its content by folder ID..
+     *
+     */
+    public function testImagesGetFolderContentById()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

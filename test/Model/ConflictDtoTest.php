@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * ConflictDtoTest Class Doc Comment
  *
  * @category    Class
- * @description Information about operation conflict.
+ * @description ConflictDto
  * @package     Aurigma\AssetStorage
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
@@ -80,27 +80,27 @@ class ConflictDtoTest extends TestCase
     }
 
     /**
-     * Test attribute "id"
+     * Test attribute "specifier"
      */
-    public function testPropertyId()
+    public function testPropertySpecifier()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "name"
+     * Test attribute "description"
      */
-    public function testPropertyName()
+    public function testPropertyDescription()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "path"
+     * Test attribute "type"
      */
-    public function testPropertyPath()
+    public function testPropertyType()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

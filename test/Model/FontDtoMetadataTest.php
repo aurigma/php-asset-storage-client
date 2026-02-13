@@ -1,6 +1,6 @@
 <?php
 /**
- * NameConflictDtoTest
+ * FontDtoMetadataTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace Aurigma\AssetStorage\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * NameConflictDtoTest Class Doc Comment
+ * FontDtoMetadataTest Class Doc Comment
  *
  * @category    Class
- * @description Information about operation name conflict.
+ * @description Font metadata.
  * @package     Aurigma\AssetStorage
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class NameConflictDtoTest extends TestCase
+class FontDtoMetadataTest extends TestCase
 {
 
     /**
@@ -71,45 +71,36 @@ class NameConflictDtoTest extends TestCase
     }
 
     /**
-     * Test "NameConflictDto"
+     * Test "FontDtoMetadata"
      */
-    public function testNameConflictDto()
+    public function testFontDtoMetadata()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "type"
+     * Test attribute "postscript_name"
      */
-    public function testPropertyType()
+    public function testPropertyPostscriptName()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "id"
+     * Test attribute "family"
      */
-    public function testPropertyId()
+    public function testPropertyFamily()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "name"
+     * Test attribute "style"
      */
-    public function testPropertyName()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "path"
-     */
-    public function testPropertyPath()
+    public function testPropertyStyle()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

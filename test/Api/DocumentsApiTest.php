@@ -252,12 +252,24 @@ class DocumentsApiTest extends TestCase
     }
 
     /**
-     * Test case for documentsGetFolder
+     * Test case for documentsGetFolderContent
      *
      * Returns a folder and its content by folder path..
      *
      */
-    public function testDocumentsGetFolder()
+    public function testDocumentsGetFolderContent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for documentsGetFolderContentById
+     *
+     * Returns a folder and its content by folder ID..
+     *
+     */
+    public function testDocumentsGetFolderContentById()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

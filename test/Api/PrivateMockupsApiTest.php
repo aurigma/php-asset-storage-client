@@ -276,12 +276,24 @@ class PrivateMockupsApiTest extends TestCase
     }
 
     /**
-     * Test case for privateMockupsGetFolder
+     * Test case for privateMockupsGetFolderContent
      *
      * Returns a folder and its content by folder path..
      *
      */
-    public function testPrivateMockupsGetFolder()
+    public function testPrivateMockupsGetFolderContent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for privateMockupsGetFolderContentById
+     *
+     * Returns a folder and its content by folder id..
+     *
+     */
+    public function testPrivateMockupsGetFolderContentById()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

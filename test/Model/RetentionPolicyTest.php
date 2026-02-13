@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * RetentionPolicyTest Class Doc Comment
  *
  * @category    Class
- * @description RetentionPolicy
+ * @description Asset retention policy.
  * @package     Aurigma\AssetStorage
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

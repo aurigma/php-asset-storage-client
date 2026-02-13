@@ -13,14 +13,15 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**mockupsCreate()**](MockupsApi.md#mockupsCreate) | **POST** /api/storage/v1/mockups | Creates a new entity. |
 | [**mockupsCreateFolder()**](MockupsApi.md#mockupsCreateFolder) | **POST** /api/storage/v1/mockups/folders | Creates a new folder. |
 | [**mockupsDelete()**](MockupsApi.md#mockupsDelete) | **DELETE** /api/storage/v1/mockups/{id} | Deletes the specified entity. |
-| [**mockupsDeleteFolder()**](MockupsApi.md#mockupsDeleteFolder) | **DELETE** /api/storage/v1/mockups/folders/content-by-path | Deletes the specified folder and its content by folder path. |
+| [**mockupsDeleteFolder()**](MockupsApi.md#mockupsDeleteFolder) | **DELETE** /api/storage/v1/mockups/folders/by-path | Deletes the specified folder and its content by folder path. |
 | [**mockupsDeleteFolderById()**](MockupsApi.md#mockupsDeleteFolderById) | **DELETE** /api/storage/v1/mockups/folders/{id} | Deletes the specified folder and its content by folder identifier. |
 | [**mockupsGet()**](MockupsApi.md#mockupsGet) | **GET** /api/storage/v1/mockups/{id} | Returns an entity by ID. |
 | [**mockupsGetAll()**](MockupsApi.md#mockupsGetAll) | **GET** /api/storage/v1/mockups | Returns all entities relevant to specified query parameters. |
 | [**mockupsGetAllFolders()**](MockupsApi.md#mockupsGetAllFolders) | **GET** /api/storage/v1/mockups/folders/all | Returns all folders. |
 | [**mockupsGetFile()**](MockupsApi.md#mockupsGetFile) | **GET** /api/storage/v1/mockups/{id}/file | Returns an entity file from file storage. |
 | [**mockupsGetFileStorageInfo()**](MockupsApi.md#mockupsGetFileStorageInfo) | **GET** /api/storage/v1/mockups/file-storage-info | Returns information about the use of file storage. |
-| [**mockupsGetFolder()**](MockupsApi.md#mockupsGetFolder) | **GET** /api/storage/v1/mockups/folders/content-by-path | Returns a folder and its content by folder path. |
+| [**mockupsGetFolderContent()**](MockupsApi.md#mockupsGetFolderContent) | **GET** /api/storage/v1/mockups/folders/content/by-path | Returns a folder and its content by folder path. |
+| [**mockupsGetFolderContentById()**](MockupsApi.md#mockupsGetFolderContentById) | **GET** /api/storage/v1/mockups/folders/content | Returns a folder and its content by folder ID. |
 | [**mockupsGetFolderInfo()**](MockupsApi.md#mockupsGetFolderInfo) | **GET** /api/storage/v1/mockups/folders/{id} | Returns a folder by ID. |
 | [**mockupsUpdate()**](MockupsApi.md#mockupsUpdate) | **PUT** /api/storage/v1/mockups/{id} | Updates the specified entity. |
 | [**mockupsUpdateFolder()**](MockupsApi.md#mockupsUpdateFolder) | **PUT** /api/storage/v1/mockups/folders/{id} | Updates the specified folder. |
@@ -98,7 +99,7 @@ try {
 | **height** | **int**| Preview image height. | |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
 | **format** | **string**| Preview image format, e.g. Jpeg, Png, Bmp. | [optional] |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| Preview file content. | [optional] |
+| **file** | **\SplFileObject****\SplFileObject**| Preview file content. | [optional] |
 | **is_custom** | **bool**| Indicates if the preview is custom.  Custom previews preserved even if source is changed. | [optional] |
 
 ### Return type
@@ -503,7 +504,7 @@ try {
 ## `mockupsCreate()`
 
 ```php
-mockupsCreate($file, $path, $name, $tenant_id, $metadata_format, $type, $custom_fields): \Aurigma\AssetStorage\Model\MockupDto
+mockupsCreate($file, $path, $name, $tenant_id, $metadata_format, $metadata_link_source_id, $type, $has_problems, $custom_fields): \Aurigma\AssetStorage\Model\MockupDto
 ```
 
 Creates a new entity.
@@ -546,11 +547,13 @@ $path = 'path_example'; // string | Parent folder full path.
 $name = 'name_example'; // string | Entity name.
 $tenant_id = 56; // int | Tenant ID.
 $metadata_format = new \Aurigma\AssetStorage\Model\MockupFormatType(); // \Aurigma\AssetStorage\Model\MockupFormatType | Mockup file format.
+$metadata_link_source_id = 'metadata_link_source_id_example'; // string | Mockup link source file identifier.
 $type = new \Aurigma\AssetStorage\Model\MockupType(); // \Aurigma\AssetStorage\Model\MockupType | Mockup type.
+$has_problems = True; // bool | Mockup 'has problems' tag.  Indicates whether mockup has any problems preventing normal processing, e.g. missing source file for mockup link.
 $custom_fields = NULL; // array<string,mixed> | Entity custom attributes.
 
 try {
-    $result = $apiInstance->mockupsCreate($file, $path, $name, $tenant_id, $metadata_format, $type, $custom_fields);
+    $result = $apiInstance->mockupsCreate($file, $path, $name, $tenant_id, $metadata_format, $metadata_link_source_id, $type, $has_problems, $custom_fields);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MockupsApi->mockupsCreate: ', $e->getMessage(), PHP_EOL;
@@ -561,12 +564,14 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | |
+| **file** | **\SplFileObject****\SplFileObject**| File content. | |
 | **path** | **string**| Parent folder full path. | |
 | **name** | **string**| Entity name. | |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
 | **metadata_format** | [**\Aurigma\AssetStorage\Model\MockupFormatType**](../Model/MockupFormatType.md)| Mockup file format. | [optional] |
+| **metadata_link_source_id** | **string**| Mockup link source file identifier. | [optional] |
 | **type** | [**\Aurigma\AssetStorage\Model\MockupType**](../Model/MockupType.md)| Mockup type. | [optional] |
+| **has_problems** | **bool**| Mockup &#39;has problems&#39; tag.  Indicates whether mockup has any problems preventing normal processing, e.g. missing source file for mockup link. | [optional] |
 | **custom_fields** | [**array<string,mixed>**](../Model/array.md)| Entity custom attributes. | [optional] |
 
 ### Return type
@@ -969,7 +974,7 @@ try {
 ## `mockupsGetAll()`
 
 ```php
-mockupsGetAll($type, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id): \Aurigma\AssetStorage\Model\PagedOfMockupDto
+mockupsGetAll($type, $mockup_link_source_id, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id): \Aurigma\AssetStorage\Model\PagedOfMockupDto
 ```
 
 Returns all entities relevant to specified query parameters.
@@ -1008,6 +1013,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\MockupsApi(
     $config
 );
 $type = new \Aurigma\AssetStorage\Model\\Aurigma\AssetStorage\Model\MockupType(); // \Aurigma\AssetStorage\Model\MockupType | Mockup type.
+$mockup_link_source_id = 'mockup_link_source_id_example'; // string | Mockup link source identifier.
 $path = 'path_example'; // string | Folder path filter parameter.
 $include_subfolders = True; // bool | If set to 'true', query result will contain list of all entities in desired folder and subfolders.
 $skip = 56; // int | Defines page start offset from beginning of sorted result list.
@@ -1018,7 +1024,7 @@ $custom_fields = 'custom_fields_example'; // string | Custom attributes dictiona
 $tenant_id = 56; // int | Tenant ID.
 
 try {
-    $result = $apiInstance->mockupsGetAll($type, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id);
+    $result = $apiInstance->mockupsGetAll($type, $mockup_link_source_id, $path, $include_subfolders, $skip, $take, $sorting, $search, $custom_fields, $tenant_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MockupsApi->mockupsGetAll: ', $e->getMessage(), PHP_EOL;
@@ -1030,6 +1036,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **type** | [**\Aurigma\AssetStorage\Model\MockupType**](../Model/.md)| Mockup type. | [optional] |
+| **mockup_link_source_id** | **string**| Mockup link source identifier. | [optional] |
 | **path** | **string**| Folder path filter parameter. | [optional] |
 | **include_subfolders** | **bool**| If set to &#39;true&#39;, query result will contain list of all entities in desired folder and subfolders. | [optional] |
 | **skip** | **int**| Defines page start offset from beginning of sorted result list. | [optional] |
@@ -1282,10 +1289,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `mockupsGetFolder()`
+## `mockupsGetFolderContent()`
 
 ```php
-mockupsGetFolder($full_path, $tenant_id): \Aurigma\AssetStorage\Model\FolderContentOfMockupDto
+mockupsGetFolderContent($full_path, $tenant_id): \Aurigma\AssetStorage\Model\FolderContentOfMockupDto
 ```
 
 Returns a folder and its content by folder path.
@@ -1327,10 +1334,10 @@ $full_path = 'full_path_example'; // string | Full folder path, if not set then 
 $tenant_id = 56; // int | Tenant ID.
 
 try {
-    $result = $apiInstance->mockupsGetFolder($full_path, $tenant_id);
+    $result = $apiInstance->mockupsGetFolderContent($full_path, $tenant_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling MockupsApi->mockupsGetFolder: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MockupsApi->mockupsGetFolderContent: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -1339,6 +1346,82 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **full_path** | **string**| Full folder path, if not set then root folder path is used. | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
+
+### Return type
+
+[**\Aurigma\AssetStorage\Model\FolderContentOfMockupDto**](../Model/FolderContentOfMockupDto.md)
+
+### Authorization
+
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `mockupsGetFolderContentById()`
+
+```php
+mockupsGetFolderContentById($id, $tenant_id): \Aurigma\AssetStorage\Model\FolderContentOfMockupDto
+```
+
+Returns a folder and its content by folder ID.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKey
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Aurigma\AssetStorage\Api\MockupsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | Folder identifier.
+$tenant_id = 56; // int | Tenant ID.
+
+try {
+    $result = $apiInstance->mockupsGetFolderContentById($id, $tenant_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling MockupsApi->mockupsGetFolderContentById: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| Folder identifier. | [optional] |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
@@ -1437,7 +1520,7 @@ try {
 ## `mockupsUpdate()`
 
 ```php
-mockupsUpdate($id, $tenant_id, $metadata_format, $file, $path, $name, $custom_fields): \Aurigma\AssetStorage\Model\MockupDto
+mockupsUpdate($id, $tenant_id, $metadata_format, $metadata_link_source_id, $has_problems, $file, $path, $name, $custom_fields): \Aurigma\AssetStorage\Model\MockupDto
 ```
 
 Updates the specified entity.
@@ -1478,13 +1561,15 @@ $apiInstance = new Aurigma\AssetStorage\Api\MockupsApi(
 $id = 'id_example'; // string | Entity identifier.
 $tenant_id = 56; // int | Tenant ID.
 $metadata_format = new \Aurigma\AssetStorage\Model\MockupFormatType(); // \Aurigma\AssetStorage\Model\MockupFormatType | Mockup file format.
+$metadata_link_source_id = 'metadata_link_source_id_example'; // string | Mockup link source file identifier.
+$has_problems = True; // bool | Mockup 'has problems' tag.  Indicates whether mockup has any problems preventing normal processing, e.g. missing source file for mockup link.
 $file = "/path/to/file.txt"; // \SplFileObject | File content.
 $path = 'path_example'; // string | Parent folder full path.
 $name = 'name_example'; // string | Entity name.
 $custom_fields = NULL; // array<string,mixed> | Entity custom attributes.
 
 try {
-    $result = $apiInstance->mockupsUpdate($id, $tenant_id, $metadata_format, $file, $path, $name, $custom_fields);
+    $result = $apiInstance->mockupsUpdate($id, $tenant_id, $metadata_format, $metadata_link_source_id, $has_problems, $file, $path, $name, $custom_fields);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling MockupsApi->mockupsUpdate: ', $e->getMessage(), PHP_EOL;
@@ -1498,7 +1583,9 @@ try {
 | **id** | **string**| Entity identifier. | |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
 | **metadata_format** | [**\Aurigma\AssetStorage\Model\MockupFormatType**](../Model/MockupFormatType.md)| Mockup file format. | [optional] |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | [optional] |
+| **metadata_link_source_id** | **string**| Mockup link source file identifier. | [optional] |
+| **has_problems** | **bool**| Mockup &#39;has problems&#39; tag.  Indicates whether mockup has any problems preventing normal processing, e.g. missing source file for mockup link. | [optional] |
+| **file** | **\SplFileObject****\SplFileObject**| File content. | [optional] |
 | **path** | **string**| Parent folder full path. | [optional] |
 | **name** | **string**| Entity name. | [optional] |
 | **custom_fields** | [**array<string,mixed>**](../Model/array.md)| Entity custom attributes. | [optional] |

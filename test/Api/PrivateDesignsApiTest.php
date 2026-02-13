@@ -276,12 +276,24 @@ class PrivateDesignsApiTest extends TestCase
     }
 
     /**
-     * Test case for privateDesignsGetFolder
+     * Test case for privateDesignsGetFolderContent
      *
      * Returns a folder and its content by folder path..
      *
      */
-    public function testPrivateDesignsGetFolder()
+    public function testPrivateDesignsGetFolderContent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for privateDesignsGetFolderContentById
+     *
+     * Returns a folder and its content by folder id..
+     *
+     */
+    public function testPrivateDesignsGetFolderContentById()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

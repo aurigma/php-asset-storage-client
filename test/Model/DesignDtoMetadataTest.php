@@ -1,6 +1,6 @@
 <?php
 /**
- * FolderInfoDtoTest
+ * DesignDtoMetadataTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace Aurigma\AssetStorage\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * FolderInfoDtoTest Class Doc Comment
+ * DesignDtoMetadataTest Class Doc Comment
  *
  * @category    Class
- * @description Folder info DTO.
+ * @description Design metadata.
  * @package     Aurigma\AssetStorage
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class FolderInfoDtoTest extends TestCase
+class DesignDtoMetadataTest extends TestCase
 {
 
     /**
@@ -71,81 +71,108 @@ class FolderInfoDtoTest extends TestCase
     }
 
     /**
-     * Test "FolderInfoDto"
+     * Test "DesignDtoMetadata"
      */
-    public function testFolderInfoDto()
+    public function testDesignDtoMetadata()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "has_children"
+     * Test attribute "fonts"
      */
-    public function testPropertyHasChildren()
+    public function testPropertyFonts()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "has_content"
+     * Test attribute "surfaces"
      */
-    public function testPropertyHasContent()
+    public function testPropertySurfaces()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "id"
+     * Test attribute "print_areas"
      */
-    public function testPropertyId()
+    public function testPropertyPrintAreas()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "path"
+     * Test attribute "has_data_schema"
      */
-    public function testPropertyPath()
+    public function testPropertyHasDataSchema()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "private"
+     * Test attribute "data_schema_id"
      */
-    public function testPropertyPrivate()
+    public function testPropertyDataSchemaId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "owner_id"
+     * Test attribute "data_schema_name"
      */
-    public function testPropertyOwnerId()
+    public function testPropertyDataSchemaName()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "name"
+     * Test attribute "has_toggle_set"
      */
-    public function testPropertyName()
+    public function testPropertyHasToggleSet()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "last_modified"
+     * Test attribute "toggle_set_id"
      */
-    public function testPropertyLastModified()
+    public function testPropertyToggleSetId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "toggle_set_name"
+     */
+    public function testPropertyToggleSetName()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "has_palettes"
+     */
+    public function testPropertyHasPalettes()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "palettes"
+     */
+    public function testPropertyPalettes()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

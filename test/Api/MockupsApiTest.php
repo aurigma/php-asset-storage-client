@@ -264,12 +264,24 @@ class MockupsApiTest extends TestCase
     }
 
     /**
-     * Test case for mockupsGetFolder
+     * Test case for mockupsGetFolderContent
      *
      * Returns a folder and its content by folder path..
      *
      */
-    public function testMockupsGetFolder()
+    public function testMockupsGetFolderContent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for mockupsGetFolderContentById
+     *
+     * Returns a folder and its content by folder ID..
+     *
+     */
+    public function testMockupsGetFolderContentById()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

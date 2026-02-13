@@ -12,14 +12,15 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**documentsCreate()**](DocumentsApi.md#documentsCreate) | **POST** /api/storage/v1/documents | Creates a new entity. |
 | [**documentsCreateFolder()**](DocumentsApi.md#documentsCreateFolder) | **POST** /api/storage/v1/documents/folders | Creates a new folder. |
 | [**documentsDelete()**](DocumentsApi.md#documentsDelete) | **DELETE** /api/storage/v1/documents/{id} | Deletes the specified entity. |
-| [**documentsDeleteFolder()**](DocumentsApi.md#documentsDeleteFolder) | **DELETE** /api/storage/v1/documents/folders/content-by-path | Deletes the specified folder and its content by folder path. |
+| [**documentsDeleteFolder()**](DocumentsApi.md#documentsDeleteFolder) | **DELETE** /api/storage/v1/documents/folders/by-path | Deletes the specified folder and its content by folder path. |
 | [**documentsDeleteFolderById()**](DocumentsApi.md#documentsDeleteFolderById) | **DELETE** /api/storage/v1/documents/folders/{id} | Deletes the specified folder and its content by folder identifier. |
 | [**documentsGet()**](DocumentsApi.md#documentsGet) | **GET** /api/storage/v1/documents/{id} | Returns an entity by ID. |
 | [**documentsGetAll()**](DocumentsApi.md#documentsGetAll) | **GET** /api/storage/v1/documents | Returns all entities relevant to specified query parameters. |
 | [**documentsGetAllFolders()**](DocumentsApi.md#documentsGetAllFolders) | **GET** /api/storage/v1/documents/folders/all | Returns all folders. |
 | [**documentsGetFile()**](DocumentsApi.md#documentsGetFile) | **GET** /api/storage/v1/documents/{id}/file | Returns an entity file from file storage. |
 | [**documentsGetFileStorageInfo()**](DocumentsApi.md#documentsGetFileStorageInfo) | **GET** /api/storage/v1/documents/file-storage-info | Returns information about the use of file storage. |
-| [**documentsGetFolder()**](DocumentsApi.md#documentsGetFolder) | **GET** /api/storage/v1/documents/folders/content-by-path | Returns a folder and its content by folder path. |
+| [**documentsGetFolderContent()**](DocumentsApi.md#documentsGetFolderContent) | **GET** /api/storage/v1/documents/folders/content/by-path | Returns a folder and its content by folder path. |
+| [**documentsGetFolderContentById()**](DocumentsApi.md#documentsGetFolderContentById) | **GET** /api/storage/v1/documents/folders/content | Returns a folder and its content by folder ID. |
 | [**documentsGetFolderInfo()**](DocumentsApi.md#documentsGetFolderInfo) | **GET** /api/storage/v1/documents/folders/{id} | Returns a folder by ID. |
 | [**documentsUpdate()**](DocumentsApi.md#documentsUpdate) | **PUT** /api/storage/v1/documents/{id} | Updates the specified entity. |
 | [**documentsUpdateFolder()**](DocumentsApi.md#documentsUpdateFolder) | **PUT** /api/storage/v1/documents/folders/{id} | Updates the specified folder. |
@@ -468,7 +469,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | |
+| **file** | **\SplFileObject****\SplFileObject**| File content. | |
 | **path** | **string**| Parent folder full path. | |
 | **name** | **string**| Entity name. | |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
@@ -1191,10 +1192,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `documentsGetFolder()`
+## `documentsGetFolderContent()`
 
 ```php
-documentsGetFolder($full_path, $tenant_id): \Aurigma\AssetStorage\Model\FolderContentOfDocumentDto
+documentsGetFolderContent($full_path, $tenant_id): \Aurigma\AssetStorage\Model\FolderContentOfDocumentDto
 ```
 
 Returns a folder and its content by folder path.
@@ -1236,10 +1237,10 @@ $full_path = 'full_path_example'; // string | Full folder path, if not set then 
 $tenant_id = 56; // int | Tenant ID.
 
 try {
-    $result = $apiInstance->documentsGetFolder($full_path, $tenant_id);
+    $result = $apiInstance->documentsGetFolderContent($full_path, $tenant_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DocumentsApi->documentsGetFolder: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DocumentsApi->documentsGetFolderContent: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -1248,6 +1249,82 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **full_path** | **string**| Full folder path, if not set then root folder path is used. | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
+
+### Return type
+
+[**\Aurigma\AssetStorage\Model\FolderContentOfDocumentDto**](../Model/FolderContentOfDocumentDto.md)
+
+### Authorization
+
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `documentsGetFolderContentById()`
+
+```php
+documentsGetFolderContentById($id, $tenant_id): \Aurigma\AssetStorage\Model\FolderContentOfDocumentDto
+```
+
+Returns a folder and its content by folder ID.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKey
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Aurigma\AssetStorage\Api\DocumentsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | Folder identifier.
+$tenant_id = 56; // int | Tenant ID.
+
+try {
+    $result = $apiInstance->documentsGetFolderContentById($id, $tenant_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DocumentsApi->documentsGetFolderContentById: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| Folder identifier. | [optional] |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
@@ -1409,7 +1486,7 @@ try {
 | **tenant_id** | **int**| Tenant ID. | [optional] |
 | **type** | [**\Aurigma\AssetStorage\Model\DocumentType**](../Model/DocumentType.md)| Document type. | [optional] |
 | **format** | [**\Aurigma\AssetStorage\Model\DocumentFormatType**](../Model/DocumentFormatType.md)| Document format. | [optional] |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | [optional] |
+| **file** | **\SplFileObject****\SplFileObject**| File content. | [optional] |
 | **path** | **string**| Parent folder full path. | [optional] |
 | **name** | **string**| Entity name. | [optional] |
 | **custom_fields** | [**array<string,mixed>**](../Model/array.md)| Entity custom attributes. | [optional] |

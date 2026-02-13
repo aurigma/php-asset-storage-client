@@ -482,7 +482,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | |
+| **file** | **\SplFileObject****\SplFileObject**| File content. | |
 | **name** | **string**| Entity name. | |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
 | **owner_id** | **string**| Private storage owner identifier. | [optional] |
@@ -749,7 +749,7 @@ try {
 ## `privateResourcesGetAll()`
 
 ```php
-privateResourcesGetAll($namespace, $source_id, $type, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id): \Aurigma\AssetStorage\Model\PagedOfResourceDto
+privateResourcesGetAll($retention_policy, $namespace, $source_id, $type, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id): \Aurigma\AssetStorage\Model\PagedOfResourceDto
 ```
 
 Returns all entities relevant to specified query parameters.
@@ -787,6 +787,7 @@ $apiInstance = new Aurigma\AssetStorage\Api\PrivateResourcesApi(
     new GuzzleHttp\Client(),
     $config
 );
+$retention_policy = new \Aurigma\AssetStorage\Model\\Aurigma\AssetStorage\Model\RetentionPolicy(); // \Aurigma\AssetStorage\Model\RetentionPolicy
 $namespace = 'namespace_example'; // string | Resource namespace filter.
 $source_id = 'source_id_example'; // string | Resource source identifier filter.
 $type = 'type_example'; // string | Resource type filter.
@@ -799,7 +800,7 @@ $tenant_id = 56; // int | Tenant ID.
 $owner_id = 'owner_id_example'; // string | Private storage owner identifier.
 
 try {
-    $result = $apiInstance->privateResourcesGetAll($namespace, $source_id, $type, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id);
+    $result = $apiInstance->privateResourcesGetAll($retention_policy, $namespace, $source_id, $type, $skip, $take, $sorting, $search, $custom_fields, $tenant_id, $owner_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PrivateResourcesApi->privateResourcesGetAll: ', $e->getMessage(), PHP_EOL;
@@ -810,6 +811,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **retention_policy** | [**\Aurigma\AssetStorage\Model\RetentionPolicy**](../Model/.md)|  | [optional] |
 | **namespace** | **string**| Resource namespace filter. | [optional] |
 | **source_id** | **string**| Resource source identifier filter. | [optional] |
 | **type** | **string**| Resource type filter. | [optional] |
@@ -1219,7 +1221,7 @@ try {
 | **id** | **string**| Entity identifier. | |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
 | **owner_id** | **string**| Private storage owner identifier. | [optional] |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | [optional] |
+| **file** | **\SplFileObject****\SplFileObject**| File content. | [optional] |
 | **namespace** | **string**| Resource namespace. | [optional] |
 | **source_id** | **string**| Resource source identifier. | [optional] |
 | **type** | **string**| Resource type. | [optional] |

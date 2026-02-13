@@ -252,12 +252,24 @@ class DataSetsApiTest extends TestCase
     }
 
     /**
-     * Test case for dataSetsGetFolder
+     * Test case for dataSetsGetFolderContent
      *
      * Returns a folder and its content by folder path..
      *
      */
-    public function testDataSetsGetFolder()
+    public function testDataSetsGetFolderContent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for dataSetsGetFolderContentById
+     *
+     * Returns a folder and its content by folder ID..
+     *
+     */
+    public function testDataSetsGetFolderContentById()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

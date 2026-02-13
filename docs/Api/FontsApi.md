@@ -13,14 +13,15 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**fontsCreate()**](FontsApi.md#fontsCreate) | **POST** /api/storage/v1/fonts | Creates a new entity. |
 | [**fontsCreateFolder()**](FontsApi.md#fontsCreateFolder) | **POST** /api/storage/v1/fonts/folders | Creates a new folder. |
 | [**fontsDelete()**](FontsApi.md#fontsDelete) | **DELETE** /api/storage/v1/fonts/{id} | Deletes the specified entity. |
-| [**fontsDeleteFolder()**](FontsApi.md#fontsDeleteFolder) | **DELETE** /api/storage/v1/fonts/folders/content-by-path | Deletes the specified folder and its content by folder path. |
+| [**fontsDeleteFolder()**](FontsApi.md#fontsDeleteFolder) | **DELETE** /api/storage/v1/fonts/folders/by-path | Deletes the specified folder and its content by folder path. |
 | [**fontsDeleteFolderById()**](FontsApi.md#fontsDeleteFolderById) | **DELETE** /api/storage/v1/fonts/folders/{id} | Deletes the specified folder and its content by folder identifier. |
 | [**fontsGet()**](FontsApi.md#fontsGet) | **GET** /api/storage/v1/fonts/{id} | Returns an entity by ID. |
 | [**fontsGetAll()**](FontsApi.md#fontsGetAll) | **GET** /api/storage/v1/fonts | Returns all entities relevant to specified query parameters. |
 | [**fontsGetAllFolders()**](FontsApi.md#fontsGetAllFolders) | **GET** /api/storage/v1/fonts/folders/all | Returns all folders. |
 | [**fontsGetFile()**](FontsApi.md#fontsGetFile) | **GET** /api/storage/v1/fonts/{id}/file | Returns an entity file from file storage. |
 | [**fontsGetFileStorageInfo()**](FontsApi.md#fontsGetFileStorageInfo) | **GET** /api/storage/v1/fonts/file-storage-info | Returns information about the use of file storage. |
-| [**fontsGetFolder()**](FontsApi.md#fontsGetFolder) | **GET** /api/storage/v1/fonts/folders/content-by-path | Returns a folder and its content by folder path. |
+| [**fontsGetFolderContent()**](FontsApi.md#fontsGetFolderContent) | **GET** /api/storage/v1/fonts/folders/content/by-path | Returns a folder and its content by folder path. |
+| [**fontsGetFolderContentById()**](FontsApi.md#fontsGetFolderContentById) | **GET** /api/storage/v1/fonts/folders/content | Returns a folder and its content by folder ID. |
 | [**fontsGetFolderInfo()**](FontsApi.md#fontsGetFolderInfo) | **GET** /api/storage/v1/fonts/folders/{id} | Returns a folder by ID. |
 | [**fontsUpdate()**](FontsApi.md#fontsUpdate) | **PUT** /api/storage/v1/fonts/{id} | Updates the specified entity. |
 | [**fontsUpdateFolder()**](FontsApi.md#fontsUpdateFolder) | **PUT** /api/storage/v1/fonts/folders/{id} | Updates the specified folder. |
@@ -98,7 +99,7 @@ try {
 | **height** | **int**| Preview image height. | |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
 | **format** | **string**| Preview image format, e.g. Jpeg, Png, Bmp. | [optional] |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| Preview file content. | [optional] |
+| **file** | **\SplFileObject****\SplFileObject**| Preview file content. | [optional] |
 | **is_custom** | **bool**| Indicates if the preview is custom.  Custom previews preserved even if source is changed. | [optional] |
 
 ### Return type
@@ -562,7 +563,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | |
+| **file** | **\SplFileObject****\SplFileObject**| File content. | |
 | **path** | **string**| Parent folder full path. | |
 | **name** | **string**| Entity name. | |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
@@ -1284,10 +1285,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `fontsGetFolder()`
+## `fontsGetFolderContent()`
 
 ```php
-fontsGetFolder($full_path, $tenant_id): \Aurigma\AssetStorage\Model\FolderContentOfFontDto
+fontsGetFolderContent($full_path, $tenant_id): \Aurigma\AssetStorage\Model\FolderContentOfFontDto
 ```
 
 Returns a folder and its content by folder path.
@@ -1329,10 +1330,10 @@ $full_path = 'full_path_example'; // string | Full folder path, if not set then 
 $tenant_id = 56; // int | Tenant ID.
 
 try {
-    $result = $apiInstance->fontsGetFolder($full_path, $tenant_id);
+    $result = $apiInstance->fontsGetFolderContent($full_path, $tenant_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling FontsApi->fontsGetFolder: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling FontsApi->fontsGetFolderContent: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -1341,6 +1342,82 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **full_path** | **string**| Full folder path, if not set then root folder path is used. | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
+
+### Return type
+
+[**\Aurigma\AssetStorage\Model\FolderContentOfFontDto**](../Model/FolderContentOfFontDto.md)
+
+### Authorization
+
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `fontsGetFolderContentById()`
+
+```php
+fontsGetFolderContentById($id, $tenant_id): \Aurigma\AssetStorage\Model\FolderContentOfFontDto
+```
+
+Returns a folder and its content by folder ID.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKey
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Aurigma\AssetStorage\Api\FontsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | Folder identifier.
+$tenant_id = 56; // int | Tenant ID.
+
+try {
+    $result = $apiInstance->fontsGetFolderContentById($id, $tenant_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling FontsApi->fontsGetFolderContentById: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| Folder identifier. | [optional] |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
@@ -1504,7 +1581,7 @@ try {
 | **metadata_postscript_name** | **string**|  | [optional] |
 | **metadata_family** | **string**|  | [optional] |
 | **metadata_style** | **string**|  | [optional] |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | [optional] |
+| **file** | **\SplFileObject****\SplFileObject**| File content. | [optional] |
 | **path** | **string**| Parent folder full path. | [optional] |
 | **name** | **string**| Entity name. | [optional] |
 | **custom_fields** | [**array<string,mixed>**](../Model/array.md)| Entity custom attributes. | [optional] |

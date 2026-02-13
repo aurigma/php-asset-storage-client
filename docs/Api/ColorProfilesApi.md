@@ -12,14 +12,15 @@ All URIs are relative to http://localhost, except if the operation defines anoth
 | [**colorProfilesCreate()**](ColorProfilesApi.md#colorProfilesCreate) | **POST** /api/storage/v1/color-profiles | Creates a new entity. |
 | [**colorProfilesCreateFolder()**](ColorProfilesApi.md#colorProfilesCreateFolder) | **POST** /api/storage/v1/color-profiles/folders | Creates a new folder. |
 | [**colorProfilesDelete()**](ColorProfilesApi.md#colorProfilesDelete) | **DELETE** /api/storage/v1/color-profiles/{id} | Deletes the specified entity. |
-| [**colorProfilesDeleteFolder()**](ColorProfilesApi.md#colorProfilesDeleteFolder) | **DELETE** /api/storage/v1/color-profiles/folders/content-by-path | Deletes the specified folder and its content by folder path. |
+| [**colorProfilesDeleteFolder()**](ColorProfilesApi.md#colorProfilesDeleteFolder) | **DELETE** /api/storage/v1/color-profiles/folders/by-path | Deletes the specified folder and its content by folder path. |
 | [**colorProfilesDeleteFolderById()**](ColorProfilesApi.md#colorProfilesDeleteFolderById) | **DELETE** /api/storage/v1/color-profiles/folders/{id} | Deletes the specified folder and its content by folder identifier. |
 | [**colorProfilesGet()**](ColorProfilesApi.md#colorProfilesGet) | **GET** /api/storage/v1/color-profiles/{id} | Returns an entity by ID. |
 | [**colorProfilesGetAll()**](ColorProfilesApi.md#colorProfilesGetAll) | **GET** /api/storage/v1/color-profiles | Returns all entities relevant to specified query parameters. |
 | [**colorProfilesGetAllFolders()**](ColorProfilesApi.md#colorProfilesGetAllFolders) | **GET** /api/storage/v1/color-profiles/folders/all | Returns all folders. |
 | [**colorProfilesGetFile()**](ColorProfilesApi.md#colorProfilesGetFile) | **GET** /api/storage/v1/color-profiles/{id}/file | Returns an entity file from file storage. |
 | [**colorProfilesGetFileStorageInfo()**](ColorProfilesApi.md#colorProfilesGetFileStorageInfo) | **GET** /api/storage/v1/color-profiles/file-storage-info | Returns information about the use of file storage. |
-| [**colorProfilesGetFolder()**](ColorProfilesApi.md#colorProfilesGetFolder) | **GET** /api/storage/v1/color-profiles/folders/content-by-path | Returns a folder and its content by folder path. |
+| [**colorProfilesGetFolderContent()**](ColorProfilesApi.md#colorProfilesGetFolderContent) | **GET** /api/storage/v1/color-profiles/folders/content/by-path | Returns a folder and its content by folder path. |
+| [**colorProfilesGetFolderContentById()**](ColorProfilesApi.md#colorProfilesGetFolderContentById) | **GET** /api/storage/v1/color-profiles/folders/content | Returns a folder and its content by folder ID. |
 | [**colorProfilesGetFolderInfo()**](ColorProfilesApi.md#colorProfilesGetFolderInfo) | **GET** /api/storage/v1/color-profiles/folders/{id} | Returns a folder by ID. |
 | [**colorProfilesUpdate()**](ColorProfilesApi.md#colorProfilesUpdate) | **PUT** /api/storage/v1/color-profiles/{id} | Updates the specified entity. |
 | [**colorProfilesUpdateFolder()**](ColorProfilesApi.md#colorProfilesUpdateFolder) | **PUT** /api/storage/v1/color-profiles/folders/{id} | Updates the specified folder. |
@@ -472,7 +473,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | |
+| **file** | **\SplFileObject****\SplFileObject**| File content. | |
 | **path** | **string**| Parent folder full path. | |
 | **name** | **string**| Entity name. | |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
@@ -1197,10 +1198,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `colorProfilesGetFolder()`
+## `colorProfilesGetFolderContent()`
 
 ```php
-colorProfilesGetFolder($full_path, $tenant_id): \Aurigma\AssetStorage\Model\FolderContentOfColorProfileDto
+colorProfilesGetFolderContent($full_path, $tenant_id): \Aurigma\AssetStorage\Model\FolderContentOfColorProfileDto
 ```
 
 Returns a folder and its content by folder path.
@@ -1242,10 +1243,10 @@ $full_path = 'full_path_example'; // string | Full folder path, if not set then 
 $tenant_id = 56; // int | Tenant ID.
 
 try {
-    $result = $apiInstance->colorProfilesGetFolder($full_path, $tenant_id);
+    $result = $apiInstance->colorProfilesGetFolderContent($full_path, $tenant_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ColorProfilesApi->colorProfilesGetFolder: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ColorProfilesApi->colorProfilesGetFolderContent: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -1254,6 +1255,82 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **full_path** | **string**| Full folder path, if not set then root folder path is used. | [optional] |
+| **tenant_id** | **int**| Tenant ID. | [optional] |
+
+### Return type
+
+[**\Aurigma\AssetStorage\Model\FolderContentOfColorProfileDto**](../Model/FolderContentOfColorProfileDto.md)
+
+### Authorization
+
+[ApiKey](../../README.md#ApiKey), [OAuth2ClientCredentials](../../README.md#OAuth2ClientCredentials), [OAuth2Code](../../README.md#OAuth2Code), [OAuth2Implicit](../../README.md#OAuth2Implicit), [Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `colorProfilesGetFolderContentById()`
+
+```php
+colorProfilesGetFolderContentById($id, $tenant_id): \Aurigma\AssetStorage\Model\FolderContentOfColorProfileDto
+```
+
+Returns a folder and its content by folder ID.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: ApiKey
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+// Configure OAuth2 access token for authorization: OAuth2ClientCredentials
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Code
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure OAuth2 access token for authorization: OAuth2Implicit
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
+// Configure API key authorization: Bearer
+$config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Aurigma\AssetStorage\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Aurigma\AssetStorage\Api\ColorProfilesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | Folder identifier.
+$tenant_id = 56; // int | Tenant ID.
+
+try {
+    $result = $apiInstance->colorProfilesGetFolderContentById($id, $tenant_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ColorProfilesApi->colorProfilesGetFolderContentById: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| Folder identifier. | [optional] |
 | **tenant_id** | **int**| Tenant ID. | [optional] |
 
 ### Return type
@@ -1423,7 +1500,7 @@ try {
 | **metadata_manufacturer** | **string**|  | [optional] |
 | **metadata_color_space** | [**\Aurigma\AssetStorage\Model\ColorSpace**](../Model/ColorSpace.md)|  | [optional] |
 | **metadata_device_class** | [**\Aurigma\AssetStorage\Model\ColorProfileClass**](../Model/ColorProfileClass.md)|  | [optional] |
-| **file** | [**\SplFileObject**](../Model/\SplFileObject.md)| File content. | [optional] |
+| **file** | **\SplFileObject****\SplFileObject**| File content. | [optional] |
 | **path** | **string**| Parent folder full path. | [optional] |
 | **name** | **string**| Entity name. | [optional] |
 | **custom_fields** | [**array<string,mixed>**](../Model/array.md)| Entity custom attributes. | [optional] |
