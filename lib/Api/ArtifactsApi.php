@@ -1072,7 +1072,7 @@ class ArtifactsApi
      *
      * Deletes all entities within the specified group.
      *
-     * @param  string $group Group name. (required)
+     * @param  string $group Group name. (optional)
      * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsDeleteGroup'] to see the possible values for this operation
      *
@@ -1080,7 +1080,7 @@ class ArtifactsApi
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function artifactsDeleteGroup($group, $tenant_id = null, string $contentType = self::contentTypes['artifactsDeleteGroup'][0])
+    public function artifactsDeleteGroup($group = null, $tenant_id = null, string $contentType = self::contentTypes['artifactsDeleteGroup'][0])
     {
         $this->artifactsDeleteGroupWithHttpInfo($group, $tenant_id, $contentType);
     }
@@ -1090,7 +1090,7 @@ class ArtifactsApi
      *
      * Deletes all entities within the specified group.
      *
-     * @param  string $group Group name. (required)
+     * @param  string $group Group name. (optional)
      * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsDeleteGroup'] to see the possible values for this operation
      *
@@ -1098,7 +1098,7 @@ class ArtifactsApi
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function artifactsDeleteGroupWithHttpInfo($group, $tenant_id = null, string $contentType = self::contentTypes['artifactsDeleteGroup'][0])
+    public function artifactsDeleteGroupWithHttpInfo($group = null, $tenant_id = null, string $contentType = self::contentTypes['artifactsDeleteGroup'][0])
     {
         $request = $this->artifactsDeleteGroupRequest($group, $tenant_id, $contentType);
 
@@ -1159,14 +1159,14 @@ class ArtifactsApi
      *
      * Deletes all entities within the specified group.
      *
-     * @param  string $group Group name. (required)
+     * @param  string $group Group name. (optional)
      * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsDeleteGroup'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function artifactsDeleteGroupAsync($group, $tenant_id = null, string $contentType = self::contentTypes['artifactsDeleteGroup'][0])
+    public function artifactsDeleteGroupAsync($group = null, $tenant_id = null, string $contentType = self::contentTypes['artifactsDeleteGroup'][0])
     {
         return $this->artifactsDeleteGroupAsyncWithHttpInfo($group, $tenant_id, $contentType)
             ->then(
@@ -1181,14 +1181,14 @@ class ArtifactsApi
      *
      * Deletes all entities within the specified group.
      *
-     * @param  string $group Group name. (required)
+     * @param  string $group Group name. (optional)
      * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsDeleteGroup'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function artifactsDeleteGroupAsyncWithHttpInfo($group, $tenant_id = null, string $contentType = self::contentTypes['artifactsDeleteGroup'][0])
+    public function artifactsDeleteGroupAsyncWithHttpInfo($group = null, $tenant_id = null, string $contentType = self::contentTypes['artifactsDeleteGroup'][0])
     {
         $returnType = '';
         $request = $this->artifactsDeleteGroupRequest($group, $tenant_id, $contentType);
@@ -1219,22 +1219,16 @@ class ArtifactsApi
     /**
      * Create request for operation 'artifactsDeleteGroup'
      *
-     * @param  string $group Group name. (required)
+     * @param  string $group Group name. (optional)
      * @param  int $tenant_id Tenant ID. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['artifactsDeleteGroup'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function artifactsDeleteGroupRequest($group, $tenant_id = null, string $contentType = self::contentTypes['artifactsDeleteGroup'][0])
+    public function artifactsDeleteGroupRequest($group = null, $tenant_id = null, string $contentType = self::contentTypes['artifactsDeleteGroup'][0])
     {
 
-        // verify the required parameter 'group' is set
-        if ($group === null || (is_array($group) && count($group) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $group when calling artifactsDeleteGroup'
-            );
-        }
 
 
 
@@ -1252,7 +1246,7 @@ class ArtifactsApi
             'string', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
